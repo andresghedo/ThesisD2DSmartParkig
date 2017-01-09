@@ -1,0 +1,19 @@
+\select@language {italian}
+\select@language {italian}
+\contentsline {chapter}{Introduzione}{i}
+\contentsline {chapter}{\numberline {1}Primo Capitolo}{1}
+\contentsline {section}{\numberline {1.1}Prima Sezione}{1}
+\contentsline {section}{\numberline {1.2}Seconda Sezione}{1}
+\contentsline {subsection}{\numberline {1.2.1}Prima SottoSezione}{1}
+\contentsline {section}{\numberline {1.3}Terza Sezione}{2}
+\contentsline {section}{\numberline {1.4}Altra Sezione}{3}
+\contentsline {subsection}{\numberline {1.4.1}Altra SottoSezione}{3}
+\contentsline {subsubsection}{SottoSottoSezione}{3}
+\contentsline {section}{\numberline {1.5}Altra Sezione}{3}
+\contentsline {section}{\numberline {1.6}Altra Sezione}{4}
+\contentsline {subsection}{\numberline {1.6.1}Listati dei programmi}{4}
+\contentsline {subsubsection}{Primo Listato}{4}
+\contentsline {chapter}{Conclusioni}{5}
+\contentsline {chapter}{\numberline {A}Prima Appendice}{7}
+\contentsline {chapter}{\numberline {B}Seconda Appendice}{9}
+\contentsline {chapter}{Bibliografia}{11}
