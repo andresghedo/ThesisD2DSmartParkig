@@ -84,9 +84,7 @@
 \large                                  %aumenta la grandezza del carattere
                                         %   a 14pt
 \em                                     %emfatizza (corsivo) il carattere
-Questa \`e la \textsc{Dedica}:\\
-ognuno pu\`o scrivere quello che vuole, \\
-anche nulla \ldots                      %\ldots lascia tre puntini
+Alla mia famiglia \ldots                      %\ldots lascia tre puntini
 \newpage                                %va in una pagina nuova
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
 \clearpage{\pagestyle{empty}\cleardoublepage}
@@ -102,7 +100,7 @@ INTRODUZIONE}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%aggiunge la voce Introduzione
                                         %   nell'indice
 \addcontentsline{toc}{chapter}{Introduzione}
-Questa \`e l'introduzione.
+Questa \`e l'introduzione. Discorso sull'elaborato in generale, smart city, IoT, D2D...
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
 \clearpage{\pagestyle{empty}\cleardoublepage}
 \tableofcontents                        %crea l'indice
@@ -122,132 +120,62 @@ INDICE}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%imposta l'intestazione di pagina
 \lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}
 \pagenumbering{arabic}                  %mette i numeri arabi
-Il seguente capitolo ha lo scopo di illustrare in dettaglio il goal del progetto, le problematiche che vi stanno dietro ed il processo di progettazione su cui è stato necessario soffermarsi, per la successiva realizzazione ed implementazione.
-La mission, descrivendola in pochi concetti, è sostanzialmente quella di disseminare le informazioni, relative al concetto di Smart Parking, in maniera totalmente distribuita e senza alcun appoggio di una struttura centralizzata.
-Questo concetto diventa innovativo dal momento in cui non si passa dalla rete cellulare o da qualche gateway verso Internet per la comunicazione tra dispositivi, ma verranno utilizzate soltanto le tecnologie e apparecchiature presenti nei più comuni smartphone in commercio.
+Il seguente capitolo ha lo scopo di illustrare in dettaglio il goal del progetto, le problematiche che vi stanno dietro ed il processo di progettazione su cui è stato necessario soffermarsi, 
+per la successiva realizzazione ed implementazione.
+La mission, descrivendola in pochi concetti, è sostanzialmente quella di disseminare le informazioni, relative al concetto di Smart Parking, in maniera totalmente distribuita e senza alcun 
+appoggio di una struttura centralizzata.
+Questo concetto diventa innovativo dal momento in cui non si passa dalla rete cellulare o da qualche gateway verso Internet per la comunicazione tra dispositivi, ma verranno utilizzate 
+soltanto le tecnologie e apparecchiature presenti nei più comuni smartphone in commercio.
 Dettagli tecnologici ed implementativi saranno comunque discussi nel prossimo capitolo.
 Di seguito verranno illustrati soprattutto le principali componenti che compongono il sistema, descrivendone funzionalità, utilità ed integrazione con le restanti componenti.
 \section{Scopo e problematiche}                 %crea la sezione
-Come già accennato e discusso in precedenza lo scopo principale è quello di propagare informazioni, tra dispositivi mobili, in maniera completamente distribuita, senza l?appoggio di agenti centralizzati.
-Il device utente, tramite la componente di Activity Recognition presente nel software, compie un evento di parcheggio o rilascio, dopo di chè tiene traccia dell?evento salvandolo in locale nella memoria.
+Come già accennato e discusso in precedenza lo scopo principale è quello di propagare informazioni, tra dispositivi mobili, in maniera completamente distribuita, senza l?appoggio di agenti 
+centralizzati.
+Il device utente, tramite la componente di Activity Recognition presente nel software, compie un evento di parcheggio o rilascio, dopo di chè tiene traccia dell?evento salvandolo in locale 
+nella memoria.
 Le informazioni campionate sopra descritte, saranno l?oggetto della comunicazione tra i device che potranno fare assunzioni su eventuali zone dense di parcheggi liberi.
 Più gli utenti restano allineati e sincronizzati su questi dati, più restano aggiornati e consapevoli della situazione parcheggi nei dintorni.
-Per semplicità concettuale la città viene divisa in celle(identificate con id univoci), permettendo così alla logica di disseminare informazioni relative alla cella in questione e a quelle adiacenti.
+Per semplicità concettuale la città viene divisa in celle(identificate con id univoci), permettendo così alla logica di disseminare informazioni relative alla cella in questione e a quelle 
+adiacenti.
 Un altro aspetto non meno importante di quelli già illustrati, è il fatto che il servizio deve funzionare in modo continuativo nel tempo e soprattutto in modo totalmente autonomo.
 Questo significa che l?utente, senza nessuna interazione con il device(mantenendolo per esempio in tasca), sincronizza comunque i propri dati con quelli di utenti circostanti, nei paraggi.
 La funzionalità appena descritta, per renderla robusta, ha richiesto una fase implementativa consistente, la quale verrà illustrata tecnicamente in seguito.
-
-\begin{defin}                           %crea l'ambiente definizione
-Prima definizione. Ad esempio:
-\begin{equation}\label{eq:uno}          %crea l'ambiente matematico
-                                        %   equazione; questo ambiente
-                                        %   centra la formula e la
-                                        %   numera
-\boldsymbol{f}(t,\boldsymbol{y}(t))=    %\boldsymbol grassetta i
-                                        %   simboli matematici corsivi
-{\setlength\arraycolsep{2pt}            %imposta la larghezza delle colonne
-                                        %   dell'array che si va a fare
-\left(\begin{array}{c}                  %apre ambiente array con un
-                                        %   parentesi tonda grande davanti
-f_1(t,y_1(t),y_2(t),\ldots,y_n(t))\\
-f_2(t,y_1(t),y_2(t),\ldots,y_n(t))\\
-\ldots\\
-f_n(t,y_1(t),y_2(t),\ldots,y_n(t))
-\end{array}\right)}
-\end{equation}
-\end{defin}
-\begin{defin}\label{defin:due}          %crea l'ambiente definizione
-                                        %   e mette una etichetta
-Seconda definizione. Ad esempio:\\
-Sia $f$ una funzione \ldots
-\end{defin}
 \section{Architettura generale}               %crea la sezione
-L?architettura generale, analizzandola da un punto di vista esterno, prevede come unici attori i device utenti. Questi muovendosi all?interno dell?ambiente città restano in attesa di possibili sincronizzazioni.
+L?architettura generale, analizzandola da un punto di vista esterno, prevede come unici attori i device utenti. Questi muovendosi all?interno dell?ambiente città restano in attesa di possibili 
+sincronizzazioni.
 Ogni dispositivo, che presenta il servizio di comunicazione e sincronizzazione attivo, può interpretare fondamentalmente due ruoli concettuali:
 \\\\ROLE ACCESS POINT:
-\\Il device funge da access point, offrendo la possibilità a device presenti in prossimità di agganciarsi all?HotSpot esposto. Una volta che un Client si connette stabilmente ad esso avrà  l?opportunità di aprire 
+\\Il device funge da access point, offrendo la possibilità a device presenti in prossimità di agganciarsi all?HotSpot esposto. Una volta che un Client si connette stabilmente ad esso avrà 
+l?opportunità di aprire 
 un canale di comunicazione e sincronizzare i propri dati con quelli del Access Point, denominato anche come Server.
 Inoltre l?Access Point notifica la propria presenza e informazioni utili attraverso la propagazione di un beacon di servizio.
 \\\\ROLE CLIENT:
-\\Se un device si accorge della presenza di un HotSpot nelle vicinanze, grazie al beacon sopra citato, può tentare di connettersi come Client all?Access Point. Qualora riesca ad agganciarsi in modo stabile all?HotSpot 
+\\Se un device si accorge della presenza di un HotSpot nelle vicinanze, grazie al beacon sopra citato, può tentare di connettersi come Client all?Access Point. Qualora riesca ad agganciarsi 
+in modo stabile all?HotSpot 
 verranno avviati i canali di comunicazione, su cui effettuare una sincronizzazione tra i device Client e Server.
-\\\\A questo punto la topologia della rete generale può essere vista come hub di hub, ovvero tante piccole star, dove grazie al movimento inerziale dei device si riuscirà ad ottenere una propagazione dell?informazione, 
+\\\\A questo punto la topologia della rete generale può essere vista come hub di hub, ovvero tante piccole star, dove grazie al movimento inerziale dei device si riuscirà ad ottenere una 
+propagazione dell?informazione, 
 interconnettendo appunto le informazioni di diversi hub tra di loro, ad istanti di tempo differenti.
 \begin{figure}[!h]
 \centering
 \includegraphics[scale=0.5]{img/arch_general.png}
 \caption{Rappresentazione dell'Architettura generale}
 \end{figure}
-\\\\Come si può comprendere dalla Fig. i device muovendosi continuamente all?interno dello scenario(identificato in questo caso con la griglia città), formeranno continuamente nuovi Hub, con attori sempre diversi. Questo 
+\\\\Come si può comprendere dalla Fig. i device muovendosi continuamente all?interno dello scenario(identificato in questo caso con la griglia città), formeranno continuamente nuovi Hub, 
+con attori sempre diversi. Questo 
 fattore è determinante per il processo di propagazione delle informazioni, in quanto dati presenti in un Hub, verranno sincronizzati, in istanti successivi, con Hub diversi. 
-\subsection{Prima SottoSezione}         %crea la sottosezione
-\begin{teo}[nome teorema] $\\$          %crea l'ambiente teorema e
-                                        %   $\\$ va a capo in modo forzato
-\vspace{-20pt}                          %toglie uno spazio verticale di 20pt
+\section{Organizzazione delle informazioni}
+L?organizzazione e persistenza dei city data è ovviamente una fase determinante del progetto.
+In fase di progettazione, si è giunti alla conclusione che non è sufficiente scambiarsi il numero di parcheggi liberi/occupati/unknow derivanti da dati statistici, 
+in quanto ogni device/utente potrebbe avere una parziale, ma diversa, visione dello scenario.
+Da ciò deriva la necessità di sincronizzarsi su tutti gli eventi che sono successi recentemente in una determinata zona(cella) e quelle adiacenti.
+Si è optato per la realizzazione di un database di tipo relazionale composto principalmente da due tabelle, indipendenti l?una dall?altra.
+La prima tabella, denominata, park_events colleziona tutti gli eventi che gli utente compiono o ricevono in seguito a sincronizzazioni con altri utenti.
+La seconda tabella synchronizations colleziona invece tutte le sincronizzazioni che hanno coinvolto il device in questione.
+Come verrà illustrato nel capitolo relativo all?implementazione, gli strumenti utilizzati si baseranno completamente sullo standard SQL, i quali permetteranno una semplice gestione di 
+query di filtraggio, creazione, modifica, cancellazione.
+Entrando più in dettaglio nella composizione delle tabelle e degli attributi salvati, si mostra di seguito uno schema riassuntivo di ciò che viene messo a database.
 
-Primo Teorema.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%crea l'ambiente matematico $$ $$
-                                        %   questo ambiente centra la
-                                        %   formula ma non la numera
-$$\df{\partial}{\partial x}\boldsymbol{f}(x,y)=\df{\partial}{\partial y}\boldsymbol{f}(x,y)$$
-\end{teo}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%crea l'ambiente dimostrazione
-\begin{proof}Il teorema \`e dimostrato
-\end{proof}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{oss}                             %crea l'ambiente osservazione
-Prima Osservazione.
-\end{oss}
-\begin{oss}                             %crea l'ambiente osservazione
-Seconda Osservazione.
-\end{oss}
-\begin{defin}
-Altra definizione.
-\end{defin}
-Ora vediamo un elenco numerato:         %crea un elenco numerato
-\begin{enumerate}
-\item primo oggetto
-\item secondo oggetto
-\item terzo oggetto
-\item quarto oggetto
-\end{enumerate}
-\begin{ese}                             %crea l'ambiente esempio
-In questo primo esempio vediamo come si inserisce una figura:
-\begin{figure}[h]                       %crea l'ambiente figura; [h] sta
-                                        %   per here, cioè la figura va qui
-\begin{center}                          %centra nel mezzo della pagina
-                                        %   la figura
-%\includegraphics[width=5cm]{figura.eps}%inserisce una figura larga 5cm
-                                        %è commentata perché altrimenti
-                                        %   produce errori
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%inserisce la legenda ed etichetta
-                                        %   la figura con \label{fig:prima}
-\caption[legenda elenco figure]{legenda sotto la figura}\label{fig:prima}
-\end{center}
-\end{figure}
-\end{ese}
-\begin{teo}$\\$                         %crea l'ambiente teorema e
-                                        %   $\\$ va a capo in modo forzato
-
-\vspace{-20pt}                          %toglie uno spazio verticale di 20pt
-Secondo Teorema.
-\end{teo}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%crea anche questo l'ambiente
-                                        %   dimostrazione ed è equivalente
-                                        %   al precendente
-\proof Il teorema \`e dimostrato \endproof
-\section{Terza Sezione}
-\begin{ese}[nome esempio]$\\$
-
-\vspace{-20pt}                          %toglie uno spazio verticale di 20pt
-Secondo Esempio.
-\newpage                                %va in una pagina nuova
-Ora vediamo un elenco puntato:
-\begin{itemize}                         %crea un elenco puntato
-\item primo oggetto
-\item secondo oggetto
-\end{itemize}
-\end{ese}
 \section{Altra Sezione}
 Vediamo un elenco descrittivo:
 \begin{description}                     %crea un elenco descrittivo

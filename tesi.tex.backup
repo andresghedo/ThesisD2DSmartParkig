@@ -172,14 +172,7 @@ Inoltre l?Access Point notifica la propria presenza e informazioni utili attrave
 \\Se un device si accorge della presenza di un HotSpot nelle vicinanze, grazie al beacon sopra citato, può tentare di connettersi come Client all?Access Point. Qualora riesca ad agganciarsi in modo stabile all?HotSpot 
 verranno avviati i canali di comunicazione, su cui effettuare una sincronizzazione tra i device Client e Server.
 \\\\A questo punto la topologia della rete generale può essere vista come hub di hub, ovvero tante piccole star, dove grazie al movimento inerziale dei device si riuscirà ad ottenere una propagazione dell?informazione, 
-interconnettendo appunto le informazioni di diversi hub tra di loro, ad istanti di tempo differenti.
-\begin{figure}[!h]
-\centering
-\includegraphics[scale=0.5]{img/arch_general.png}
-\caption{Rappresentazione dell'Architettura generale}
-\end{figure}
-\\\\Come si può comprendere dalla Fig. i device muovendosi continuamente all?interno dello scenario(identificato in questo caso con la griglia città), formeranno continuamente nuovi Hub, con attori sempre diversi. Questo 
-fattore è determinante per il processo di propagazione delle informazioni, in quanto dati presenti in un Hub, verranno sincronizzati, in istanti successivi, con Hub diversi. 
+interconnettendo appunto le informazioni di diversi hub tra di loro, ad istanti di tempo differenti. 
 \subsection{Prima SottoSezione}         %crea la sottosezione
 \begin{teo}[nome teorema] $\\$          %crea l'ambiente teorema e
                                         %   $\\$ va a capo in modo forzato
