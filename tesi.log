@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.7.12)  10 JAN 2017 14:29
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.7.12)  8 FEB 2017 17:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -48,10 +48,31 @@ Package: etex 1998/03/26 v2.0 eTeX basic definition package (PEB)
 )
 \etb@tempcnta=\count92
 )
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 57.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+\captionmargin=\dimen104
+\captionmargin@=\dimen105
+\captionwidth=\dimen106
+\caption@tempdima=\dimen107
+\caption@indent=\dimen108
+\caption@parindent=\dimen109
+\caption@hangindent=\dimen110
+)
+\c@ContinuedFloat=\count93
+)
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2008/03/30 v1.1d Input encoding file
-\inpenc@prehook=\toks14
-\inpenc@posthook=\toks15
+\inpenc@prehook=\toks15
+\inpenc@posthook=\toks16
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/latin1.def
 File: latin1.def 2008/03/30 v1.1d Input encoding file
@@ -73,10 +94,6 @@ Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
-\KV@toks@=\toks16
-)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
@@ -97,10 +114,10 @@ Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
-\Gread@gobject=\count93
+\Gread@gobject=\count94
 ))
-\Gin@req@height=\dimen104
-\Gin@req@width=\dimen105
+\Gin@req@height=\dimen111
+\Gin@req@width=\dimen112
 )
 (/usr/share/texlive/texmf-dist/tex/latex/base/newlfont.sty
 Package: newlfont 1998/08/17 v2.2m Standard LaTeX package
@@ -134,46 +151,46 @@ Package: amstext 2000/06/29 v2.01
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks18
-\ex@=\dimen106
+\ex@=\dimen113
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
-\pmbraise@=\dimen107
+\pmbraise@=\dimen114
 )
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
-\inf@bad=\count94
+\inf@bad=\count95
 LaTeX Info: Redefining \frac on input line 210.
-\uproot@=\count95
-\leftroot@=\count96
+\uproot@=\count96
+\leftroot@=\count97
 LaTeX Info: Redefining \overline on input line 306.
-\classnum@=\count97
-\DOTSCASE@=\count98
+\classnum@=\count98
+\DOTSCASE@=\count99
 LaTeX Info: Redefining \ldots on input line 378.
 LaTeX Info: Redefining \dots on input line 381.
 LaTeX Info: Redefining \cdots on input line 466.
 \Mathstrutbox@=\box26
 \strutbox@=\box27
-\big@size=\dimen108
+\big@size=\dimen115
 LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
-\macc@depth=\count99
-\c@MaxMatrixCols=\count100
+\macc@depth=\count100
+\c@MaxMatrixCols=\count101
 \dotsspace@=\muskip10
-\c@parentequation=\count101
-\dspbrk@lvl=\count102
+\c@parentequation=\count102
+\dspbrk@lvl=\count103
 \tag@help=\toks19
-\row@=\count103
-\column@=\count104
-\maxfields@=\count105
+\row@=\count104
+\column@=\count105
+\maxfields@=\count106
 \andhelp@=\toks20
-\eqnshift@=\dimen109
-\alignsep@=\dimen110
-\tagshift@=\dimen111
-\tagwidth@=\dimen112
-\totwidth@=\dimen113
-\lineht@=\dimen114
+\eqnshift@=\dimen116
+\alignsep@=\dimen117
+\tagshift@=\dimen118
+\tagwidth@=\dimen119
+\totwidth@=\dimen120
+\lineht@=\dimen121
 \@envbody=\toks21
 \multlinegap=\skip53
 \multlinetaggap=\skip54
@@ -193,27 +210,27 @@ Package: amsthm 2004/08/06 v2.20
 \thm@headsep=\skip57
 \dth@everypar=\toks28
 )
-\c@teo=\count106
-\c@defin=\count107
-\c@ese=\count108
-\c@oss=\count109
+\c@teo=\count107
+\c@defin=\count108
+\c@ese=\count109
+\c@oss=\count110
  (./tesi.aux)
 \openout1 = `tesi.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Info: Redefining \it@ocap on input line 75.
-LaTeX Info: Redefining \it@ccap on input line 75.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Info: Redefining \it@ocap on input line 76.
+LaTeX Info: Redefining \it@ccap on input line 76.
 
 
 File italian.ldf warning: 
@@ -221,20 +238,22 @@ italian.ldf    With OT1 encoding guillemets are poorly faked
 italian.ldf    Use T1 encoding
 italian.ldf    or specify a font with command \CaporaliFrom
 italian.ldf    See the documentation concerning the babel-italian typesetting 
-italian.ldf    on input line 75.
+italian.ldf    on input line 76.
 
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count110
-\scratchdimen=\dimen115
+\scratchcounter=\count111
+\scratchdimen=\dimen122
 \scratchbox=\box28
-\nofMPsegments=\count111
-\nofMParguments=\count112
+\nofMPsegments=\count112
+\nofMParguments=\count113
 \everyMPshowfont=\toks29
-\MPscratchCnt=\count113
-\MPscratchDim=\dimen116
-\MPnumerator=\count114
-\makeMPintoPDFobject=\count115
+\MPscratchCnt=\count114
+\MPscratchDim=\dimen123
+\MPnumerator=\count115
+\makeMPintoPDFobject=\count116
 \everyMPtoPDFconversion=\toks30
 ) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
@@ -341,125 +360,185 @@ Capitolo 1.
 [1
 
 ]
-LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 146.
-LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 146.
- <img/arch_general.png, id=41, 514.92375pt x 450.68375pt>
-File: img/arch_general.png Graphic file (type png)
-
-<use img/arch_general.png>
-Package pdftex.def Info: img/arch_general.png used on input line 178.
-(pdftex.def)             Requested size: 257.46124pt x 225.34131pt.
-
-Overfull \hbox (26.48965pt too wide) in paragraph at lines 165--183
-\OT1/cmr/m/n/12 ve-de co-me uni-ci at-to-ri i de-vi-ce uten-ti. Que-sti muo-ven
--do-si all?interno dell?ambiente
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 165--183
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 165--183
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 165--183
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 165--183
-
- []
-
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[2]
+[2] <img/arch_general.png, id=44, 514.92375pt x 450.68375pt>
+File: img/arch_general.png Graphic file (type png)
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+<use img/arch_general.png>
+Package pdftex.def Info: img/arch_general.png used on input line 170.
+(pdftex.def)             Requested size: 308.95662pt x 270.41232pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 157--176
+
+ []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 157--176
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 157--176
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 157--176
+
+ []
+
+[3] [4 <./img/arch_general.png>]
+<img/arch_soft.png, id=52, 745.78625pt x 320.19624pt>
+File: img/arch_soft.png Graphic file (type png)
+ <use img/arch_soft.png>
+Package pdftex.def Info: img/arch_soft.png used on input line 183.
+(pdftex.def)             Requested size: 372.89221pt x 160.09772pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 178--212
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 178--212
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 178--212
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 178--212
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 178--212
+
+ []
+
+[5 <./img/arch_soft.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [3]
-[4 <./img/arch_general.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 229--231
+ [6]
+Underfull \hbox (badness 10000) in paragraph at lines 214--225
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 240--241
-
- []
-
-[5]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 247.
+[7]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 226.
 
  (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 247.
- [6] [7] [8
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 226.
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 231.
 
 
-]
-[9
+(/usr/share/texlive/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 231.
 
-] [10
+Underfull \hbox (badness 10000) in paragraph at lines 231--234
 
-]
-Appendice A.
-
-Overfull \hbox (1.39201pt too wide) in paragraph at lines 314--325
-[]\OT1/cmtt/m/n/12 \clearpage{\pagestyle{empty}\cleardoublepage}\OT1/cmr/m/n/12
- , ed in-fat-ti l'ul-ti-ma pa-
  []
 
-[11] [12
+[8] <img/nsm.png, id=69, 934.49126pt x 693.59125pt>
+File: img/nsm.png Graphic file (type png)
+ <use img/nsm.png>
+Package pdftex.def Info: img/nsm.png used on input line 250.
+(pdftex.def)             Requested size: 467.24449pt x 346.79477pt.
 
-]
-Appendice B.
-[13] [14
+Overfull \hbox (77.24449pt too wide) in paragraph at lines 250--251
+ [][] 
+ []
 
-] [15] [16
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[9]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [10 <./img/nsm.png>] [11]
+LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 293.
+LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6> not available
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 293.
+
+Underfull \hbox (badness 10000) in paragraph at lines 330--332
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 341--342
+
+ []
+
+[12] [13]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \vbox (badness 1019) has occurred while \output is active []
+
+ [14]
+[15] [16
 
 
 ] [17
 
+] [18
+
+]
+Appendice A.
+
+Overfull \hbox (1.39201pt too wide) in paragraph at lines 415--426
+[]\OT1/cmtt/m/n/12 \clearpage{\pagestyle{empty}\cleardoublepage}\OT1/cmr/m/n/12
+ , ed in-fat-ti l'ul-ti-ma pa-
+ []
+
+[19] [20
+
+]
+Appendice B.
+[21] [22
+
+] [23] [24
+
+
+] [25
+
 ] (./tesi.aux) ) 
 Here is how much of TeX's memory you used:
- 3588 strings out of 493304
- 45965 string characters out of 6139871
- 119623 words of memory out of 5000000
- 6944 multiletter control sequences out of 15000+600000
+ 4654 strings out of 493304
+ 65327 string characters out of 6139871
+ 133165 words of memory out of 5000000
+ 7999 multiletter control sequences out of 15000+600000
  14459 words of font info for 55 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,10n,43p,798b,391s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,11n,43p,803b,391s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmtt12.pfb>
-Output written on tesi.pdf (27 pages, 271463 bytes).
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on tesi.pdf (35 pages, 328179 bytes).
 PDF statistics:
- 136 PDF objects out of 1000 (max. 8388607)
- 94 compressed objects within 1 object stream
+ 159 PDF objects out of 1000 (max. 8388607)
+ 106 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
