@@ -1,9 +1,12 @@
 \select@language {italian}
 \select@language {italian}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Rappresentazione dell'Architettura generale e della divisione in celle di una porzione di Bologna\relax }}{4}
-\contentsline {figure}{\numberline {1.2}{\ignorespaces Rappresentazione dell'Architettura software\relax }}{5}
-\contentsline {figure}{\numberline {1.3}{\ignorespaces Rappresentazione dell'Architettura software\relax }}{10}
-\contentsline {figure}{\numberline {1.4}{\ignorespaces legenda elenco figure}}{12}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Rappresentazione dell'Architettura generale e della divisione in celle di una porzione di Bologna\relax }}{6}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Rappresentazione dell'Architettura software\relax }}{7}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Rappresentazione dell'Architettura software\relax }}{12}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Interazione utente per il consenso alla connessione\relax }}{16}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces legenda elenco figure}}{24}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

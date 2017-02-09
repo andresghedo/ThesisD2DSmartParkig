@@ -119,10 +119,13 @@ INDICE}}
 \listoftables                           %crea l'elenco delle tabelle
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
 \clearpage{\pagestyle{empty}\cleardoublepage}
-\chapter{Primo Capitolo}                %crea il capitolo
+\chapter{Stato dell'arte}                %crea il capitolo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%imposta l'intestazione di pagina
 \lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}
 \pagenumbering{arabic}                  %mette i numeri arabi
+trttrrttrr
+\clearpage{\pagestyle{empty}\cleardoublepage}
+\chapter{Progettazione}                %crea il capitolo
 Il seguente capitolo ha lo scopo di illustrare in dettaglio il goal del progetto, le problematiche che vi stanno dietro ed il processo di progettazione su cui è stato necessario soffermarsi, per la successiva realizzazione ed implementazione.
 La mission, descrivendola in pochi concetti, è sostanzialmente quella di disseminare le informazioni, relative al concetto di Smart Parking, in maniera totalmente distribuita e senza alcun appoggio di una struttura centralizzata.
 Questo concetto diventa innovativo dal momento in cui non si passa dalla rete cellulare o da qualche gateway verso Internet per la comunicazione tra dispositivi, ma verranno utilizzate soltanto le tecnologie e apparecchiature presenti nei più comuni smartphone in commercio.
@@ -268,14 +271,184 @@ Altrimenti, se gli utenti restano nelle vicinanze l'uno dell'altro, in modo tale
 
 \section{Statistica}                 %crea la sezione
 La parte di statistica si preoccupa, man mano che le informazioni giungono nel database locale, di calcolare le probabilità di trovare parcheggio in una determinata cella della città, piuttosto che in altre.
-Si ricorda che il dato che si fornisce all'utente è una probabilità e non un valore certo, così da dare indicazioni agli utenti, sulle zone, che statisticamente saranno meno congestionate, in termini di occupazione.
-Un'altra precisazione riguarda  il fatto che più utenti utilizzeranno l'applicazione, come supporto al parcheggio, e più dati verranno disseminati tra i device, aumentando progressivamente l'accuratezza 
+\\Si ricorda che il dato che si fornisce all'utente è una probabilità e non un valore certo, così da dare indicazioni agli utenti, sulle zone, che statisticamente saranno meno congestionate, in termini di occupazione.
+\\Un'altra precisazione riguarda  il fatto che più utenti utilizzeranno l'applicazione, come supporto al parcheggio, e più dati verranno disseminati tra i device, aumentando progressivamente l'accuratezza 
 delle probabilità fornite agli utenti.
-Supponendo che il numero di slot totali in una cella, identificato con la sigla Nt, sia noto a priori, lo si può interpretare anche come la somma tra numero di slot liberi, Nf, e numero di slot occupati No.
+\\Supponendo che il numero di slot totali in una generica cella i, identificato con la sigla N\ped{i}\ap{t}, sia noto a priori, lo si può interpretare anche come la somma tra numero di slot liberi, N\ped{i}\ap{f}, e 
+numero di slot occupati N\ped{i}\ap{o}.
 Questi ultimi due, possono essere ricavati a partire dagli eventi di parcheggio e rilascio, i quali sono presenti nel database locale citato in precedenza.
-In particolare, il numero dei parcheggi occupati No può essere ricavato dalla differenza tra il numero di eventi parcheggio Ep ed il numero di eventi rilascio Er.
+In particolare, il numero dei parcheggi occupati N\ped{i}\ap{o} può essere ricavato dalla differenza tra il numero di eventi parcheggio E\ped{i}\ap{p} ed il numero di eventi rilascio E\ped{i}\ap{r}.
 
-$$N\ped{o}=\df{\partial}{\partial y}\boldsymbol{f}(x,y)$$
+$$N\ped{i}\ap{o} = E\ped{i}\ap{p} - E\ped{i}\ap{r} $$
+\\A questo punto, conoscendo già il numero totale degli slot, è facile calcolare il tasso di occupazione di una determinata cella:
+$$p\ped{i}\ap{o} = \df{N\ped{i}\ap{o}}{N\ped{i}\ap{t}}$$
+\\Infine calcoliamo la probabilità di trovare parcheggio, servendosi del tasso di occupazione appena calcolato:
+$$p\ped{i}\ap{f} = 1 - p\ped{i}\ap{o}$$
+Quest'ultima sarà l'informazione a cui l'utente avrà accesso una volta aperta l'applicazione, dove verrà visualizzata la mappa della città suddivisa in griglia ed ogni quadrante sarà colorato in base alla 
+probabilità di trovare parcheggio.
+\\Nella sezione screenshot, Fig XZ, è possibile vedere quanto descritto.
+
+
+\clearpage{\pagestyle{empty}\cleardoublepage}
+\chapter{Implementazione}                %crea il capitolo
+Come ribadito nel Cap. 2 l'obiettivo del progetto è quello di disseminare informazioni di smart parking in modalità Device-to-Device, senza l'ausilio di alcuna infrastruttura di rete intermediaria. 
+In base alle informazioni ricevute, si riuscirà dunque a fare assunzioni sulle quantità di parcheggi disponibile in determinate zone della città.
+\\L'implementazione riguarda la realizzazione del processo sopradescritto nel Sistema Operativo Android, con l'ausilio della tecnologia WiFiDirect.
+Quest'ultima, presente a partire dalle librerie API 14 e device con Android 4.0 o superiori, permette la comunicazione one-to-one tra dispositivi utente.
+\\Il capitolo seguente mostra i passi necessari alla realizzazione, dettagliando i componenti software realizzati partendo dalla base di progettazione, illustrata precedentemente.
+\section{Componente di disseminazione}                 %crea la sezione
+\subsection{Strategia di connessione tramite WiFiDirect}
+La tecnologia WiFi Direct rende possibile la creazione di cosiddetti P2P Groups, i quali possono essere comparati ad infrastrutture WiFi. 
+Il device che detiene le funzionalità di Access Point viene definito P2P Group Owner, il quale può comunque mantenere attive connessioni cellulari(come ad esempio il 4G).
+Per realizzare lo scopo del progetto il WiFi Direct non è stato utilizzato in maniera tradizionale, bensì in modalità legacy.
+\\Questo perchè, almeno nel primo incontro tra due device, la nascita della connessione necessità dell'interazione utente(come mostrato in figura XX).
+\\Il nostro processo di comunicazione peer-to-peer non prevede però alcuna interazione dell'utente, in quanto i dispositivi devono scoprirsi e comunicare in maniera del tutto autonoma e trasparente.
+\\Utilizzando la modalità legacy, un dispositivo crea un P2P Group fungendo da Access Point, mentre gli altri lo percepiscono e si connettono ad esso come un normale HotSpot 802.11.
+Questo dà la possibilità di connettere più client per Access Point, formando logicamente le topologie a stella, citate nel paragrafo di Architettura generale, nel Cap. 2.
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.5]{img/popup.png}
+\caption{Interazione utente per il consenso alla connessione}
+\end{figure}
+\subsection{Il NetworkController}
+Il NetworkController si preoccupa di fornire gli strumenti necessari alla gestione degli attori coinvolti nel processo di networking e disseminazione locale delle informazioni.
+Anche questo componente è stato implementato seguendo il pattern Singleton, in modo tale da avere un unico e ben definito accesso alle risorse network.
+Infatti, la mansione principale di questa classe è proprio quella di esporre le istanze degli oggetti che permettono la realizzazione del processo di disseminazione locale.
+Tramite questa è possibile accedere all'oggetto NetworkServiceSearcher, NetworkAccessPoint e NetworkConnection.
+Il primo, come verrà illustrato in seguito, si preoccupa di segnalare la presenza di beacon di servizio nelle vicinanze, il secondo governa eventuali funzionalità da Access Point del device, 
+mentre il terzo implementa funzionalità client per connettersi ad HotSpot nei paraggi.
+Inoltre, il NetworkController, registra in una variabile lo stato corrente della Network Machine State, la quale scandisce logicamente il processo di spreading.
+Infine, espone metodi per la registrazione e rilascio del BroadcastReceiver.
+Di seguito vengono elencate i metodi principali che la classe espone:
+\begin{itemize}
+\item registrationBroadcastReceiverTest : Metodo che registra il BroadcastReceiver per la cattura di determinati Intent, necessari per la gestione della rete.
+\item unregistrationBroadcastReceiverTest : Metodo che rilascia il BroadcastReceiver, richiamato quando l'utente decide di stoppare il servizio in background.
+\item startAccessPoint / stopAccessPoint : Metodi che decretano l'inizio, o la fine, del device come Access Point.
+\item startConnection / stopConnection : Metodi che cercano di connettersi, o scollegarsi, da un HotSpot.
+\item startServiceSearcher / stopServiceSearcher : Metodi che sanciscono l'inizio, o la fine, della ricerca di beacon di servizio nelle vicinanze.
+\end{itemize}
+\subsection{NetworkConnection}
+Questa classe, concettualmente molto semplice, detiene la procedura necessaria per connettersi in maniera automatica ad un AccessPoint, presente nella lista ricavata dallo scan delle reti circostanti.
+Questa classe viene utilizzata quando un device, tramite l'arrivo di un beacon, capisce che vi è un Access Point attivo e disponibile a soddisfare richieste di sincronizzazione.
+Infatti, questo, assumerà il ruolo di Client cercando di agganciarsi all'HotSpot individuato.
+\\È necessario ricordare che, per effettuare queste procedure in maniera completamente automatica e trasparente all'utente, vi è la necessità di conoscere la passphrase per connettersi. 
+Questa come vedremo, sarà ricavata dai beacon di servizio, già accennati in precedenza.
+\\Di seguito viene mostrato il codice discusso:
+\begin{verbatim}
+...
+
+public class NetworkConnection {
+
+  public static String TAG= "[DEBAPP]NetworkConnection";
+
+  WifiManager wifiManager = null;
+  WifiConfiguration wifiConfig = null;
+  Context context = null;
+
+  public NetworkConnection(Context Context, String SSIS, String passphrase) {
+    Log.d(TAG, "New WiFiConnection @ AP SSID: " + SSIS + 
+          " with psw: " + passphrase + " ..... ");
+    this.context = Context;
+
+    this.wifiManager = (WifiManager)this.context.getSystemService(
+                                            this.context.WIFI_SERVICE);
+
+    /* disable others */
+    for (WifiConfiguration cnf:this.wifiManager.getConfiguredNetworks()) {
+        this.wifiManager.disableNetwork(cnf.networkId);
+    }
+
+    /* set passphrase */
+    this.wifiConfig = new WifiConfiguration();
+    this.wifiConfig.SSID = String.format("\"%s\"", SSIS);
+    this.wifiConfig.preSharedKey = String.format("\"%s\"", passphrase);
+
+    /* try to reconnect with new config */
+    int id = this.wifiManager.addNetwork(this.wifiConfig);
+    this.wifiManager.enableNetwork(id, false);
+    this.wifiManager.reconnect();
+  }
+
+  public void Stop(){
+    Log.d(TAG, "Remove connection with AP!!");
+    this.wifiManager.disconnect();
+  }
+}
+\end{verbatim}
+\subsection{Esplorazione dell'ambiente circostante}
+Questa classe ha lo scopo di capire la situazione nell'ambiente esterno, scoprendo quanti e quali attori vi sono nelle vicinanze e comportarsi di conseguenza.
+Ogni device, per decidere se fungere da AccessPoint o se connettersi come client ad un HotSpot già esistente, ha bisogno di comprendere ed essere avvisato della presenza o meno di altri host nell'ambiente locale.
+\subsection{Scoperta di peers}         %crea la sottosezione
+La classe WiFiP2PManager di Android, permette di gestire tramite chiamate API la connessione peer-to-peer tra device.
+Molte chiamate implementate fanno riferimento ad eventi asincroni, di conseguenza è stato necessario implementare Listener in modo tale da porre determinate logiche, al succedersi di determinati eventi.
+Uno di questi può essere individuato nella scoperta di peers, dove si prende nota dell'eventuale presenza di altri device Android nell'ambiente circostante.
+Questo può essere ritrovato nella funzione startPeerDiscovery della classe NetworkBeaconPeerSearcher, dove viene richiamato il metodo discoverPeers del WiFiP2PManager.
+A questo punto il device è pronto a notificare la presenza di eventuali peers nelle vicinanze.
+Per catturare queste notifiche è stato necessario implementare un personale PeerListListener, il quale grazie al metodo onPeersAvailable(WifiP2pDeviceList peers) restituisce la lista dei peers presenti nei paraggi.
+\subsection{Beacon di servizio}         %crea la sottosezione
+Sempre nell'ambito peer-to-peer, la tecnologia Android, permette di pubblicizzare un servizio ad altri device prima di un'effettiva connessione tra i dispositivi.
+La documentazione per developer di Android, specifica che questo meccanismo è stato fatto per individuare, in una fase iniziale, peer che esponessero determinati servizi, piuttosto che altri.
+Questa funzionalità è stata fondamentale per la realizzazione del progetto, in quanto permette di fare assunzioni prima di effettuare tentativi di connessione tra peer.
+In un primo momento si è pensato di inserire le informazioni relative agli eventi parcheggio direttamente all'interno di questi pacchetti, in quanto vi è la possibilità di inserire un tipo di dato Map<String, String>.
+Con questo tipo di meccanismo si sarebbe potuto attuare il cosiddetto piggybacking, inserendo il vero payload direttamente dentro a questi pacchetti di servizio.
+Questa strategia, oltre ad abbassare notevolmente la complessità, avrebbe permesso di scambiare dati in broadcast tra device, senza che questi instaurassero una connessione.
+L'implementazione però non è resa possibile a causa del basso contenuto, in termini di dimensione, che il tipo di dato Map<String, String> può contenere.
+Lo standard consiglia di tenere questo contenuto sotto i 200 bytes e non è raccomandato superare i 1300 bytes. Provando empiricamente, si è potuto confermare la restrinzione appena citata.
+Gli ArrayList degli eventi che vogliamo sincronizzare hanno un contenuto maggiore del limite tecnologico imposto, per questo motivo si è dovuto virare sul meccanismo di AccessPoint e connessioni automatiche.
+Questi pacchetti risultano comunque determinanti, in quanto incapsuleranno la stringa passphrase, necessaria ai client per connettersi in maniera automatica all'HotSpot esposto.
+Tornando al progetto, è possibile scoprire questi servizi tramite il metodo startBeaconDiscovery, il quale chiama a sua volta il metodo discoverServices del WiFiP2PManager.
+Il Listener, relativo alla scoperta di un servizio, riguarda la creazione di un oggetto DnsSdServiceResponseListener, il quale implementando il metodo onDnsSdServiceAvailable, fornisce in input tutte le 
+infomazioni necessario sul servizio appena scoperto(ad esempio nome, tipo, device).
+\subsection{Logiche di scoperta}         %crea la sottosezione
+Nei precedenti due sottoparagrafi si è cercato di illustrare le funzionalità principali che si ritrovano nella classe NetworkBeaconPeerSearcher, illustrando le funzioni API chiave utilizzate.
+Ora si cercherà di spiegare la logica che è stato necessario implementare e come la scoperta di peers e servizi si interfacciano tra loro.
+Quando un device scopre la presenza di almeno un peer attorno a lui, si mette immediatamente all'ascolto di eventuali servizi esposti da altri utenti.
+Nel momento in cui si scoprisse un servizio idoneo che indichi la presenza di un D2DSmartParking AccessPoint, in attesa di possibili sincronizzazioni, viene mandato 
+un broadcast Intent tale da notificare al BroacastReceiver di iniziare il processo di connessione all'HotSpot trovato.
+La classe che implementa tutte queste funzionalità è abbastanza ampia, per questo, di seguito, si mostra il solo codice relativo ai Listeners citati nel paragrafo.
+\begin{verbatim}
+...
+peerListListener = new WifiP2pManager.PeerListListener() {
+  public void onPeersAvailable(WifiP2pDeviceList peers) {
+    int nPeers = 0;
+    for (WifiP2pDevice peer : peers.getDeviceList()) {
+        nPeers++;
+        Log.d(TAG, "PEER FOUND: " + peer.deviceName);
+    }
+    /* if there is someone, looking for D2DSP service */
+    if(nPeers > 0){
+        Log.d(TAG, "Search for a D2DSP service...");
+        NetworkController.getInstance().networkStateMachine = 
+                           Constants.STATE_ACCESS_POINT_PEERS;
+        startBeaconDiscovery();
+     } else { /* else search peers */
+        Log.d(TAG, "Search for peers...");
+        NetworkController.getInstance().networkStateMachine = 
+                           Constants.STATE_ACCESS_POINT_NO_PEERS;
+        startPeerDiscovery();
+    }
+  }
+};
+...
+serviceListener = new WifiP2pManager.DnsSdServiceResponseListener() {
+  public void onDnsSdServiceAvailable(String serv, String type, 
+                                                 WifiP2pDevice dev) {
+    if (serviceType.startsWith(NetworkTestFragment.SERVICE_TYPE)) {
+        if(broadcaster != null) {
+            Log.d(TAG, "find a D2DSP beacon!");
+            Intent intent = new Intent(Constants.INTENT_D2D_AP_FOUND);
+            intent.putExtra(Constants.INTENT_D2D_AP_ACCESSDATA, serv);
+            context.sendBroadcast(intent);
+        }
+    } else {
+        Log.d(TAG, "This service is not for me!");
+    }
+    /* continue search peers */
+    startPeerDiscovery();
+  }
+};
+...
+\end{verbatim}
 
 \subsection{Prima SottoSezione}         %crea la sottosezione
 \begin{teo}[nome teorema] $\\$          %crea l'ambiente teorema e
@@ -286,7 +459,7 @@ Primo Teorema.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%crea l'ambiente matematico $$ $$
                                         %   questo ambiente centra la
                                         %   formula ma non la numera
-$$\df{\partial}{\partial x}\boldsymbol{f}(x,y)=\df{\partial}{\partial y}\boldsymbol{f}(x,y)$$
+$$\df{\partial}{\partial x}\boldsymbol{f}(x,y)=\df{9}{10}$$
 \end{teo}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%crea l'ambiente dimostrazione
 \begin{proof}Il teorema \`e dimostrato
