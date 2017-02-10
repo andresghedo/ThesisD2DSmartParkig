@@ -14,21 +14,28 @@
 \contentsline {section}{\numberline {3.1}Componente di disseminazione}{15}
 \contentsline {subsection}{\numberline {3.1.1}Strategia di connessione tramite WiFiDirect}{16}
 \contentsline {subsection}{\numberline {3.1.2}Il NetworkController}{17}
-\contentsline {subsection}{\numberline {3.1.3}NetworkConnection}{18}
+\contentsline {subsection}{\numberline {3.1.3}NetworkConnection}{17}
 \contentsline {subsection}{\numberline {3.1.4}Esplorazione dell'ambiente circostante}{19}
-\contentsline {subsection}{\numberline {3.1.5}Scoperta di peers}{20}
-\contentsline {subsection}{\numberline {3.1.6}Beacon di servizio}{20}
-\contentsline {subsection}{\numberline {3.1.7}Logiche di scoperta}{21}
-\contentsline {subsection}{\numberline {3.1.8}Prima SottoSezione}{23}
-\contentsline {section}{\numberline {3.2}Terza Sezione}{24}
-\contentsline {section}{\numberline {3.3}Altra Sezione}{25}
-\contentsline {subsection}{\numberline {3.3.1}Altra SottoSezione}{25}
-\contentsline {subsubsection}{SottoSottoSezione}{25}
-\contentsline {section}{\numberline {3.4}Altra Sezione}{25}
-\contentsline {section}{\numberline {3.5}Altra Sezione}{26}
-\contentsline {subsection}{\numberline {3.5.1}Listati dei programmi}{26}
-\contentsline {subsubsection}{Primo Listato}{26}
-\contentsline {chapter}{Conclusioni}{27}
-\contentsline {chapter}{\numberline {A}Prima Appendice}{29}
-\contentsline {chapter}{\numberline {B}Seconda Appendice}{31}
-\contentsline {chapter}{Bibliografia}{33}
+\contentsline {subsubsection}{Scoperta di peers}{19}
+\contentsline {subsubsection}{Beacon di servizio}{20}
+\contentsline {subsubsection}{Logiche di scoperta}{21}
+\contentsline {subsection}{\numberline {3.1.5}Funzionalit\`a Access Point-like}{23}
+\contentsline {subsection}{\numberline {3.1.6}Canali di comunicazione}{25}
+\contentsline {subsection}{\numberline {3.1.7}L'ascoltatore BroadcastReceiverManagement}{28}
+\contentsline {subsection}{\numberline {3.1.8}Il servizio background}{32}
+\contentsline {section}{\numberline {3.2}Screenshot}{33}
+\contentsline {chapter}{\numberline {4}ALTRA SEZ}{39}
+\contentsline {subsection}{\numberline {4.0.1}Prima SottoSezione}{39}
+\contentsline {section}{\numberline {4.1}Terza Sezione}{40}
+\contentsline {section}{\numberline {4.2}Altra Sezione}{41}
+\contentsline {subsection}{\numberline {4.2.1}Altra SottoSezione}{41}
+\contentsline {subsubsection}{SottoSubSez}{41}
+\contentsline {subsubsection}{SottoSottoSezione}{41}
+\contentsline {section}{\numberline {4.3}Altra Sezione}{41}
+\contentsline {section}{\numberline {4.4}Altra Sezione}{42}
+\contentsline {subsection}{\numberline {4.4.1}Listati dei programmi}{42}
+\contentsline {subsubsection}{Primo Listato}{42}
+\contentsline {chapter}{Conclusioni}{43}
+\contentsline {chapter}{\numberline {A}Prima Appendice}{45}
+\contentsline {chapter}{\numberline {B}Seconda Appendice}{47}
+\contentsline {chapter}{Bibliografia}{49}
