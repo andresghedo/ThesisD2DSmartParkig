@@ -3,13 +3,13 @@
 \contentsline {chapter}{Introduzione}{i}
 \contentsline {chapter}{\numberline {1}Stato dell'arte}{1}
 \contentsline {chapter}{\numberline {2}Progettazione}{3}
-\contentsline {section}{\numberline {2.1}Scopo e problematiche}{4}
+\contentsline {section}{\numberline {2.1}Scopo e problematiche}{3}
 \contentsline {section}{\numberline {2.2}Scenario generale}{4}
-\contentsline {section}{\numberline {2.3}Architettura generale}{6}
+\contentsline {section}{\numberline {2.3}Architettura generale}{5}
 \contentsline {section}{\numberline {2.4}Architettura software}{7}
-\contentsline {subsection}{\numberline {2.4.1}Organizzazione dell'informazione}{10}
-\contentsline {subsection}{\numberline {2.4.2}Network State Machine}{11}
-\contentsline {section}{\numberline {2.5}Probabilit\`a di occupazione di una cella}{13}
+\contentsline {section}{\numberline {2.5}Organizzazione dell'informazione}{9}
+\contentsline {section}{\numberline {2.6}Network State Machine}{11}
+\contentsline {section}{\numberline {2.7}Statistica}{13}
 \contentsline {chapter}{\numberline {3}Implementazione}{15}
 \contentsline {section}{\numberline {3.1}Componente di disseminazione}{15}
 \contentsline {subsection}{\numberline {3.1.1}Strategia di connessione tramite WiFiDirect}{16}
@@ -23,15 +23,20 @@
 \contentsline {subsection}{\numberline {3.1.6}Funzionalit\`a Access Point-like}{24}
 \contentsline {subsection}{\numberline {3.1.7}Canali di comunicazione}{27}
 \contentsline {subsection}{\numberline {3.1.8}L'ascoltatore BroadcastReceiverManagement}{30}
-\contentsline {section}{\numberline {3.2}Screenshot}{34}
+\contentsline {section}{\numberline {3.2}Screenshot}{33}
 \contentsline {chapter}{\numberline {4}Valutazione}{39}
-\contentsline {section}{\numberline {4.1}Strumenti}{39}
-\contentsline {section}{\numberline {4.2}Modellazione}{40}
-\contentsline {section}{\numberline {4.3}Obiettivi di simulazione}{42}
-\contentsline {section}{\numberline {4.4}Configurazioni e run}{43}
-\contentsline {subsubsection}{VANET V2V}{43}
-\contentsline {subsubsection}{WiFi DIRECT}{44}
-\contentsline {subsubsection}{BLUETOOTH}{44}
-\contentsline {section}{\numberline {4.5}Risultati}{45}
-\contentsline {chapter}{Conclusioni}{47}
-\contentsline {chapter}{Bibliografia}{49}
+\contentsline {chapter}{\numberline {5}ALTRA SEZ}{41}
+\contentsline {subsection}{\numberline {5.0.1}Prima SottoSezione}{41}
+\contentsline {section}{\numberline {5.1}Terza Sezione}{42}
+\contentsline {section}{\numberline {5.2}Altra Sezione}{43}
+\contentsline {subsection}{\numberline {5.2.1}Altra SottoSezione}{43}
+\contentsline {subsubsection}{SottoSubSez}{43}
+\contentsline {subsubsection}{SottoSottoSezione}{43}
+\contentsline {section}{\numberline {5.3}Altra Sezione}{43}
+\contentsline {section}{\numberline {5.4}Altra Sezione}{44}
+\contentsline {subsection}{\numberline {5.4.1}Listati dei programmi}{44}
+\contentsline {subsubsection}{Primo Listato}{44}
+\contentsline {chapter}{Conclusioni}{45}
+\contentsline {chapter}{\numberline {A}Prima Appendice}{47}
+\contentsline {chapter}{\numberline {B}Seconda Appendice}{49}
+\contentsline {chapter}{Bibliografia}{51}

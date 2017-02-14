@@ -123,36 +123,42 @@ INDICE}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%imposta l'intestazione di pagina
 \lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}
 \pagenumbering{arabic}                  %mette i numeri arabi
-trttrrttrr
+....... TODO .......
 \clearpage{\pagestyle{empty}\cleardoublepage}
 \chapter{Progettazione}                %crea il capitolo
 Il seguente capitolo ha lo scopo di illustrare in dettaglio il goal del progetto, le problematiche che vi stanno dietro ed il processo di progettazione su cui è stato necessario soffermarsi, per la successiva realizzazione ed implementazione.
-La mission, descrivendola in pochi concetti, è sostanzialmente quella di disseminare le informazioni, relative al concetto di Smart Parking, in maniera totalmente distribuita e senza alcun appoggio di una struttura centralizzata.
-Questo concetto diventa innovativo dal momento in cui non si passa dalla rete cellulare o da qualche gateway verso Internet per la comunicazione tra dispositivi, ma verranno utilizzate soltanto le tecnologie e apparecchiature presenti nei più comuni smartphone in commercio.
-Dettagli tecnologici ed implementativi saranno comunque discussi nel prossimo capitolo.
-Di seguito verranno illustrati soprattutto le principali componenti che compongono il sistema, descrivendone funzionalità, utilità ed integrazione con le restanti componenti.
+\\La mission, descrivendola in pochi concetti, è sostanzialmente quella di determinare quando un utente parcheggia o rilascia uno slot e disseminare queste informazioni in maniera totalmente distribuita, senza alcun appoggio di una struttura centralizzata.
+Questo concetto diventa innovativo dal momento in cui non si passa dalla rete cellulare o da qualche gateway verso Internet per la comunicazione tra dispositivi, 
+ma la comunicazione avverrà esclusivamente peer-to-peer, utilizzando tecnologie presenti nei più comuni device in commercio.
+\\Quello che si vuole fornire all'utente sono delle probabilità di trovare parcheggio in una determinata zona della città, piuttosto che in altre.
+\\Dettagli tecnologici ed implementativi saranno comunque discussi nel prossimo capitolo.
+\\Di seguito verranno illustrati soprattutto le principali strutture che compongono il sistema, descrivendone funzionalità, utilità ed integrazione con le restanti componenti.
 \section{Scopo e problematiche}                 %crea la sezione
 Come già accennato e discusso in precedenza lo scopo principale è quello di propagare informazioni, tra dispositivi mobili, in maniera completamente distribuita, senza l'appoggio di agenti centralizzati.
-Il device utente, tramite la componente di Activity Recognition presente nel software, compie un evento di parcheggio o rilascio, dopo di chè tiene traccia dell'evento salvandolo in locale nella memoria.
-Le informazioni campionate sopra descritte, saranno l'oggetto della comunicazione tra i device che potranno fare assunzioni su eventuali zone dense di parcheggi liberi.
+Il device utente, tramite la componente di Activity Recognition presente nel software, rileva un evento di parcheggio o rilascio, dopo di chè tiene traccia dell'evento salvandolo in memoria locale.
+\\Le informazioni campionate, sopradescritte, saranno l'oggetto della comunicazione tra i device che potranno fare assunzioni su eventuali zone dense di parcheggi liberi.
 Più gli utenti restano allineati e sincronizzati su questi dati, più restano aggiornati e consapevoli della situazione parcheggi nei dintorni.
-Per semplicità concettuale la città viene divisa in celle(identificate con id univoci), permettendo così alla logica di disseminare informazioni relative alla cella in questione e a quelle adiacenti.
-Un altro aspetto non meno importante di quelli già illustrati, è il fatto che il servizio deve funzionare in modo continuativo nel tempo e soprattutto in modo totalmente autonomo.
-Questo significa che l'utente, senza nessuna interazione con il device(mantenendolo per esempio in tasca), sincronizza comunque i propri dati con quelli di utenti circostanti, nei paraggi.
+Per scelta progettuale, la città viene divisa in celle (identificate con id univoci), permettendo così alla logica di disseminare informazioni relative alla cella in questione e a quelle adiacenti.
+Un altro aspetto non meno importante di quelli già illustrati, è il fatto che il servizio deve funzionare in modo continuativo nel tempo e soprattutto in maniera totalmente autonoma.
+Questo significa che l'utente, senza nessuna interazione con il device (mantenendolo per esempio in tasca), sincronizza comunque i propri dati con quelli di utenti circostanti, nei paraggi.
 La funzionalità appena descritta, per renderla robusta, ha richiesto una fase implementativa consistente, la quale verrà illustrata tecnicamente in seguito.
 \section{Scenario generale}                 %crea la sezione
 Lo scenario che si va a considerare per l'utilizzo di un'applicazione di questo genere è una città metropolitana.
-Questa può essere diversamente interpretata e suddivisa logicamente in una griglia composta da celle(quadranti), dove ognuna di queste viene identificata univocamente da una coppia di  coordinate X e Y.
+Questa può essere diversamente interpretata e suddivisa logicamente in una griglia composta da celle (quadranti), dove ognuna di queste viene identificata univocamente da una coppia di  coordinate X e Y.
 Si presuppone che il numero di parcheggi disponibili in una data cella sia un dato noto a priori, il quale comprende tutti gli slot disponibili nelle strade che sono logicamente raggruppate, all'interno del 
 quadrante considerato.
-Il device dell'utente, tramite l'implementazione presente nell'app, performando un evento di parcheggio o rilascio, riesce a recuperare la cella in cui risiede logicamente e registrerà nel proprio database locale 
+Si ricorda che si fa riferimento a parcheggi pubblici su strada e non a strutture private o a circuito chiuso.
+\\Il device dell'utente, tramite l'implementazione presente nell'app, performando un evento di parcheggio o rilascio, riesce a recuperare la cella in cui risiede logicamente e registrerà nel proprio database locale 
 che l'evento si è verificato in quello specifico quadrante.
 Le assunzioni sulla probabile quantità, in percentuale, di parcheggi liberi vengono calcolate sulla granularità della cella.
+\\In fase di progettazione, si è giunti alla conclusione che non è sufficiente scambiarsi il numero di parcheggi liberi/occupati derivanti da dati statistici, 
+in quanto ogni utente potrebbe avere una parziale, ma diversa, visione dello scenario.
+Da ciò deriva la necessità di sincronizzarsi su tutti gli eventi che sono successi recentemente in una determinata zona (cella) e quelle adiacenti.
 Quando due peer cercheranno di sincronizzarsi verranno scambiate le informazioni relative alla cella corrente e quelle adiacenti.
 In questo modo, si cerca di fornire all'utente, previsioni più precise sulle celle che sono nei pressi della posizione corrente del device.
 Questo evita overhead nella comunicazione e sincronizzazione di entries che non sono utili all'utente.
 Rimanendo nel discorso di overhead, è normale pensare che questo modello possa ``esplodere``, in quanto la mole di dati potrebbe diventare enorme con il passare del tempo, così come le opportunità di sincronizzazione.
-Per evitare che questo succeda, viene controllata la dimensione del db locale, ed eventualmente eliminate le entries meno aggiornate.
+Per evitare che questo succeda, viene controllata la dimensione del database locale, ed eventualmente eliminate le entries meno aggiornate.
 Inoltre i peers possono effettuare sincronizzazioni soltanto dopo una certa threshold, espressa in secondi.
 Questi concetti sono stati parametrizzati in fase di implementazione, quindi possono essere giustamente calibrati in base all'ambiente in cui si intende utilizzare l'app.
 
@@ -161,28 +167,29 @@ L'architettura generale, analizzandola da un punto di vista esterno, prevede com
 Ogni dispositivo, che presenta il servizio di comunicazione e sincronizzazione attivo, può interpretare fondamentalmente due ruoli concettuali:
 \begin{itemize}
  \item \textbf{ROLE ACCESS POINT}:
- \\Il device funge da access point, offrendo la possibilità a device presenti in prossimità di agganciarsi all'HotSpot esposto. Una volta che un Client si connette stabilmente ad esso avrà  l'opportunità di aprire 
+ \\Il device funge da Access Point, offrendo la possibilità a device presenti in prossimità di agganciarsi all'HotSpot esposto. Una volta che un Client si connette stabilmente ad esso avrà  l'opportunità di aprire 
  un canale di comunicazione e sincronizzare i propri dati con quelli del Access Point, denominato anche come Server.
  Inoltre l'Access Point notifica la propria presenza e informazioni utili attraverso la propagazione di un beacon di servizio.
  \item \textbf{ROLE CLIENT}:
- \\Se un device si accorge della presenza di un HotSpot nelle vicinanze, grazie al beacon sopra citato, può tentare di connettersi come Client all'Access Point. Qualora riesca ad agganciarsi in modo stabile all'HotSpot 
+ \\Se un device si accorge della presenza di un HotSpot nelle vicinanze, grazie al beacon sopracitato, può tentare di connettersi come Client all'Access Point. Qualora riesca ad agganciarsi in modo stabile 
  verranno avviati i canali di comunicazione, su cui effettuare una sincronizzazione tra i device Client e Server.
 \end{itemize}
 A questo punto la topologia della rete generale può essere vista come hub di hub, ovvero tante piccole star, dove grazie al movimento inerziale dei device si riuscirà ad ottenere una propagazione dell'informazione, 
-interconnettendo appunto le informazioni di diversi hub tra di loro, ad istanti di tempo differenti.
+interconnettendo appunto diverse star tra di loro, ad istanti di tempo differenti.
 \begin{figure}[!h]
 \centering
 \includegraphics[scale=0.6]{img/arch_general.png}
-\caption{Rappresentazione dell'Architettura generale e della divisione in celle di una porzione di Bologna}
+\caption[Rappresentazione dell'Architettura generale]{Rappresentazione dell'Architettura generale e della divisione in celle di una porzione di Bologna}
 \end{figure}
-\\\\Come si può comprendere dalla figura i device muovendosi continuamente all'interno dello scenario(identificato in questo caso con la griglia città), formeranno continuamente nuovi Hub, con attori sempre diversi. Questo 
-fattore è determinante per il processo di propagazione delle informazioni, in quanto dati presenti in un Hub, verranno sincronizzati, in istanti successivi, con Hub diversi.
+\\Come si può comprendere dalla figura 2.1, i device muovendosi continuamente all'interno dello scenario (identificato in questo caso con la griglia città), formeranno continuamente nuove star, con attori sempre diversi. Questo 
+fattore è determinante per il processo di propagazione delle informazioni, in quanto dati presenti in una star, verranno sincronizzati, in istanti successivi, con star diverse.
 L'analisi dello spreading delle informazioni, la sua efficacia ed accuratezza sono illustrate nel capitolo di valutazione, nel quale si cerca di capire se questo meccanismo è attuabile nella realtà.
 
 \section{Architettura software}               %crea la sezione
 Prima della fase di implementazione, è stato necessaria una fase di progettazione dell'architettura software. L'applicazione, per essere considerata utilizzabile dagli utenti ed efficace nel meccanismo di 
-spreading dell'informazione, necessita di numerosi componenti e soprattutto dell'interazione tra essi.
-Nella figura sono stati messi i componenti principali che concettualmente compongono l'architettura e come questi collaborano.
+spreading, necessita di numerosi componenti e soprattutto dell'interazione tra essi.
+\\Nella figura 2.2 sono stati messi i componenti principali che concettualmente compongono l'architettura e come questi collaborano.
+Di seguito vengono spiegati i compiti che ogni struttura deve compiere per la corretta esecuzione dell'applicativo sotware:
 \begin{figure}[!h]
 \centering
 \includegraphics[scale=0.5]{img/arch_soft.png}
@@ -197,14 +204,14 @@ La prima è necessaria alla seconda e riguarda il campionamento dei dati sensore 
 fare assunzione sul tipo di attività che l'utente sta svolgendo.
 Quando il componente capisce che si è passato da uno stato CAR ad uno stato NO\_CAR, significa che l'utente ha parcheggiato l'autovettura, mentre, dualmente, se si passa da uno stato NO\_CAR a CAR, significa che 
 l'utente ha rilasciato uno slot.
-Quando una di queste due situazioni accade, si registra l'evento nel local DB.
-\item \textbf{Componente local DataBase:}
+Quando una di queste due situazioni accade, si registra l'evento nel database locale.
+\item \textbf{Componente Database locale:}
 \\Il Database locale si preoccupa di persistere le informazioni sul device utente, le quali poi verranno processate per calcolare la probabilità di parcheggio in una determinata zona.
-Le informazioni che vengono memorizzate sono illustrate più precisamente nel paragrafo XYZ.
+Le informazioni che vengono memorizzate sono illustrate più precisamente nel paragrafo 2.5.
 \item \textbf{Componente Controller:}
 \\Il Controller si preoccupa di scrivere, aggiornare e dare accesso alle informazioni presenti nel database locale. Inoltre, è stato pensato come semplice meccanismo di Object-Relational Mapping(ORM), 
 per integrare al meglio le logiche ad oggetti con i dati presenti nel DBMS. 
-Sostanzialmente, può essere interpretato come un oggetto Controller, del pattern MVC(Model-View-Controller), gestendo ed implementando le classi del Modello.
+\\Sostanzialmente, può essere interpretato come un oggetto Controller, del pattern MVC (Model-View-Controller), gestendo ed implementando le classi del Modello.
 \item \textbf{Componente Frontend:}
 \\Il frontend sono sostanzialmente le views che verranno mostrate all'utente, sul proprio device Android. Si è optato per un frontend semplice, per rendere utilizzabile l'app a qualsiasi tipo di utente, 
 pur fornendo ad esso tutte le informazioni necessarie sullo stato dei parcheggi nelle vicinanze.
@@ -212,84 +219,82 @@ Nella sezione Screenshot è possibile prendere visione del layout grafico pensato
 \item \textbf{ Componente Dissemination Service:}
 \\Il componente di disseminazione delle informazioni è il cuore del progetto e l'elemento più articolato all'interno dell'architettura.
 Questo è composto da diversi sottocomponenti, la maggior parte dei quali verranno illustrati con precisione nel capitolo di implementazione.
-Il disseminatore è un servizio che gira in background e la logica è scandita da una FSM(Finite State Machine), dove in base allo stato in cui ci si trova verranno compiute azioni, piuttosto che altre.
-Quando viene rilevata una nuova connessione ad un peer, essendo questo nel ruolo di client o server, il componente si preoccupa anche di gestire il corretto funzionamento della comunicazione, 
-gestendo i canali di INPUT e OUTPUT verso gli altri device, nel range di comunicazione.
+Il disseminatore è un servizio che gira in background e la logica è scandita da una FSM (Finite State Machine), dove in base allo stato in cui ci si trova verranno compiute azioni, piuttosto che altre.
+Quando viene rilevata una nuova connessione ad un peer, il componente si preoccupa anche di gestire il corretto funzionamento della comunicazione, 
+gestendo i canali di input e output verso gli altri device, nel range di comunicazione.
 \end{itemize}
-\section{Organizzazione dell'informazione}                 %crea la sezione
+\subsection{Organizzazione dell'informazione}                 %crea la sezione
 L'organizzazione e persistenza dei city data è ovviamente una fase determinante del progetto.
-In fase di progettazione, si è giunti alla conclusione che non è sufficiente scambiarsi il numero di parcheggi liberi/occupati/unknow derivanti da dati statistici, 
-in quanto ogni device/utente potrebbe avere una parziale, ma diversa, visione dello scenario.
-Da ciò deriva la necessità di sincronizzarsi su tutti gli eventi che sono successi recentemente in una determinata zona(cella) e quelle adiacenti.
-Si è optato per la realizzazione di un database di tipo relazionale composto principalmente da due tabelle, indipendenti l'una dall'altra.
-La prima tabella, denominata, park\_events colleziona tutti gli eventi che gli utente compiono o ricevono in seguito a sincronizzazioni con altri utenti.
-La seconda tabella synchronizations colleziona invece tutte le sincronizzazioni che hanno coinvolto il device in questione.
-Come verrà illustrato nel capitolo relativo all'implementazione, gli strumenti utilizzati si baseranno completamente sullo standard SQL, i quali permetteranno una semplice gestione di 
+Si è optato per la realizzazione di un database di tipo relazionale, composto principalmente da due tabelle, indipendenti l'una dall'altra.
+\\La prima tabella, denominata, park\_events colleziona tutti gli eventi che gli utente compiono o ricevono in seguito a sincronizzazioni con altri utenti.
+\\La seconda tabella synchronizations colleziona invece tutte le sincronizzazioni che hanno coinvolto il device in questione.
+\\Come verrà illustrato nel capitolo relativo all'implementazione, gli strumenti utilizzati si baseranno completamente sullo standard SQL, i quali permetteranno una semplice gestione di 
 query di filtraggio, creazione, modifica, cancellazione.
-Entrando più in dettaglio nella composizione delle tabelle e degli attributi salvati, si mostra di seguito uno schema riassuntivo di ciò che viene messo a database.
-\\\\ Tabella \textbf{park\_events}:
+\\Entrando più in dettaglio nella composizione delle tabelle e degli attributi salvati, si mostra di seguito uno schema riassuntivo di ciò che viene messo a database:
+\\\\ Tabella \textbf{\textit{park\_events}}:
 \begin{itemize}
-\item cell\_id : identificativo univoco della cella che la identifica all'interno della grid city. Informazione di tipo geografica.
-\item event : evento che può essere limitatamente PARKED o RELEASED. Indica se l'entry fa riferimento ad una sosta o alla liberazione di un parcheggio.
-\item timestamp : datetime che indica il momento in cui è stato performato l'evento in questione.
-\item mac : identificativo univoco del device che ha performato l'evento di parcheggio o rilascio.
+\item \underline{\textit{cell\_id}} : identificativo univoco della cella che la identifica all'interno della grid city. Informazione di tipo geografica.
+\item \underline{\textit{event}} : evento che può essere limitatamente PARKED o RELEASED. Indica se l'entry fa riferimento ad una sosta o alla liberazione di un parcheggio.
+\item \underline{\textit{timestamp}} : datetime che indica il momento in cui è stato performato l'evento in questione.
+\item \underline{\textit{mac}} : identificativo univoco del device che ha performato l'evento di parcheggio o rilascio.
 \end{itemize}
-La PRIMARY\_KEY è composta da \textless timestamp, mac \textgreater. L'idea che vi sta dietro è quella che un utente può performare, in un dato istante, al più un unico 
+La PRIMARY KEY è composta da \underline{\textit{\textless timestamp, mac\textgreater}}. L'idea che vi sta dietro è quella che un utente può performare, in un dato istante, al più un unico 
 evento di rilascio o parcheggio.
-\\\\ Tabella synchronizations:
+\\\\ Tabella \textbf{\textit{synchronizations}}:
 \begin{itemize}
-\item timestamp : datetime in cui è avvenuta la sincronizzazione
-\item mac : id univoco dell'altro device con cui è stata possibile la sincronizzazione
-\item ap\_role : booleano che indica se ero Access Point o meno al momento della sincronizzazione
+\item \underline{\textit{timestamp}} : datetime in cui è avvenuta la sincronizzazione.
+\item \underline{\textit{mac}} : id univoco dell'altro device con cui è stata possibile la sincronizzazione.
+\item \underline{\textit{ap\_role}} : booleano che indica se ero Access Point o meno al momento della sincronizzazione.
 \end{itemize}
 
 Questa tabella oltre a fini statistici,  è importante perché permette di evitare che due device si sincronizzino in continuazione.
-Grazie all'attributo timestamp, si riesce a risalire all'ultima sincronizzazione che ha coinvolto il device e di conseguenza, è possibile istanziare una time threshold, sotto la quale non è possibile iniziare una nuova sincronizzazione.
+Grazie all'attributo timestamp, si riesce a risalire all'ultima sincronizzazione che ha coinvolto il device e di conseguenza, è possibile settare una time threshold, sotto la quale 
+non è possibile iniziare una nuova sincronizzazione.
 Le logiche implementate a backend non permettono lo scambio di dati in istanti troppo vicini tra loro.
 Questo meccanismo può esser visto come un minimo di salvaguardia da cicli continui o sovrapposizione di sincronizzazioni.
 
-\section{Network State Machine}                 %crea la sezione
+\subsection{Network State Machine}                 %crea la sezione
 Come già accennato nell'architettura software, il processo di disseminazione delle informazioni è scandito da una macchina a stati finiti.
 Si è deciso di approfondire questo componente per far comprendere meglio come vengono gestite le sincronizzazioni tra i device utente coinvolti.
 \begin{figure}[!h]
 \centering
 \includegraphics[scale=0.5]{img/nsm.png}
-\caption{Rappresentazione dell'Architettura software}
+\caption{Network State Machine}
 \end{figure}
 \\Alla partenza del servizio, il device, non ha conoscenza dell'ambiente circostante, di conseguenza si rende disponibile come ruolo di Access Point ed entra nello stato STATE\_ACCESS\_POINT\_NO\_PEERS.
 Quando si riesce a scoprire la presenza di altri peer, nei paraggi, si entra nello stato STATE\_ACCESS\_POINT\_PEERS.
 A questo punto, il device, si mette all'ascolto di eventuali beacon di servizio, i quali potrebbero notificare la presenza di un preesistente AccessPoint.
-Se questo non accade, il device rimane disponibile come ruolo di Access Point, notificando la propria presenza in beaconing e fornendo opportunità di sincronizzazioni ad eventuali client in arrivo(stato OPEN\_SERVER\_SOCKET).
-Diversamente, se il device comprende la presenza di un Access Point già consolidato in zona, smette di svolgere il ruolo di HotSpot e comincia a comportarsi come Client, entrando, di conseguenza, 
+\\Se questo non accade, il device rimane disponibile come ruolo di Access Point, notificando la propria presenza in beaconing e fornendo opportunità di sincronizzazioni ad eventuali client in arrivo (stato OPEN\_SERVER\_SOCKET).
+\\Diversamente, se il device comprende la presenza di un Access Point già consolidato in zona, smette di svolgere il ruolo di HotSpot e comincia a comportarsi come Client, entrando, di conseguenza, 
 nello stato STATE\_CONNECTION.
 Ora il device cerca di connettersi all'HotSpot, esposto grazie alla tecnologia WiFiDirect.
 Se il processo porta ad una connessione stabile e ad un assegnazione di un indirizzo IP, verrà automaticamente aperto un canale di comunicazioni bidirezionali tra il Client e Server, iniziando così la fase 
-di sincronizzazione(stato IN\_SYNC).
-Come si può notare dallo schema in figura XY, dallo stato STATE\_CONNECTION vi è anche la possibilità di ripartire dall'inizio, nel caso in cui, il device non riesca a connettersi all'HotSpot in un tempo ragionevole, 
-impostando una threshold.
+di sincronizzazione (stato IN\_SYNC).
+\\Come si può notare dallo schema in figura 2.3, dallo stato STATE\_CONNECTION vi è anche la possibilità di ripartire dall'inizio, nel caso in cui, il device non riesca a connettersi all'HotSpot in un tempo ragionevole, 
+entro una certa threshold.
 Questo è stato fatto per evitare situazioni di stallo e cercare di ripartire da un punto più stabile.
 Supponendo che la sincronizzazione sia andata a buon fine, si passa allo stato STATE\_SYNCED\_CONNECTED, il quale significa che la sincronizzazione è terminata ma si è ancora agganciati all'HotSpot del Server.
 A questo punto, gli attori coinvolti, potrebbero allontanarsi a tal punto da rompere il legame creato e quindi il servizio ripartirebbe dallo stato iniziale di START.
-Altrimenti, se gli utenti restano nelle vicinanze l'uno dell'altro, in modo tale da mantenere attiva la connessione, si dà l'opportunità al Client(dopo una certa threshold) di richiedere nuovamente una sincronizzazione.
+Altrimenti, se gli utenti restano nelle vicinanze l'uno dell'altro, in modo tale da mantenere attiva la connessione, si dà l'opportunità al Client (dopo una certa threshold) di richiedere nuovamente una sincronizzazione.
 
-\section{Statistica}                 %crea la sezione
-La parte di statistica si preoccupa, man mano che le informazioni giungono nel database locale, di calcolare le probabilità di trovare parcheggio in una determinata cella della città, piuttosto che in altre.
-\\Si ricorda che il dato che si fornisce all'utente è una probabilità e non un valore certo, così da dare indicazioni agli utenti, sulle zone, che statisticamente saranno meno congestionate, in termini di occupazione.
-\\Un'altra precisazione riguarda  il fatto che più utenti utilizzeranno l'applicazione, come supporto al parcheggio, e più dati verranno disseminati tra i device, aumentando progressivamente l'accuratezza 
+\section{Probabilità di occupazione di una cella}                 %crea la sezione
+Questa parte si preoccupa, man mano che le informazioni giungono nel database locale, di calcolare le probabilità di trovare parcheggio in una determinata cella della città, piuttosto che in altre.
+\\Si ricorda che il dato che si fornisce all'utente è una probabilità e non un valore certo, così da dare indicazioni agli utenti, sulle zone, che statisticamente saranno meno congestionate, in termini di slot occupati.
+\\Un'altra precisazione riguarda  il fatto che più utenti utilizzeranno l'applicazione, come supporto al parcheggio, e più dati verranno disseminati tra i device, aumentando progressivamente l'affidabilità 
 delle probabilità fornite agli utenti.
 \\Supponendo che il numero di slot totali in una generica cella i, identificato con la sigla N\ped{i}\ap{t}, sia noto a priori, lo si può interpretare anche come la somma tra numero di slot liberi, N\ped{i}\ap{f}, e 
 numero di slot occupati N\ped{i}\ap{o}.
 Questi ultimi due, possono essere ricavati a partire dagli eventi di parcheggio e rilascio, i quali sono presenti nel database locale citato in precedenza.
-In particolare, il numero dei parcheggi occupati N\ped{i}\ap{o} può essere ricavato dalla differenza tra il numero di eventi parcheggio E\ped{i}\ap{p} ed il numero di eventi rilascio E\ped{i}\ap{r}.
+\\In particolare, il numero dei parcheggi occupati N\ped{i}\ap{o} può essere ricavato dalla differenza tra il numero di eventi parcheggio E\ped{i}\ap{p} ed il numero di eventi rilascio E\ped{i}\ap{r}.
 
 $$N\ped{i}\ap{o} = E\ped{i}\ap{p} - E\ped{i}\ap{r} $$
 \\A questo punto, conoscendo già il numero totale degli slot, è facile calcolare il tasso di occupazione di una determinata cella:
 $$p\ped{i}\ap{o} = \df{N\ped{i}\ap{o}}{N\ped{i}\ap{t}}$$
 \\Infine calcoliamo la probabilità di trovare parcheggio, servendosi del tasso di occupazione appena calcolato:
 $$p\ped{i}\ap{f} = 1 - p\ped{i}\ap{o}$$
-Quest'ultima sarà l'informazione a cui l'utente avrà accesso una volta aperta l'applicazione, dove verrà visualizzata la mappa della città suddivisa in griglia ed ogni quadrante sarà colorato in base alla 
+Quest'ultima sarà l'informazione, messa in percentuale, a cui l'utente avrà accesso una volta aperta l'applicazione, dove verrà visualizzata la mappa della città suddivisa in griglia ed ogni quadrante sarà colorato in base alla 
 probabilità di trovare parcheggio.
-\\Nella sezione screenshot, figura XZ, è possibile vedere quanto descritto.
+\\Nella sezione screenshot, figura 3.2, è possibile vedere quanto descritto.
 
 
 \clearpage{\pagestyle{empty}\cleardoublepage}
@@ -305,9 +310,9 @@ del componente e l'interazione con gli altri. Questa è la parte che, in fase di 
 nell'analisi del sorgente.
 \subsection{Strategia di connessione tramite WiFiDirect}
 La tecnologia WiFi Direct rende possibile la creazione di cosiddetti P2P Groups, i quali possono essere comparati ad infrastrutture WiFi. 
-Il device che detiene le funzionalità di Access Point viene definito P2P Group Owner, il quale può comunque mantenere attive connessioni cellulari(come ad esempio il 4G).
+Il device che detiene le funzionalità di Access Point viene definito P2P Group Owner, il quale può comunque mantenere attive connessioni cellulari (come ad esempio il 4G).
 Per realizzare lo scopo del progetto il WiFi Direct non è stato utilizzato in maniera tradizionale, bensì in modalità legacy.
-\\Questo perchè, almeno nel primo incontro tra due device, la nascita della connessione necessità dell'interazione utente(come mostrato in figura XX).
+\\Questo perchè, almeno nel primo incontro tra due device, la nascita della connessione necessità dell'interazione utente (come mostrato in figura XX).
 \\Il nostro processo di comunicazione peer-to-peer non prevede però alcuna interazione dell'utente, in quanto i dispositivi devono scoprirsi e comunicare in maniera del tutto autonoma e trasparente.
 \\Utilizzando la modalità legacy, un dispositivo crea un P2P Group fungendo da Access Point, mentre gli altri lo percepiscono e si connettono ad esso come un normale HotSpot 802.11.
 Questo dà la possibilità di connettere più client per Access Point, formando logicamente le topologie a stella, citate nel paragrafo di Architettura generale, nel Cap. 2.
@@ -316,9 +321,27 @@ Questo dà la possibilità di connettere più client per Access Point, formando log
 \includegraphics[scale=0.5]{img/popup.png}
 \caption{Interazione utente per il consenso alla connessione}
 \end{figure}
+\subsection{Il servizio background}
+Il processo di comunicazione tra peers avviene in maniera completamente trasparente all'utente, per questo è stato necessario implementare un servizio che svolgesse 
+il meccanismo di invio e ricezione dati, anche nel caso in cui l'applicazione venisse chiusa.
+Un Service è un componente Andorid, sprovvisto di interfaccia grafica, che si preoccupa di compiere procedure totalmente in background.
+Questo componente, presente nel package services, viene denominato NetworkAutoService, ed estende appunto la classe Service di Andorid.
+\begin{itemize}
+ \item onCreate : Si preoccupa di creare il servizio e notificare l'utente di ciò con l'apparizione di un Toast.
+ \item onStartCommand : Metodo che inizia l'esecuzione vera e propria del servizio in background. Qui, sostanzialmente, espone in beaconing la 
+ possibilità di fungere da AccessPoint e si mette alla ricerca di preesistenti HotSpot nei paraggi. Queste funzionalità verranno descritte meglio in seguito.
+Inoltre richiama il metodo privato startCheckNetworkTimer, illustrato tra poche righe.
+Richiamando tale funzione il servizio è attivo e pronto per il processo di sincronizzazione e disseminazione.
+Si ricorda che la partenza di questo è sancita dall'utente tramite interfaccia grafica, alla pressione di un pulsante.
+ \item onDestroy : Metodo che ferma il servizio e libera le strutture dati necessarie al processo di networking. L'utente richiama implicitamente questo metodo alla pressione del bottone di Stop del servizio.
+ \item startCheckNetworkTimer : Metodo privato che inizializza un oggetto Timer e lo schedula ogni 30s. Questi 30s possono essere interpretati logicamente come un time slot. 
+ L'azione schedulata, prevede l'invio di un Broadcast Intent, in modo tale che il BroadCast Receiver lo possa catturare e controllare lo stato della macchina a stati finiti, definita in fase di progettazione.
+\end{itemize}
 \subsection{Il NetworkController}
 Il NetworkController si preoccupa di fornire gli strumenti necessari alla gestione degli attori coinvolti nel processo di networking e disseminazione locale delle informazioni.
-Anche questo componente è stato implementato seguendo il pattern Singleton, in modo tale da avere un unico e ben definito accesso alle risorse network.
+Questo oggetto è stato implementato seguendo le linee guida del Pattern Singleton.
+Questo pattern permette, fondamentalmente, di creare una ed una sola istanza di una particolare classe, rendendola disponibile in ottica globale. 
+Il concetto è quello di avere oggetti Java che permettano di avere controllo, in ogni punto del progetto, sulle componenti fondamentali dell'architettura implementata.
 Infatti, la mansione principale di questa classe è proprio quella di esporre le istanze degli oggetti che permettono la realizzazione del processo di disseminazione locale.
 Tramite questa è possibile accedere all'oggetto NetworkServiceSearcher, NetworkAccessPoint e NetworkConnection.
 Il primo, come verrà illustrato in seguito, si preoccupa di segnalare la presenza di beacon di servizio nelle vicinanze, il secondo governa eventuali funzionalità da Access Point del device, 
@@ -331,8 +354,8 @@ Di seguito vengono elencate i metodi principali che la classe espone:
 \item startConnection / stopConnection : Metodi che cercano di connettersi, o scollegarsi, da un HotSpot.
 \item startServiceSearcher / stopServiceSearcher : Metodi che sanciscono l'inizio, o la fine, della ricerca di beacon di servizio nelle vicinanze.
 \end{itemize}
-\subsection{NetworkConnection}
-Questa classe, concettualmente molto semplice, detiene la procedura necessaria per connettersi in maniera automatica ad un AccessPoint, presente nella lista ricavata dallo scan delle reti circostanti.
+\subsection{Connessione ad un Access Point}
+La classe NetworkConnection, concettualmente molto semplice, detiene la procedura necessaria per connettersi in maniera automatica ad un AccessPoint, presente nella lista ricavata dallo scan delle reti circostanti.
 Questa classe viene utilizzata quando un device, tramite l'arrivo di un beacon, capisce che vi è un Access Point attivo e disponibile a soddisfare richieste di sincronizzazione.
 Infatti, questo, assumerà il ruolo di Client cercando di agganciarsi all'HotSpot individuato.
 \\È necessario ricordare che, per effettuare queste procedure in maniera completamente automatica e trasparente all'utente, vi è la necessità di conoscere la passphrase per connettersi. 
@@ -388,7 +411,7 @@ Molte chiamate implementate fanno riferimento ad eventi asincroni, di conseguenz
 Uno di questi può essere individuato nella scoperta di peers, dove si prende nota dell'eventuale presenza di altri device Android nell'ambiente circostante.
 Questo può essere ritrovato nella funzione startPeerDiscovery della classe NetworkBeaconPeerSearcher, dove viene richiamato il metodo discoverPeers del WiFiP2PManager.
 A questo punto il device è pronto a notificare la presenza di eventuali peers nelle vicinanze.
-Per catturare queste notifiche è stato necessario implementare un personale PeerListListener, il quale grazie al metodo onPeersAvailable(WifiP2pDeviceList peers) restituisce la lista dei peers presenti nei paraggi.
+Per catturare queste notifiche è stato necessario implementare un personale PeerListListener, il quale grazie al metodo onPeersAvailable (WifiP2pDeviceList peers) restituisce la lista dei peers presenti nei paraggi.
 \subsubsection{Beacon di servizio}         %crea la sottosezione
 Sempre nell'ambito peer-to-peer, la tecnologia Android, permette di pubblicizzare un servizio ad altri device prima di un'effettiva connessione tra i dispositivi.
 La documentazione per developer di Android, specifica che questo meccanismo è stato fatto per individuare, in una fase iniziale, peer che esponessero determinati servizi, piuttosto che altri.
@@ -396,13 +419,13 @@ Questa funzionalità è stata fondamentale per la realizzazione del progetto, in q
 In un primo momento si è pensato di inserire le informazioni relative agli eventi parcheggio direttamente all'interno di questi pacchetti, in quanto vi è la possibilità di inserire un tipo di dato Map\textless String, String \textgreater.
 Con questo tipo di meccanismo si sarebbe potuto attuare il cosiddetto piggybacking, inserendo il vero payload direttamente dentro a questi pacchetti di servizio.
 Questa strategia, oltre ad abbassare notevolmente la complessità, avrebbe permesso di scambiare dati in broadcast tra device, senza che questi instaurassero una connessione.
-L'implementazione però non è resa possibile a causa del basso contenuto, in termini di dimensione, che il tipo di dato Map\textless String, String \textgreater può contenere.
+L'implementazione però non è resa possibile a causa del basso contenuto, in termini di dimensione, che può contenere il tipo di dato Map\textless String, String\textgreater.
 Lo standard consiglia di tenere questo contenuto sotto i 200 bytes e non è raccomandato superare i 1300 bytes. Provando empiricamente, si è potuto confermare la restrinzione appena citata.
 Gli ArrayList degli eventi che vogliamo sincronizzare hanno un contenuto maggiore del limite tecnologico imposto, per questo motivo si è dovuto virare sul meccanismo di AccessPoint e connessioni automatiche.
 Questi pacchetti risultano comunque determinanti, in quanto incapsuleranno la stringa passphrase, necessaria ai client per connettersi in maniera automatica all'HotSpot esposto.
 Tornando al progetto, è possibile scoprire questi servizi tramite il metodo startBeaconDiscovery, il quale chiama a sua volta il metodo discoverServices del WiFiP2PManager.
 Il Listener, relativo alla scoperta di un servizio, riguarda la creazione di un oggetto DnsSdServiceResponseListener, il quale implementando il metodo onDnsSdServiceAvailable, fornisce in input tutte le 
-infomazioni necessario sul servizio appena scoperto(ad esempio nome, tipo, device).
+infomazioni necessario sul servizio appena scoperto (ad esempio nome, tipo, device).
 \subsubsection{Logiche di scoperta}         %crea la sottosezione
 Nei precedenti due sottoparagrafi si è cercato di illustrare le funzionalità principali che si ritrovano nella classe NetworkBeaconPeerSearcher, illustrando le funzioni API chiave utilizzate.
 Ora si cercherà di spiegare la logica che è stato necessario implementare e come la scoperta di peers e servizi si interfacciano tra loro.
@@ -458,7 +481,7 @@ Le funzionalità necessarie ad un device per interpretare il ruolo di Access Poin
 Queste, sostanzialmente, riguardano la creazione spontanea e autonoma di un WiFi Direct Group, con la conseguente autoelezione a Group Owner.
 La classe implementa delle interfacce astratte Android, le quali permettono di catturare segnali relativi alla gestione del WiFiDirect Group.
 In particolare, l'interfaccia WifiP2pManager.GroupInfoListener permette di essere notificati quando il Gruppo è stato creato.
-Questo è permesso dal metodo onGroupInfoAvailable(WifiP2pGroup group), dove in input vengono date tutte le informazioni necessarie sul gruppo appena formato.
+Questo è permesso dal metodo onGroupInfoAvailable (WifiP2pGroup group), dove in input vengono date tutte le informazioni necessarie sul gruppo appena formato.
 A questo punto all'interno del metodo si richiama una procedura startBeaconAP
  per creare ed esporre il servizio di notifica, in modo tale da che gli utenti esterni riescano, tramite questo beacon, a connettersi automaticamente all'HotSpot.
 Oltre a questa operazione viene fatto partire il meccanismo per ricevere connessioni in input tramite Socket, operazione che verrà approfondita in seguito.
@@ -704,172 +727,137 @@ if(Constants.INTENT_D2D_CHECK_MACHINE_STATE.equals(action)) {
 ...
 \end{verbatim}
 \end{itemize}
-\subsection{Il servizio background}
-Il processo di comunicazione tra peers avviene in maniera completamente trasparente all'utente, per questo è stato necessario implementare un servizio che svolgesse 
-il meccanismo di invio e ricezione dati, anche nel caso in cui l'applicazione venisse chiusa.
-Un Service è un componente Andorid, sprovvisto di interfaccia grafica, che si preoccupa di compiere procedure totalmente in background.
-Questo componente, presente nel package services, viene denominato NetworkAutoService, ed estende appunto la classe Service di Andorid.
-\begin{itemize}
- \item onCreate : Si preoccupa di creare il servizio e notificare l'utente di ciò con l'apparizione di un Toast.
- \item onStartCommand : Metodo che inizia l'esecuzione vera e propria del servizio in background. Qui, sostanzialmente, espone in beaconing la 
- possibilità di fungere da AccessPoint e si mette alla ricerca di preesistenti HotSpot nei paraggi. Queste funzionalità verranno descritte meglio in seguito.
-Inoltre richiama il metodo privato startCheckNetworkTimer, illustrato tra poche righe.
-Richiamando tale funzione il servizio è attivo e pronto per il processo di sincronizzazione e disseminazione.
-Si ricorda che la partenza di questo è sancita dall'utente tramite interfaccia grafica, alla pressione di un pulsante.
- \item onDestroy : Metodo che ferma il servizio e libera le strutture dati necessarie al processo di networking. L'utente richiama implicitamente questo metodo alla pressione del bottone di Stop del servizio.
- \item startCheckNetworkTimer : Metodo privato che inizializza un oggetto Timer e lo schedula ogni 30s. Questi 30s possono essere interpretati logicamente come un time slot. 
- L'azione schedulata, prevede l'invio di un Broadcast Intent, in modo tale che il BroadCast Receiver lo possa catturare e controllare lo stato della macchina a stati finiti, definita in fase di progettazione.
-\end{itemize}
-
-
+\newpage
 \section{Screenshot}                 %crea la sezione
 Di seguito sono mostrati gli screenshot dell'applicazione D2DSP:
 \begin{figure}[!h]
 \centering
 \includegraphics[scale=0.2]{img/screenshot/map.jpg}
-\caption{Mappa del centro di Bologna divisa in celle, ognuna colorata con la relativa probabilità di trovare parcheggio}
+\caption[Screenshot della mappa di Bologna con probabilità di parcheggio]{Mappa del centro di Bologna divisa in celle, ognuna colorata con la relativa probabilità di trovare parcheggio}
 \end{figure}
 \begin{figure}[htbp]
 \centering
 \includegraphics[scale=0.15]{img/screenshot/state_ap_no_peers.jpg}%   "%" necessario
 \qquad\qquad
 \includegraphics[scale=0.15]{img/screenshot/state_ap_peers.jpg}
-\caption{Servizio di disseminazione attivo negli stati STATE\_ACCESS\_POINT\_NO\_PEERS e STATE\_ACCESS\_POINT\_PEERS}
+\caption[Screenshot della schermata Network State Machine(1)]{Servizio di disseminazione attivo negli stati STATE\_ACCESS\_POINT\_NO\_PEERS e STATE\_ACCESS\_POINT\_PEERS}
 \end{figure}
 \begin{figure}[htbp]
 \centering
 \includegraphics[scale=0.15]{img/screenshot/state_conn.jpg}%   "%" necessario
 \qquad\qquad
 \includegraphics[scale=0.15]{img/screenshot/state_in_sync.jpg}
-\caption{Didascalia comune alle due figure}
+\caption[Screenshot della schermata Network State Machine(2)]{Servizio di disseminazione attivo negli stati STATE\_CONNECTION e STATE\_IN\_SYNC}
 \end{figure}
 \begin{figure}[htbp]
 \centering
 \includegraphics[scale=0.15]{img/screenshot/state_synced_connected.jpg}%   "%" necessario
 \qquad\qquad
 \includegraphics[scale=0.15]{img/screenshot/activity_recogn.jpg}
-\caption{Didascalia comune alle due figure}
+\caption[Screenshot della schermata di Activity Recognition]{Servizio di disseminazione attivo negli stati STATE\_SYNCED\_CONNECTED e schermata del componente di Activity Recognition}
 \end{figure}
 \begin{figure}[htbp]
 \centering
 \includegraphics[scale=0.15]{img/screenshot/last_sync.jpg}%   "%" necessario
 \qquad\qquad
 \includegraphics[scale=0.15]{img/screenshot/park_event_list.jpg}
-\caption{Didascalia comune alle due figure}
+\caption[Screenshot delle liste di sincronizzazioni ed eventi parcheggio]{Schermate che mostrano all'utente le ultime sincronizzazioni effettuate e gli eventi parcheggio, con possibilità di filtro}
 \end{figure}
-\chapter{ALTRA SEZ}                 %crea la sezione
-\subsection{Prima SottoSezione}         %crea la sottosezione
-\begin{teo}[nome teorema] $\\$          %crea l'ambiente teorema e
-                                        %   $\\$ va a capo in modo forzato
-\vspace{-20pt}                          %toglie uno spazio verticale di 20pt
-
-Primo Teorema.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%crea l'ambiente matematico $$ $$
-                                        %   questo ambiente centra la
-                                        %   formula ma non la numera
-$$\df{\partial}{\partial x}\boldsymbol{f}(x,y)=\df{9}{10}$$
-\end{teo}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%crea l'ambiente dimostrazione
-\begin{proof}Il teorema \`e dimostrato
-\end{proof}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{oss}                             %crea l'ambiente osservazione
-Prima Osservazione.
-\end{oss}
-\begin{oss}                             %crea l'ambiente osservazione
-Seconda Osservazione.
-\end{oss}
-\begin{defin}
-Altra definizione.
-\end{defin}
-Ora vediamo un elenco numerato:         %crea un elenco numerato
-\begin{enumerate}
-\item primo oggetto
-\item secondo oggetto
-\item terzo oggetto
-\item quarto oggetto
-\end{enumerate}
-\begin{ese}                             %crea l'ambiente esempio
-In questo primo esempio vediamo come si inserisce una figura:
-\begin{figure}[h]                       %crea l'ambiente figura; [h] sta
-                                        %   per here, cioè la figura va qui
-\begin{center}                          %centra nel mezzo della pagina
-                                        %   la figura
-%\includegraphics[width=5cm]{figura.eps}%inserisce una figura larga 5cm
-                                        %è commentata perché altrimenti
-                                        %   produce errori
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%inserisce la legenda ed etichetta
-                                        %   la figura con \label{fig:prima}
-\caption[legenda elenco figure]{legenda sotto la figura}\label{fig:prima}
-\end{center}
+\clearpage{\pagestyle{empty}\cleardoublepage}
+\chapter{Valutazione}
+Quest'ultima fase riguarda la valutazione del processo di disseminazione delle informazioni, grazie alla quale riusciamo a comprendere come le informazioni si propagano all'interno del mondo che si va a considerare.
+\\È importante comprendere che non si andrà a valutare la precisione delle probabilità di parcheggi liberi, bensì si andrà a verificare come gli utenti restano allineati sulle informazioni prodotte e propagate dagli agenti dello scenario.
+Infatti l'importante è che l'utente riesca a sincronizzarsi efficacemente con gli altri attori circostanti, in maniera tale da restare aggiornato, durante il movimento, sulla cella corrente e su quelle adiacenti.
+\section{Strumenti}
+Ovviamente non è possibile testare lo spreading delle informazioni in un ambiente reale, di conseguenza ci si affida ad un simulatore ad eventi discreti.
+In ambito accademico lo strumento più efficace ed utilizzato per fare simulazione è senza dubbio OMNeT++.
+Questo prodotto, disponibile in open source dal 2003, viene utilizzato in fase di progettazione, ricerca, testing e analisi di protocolli di rete, architetture software e hardware.
+L'ambiente di sviluppo è un surrogato di Eclipse ed il linguaggio principale è il C++.
+\\La logica del simulatore si basa sul concetto fondamentale di Modulo, i quali possono essere aggregati e customizzati a seconda delle proprie esigenze.
+In particolare, per la valutazione del progetto e dell'architettura pensata è stato necessario sviluppare un componente SmartParking che riproponesse la logica pensata in fase di progettazione ed 
+implementata conseguentemente.
+Come verrà illustrato tra poco, sono stati parametrizzati gli aspetti che influenzano maggiormente lo spreading dell'informazione, in modo tale da comprendere le differenze al variare delle condizioni.
+\\L'utilizzo di OMNeT viene integrato dall'apporto di SUMO e di Veins.
+Il primo è un simulatore di mobilità urbana, anch'esso ottenibile in open source, che si preoccupa di emulare reti stradali, anche di grosse dimensioni.
+Tutte le configurazioni necessarie per il corretto funzionamento di questo, definite in file xml, riguardano la definizione delle strade, delle costruzioni presenti nell'ambiente e dalle macchine(di cui, 
+per ognuna, viene specificato il tempo di partenza ed il percorso da effettuare).
+La gestione di questi file risulta complicata quando si vanno a simulare intere città, in quanto la mole di dati diventa importante.
+Veins è un framework open source, scritto anch'esso in C++, che fornisce una grossa quantità di moduli preimplementati, per la simulazione di protocolli wireless in ambito veicolare.
+Inoltre fornisce lo strumento TraCi che permette l'interazione tra i simulatori SUMO e OmNet, in modo che questi lavorino simultaneamente sull'esecuzione dello scenario definito dall'utente.
+\\I risultati delle simulazioni possono essere visualizzati direttamente da un apposita interfaccia grafica fornita da OMNeT ma possono anche essere esportati in vari formati. Si è scelto di esportare i risultati
+in formato CSV, per poi analizzarli tramite degli script PHP.
+\section{Modellazione}
+La città presa in considerazione per l'analisi simulata del processo di disseminazione locale, è naturalmente Bologna.
+In realtà, viene presa in considerazione soltanto una porzione di questa, più precisamente la zona nord-est del centro storico fino ad arrivare in zona Bologna fiere, fuori dall'anello del centro.
+Quantificandola, l'area appare come un rettangolo di 2.5 km per 1.5 km, per un totale di 3.75 km\ap{2}.
+Comprendendo le strutture universitarie e la stazione dei treni, si tratta di una zona abbastanza movimentata e del tutto idonea al testing dell'architettura implementata.
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.6]{img/sumo-bolo.png}
+\caption[Interfaccia grafica SUMO di Bologna]{Interfaccia grafica di SUMO che mostra la porzione di Bologna per la simulazione}
 \end{figure}
-\end{ese}
-\begin{teo}$\\$                         %crea l'ambiente teorema e
-                                        %   $\\$ va a capo in modo forzato
-
-\vspace{-20pt}                          %toglie uno spazio verticale di 20pt
-Secondo Teorema.
-\end{teo}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%crea anche questo l'ambiente
-                                        %   dimostrazione ed è equivalente
-                                        %   al precendente
-\proof Il teorema \`e dimostrato \endproof
-\section{Terza Sezione}
-\begin{ese}[nome esempio]$\\$
-
-\vspace{-20pt}                          %toglie uno spazio verticale di 20pt
-Secondo Esempio.
-\newpage                                %va in una pagina nuova
-Ora vediamo un elenco puntato:
-\begin{itemize}                         %crea un elenco puntato
-\item primo oggetto
-\item secondo oggetto
+\\La struttura implementata permette di parametrizzare determinate metriche in fase di configurazione, le quali vengono citate in elenco:
+\begin{itemize}
+\item \underline{\textit{range}} : quando i due dispositivi risiedono l'uno nel range trasmissivo dell'altro la comunicazione avrà esito positivo. Misura espressa in metri.
+\item \underline{\textit{min\_latency}} : latenza minima che un utente aspetta per effettuare una sincronizzazione. Misura espressa in secondi.
+\item \underline{\textit{max\_latency}} : latenza massima che un utente può verificare prima che avvenga una sincronizzazione o un fallimento. Misura espressa in secondi.
+\item \underline{\textit{sensor\_accuracy}} : accuratezza dei device android nel performare l'evento di activity recognition rilascio o parcheggio. Misura espressa in percentuale da 0 a 1, compresi.
+\item \underline{\textit{synchronization\_time}} : tempo minimo per cui un utente deve aspettare prima di poter ri-sincronizzarsi. Misura espressa in secondi.
+\item \underline{\textit{cell\_size}} : lunghezza del lato di una cella, espresso in metri.
 \end{itemize}
-\end{ese}
-\section{Altra Sezione}
-Vediamo un elenco descrittivo:
-\begin{description}                     %crea un elenco descrittivo
-  \item[OGGETTO1] prima descrizione;
-  \item[OGGETTO2] seconda descrizione;
-  \item[OGGETTO3] terza descrizione.
-\end{description}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%crea una sottosezione etichettata
-\subsection{Altra SottoSezione}\label{sec:newton}
-\subsubsection{SottoSubSez}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%crea una sottosottosezione
-\subsubsection{SottoSottoSezione}Questa sottosottosezione non viene
-numerata, ma \`e solo scritta in grassetto.
-\section{Altra Sezione}                 %crea una sottosezione
-Vediamo la creazione di una tabella; la tabella \ref{tab:uno}
-(richiamo il nome della tabella utilizzando la label che ho messo sotto):
-la facciamo di tre righe e tre colonne, la prima colonna
-``incolonnata'' a destra (r) e le altre centrate (c):\\
+La logica progettata per la simulazione è una versione semplificata di quella implementata nell'applicazione Android ma rappresenta comunque fedelmente il modello, in modo che i risultati 
+ottenuti possano essere ritenuti affidabili.
+I dispositivi si possono sincronizzare continuamente nel tempo ma, per problemi di overhead già citati, tra due scambi di dati deve passare una certa threshold, rappresentata nel modello dal parametro 
+\textit{synchronization\_time}.
+\\I parametri di \textit{min\_latency} e \textit{max\_latency} rappresentano il tempo che gli AccessPoint e i Client ci mettono per identificare il loro ruolo, scoprire peer, rilevare beacon e connettersi ad un WiFiDirect Group.
+\section{Obiettivi di simulazione}
+In fase di simulazione, si vuole dimostrare che il movimento inerziale degli utenti e la strategia di disseminazione locale, permettono di restare sincronizzati sugli eventi che effettivamente accadono.
+In particolare si cercherà di analizzare l'accuratezza dei dati presenti nei database locali ai device utente, rispetto a ciò che è accaduto realmente.
+\\Per definire meglio il concetto dell'accuratezza, si prenda di riferimento una cella \textit{i} dove, nel lasso di tempo \textit{t}, sono stati performati 100 eventi parcheggio o rilascio.
+A questo punto, in un determinato istante \textit{t\ped{i}}, se il device ha nella propria conoscenza locale 10 eventi dei 100 totali, avrà un'accuratezza del 10\%, se ne ha 50 avrà accuratezza del 50\% e così 
+fino al limite superiore del 100\%, il quale può essere raggiunto solo da una struttura di tipo centralizzata.
+L'accuratezza, appena descritta, verrà calcolata e registrata nel corso del tempo per comprendere il relativo andamento, col trascorrere dei secondi.
+Inoltre verrà stabilita l'accuratezza in relazione alla distanza, per capire il grado di allineamento non solo sulle celle strettamente adiacenti, ma anche su quelle progressivamente più lontane.
+Infine verrà presa in considerazione l'accuratezza in base al numero di veicoli presenti nella porzione di Bologna considerata.
+\\Tutte queste misurazioni verranno comparate simulando diverse tecnologie, in modo tale da capire dove si colloca l'implementazione tramite WiFiDirect.
+\section{Configurazioni e run}
+Si vogliono comparare le metriche sopradescritte, simulando l'architettura con l'utilizzo di tre tecnologie differenti quali VANET V2V, WiFi Direct e Bluetooth.
+Il tempo per ogni run di simulazione è stato settato a 1800 simsec (mezzora simulata) e per ogni tecnologia si considerano scenari con 3000, 1500 e 500 veicoli.
+\\Per ottenere un'analisi statistica che abbia un senso, si effettuano 10 run indipendenti per ogni tecnologia e numero di veicoli, per un totale di 90 run indipendenti.
+I risultati saranno frutto delle medie dei vari run.
+\subsubsection{VANET V2V}
+Per simulare la tecnologia presente nei sistemi V2V, basato sull'\textit{802.11p}, si settano i parametri di \textit{range}, \textit{min\_latency} e \textit{max\_latency} in modo tale che il range di comunicazione sia piuttosto elevato, 
+sui 500m, e che la \textit{min\_latency} e \textit{max\_latency} siano azzerate.
+Questi ultimi due parametri vengono annullati in quanto la logica descritta in fase di progettazione ed implementata sull'app Android, su questi sistemi, non ha senso di esistere.
+I canali di comunicazione V2V non necessitano di un meccanismo di esposizione dell'HotSpot e connessione a questo da parte dei client.
+\subsubsection{WiFi DIRECT}
+Questa configurazione rispecchia l'architettura progettata ed implementata sull'applicazione Android. Il range di comunicazione si aggira sui 100m, 
+con latenza di apertura dei canali di comunicazione che va dai 2 ai 10 secondi.
+\subsubsection{BLUETOOTH}
+La terza tecnologia che si vuole considerare è il Bluetooth, il quale ha un range di comunicazione sui 20m ed una latenza di connessione che va dai 5 ai 15 secondi.
+Quest'ultimi parametri possono essere visti come un approccio ottimistico, in quanto il protocollo Bluetooth può impiegare più tempo per scoprire peer nelle vicinanze.
+\\\\
 \begin{table}[h]                        %ambiente tabella
                                         %(serve per avere la legenda)
 \begin{center}                          %centra nella pagina la tabella
-\begin{tabular}{r|c|c}                  %tre colonne con righe verticali
-                                        %   prodotte con |
-\hline \hline                           %inserisce due righe orizzontali
-$(1,1)$ & $(1,2)$ & $(1,3)$\\           %& separa le colonne e con
-\hline                                  %inserisce una riga orizzontale
-$(2,1)$ & $(2,2)$ & $(2,3)$\\           %  \\ va a capo
-\hline                                  %inserisce una riga orizzontale
-$(3,1)$ & $(3,2)$ & $(3,3)$\\
-\hline \hline                           %inserisce due righe orizzontali
+\begin{tabular}{ |p{4.8cm}||p{2cm}||p{2.5cm}||p{2.5cm}|  }
+ \hline
+ \multicolumn{4}{|c|}{\textbf{Simulation parameters}} \\
+ \hline
+ \textbf{technology}&V2V&WiFiDirect&Bluetooth\\
+ \textbf{range(m)}&500&100&20\\
+ \textbf{min\_latency(s)}&0&2&5\\
+ \textbf{max\_latency(s)}&0&10&15\\
+ \textbf{sensor\_accuracy(\%)}&0.90&0.90&0.90\\
+ \textbf{synchronization\_time(s)}&20&20&20\\
+ \textbf{cell\_size(m)}&250&250&250\\
+ \textbf{sim time(simsec)}&1800&1800&1800\\
+ \hline
 \end{tabular}
-\caption[legenda elenco tabelle]{legenda tabella}\label{tab:uno}
+\caption[parametri di simulazione]{parametri di simulazione}\label{tab:uno}
 \end{center}
 \end{table}
-\section{Altra Sezione}\label{sec:prova}%posso mettere le label anche
-                                        %   alle section
-\subsection{Listati dei programmi}
-\subsubsection{Primo Listato}
-\begin{verbatim}
-        In questo ambiente     posso scrivere      come voglio,
-lasciare gli spazi che voglio e non % commentare quando voglio
-e ci sarà scritto tutto.
-Quando lo uso è meglio che disattivi il Wrap del WinEdt
-\end{verbatim}
+\section{Risultati}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
 \clearpage{\pagestyle{empty}\cleardoublepage}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%per fare le conclusioni
@@ -885,26 +873,7 @@ CONCLUSIONI}}
 conclusioni.\\
 In queste conclusioni voglio fare un riferimento alla
 bibliografia: questo \`e il mio riferimento \cite{K3,K4}.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%imposta l'intestazione di pagina
-\renewcommand{\chaptermark}[1]{\markright{\thechapter \ #1}{}}
-\lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}
-\appendix                               %imposta le appendici
-\chapter{Prima Appendice}               %crea l'appendice
-In questa Appendice non si \`e utilizzato il comando:\\
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\verb"" è equivalente all'
-                                        %   ambiente verbatim,
-                                        %   ma si utilizza all'interno
-                                        %   di un discorso.
-\verb"\clearpage{\pagestyle{empty}\cleardoublepage}", ed infatti
-l'ultima pagina 8 ha l'intestazione con il numero di pagina in
-alto.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%imposta l'intestazione di pagina
-\rhead[\fancyplain{}{\bfseries \thechapter \:Prima Appendice}]
-{\fancyplain{}{\bfseries\thepage}}
-\chapter{Seconda Appendice}             %crea l'appendice
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%imposta l'intestazione di pagina
-\rhead[\fancyplain{}{\bfseries \thechapter \:Seconda Appendice}]
-{\fancyplain{}{\bfseries\thepage}}
+
 \begin{thebibliography}{90}             %crea l'ambiente bibliografia
 \rhead[\fancyplain{}{\bfseries \leftmark}]{\fancyplain{}{\bfseries
 \thepage}}
