@@ -104,7 +104,7 @@ INTRODUZIONE}}
                                         %   nell'indice
 \addcontentsline{toc}{chapter}{Introduzione}
 Oggigiorno, il numero di veicoli presenti nelle metropoli ha raggiunto quantità tali da portare problemi di congestione del traffico.
-Si stima che una buona parte della congestione sia causata da automobilisti, alla ricerca costante di un parcheggio libero.
+Si stima che una buona parte della congestione sia causata da automobilisti alla ricerca costante di un parcheggio libero.
 Questa problematica causa una serie di negative conseguenze, danneggiando progressivamente gli utenti e l'ambiente.
 La ricerca prolungata di uno slot libero comporta all'utente perdita di tempo e di denaro, contribuendo ad un peggioramento, anche se leggero, della qualità di vita nelle grandi città.
 Inoltre, sono evidenti le conseguenze negative sull'impatto ambientale, dove la qualità dell'aria viene messa costantemente a rischio dall'enorme quantità 
@@ -119,14 +119,14 @@ Molte soluzioni proposte prevedono l'utilizzo di sensori su strada o telecamere 
 Mentre per la disseminazione delle informazioni raccolte, si propongono sistemi decentralizzati basati sull'IoT e WSN(Wireless Sensor Network), oppure classici sistemi centralizzati.
 Tutti questi componenti prevedono un investimento iniziale enorme per apparecchiature ed installazione, senza contare i futuri e necessari costi di manutenzione.
 Questo è ovviamente un grosso limite per i governi che spesso non sono intenzionati ad utilizzare ingenti fondi per questi scopi.
-Il sistema che viene proposto non necessita di alcuna infrastruttura particolare e si pone l'obiettivo di fornire all'utente una stima sulle zone più dense di parcheggi liberi della città.
+\\Il sistema che viene proposto non necessita di alcuna infrastruttura particolare e si pone l'obiettivo di fornire all'utente una stima sulle zone più dense di parcheggi liberi della città.
 Questo è reso possibile tramite il concetto di crowdsensing, dove gli utenti condividono le proprie rilevazioni con altri utenti e grazie a questi continui contributi, il singolo riesce a fare 
 assunzioni sulla situazione parcheggi in città.
 Ogni Smartphone, avendo la possibilità di rilevare il tipo di mobilità dell'utente tramite i propri sensori, riesce a dedurre in probabilità un evento di parcheggio, piuttosto che di rilascio. 
-Questi dati vengono disseminati localmente nell'ambiente ad altri device, tramite connessioni uno ad uno, in maniera totalmente decentralizzata, permettendo agli utenti di restare aggiornati sulla situazione 
+Questi dati vengono disseminati localmente nell'ambiente ad altri device in maniera totalmente decentralizzata, permettendo agli utenti di restare aggiornati sulla situazione 
 parcheggio nelle zone limitrofe.
 Il servizio, una volta avviato, non avrà bisogno di alcuna interazione utente, in quanto il processo di rilevazione e di comunicazione sono stati automatizzati.
-\\Questo documento viene organizzato in quattro capitoli, secondo la seguente struttura. Nel primo capitolo viene analizzato lo stato dell'arte, per quanto riguarda l'argomento in questione. 
+\\Questo documento viene organizzato in quattro capitoli, secondo la seguente struttura. Nel primo capitolo viene analizzato lo stato dell'arte per quanto riguarda l'argomento in questione. 
 Il secondo capitolo illustra i passi di progettazione necessari alla realizzazione del sistema. Il terzo capitolo riguarda l'implementazione dell'applicazione Android, entrando nei dettagli più 
 tecnici. Il quarto ed ultimo capitolo mostra la valutazione del sistema, dove i risultati sono stati ottenuti simulando il funzionamento del sistema in una città metropolitana.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
@@ -144,29 +144,120 @@ INDICE}}
 \listoftables                           %crea l'elenco delle tabelle
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
 \clearpage{\pagestyle{empty}\cleardoublepage}
-\chapter{Stato dell'arte}                %crea il capitolo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%imposta l'intestazione di pagina
 \lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}
 \pagenumbering{arabic}                  %mette i numeri arabi
 \clearpage{\pagestyle{empty}\cleardoublepage}
+\part{Stato dell'arte}
+\chapter{Stato dell'arte} 
+Il seguente capitolo illustra il contesto in cui si colloca il progetto di tesi ed una serie di lavori correlati sull'argomento dello Smart Parking.
 \section{Sistemi di Trasporto Intelligenti}
 Il Ministero delle Infrastrutture e dei Trasporti definisce gli Intelligent Transport System(ITS, in italiano Sistemi di Trasporto Intelligenti) come 
-\textit{``range di strumenti per la gestione delle reti di trasporto, così come i servizi per i viaggiatori. Gli strumenti ITS sono basati su tre aspetti centrali: 
+\textit{``...range di strumenti per la gestione delle reti di trasporto, così come i servizi per i viaggiatori. Gli strumenti ITS sono basati su tre aspetti centrali: 
 acquisizione, elaborazione e diffusione delle informazioni e da un minimo comune denominatore quale è l'integrazione.
 I processi di acquisizione dei dati, l'elaborazione e l'integrazione degli stessi e la catena delle informazioni da fornire agli utenti del sistema di trasporto sono il cuore dei sistemi ITS''}[1].
+Lo sviluppo esponenziale dell'informatica e delle reti di comunicazione ha portato alla nascita di numerose applicazione, ad alto contenuto tecnologico, per la gestione ed il controllo nell'ambito trasporti.
+La gestione del traffico veicolare (acquisizione dei dati di traffico, controllo semaforico, controllo degli accessi, gestione dei parcheggi), del trasporto collettivo e della logistica (indicazioni di percorso e 
+instradamento parcheggi, sistemi di distribuzione delle merci, sistemi misti merci/passeggeri, ecc...) sono esempi tangibili di come i sistemi ITS stiano diventando uno strumento prezioso per il controllo della mobilità.
+Le città metropolitane sono sovraffollate di veicoli, portando a costanti situazioni di inefficienza dei trasporti, congestione del traffico ed un aumento dei tempi di percorrenza per giungere a destinazione. 
+Questa situazione è in costante aumento in tutto il mondo, data l'urbanizzazione e la crescente densità di popolazione nelle grandi città.
+Il 54\% della popolazione mondiale risiede in città metropolitane e si stima che possa diventare il 66\% entro il 2050[2].
 \begin{figure}[!h]
 \centering
 \includegraphics[scale=0.7]{img/its.jpg}
-\caption[Rappresentazione dell'Architettura generale]{Rappresentazione dell'Architettura generale e della divisione in celle di una porzione di Bologna}
+\caption[Esempio di ITS]{Esempio di ITS}
 \end{figure}
-Lo sviluppo esponenziale dell'informatica e delle reti di comunicazione ha portato alla nascita di numerose applicazione, ad alto contenuto tecnologico, per la gestione ed il controllo nell'ambito trasporti.
-La gestione del traffico veicolare (acquisizione dei dati di traffico, controllo semaforico, controllo degli accessi, gestione dei parcheggi), del trasporto collettivo e della logistica (indicazioni di percorso e 
-instradamento parcheggi, sistemi di distribuzione delle merci, sistemi misti merci/passeggeri, ecc...) sono esempi tangibili di come i sistemi ITS stiano diventando un prezioso strumento per il controllo della mobilità.
-Le città metropolitane sono sovraffollate di veicoli, portando a costanti situazioni di inefficienza dei trasporti, congestione del traffico e relativi aumento dei tempi di percorrenza per giungere a destinazione. 
-Questa situazione è in costante aumento in tutto il mondo, data l'urbanizzazione e la crescente densità di popolazione nelle grandi città.
 I sistemi ITS si pongono l'obiettivo di migliorare la qualità dei trasporti in termini di riduzione delle congestioni, rischi di incidente e situazioni di emergenza.
 Per fare ciò vengono sfruttati meccanismi intelligenti, in grado di fare determinate assunzioni sulla base delle informazione scambiate tra veicoli che si trovano in una determinata zona.
 Gli utenti, sfruttando le deduzioni offerte da questi sistemi, potrebbero variare il loro comportamento, permettendo così di smaltire le congestioni e favorire la viabilità generale.
+\section{Crowdsensing}
+Per Crowdsensing si definisce quell'attività di condivisione e raccolta dati, utilizzando i vari sensori presenti all'interno dei dispositivi. Lo scopo di ogni device deve essere quello 
+di condividere con molti utenti le proprie informazioni.
+In questa maniera, si potrà giungere ad una conoscenza condivisa tra gli utenti ed ottenere, in maniera intelligente, i risultati prefissati.
+Il Crowdsensing si suddivide principalmente in 2 categorie[3]:
+\begin{itemize}
+\item \textit{Partecipatory Crowdsensing} : l'utente viene coinvolto direttamente nella fase di propagazione dei dati. 
+\item \textit{Opportunistic Crowdsensing} : la propagazione avviene in maniera automatica e trasparente all'utente.
+\end{itemize}
+La seconda categoria, dove l'utente deve solo accettare la condivisione dei propri dati, è quella maggiormente utilizzata nelle applicazioni mobili, in quanto è quella che garantisce una buona quantità di raccolta dati.
+Il Crowdsensing può essere uno strumento molto potente per ottenere risultati che possono essere ricavati soltanto dall'aggregazione di dati collettivi.
+Numerosi contributi, in letteratura, si basano proprio su questo concetto. Ad esempio, il progetto in [4] utilizza il concetto di Crowdsensing per la costruzione intelligente di mappe indicanti il 
+numero di parcheggi disponibili per una determinata strada.
+In questo caso, prendendo un numero elevato di utenti in una determinata zona e condividendo i dati di dove essi parcheggiano abitualmente, è possibile  tracciare gli slot disponibili in una 
+determinata strada.
+Il sistema presentato in [8], vuole fornire agli utenti la situazione di occupazione del parcheggio universitario, tramite i dati raccolti dagli utenti.
+Ogni studente quando lascia il parcheggio, contribuisce alla conoscenza globale, con la propria visione del parcheggio (pieno, semi-pieno, vuoto).
+I lavori proposti sul tema dello Smart Parking in [6][9], mostrano quanto sia fondamentale il tasso di partecipazione utente.
+Più utenti condividono le proprie informazioni, più l'accuratezza dei risultati sarà precisa. In particolare viene mostrato che un alto tasso di partecipazione corrisponde ad una diminuzione notevole del tempo di ricerca 
+di un parcheggio.
+Ogni utente condivide i propri dati sapendo di contribuire al risultato generale, avendo l'interesse nel migliorarne l'accuratezza.
+Le applicazioni Crowdsensing rappresentano una possibilità di migliorare la quotidianità dell'utente.
+\section{Smart City}
+La \textit{IEEE} definisce la Smart City come ambiente sostenibile in grado di ridurre i consumi e fornire una qualità di vita migliore ai cittadini[18].
+Il mondo tecnologico, i governi e la società dovrebbero favorire in maniera positiva il processo di urbanizzazione, riuscendo a proporre le seguenti caratteristiche nella città intelligente:
+\begin{itemize}
+\item smart mobility
+\item smart economy
+\item smart environment
+\item smart people
+\item smart living
+\item smart governance
+\end{itemize}
+La Smart City si pone l'obiettivo di semplificare ogni operazione della città, grazie agli ultimi sviluppi tecnologici.
+Soprattutto la recente espansione del paradigma IoT (Internet of Things, in italiano Internet delle Cose) ha permesso l'apertura verso nuove applicazioni, in grado di portare miglioramenti nella vita metropolitana.
+In [19], si definisce l'Internet delle Cose come \textit{``l'interconnessione in rete di oggetti di uso quotidiano, formando una rete distribuita di dispositivi, comunicanti con l'uomo o con altri dispositivi''}.
+Ogni dispositivo potrà aumentare il proprio livello di intelligenza grazie all'interconnessione ed alle informazioni derivanti da altri device.
+\\Il progetto di tesi può essere visto come un primo passo verso il tema dello Smart City, dove numerosi dispositivi vengono coinvolti per migliorare un aspetto quotidiano dei cittadini.
+\section{Smart Parking}
+Il problema del parcheggio può essere visto come una grossa sfida all'interno delle Città intelligenti, definite nella sezione 1.3.
+Con il termine Smart Parking si intendono tutte quelle soluzioni che intendono favorire l'utente nell'attività di parcheggio.
+Secondo recenti studi, la maggior parte della congestione veicolare nelle grandi città è causata dai parcheggi.
+Gli utenti passano molto tempo nel cercare uno slot libero, soprattutto se si considerano parcheggi su strada (on-street parking).
+\\Le conseguenze negative di tutto ciò si possono riassumere in:
+\begin{itemize}
+\item perdita di tempo
+\item perdita di denaro
+\item inquinamento ambientale
+\item peggioramento della qualità di vita
+\end{itemize}
+Lo studio in [4], quantifica gli effetti negativi evidenziando come in una porzione di Los Angeles, nel periodo di un anno, le macchine abbiano compiuto una distanza pari a 
+37 giri intorno al mondo, soltanto per le attività di ricerca parcheggio.
+Questo ha portato al consumo di 47000 galloni di gasolio, tramutati in 730 tonnellate di CO\ped{2} (diossido di carbonio) emesso nell'aria.
+Un'altra analisi molto interessante viene fatta in [5], dove si dimostra come gli utenti, non trovando parcheggio in un tempo ragionevole, si comportino in maniera negativa.
+Molte persone sarebbero disposte a parcheggiare illegalmente o addirittura rinunciare all'attività da compiersi.
+Lo stato dell'arte presenta numerosi lavori sul tema dello Smart Parking, proponendo idee sempre più innovative per limitare gli effetti negativi appena descritti.
+In [4] si cerca di fornire all'utente una mappa dettagliata della quantità di parcheggi per strada. Questa può essere un'informazione utile per l'utente, il quale riesce quantomeno a farsi un'idea sulle strade 
+più dense di parcheggi on-street.
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.4]{img/sensor-sp.png}
+\caption{Sistema di Smart parking con sensori in-ground}
+\end{figure}
+I progetti mostrati in [5][10][11][14][15] si affidano a reti \textit{WSN} (Wireless Sensor Network), dove ogni sensore viene posizionato in prossimità del parcheggio (come mostrato in figura 1.2) ed instrada le proprie 
+informazioni verso una struttura centralizzata.
+L'efficienza di questi sistemi è molto alta, ma il costo per l'installazione e la manutenzione (come riportato anche nell'Introduzione) sono un limite per la loro diffusione.
+Questo ha favorito lo sviluppo di sistemi Crowdsensing e Crowdsourcing permettono di ottenere risultati soddisfacenti, partendo dal contributo degli utenti stessi.
+I progetti in [2][4][7][8][9] forniscono all'utente, tramite l'ausilio di mappe, indicazioni riguardo la situazione parcheggi nelle vicinanze. 
+Gli utenti che compiono un'attività di parcheggio, condividono i propri dati (ottenuti tramite sensori dello Smartphone o altro) con la comunità, evitando congestione del traffico stradale.
+Questi lavori possono essere correlati all'attività di tesi presentata in questo documento, dove si cercherà di fornire agli utenti preziose informazioni sui parcheggi vicini, 
+senza l'aiuto di architetture \textit{WSN} ed agenti centralizzati.
+\subsection{Propagazione dell'informazione}
+Una parte fondamentale all'interno dei sistemi Smart City e Smart Parking riguarda la propagazione dei dati tra i diversi utenti. Innanzitutto è bene distinguere la comunicazione secondo due paradigmi:
+\begin{itemize}
+\item \textit{centralizzata} : classica struttura Client-Server, dove una struttura centralizzata raccoglie tutti i dati derivanti da diverse fonti della Smart City e fornisce i risultati ai diversi client.
+\item distribuita : ogni dispositivo comunica con altri dispositivi cercando di propagare efficacemente l'informazione. L'assenza di una struttura centralizzata porta ogni nodo ad avere risultati 
+parziali nel tempo, di conseguenza è necessario pensare ad efficaci metodi di propagazione in modo che tutti gli utenti restino allineati sulle informazioni prodotte dalla città.
+\end{itemize}
+Il secondo paradigma è quello che verrà utilizzato in questo lavoro di tesi, dove gli attori della rete saranno solamente dispositivi end-point. 
+Risparmiando l'utilizzo di agenti centralizzati, si evitano importanti costi di installazione e gestione.
+Il tema dello Smart Parking porta a considerare la Smart City come una rete veicolare distribuita ed in queste condizioni è normale pensare ad una comunicazione V2V (Vehicle-To-Vehicle).
+Il V2V riguarda comunicazioni tra veicoli in movimento portanto alla creazione di resti spontanee, denominate VANETs(Veichular Ad-Hoc NETworks).
+Questi tipi di sistemi sono stati realizzati per propagare informazioni in maniera totalmente distribuita tra i vecoli, segnalando incidenti, percorsi trafficati o eventuali pericoli.
+Ad oggi comunque questo tipo di comunicazione non è disponibile per molte delle auto in commercio, trattandosi comunque di progetti costosi ed altamente innovativi.
+Assumendo però che ogni utente possiede uno Smartphone è naturale pensare a connessione tra questi dispositivi, utilizzando il paradigma D2D.
+Il D2D permette comunicazioni wireless distribuita tra device che sono nelle vicinanze. Questo approccio è quello che viene preso in considerazione nel lavoro di tesi, sfruttando i dispositivi utente per la 
+propagazione di informazioni, relativa ai parcheggi, all'interno della Smart City.
+\part{Progettazione ed Implementazione}
 \chapter{Progettazione}                %crea il capitolo
 Il seguente capitolo ha lo scopo di illustrare in dettaglio il goal del progetto, le problematiche che vi stanno dietro ed il processo di progettazione su cui è stato necessario soffermarsi, per la successiva realizzazione ed implementazione.
 \\La mission, descrivendola in pochi concetti, è sostanzialmente quella di determinare quando un utente parcheggia o rilascia uno slot e disseminare queste informazioni in maniera totalmente distribuita, senza alcun appoggio di una struttura centralizzata.
@@ -807,6 +898,7 @@ Di seguito sono mostrati gli screenshot dell'applicazione D2DSP:
 \caption[Screenshot delle liste di sincronizzazioni ed eventi parcheggio]{Schermate che mostrano all'utente le ultime sincronizzazioni effettuate e gli eventi parcheggio, con possibilità di filtro}
 \end{figure}
 \clearpage{\pagestyle{empty}\cleardoublepage}
+\part{Valutazione}
 \chapter{Valutazione}
 Quest'ultima fase riguarda la valutazione del processo di disseminazione delle informazioni, grazie alla quale riusciamo a comprendere come le informazioni si propagano all'interno del mondo che si va a considerare.
 \\È importante comprendere che non si andrà a valutare la precisione delle probabilità di parcheggi liberi, bensì si andrà a verificare come gli utenti restano allineati sulle informazioni prodotte e propagate dagli agenti dello scenario.
@@ -925,15 +1017,26 @@ bibliografia: questo \`e il mio riferimento \cite{K3,K4}.
 \addcontentsline{toc}{chapter}{Bibliografia}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%provare anche questo comando:
 %%%%%%%%%%%\addcontentsline{toc}{chapter}{\numberline{}{Bibliografia}}
-\bibitem{K1} Primo oggetto bibliografia.
-\bibitem{K2} Secondo oggetto bibliografia.
-\bibitem{K3} Terzo oggetto bibliografia.
-\bibitem{K4} Quarto oggetto bibliografia.
+\bibitem{K1} ''I Sistemi di Trasporto Intelligenti (ITS)``, Ministero delle Infrastrutture e dei Trasporti, 2010, http://www.mit.gov.it.
+\bibitem{K2} Rosario Salpietro, Luca Bedogni, Marco Di Felice, Luciano Bononi, ''Park Here! A Smart Parking System based on Smartphones' Embedded Sensors and Short Range Communication Technologies``, University of Bologna, 2015.
+\bibitem{K3} Simone Masini, ''Sviluppo di una Piattaforma di Crowdsensing per l'Analisi di Dati``, Università di Bologna, 2014.
+\bibitem{K4} Vladimir Coric, Marco Gruteser, ''Crowdsensing Maps of On-street Parking Spaces``, IEEE, 2013.
+\bibitem{K5} Elena Polycarpou, Lambros Lambrinos, Eftychios Protopapadakis, ''Smart parking solutions for urban areas``, IEEE, 2013.
+\bibitem{K6} Xiao Chen, Elizeu Santos-Neto, Matei Ripeanu, ''Crowdsourcing for on-street smart parking``, ACM, 2012.
+\bibitem{K7} Rinne, Mikko, Törmä, Seppo, ''Mobile crowdsensing of parking space using geofencing and activity recognition``, Aalto University, 2014.
+\bibitem{K8} Alessandro Grazioli, Marco Picone, Francesco Zanichelli, Michele Amoretti, ''Collaborative Mobile Application and Advanced Services for Smart Parking``, IEEE, 2014.
+\bibitem{K9} Károly Farkas, Imre Lendák, ''Simulation Environment for Investigating Crowd-sensing Based Urban Parking``, IEEE, 2015.
+\bibitem{K10} S.V. Srikanth, Pramod P.J., Dileep K.P., Tapas S., Mahesh U. Patil, Sarat Chandra Babu N., ''Design and Implementation of a Prototype Smart PARKing (SPARK) System Using Wireless Sensor Networks``, IEEE, 2009.
+\bibitem{K11} Vanessa W.S. Tang, Yuan Zheng, Jiannong Cao, ''An Intelligent Car Park Management Systembased on Wireless Sensor Networks``, IEEE, 2006.
+\bibitem{K12} Qing Li, Hongkun Li, Paul Russell Jr., Zhuo Chen, and Chonggang Wang, ''CA-P2P: Context-Aware Proximity-Based Peer-to-Peer Wireless Communications``, IEEE, 2014.
+\bibitem{K13} Emad Abd-Elrahman, Adel Mounir Said, Thouraya Toukabri, Hossam Afifi, Michel Marot, ''A Hybrid Model to Extend Vehicular Intercommunication V2V through D2D Architecture``, IEEE, 2015.
+\bibitem{K14} Jihoon Yang, Jorge Portilla and Teresa Riesgo, ''Smart Parking Service based on Wireless Sensor Networks``, IEEE, 2012.
+\bibitem{K15} Muhammad Alam, Bruno Fernandes, João Almeida, Joaquim Ferreira, José Fonseca, ''Integration of Smart Parking in Distributed ITS Architecture``, IEEE, 2016.
+\bibitem{K16} George Dimitrakopoulos, Panagiotis Demestichas , ''Systems Based on Cognitive Networking Principles and Management Functionality``, IEEE, 2010.
+\bibitem{K17} Rongxing Lu, Xiaodong Lin, Haojin Zhu, Xuemin Shen, ''SPARK: A New VANET-based Smart Parking Scheme for Large Parking Lots``, IEEE, 2009.
+\bibitem{K18} IEEE Smart Cities, http://smartcities.ieee.org/about.html.
+\bibitem{K19} Feng Xia, LaurenceT.Yang, LizheWang, Alexey Vinel, ''Internet of Things``, IEEE, 2012.
 \end{thebibliography}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
 \clearpage{\pagestyle{empty}\cleardoublepage}
-\chapter*{Ringraziamenti}
-\thispagestyle{empty}
-Qui possiamo ringraziare il mondo intero!!!!!!!!!!\\
-Ovviamente solo se uno vuole, non \`e obbligatorio.
 \end{document}
