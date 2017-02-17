@@ -206,7 +206,7 @@ Il mondo tecnologico, i governi e la società dovrebbero favorire in maniera posi
 La Smart City si pone l'obiettivo di semplificare ogni operazione della città, grazie agli ultimi sviluppi tecnologici.
 Soprattutto la recente espansione del paradigma IoT (Internet of Things, in italiano Internet delle Cose) ha permesso l'apertura verso nuove applicazioni, in grado di portare miglioramenti nella vita metropolitana.
 In [19], si definisce l'Internet delle Cose come \textit{``l'interconnessione in rete di oggetti di uso quotidiano, formando una rete distribuita di dispositivi, comunicanti con l'uomo o con altri dispositivi''}.
-Ogni dispositivo potrà aumentare il proprio livello di intelligenza grazie all'interconnessione ed alle informazioni derivanti da altri device.
+\\Ogni dispositivo potrà aumentare il proprio livello di intelligenza grazie all'interconnessione ed alle informazioni derivanti da altri device.
 \\Il progetto di tesi può essere visto come un primo passo verso il tema dello Smart City, dove numerosi dispositivi vengono coinvolti per migliorare un aspetto quotidiano dei cittadini.
 \section{Smart Parking}
 Il problema del parcheggio può essere visto come una grossa sfida all'interno delle Città intelligenti, definite nella sezione 1.3.
@@ -245,18 +245,18 @@ senza l'aiuto di architetture \textit{WSN} ed agenti centralizzati.
 Una parte fondamentale all'interno dei sistemi Smart City e Smart Parking riguarda la propagazione dei dati tra i diversi utenti. Innanzitutto è bene distinguere la comunicazione secondo due paradigmi:
 \begin{itemize}
 \item \textit{centralizzata} : classica struttura Client-Server, dove una struttura centralizzata raccoglie tutti i dati derivanti da diverse fonti della Smart City e fornisce i risultati ai diversi client.
-\item distribuita : ogni dispositivo comunica con altri dispositivi cercando di propagare efficacemente l'informazione. L'assenza di una struttura centralizzata porta ogni nodo ad avere risultati 
+\item \textit{distribuita} : ogni dispositivo comunica con altri dispositivi cercando di propagare efficacemente l'informazione. L'assenza di una struttura centralizzata porta ogni nodo ad avere risultati 
 parziali nel tempo, di conseguenza è necessario pensare ad efficaci metodi di propagazione in modo che tutti gli utenti restino allineati sulle informazioni prodotte dalla città.
 \end{itemize}
 Il secondo paradigma è quello che verrà utilizzato in questo lavoro di tesi, dove gli attori della rete saranno solamente dispositivi end-point. 
 Risparmiando l'utilizzo di agenti centralizzati, si evitano importanti costi di installazione e gestione.
 Il tema dello Smart Parking porta a considerare la Smart City come una rete veicolare distribuita ed in queste condizioni è normale pensare ad una comunicazione V2V (Vehicle-To-Vehicle).
-Il V2V riguarda comunicazioni tra veicoli in movimento portanto alla creazione di resti spontanee, denominate VANETs(Veichular Ad-Hoc NETworks).
-Questi tipi di sistemi sono stati realizzati per propagare informazioni in maniera totalmente distribuita tra i vecoli, segnalando incidenti, percorsi trafficati o eventuali pericoli.
-Ad oggi comunque questo tipo di comunicazione non è disponibile per molte delle auto in commercio, trattandosi comunque di progetti costosi ed altamente innovativi.
-Assumendo però che ogni utente possiede uno Smartphone è naturale pensare a connessione tra questi dispositivi, utilizzando il paradigma D2D.
+Il V2V riguarda comunicazioni tra veicoli in movimento portanto alla creazione di resti spontanee, denominate VANETs (Vehicular ad hoc networks).
+Questi tipi di sistemi sono stati realizzati per propagare informazioni in maniera totalmente distribuita tra i vecoli, segnalando eventuali pericoli, incidenti, percorsi trafficati.
+Ad oggi questo tipo di comunicazione non è disponibile per molte delle auto in commercio, trattandosi comunque di progetti costosi ed altamente innovativi.
+Un altro modo di propagazione distribuita può avvenire invece tramite l'utilizzo di Smartphone, utilizzando il paradigma D2D (Device-To-Device).
 Il D2D permette comunicazioni wireless distribuita tra device che sono nelle vicinanze. Questo approccio è quello che viene preso in considerazione nel lavoro di tesi, sfruttando i dispositivi utente per la 
-propagazione di informazioni, relativa ai parcheggi, all'interno della Smart City.
+propagazione di informazioni, relativa alla situazione parcheggi, all'interno della Smart City.
 \part{Progettazione ed Implementazione}
 \chapter{Progettazione}                %crea il capitolo
 Il seguente capitolo ha lo scopo di illustrare in dettaglio il goal del progetto, le problematiche che vi stanno dietro ed il processo di progettazione su cui è stato necessario soffermarsi, per la successiva realizzazione ed implementazione.
@@ -315,8 +315,8 @@ interconnettendo appunto diverse star tra di loro, ad istanti di tempo different
 \includegraphics[scale=0.6]{img/arch_general.png}
 \caption[Rappresentazione dell'Architettura generale]{Rappresentazione dell'Architettura generale e della divisione in celle di una porzione di Bologna}
 \end{figure}
-\\Come si può comprendere dalla figura 2.1, i device muovendosi continuamente all'interno dello scenario (identificato in questo caso con la griglia città), formeranno continuamente nuove star, con attori sempre diversi. Questo 
-fattore è determinante per il processo di propagazione delle informazioni, in quanto dati presenti in una star, verranno sincronizzati, in istanti successivi, con star diverse.
+\\Come si può comprendere dalla figura 2.1, i device muovendosi continuamente all'interno dello scenario (identificato in questo caso con la griglia città), formeranno continuamente nuove star, con attori sempre diversi.
+Questo fattore è determinante per il processo di propagazione delle informazioni, in quanto dati presenti in una star, verranno sincronizzati, in istanti successivi, con star diverse.
 L'analisi dello spreading delle informazioni, la sua efficacia ed accuratezza sono illustrate nel Cap.4, nel quale si cerca di capire se questo meccanismo è attuabile nella realtà.
 
 \section{Architettura software}               %crea la sezione
@@ -958,11 +958,12 @@ Infine verrà presa in considerazione l'accuratezza in base al numero di veicoli 
 \section{Configurazioni e run}
 Si vogliono comparare le metriche sopradescritte, simulando l'architettura con l'utilizzo di tre tecnologie differenti quali VANET V2V, WiFi Direct e Bluetooth.
 Il tempo per ogni run di simulazione è stato settato a 1800 simsec (mezzora simulata) e per ogni tecnologia si considerano scenari con 3000, 1500 e 500 veicoli.
+L'accuratezza dei sensori è stata settata per tutte le simulazioni a 90\%. Questo è frutto dello studio in [2], dove viene stimata l'accuratezza del componente di activity recognition presente nell'architettura.
 \\Per ottenere un'analisi statistica che abbia un senso, si effettuano 10 run indipendenti per ogni tecnologia e numero di veicoli, per un totale di 90 run indipendenti.
 I risultati saranno frutto delle medie dei vari run con la stessa configurazione.
 \subsubsection{VANET V2V}
-Per simulare la tecnologia presente nei sistemi V2V, basato sull'\textit{802.11p}, si settano i parametri di \textit{range}, \textit{min\_latency} e \textit{max\_latency} in modo tale che il range di comunicazione sia piuttosto elevato, 
-sui 500m, e che la \textit{min\_latency} e \textit{max\_latency} siano azzerate.
+Per simulare la tecnologia presente nei sistemi V2V, basato sull'\textit{802.11p}, si settano i parametri di \textit{range}, \textit{min\_latency} e \textit{max\_latency} in modo tale che 
+il range di comunicazione sia piuttosto elevato, sui 500m, e che la \textit{min\_latency} e \textit{max\_latency} siano azzerate.
 Questi ultimi due parametri vengono annullati in quanto la logica descritta in fase di progettazione ed implementata sull'app Android, su questi sistemi, non ha senso di esistere.
 I canali di comunicazione V2V non necessitano di un meccanismo di esposizione dell'HotSpot e connessione a questo da parte dei client.
 \subsubsection{WiFi DIRECT}
@@ -1036,6 +1037,7 @@ bibliografia: questo \`e il mio riferimento \cite{K3,K4}.
 \bibitem{K17} Rongxing Lu, Xiaodong Lin, Haojin Zhu, Xuemin Shen, ''SPARK: A New VANET-based Smart Parking Scheme for Large Parking Lots``, IEEE, 2009.
 \bibitem{K18} IEEE Smart Cities, http://smartcities.ieee.org/about.html.
 \bibitem{K19} Feng Xia, LaurenceT.Yang, LizheWang, Alexey Vinel, ''Internet of Things``, IEEE, 2012.
+\bibitem{K20} Documentazione WiFi Direct, http://www.wi-fi.org/discover-wi-fi/wi-fi-direct.
 \end{thebibliography}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
 \clearpage{\pagestyle{empty}\cleardoublepage}

@@ -315,8 +315,8 @@ interconnettendo appunto diverse star tra di loro, ad istanti di tempo different
 \includegraphics[scale=0.6]{img/arch_general.png}
 \caption[Rappresentazione dell'Architettura generale]{Rappresentazione dell'Architettura generale e della divisione in celle di una porzione di Bologna}
 \end{figure}
-\\Come si può comprendere dalla figura 2.1, i device muovendosi continuamente all'interno dello scenario (identificato in questo caso con la griglia città), formeranno continuamente nuove star, con attori sempre diversi. Questo 
-fattore è determinante per il processo di propagazione delle informazioni, in quanto dati presenti in una star, verranno sincronizzati, in istanti successivi, con star diverse.
+\\Come si può comprendere dalla figura 2.1, i device muovendosi continuamente all'interno dello scenario (identificato in questo caso con la griglia città), formeranno continuamente nuove star, con attori sempre diversi.
+Questo fattore è determinante per il processo di propagazione delle informazioni, in quanto dati presenti in una star, verranno sincronizzati, in istanti successivi, con star diverse.
 L'analisi dello spreading delle informazioni, la sua efficacia ed accuratezza sono illustrate nel Cap.4, nel quale si cerca di capire se questo meccanismo è attuabile nella realtà.
 
 \section{Architettura software}               %crea la sezione
@@ -956,18 +956,20 @@ Inoltre verrà stabilita l'accuratezza in relazione alla distanza, per capire il 
 Infine verrà presa in considerazione l'accuratezza in base al numero di veicoli presenti nella porzione di Bologna considerata.
 \\Tutte queste misurazioni verranno comparate simulando diverse tecnologie, in modo tale da capire dove si colloca l'implementazione tramite WiFiDirect.
 \section{Configurazioni e run}
-Si vogliono comparare le metriche sopradescritte, simulando l'architettura con l'utilizzo di tre tecnologie differenti quali VANET V2V, WiFi Direct e Bluetooth.
+Si vogliono comparare le metriche sopradescritte, simulando l'architettura con l'utilizzo di tre tecnologie differenti quali \textit{VANET V2V}, \textit{WiFi Direct} e \textit{Bluetooth}.
 Il tempo per ogni run di simulazione è stato settato a 1800 simsec (mezzora simulata) e per ogni tecnologia si considerano scenari con 3000, 1500 e 500 veicoli.
+L'accuratezza dei sensori è stata settata per tutte le simulazioni a 90\%. Questo è frutto dello studio in [2], dove viene stimata l'accuratezza del componente di activity recognition presente nell'architettura.
 \\Per ottenere un'analisi statistica che abbia un senso, si effettuano 10 run indipendenti per ogni tecnologia e numero di veicoli, per un totale di 90 run indipendenti.
 I risultati saranno frutto delle medie dei vari run con la stessa configurazione.
 \subsubsection{VANET V2V}
-Per simulare la tecnologia presente nei sistemi V2V, basato sull'\textit{802.11p}, si settano i parametri di \textit{range}, \textit{min\_latency} e \textit{max\_latency} in modo tale che il range di comunicazione sia piuttosto elevato, 
-sui 500m, e che la \textit{min\_latency} e \textit{max\_latency} siano azzerate.
+Per simulare la tecnologia presente nei sistemi V2V, basato sull'\textit{802.11p}, si settano i parametri di \textit{range}, \textit{min\_latency} e \textit{max\_latency} in modo tale che 
+il range di comunicazione sia piuttosto elevato, sui 500m, e che la \textit{min\_latency} e \textit{max\_latency} siano azzerate.
 Questi ultimi due parametri vengono annullati in quanto la logica descritta in fase di progettazione ed implementata sull'app Android, su questi sistemi, non ha senso di esistere.
 I canali di comunicazione V2V non necessitano di un meccanismo di esposizione dell'HotSpot e connessione a questo da parte dei client.
 \subsubsection{WiFi DIRECT}
-Questa configurazione rispecchia l'architettura progettata ed implementata sull'applicazione Android. Il range di comunicazione si aggira sui 100m, 
-con latenza di apertura dei canali di comunicazione che va dai 2 ai 10 secondi.
+Questa configurazione rispecchia l'architettura progettata ed implementata sull'applicazione Android. La documentazione ufficiale dello standard WiFi Direct dice che il range di comunicazione potrebbe raggiungere
+i 200m[20]. In realtà 100m sembra un'assunzione più realistica per garantire la maggior parte delle connessioni.
+La latenza di apertura dei canali di comunicazione viene settata dai 2 ai 10 secondi.
 \subsubsection{BLUETOOTH}
 La terza tecnologia che si vuole considerare è il Bluetooth, il quale ha un range di comunicazione sui 20m ed una latenza di connessione che va dai 5 ai 15 secondi.
 Quest'ultimi parametri possono essere visti come un approccio ottimistico, in quanto il protocollo Bluetooth può impiegare più tempo per scoprire peer nelle vicinanze.
@@ -1036,6 +1038,7 @@ bibliografia: questo \`e il mio riferimento \cite{K3,K4}.
 \bibitem{K17} Rongxing Lu, Xiaodong Lin, Haojin Zhu, Xuemin Shen, ''SPARK: A New VANET-based Smart Parking Scheme for Large Parking Lots``, IEEE, 2009.
 \bibitem{K18} IEEE Smart Cities, http://smartcities.ieee.org/about.html.
 \bibitem{K19} Feng Xia, LaurenceT.Yang, LizheWang, Alexey Vinel, ''Internet of Things``, IEEE, 2012.
+\bibitem{K20} Documentazione WiFi Direct, http://www.wi-fi.org/discover-wi-fi/wi-fi-direct.
 \end{thebibliography}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
 \clearpage{\pagestyle{empty}\cleardoublepage}
