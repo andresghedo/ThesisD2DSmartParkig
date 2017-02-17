@@ -103,7 +103,32 @@ INTRODUZIONE}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%aggiunge la voce Introduzione
                                         %   nell'indice
 \addcontentsline{toc}{chapter}{Introduzione}
-Questa \`e l'introduzione.
+Oggigiorno, il numero di veicoli presenti nelle metropoli ha raggiunto quantità tali da portare problemi di congestione del traffico.
+Si stima che una buona parte della congestione sia causata da automobilisti, alla ricerca costante di un parcheggio libero.
+Questa problematica causa una serie di negative conseguenze, danneggiando progressivamente gli utenti e l'ambiente.
+La ricerca prolungata di uno slot libero comporta all'utente perdita di tempo e di denaro, contribuendo ad un peggioramento, anche se leggero, della qualità di vita nelle grandi città.
+Inoltre, sono evidenti le conseguenze negative sull'impatto ambientale, dove la qualità dell'aria viene messa costantemente a rischio dall'enorme quantità 
+di carburante che viene consumato, producendo emissioni di agenti inquinanti nell'atmosfera.
+Enti governativi stanno iniziando a prendere in considerazione queste problematiche, cercando di trovare le giuste soluzioni per migliorare la situazione.
+In questo senso, numerose proposte sono già presenti in letteratura, basandosi sui concetti innovativi di Smart Parking, IoT(Internet of Things) e Smart City.
+Infrastrutture informatiche, comunicazione tra dispositivi eterogenei e sensoristica sono tutti elementi che possono favorire un miglior utilizzo dei parcheggi, 
+fornendo agli utenti importanti indicazioni sullo stati degli slot, in una determinata zona.
+Queste diventano fondamentali soprattutto se si considerano parcheggi su strada (on-street parking), i quali sono limitati e non circoscritti in precisi punti 
+(al contrario di parcheggi-garage e sistemi a circuito chiuso, in cui tramite semplici apparecchiatura è possibile contare il numero di veicoli in entrata ed in uscita).
+Molte soluzioni proposte prevedono l'utilizzo di sensori su strada o telecamere per comprendere l'occupazione o meno di un determinato parcheggio.
+Mentre per la disseminazione delle informazioni raccolte, si propongono sistemi decentralizzati basati sull'IoT e WSN(Wireless Sensor Network), oppure classici sistemi centralizzati.
+Tutti questi componenti prevedono un investimento iniziale enorme per apparecchiature ed installazione, senza contare i futuri e necessari costi di manutenzione.
+Questo è ovviamente un grosso limite per i governi che spesso non sono intenzionati ad utilizzare ingenti fondi per questi scopi.
+Il sistema che viene proposto non necessita di alcuna infrastruttura particolare e si pone l'obiettivo di fornire all'utente una stima sulle zone più dense di parcheggi liberi della città.
+Questo è reso possibile tramite il concetto di crowdsensing, dove gli utenti condividono le proprie rilevazioni con altri utenti e grazie a questi continui contributi, il singolo riesce a fare 
+assunzioni sulla situazione parcheggi in città.
+Ogni Smartphone, avendo la possibilità di rilevare il tipo di mobilità dell'utente tramite i propri sensori, riesce a dedurre in probabilità un evento di parcheggio, piuttosto che di rilascio. 
+Questi dati vengono disseminati localmente nell'ambiente ad altri device, tramite connessioni uno ad uno, in maniera totalmente decentralizzata, permettendo agli utenti di restare aggiornati sulla situazione 
+parcheggio nelle zone limitrofe.
+Il servizio, una volta avviato, non avrà bisogno di alcuna interazione utente, in quanto il processo di rilevazione e di comunicazione sono stati automatizzati.
+\\Questo documento viene organizzato in quattro capitoli, secondo la seguente struttura. Nel primo capitolo viene analizzato lo stato dell'arte, per quanto riguarda l'argomento in questione. 
+Il secondo capitolo illustra i passi di progettazione necessari alla realizzazione del sistema. Il terzo capitolo riguarda l'implementazione dell'applicazione Android, entrando nei dettagli più 
+tecnici. Il quarto ed ultimo capitolo mostra la valutazione del sistema, dove i risultati sono stati ottenuti simulando il funzionamento del sistema in una città metropolitana.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
 \clearpage{\pagestyle{empty}\cleardoublepage}
 \tableofcontents                        %crea l'indice
@@ -123,8 +148,63 @@ INDICE}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%imposta l'intestazione di pagina
 \lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}
 \pagenumbering{arabic}                  %mette i numeri arabi
-....... TODO .......
 \clearpage{\pagestyle{empty}\cleardoublepage}
+\section{Sistemi di Trasporto Intelligenti}
+Il Ministero delle Infrastrutture e dei Trasporti definisce gli Intelligent Transport System(ITS, in italiano Sistemi di Trasporto Intelligenti) come 
+\textit{``range di strumenti per la gestione delle reti di trasporto, così come i servizi per i viaggiatori. Gli strumenti ITS sono basati su tre aspetti centrali: 
+acquisizione, elaborazione e diffusione delle informazioni e da un minimo comune denominatore quale è l'integrazione.
+I processi di acquisizione dei dati, l'elaborazione e l'integrazione degli stessi e la catena delle informazioni da fornire agli utenti del sistema di trasporto sono il cuore dei sistemi ITS''}[1].
+Lo sviluppo esponenziale dell'informatica e delle reti di comunicazione ha portato alla nascita di numerose applicazione, ad alto contenuto tecnologico, per la gestione ed il controllo nell'ambito trasporti.
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.7]{img/its.jpg}
+\caption[Esempio di ITS]{Esempio di ITS}
+\end{figure}
+\\La gestione del traffico veicolare (acquisizione dei dati di traffico, controllo semaforico, controllo degli accessi, gestione dei parcheggi), del trasporto collettivo e della logistica (indicazioni di percorso e 
+instradamento parcheggi, sistemi di distribuzione delle merci, sistemi misti merci/passeggeri, ecc...) sono esempi tangibili di come i sistemi ITS stiano diventando un prezioso strumento per il controllo della mobilità.
+Le città metropolitane sono sovraffollate di veicoli, portando a costanti situazioni di inefficienza dei trasporti, congestione del traffico e relativi aumento dei tempi di percorrenza per giungere a destinazione. 
+Questa situazione è in costante aumento in tutto il mondo, data l'urbanizzazione e la crescente densità di popolazione nelle grandi città.
+Il 54\% della popolazione mondiale risiede in città metropolitane e si stima che possa diventare il 66\% entro il 2050.
+I sistemi ITS si pongono l'obiettivo di migliorare la qualità dei trasporti in termini di riduzione delle congestioni, rischi di incidente e situazioni di emergenza.
+Per fare ciò vengono sfruttati meccanismi intelligenti, in grado di fare determinate assunzioni sulla base delle informazione scambiate tra veicoli che si trovano in una determinata zona.
+Gli utenti, sfruttando le deduzioni offerte da questi sistemi, potrebbero variare il loro comportamento, permettendo così di smaltire le congestioni e favorire la viabilità generale.
+\section{Crowdsensing}
+Per Crowdsensing si definisce quell'attività di condivisione e raccolta dati, utilizzando i vari sensori presenti all'interno dei dispositivi. Lo scopo di ogni device deve essere quello 
+di condividere con molti utenti le proprie informazioni.
+In questa maniera, si potrà giungere ad una conoscenza condivisa tra gli utenti ed ottenere, in maniera intelligente, i risultati prefissati.
+Il Crowdsensing si suddivide principalmente in 2 categorie:
+\begin{itemize}
+\item \textit{Partecipatory Crowdsensing} : l'utente viene coinvolto direttamente nella fase di propagazione dei dati. 
+\item \textit{Opportunistic Crowdsensing} : la propagazione avviene in maniera automatica e trasparente all'utente.
+\end{itemize}
+La seconda categoria, dove l'utente deve solo accettare la condivisione dei propri dati, è quella maggiormente utilizzata nelle applicazioni mobili, in quanto è quella che garantisce una buona quantità di raccolta dati.
+Il Crowdsensing può essere uno strumento molto potente per ottenere informazioni che possono essere ricavate soltanto dall'aggregazione di dati collettivi.
+Numerosi sono i contributi, in letteratura, che si basano su questo concetto. Ad esempio, il progetto in [2] utilizza il concetto di Crowdsensing per la costruzione intelligente di mappe indicanti il 
+numero di parcheggi disponibili per una determinata strada.
+In questo caso, prendendo un numero elevato di utenti in una determinata zona e condividendo i dati di dove essi parcheggiano abitualmente, è possibile fare assunzioni sugli slot disponibili in una 
+determinata strada.
+Il sistema presentato in [8], vuole fornire agli utenti la situazione di occupazione del parcheggio universitario, tramite i dati raccolti dagli utenti.
+Ogni studente quando lascia il parcheggio, contribuisce alla conoscenza globale, con la propria visione del parcheggio(pieno, semi-pieno, vuoto).
+I lavori proposti sul tema dello smart parking in [3][5], mostrano quanto sia fondamentale, in questo tipo di sistemi, il tasso di partecipazione.
+Più utenti condividono le proprie informazioni, più l'accuratezza dei risultati sarà precisa. In particolare viene mostrato che ad un alto tasso di occupazione, diminuisce notevolmente il tempo di ricerca di un parcheggio.
+Ogni utente condivide i propri dati sapendo di contribuire al risultato generale, avendo l'interesse nel migliorarne l'accuratezza.
+Le applicazioni Crowdsensing rappresentano una possibilità di migliorare la quotidianità dell'utente.
+\section{Smart City}
+La IEEE definisce la Smart City come ambiente sostenibile in grado di ridurre i consumi e fornire una qualità di vita migliore ai cittadini[8].
+Il mondo tecnologico, i governi e la società dovrebbero favorire in maniera positiva il processo di urbanizzazione, riuscendo a proporre le seguenti caratteristiche nella città intelligente:
+\begin{itemize}
+\item \textit{smart mobility}
+\item \textit{a smart economy}
+\item \textit{a smart environment}
+\item \textit{smart people}
+\item \textit{smart living}
+\item \textit{smart governance}
+\end{itemize}
+La Smart City, dunque, si pone l'obiettivo di semplificare ogni operazione della città, grazie agli ultimi sviluppi tecnologici.
+Soprattutto la recente espansione del paradigma IoT (Internet of Things) ha permesso l'apertura verso nuove applicazioni, in grado di portare miglioramenti nella vita delle metropoli.
+In [10], si definisce l'Internet delle Cose come ``l'interconnessione in rete di oggetti di uso quotidiano, formando una rete distribuita di dispositivi, comunicanti con l'uomo o con altri dispositivi''.
+Ogni dispositivo potrà aumentare il proprio livello di intelligenza grazie all'interconnessione ed alle informazioni derivanti da altri device.
+\\Il progetto di tesi può essere visto come un primo passo verso il tema dello Smart City, dove numerosi dispositivi vengono coinvolti per migliorare un aspetto quotidiano dei cittadini.
 \chapter{Progettazione}                %crea il capitolo
 Il seguente capitolo ha lo scopo di illustrare in dettaglio il goal del progetto, le problematiche che vi stanno dietro ed il processo di progettazione su cui è stato necessario soffermarsi, per la successiva realizzazione ed implementazione.
 \\La mission, descrivendola in pochi concetti, è sostanzialmente quella di determinare quando un utente parcheggia o rilascia uno slot e disseminare queste informazioni in maniera totalmente distribuita, senza alcun appoggio di una struttura centralizzata.
@@ -141,10 +221,11 @@ Più gli utenti restano allineati e sincronizzati su questi dati, più restano agg
 Per scelta progettuale, la città viene divisa in celle (identificate con id univoci), permettendo così alla logica di disseminare informazioni relative alla cella in questione e a quelle adiacenti.
 Un altro aspetto non meno importante di quelli già illustrati, è il fatto che il servizio deve funzionare in modo continuativo nel tempo e soprattutto in maniera totalmente autonoma.
 Questo significa che l'utente, senza nessuna interazione con il device (mantenendolo per esempio in tasca), sincronizza comunque i propri dati con quelli di utenti circostanti, nei paraggi.
-La funzionalità appena descritta, per renderla robusta, ha richiesto una fase implementativa consistente, la quale verrà illustrata tecnicamente in seguito.
+La funzionalità appena descritta, per renderla robusta, ha richiesto una fase implementativa consistente, la quale verrà illustrata tecnicamente nel Cap.3.
 \section{Scenario generale}                 %crea la sezione
 Lo scenario che si va a considerare per l'utilizzo di un'applicazione di questo genere è una città metropolitana.
 Questa può essere diversamente interpretata e suddivisa logicamente in una griglia composta da celle (quadranti), dove ognuna di queste viene identificata univocamente da una coppia di  coordinate X e Y.
+Queste coordinate sono considerati come indici matriciali che individuano una cella all'interno della matrice griglia della città. 
 Si presuppone che il numero di parcheggi disponibili in una data cella sia un dato noto a priori, il quale comprende tutti gli slot disponibili nelle strade che sono logicamente raggruppate, all'interno del 
 quadrante considerato.
 Si ricorda che si fa riferimento a parcheggi pubblici su strada e non a strutture private o a circuito chiuso.
@@ -183,7 +264,7 @@ interconnettendo appunto diverse star tra di loro, ad istanti di tempo different
 \end{figure}
 \\Come si può comprendere dalla figura 2.1, i device muovendosi continuamente all'interno dello scenario (identificato in questo caso con la griglia città), formeranno continuamente nuove star, con attori sempre diversi. Questo 
 fattore è determinante per il processo di propagazione delle informazioni, in quanto dati presenti in una star, verranno sincronizzati, in istanti successivi, con star diverse.
-L'analisi dello spreading delle informazioni, la sua efficacia ed accuratezza sono illustrate nel capitolo di valutazione, nel quale si cerca di capire se questo meccanismo è attuabile nella realtà.
+L'analisi dello spreading delle informazioni, la sua efficacia ed accuratezza sono illustrate nel Cap.4, nel quale si cerca di capire se questo meccanismo è attuabile nella realtà.
 
 \section{Architettura software}               %crea la sezione
 Prima della fase di implementazione, è stato necessaria una fase di progettazione dell'architettura software. L'applicazione, per essere considerata utilizzabile dagli utenti ed efficace nel meccanismo di 
@@ -206,8 +287,8 @@ Quando il componente capisce che si è passato da uno stato CAR ad uno stato NO\_
 l'utente ha rilasciato uno slot.
 Quando una di queste due situazioni accade, si registra l'evento nel database locale.
 \item \textbf{Componente Database locale:}
-\\Il Database locale si preoccupa di persistere le informazioni sul device utente, le quali poi verranno processate per calcolare la probabilità di parcheggio in una determinata zona.
-Le informazioni che vengono memorizzate sono illustrate più precisamente nel paragrafo 2.5.
+\\Il Database locale si preoccupa di raccogliere le informazioni sul device utente, le quali poi verranno processate per calcolare la probabilità di parcheggio in una determinata zona.
+Le informazioni che vengono memorizzate sono illustrate più precisamente nella sezione 2.5.
 \item \textbf{Componente Controller:}
 \\Il Controller si preoccupa di scrivere, aggiornare e dare accesso alle informazioni presenti nel database locale. Inoltre, è stato pensato come semplice meccanismo di Object-Relational Mapping(ORM), 
 per integrare al meglio le logiche ad oggetti con i dati presenti nel DBMS. 
@@ -224,11 +305,11 @@ Quando viene rilevata una nuova connessione ad un peer, il componente si preoccu
 gestendo i canali di input e output verso gli altri device, nel range di comunicazione.
 \end{itemize}
 \subsection{Organizzazione dell'informazione}                 %crea la sezione
-L'organizzazione e persistenza dei city data è ovviamente una fase determinante del progetto.
+L'organizzazione dei city data è ovviamente una fase determinante del progetto.
 Si è optato per la realizzazione di un database di tipo relazionale, composto principalmente da due tabelle, indipendenti l'una dall'altra.
 \\La prima tabella, denominata, park\_events colleziona tutti gli eventi che gli utente compiono o ricevono in seguito a sincronizzazioni con altri utenti.
 \\La seconda tabella synchronizations colleziona invece tutte le sincronizzazioni che hanno coinvolto il device in questione.
-\\Come verrà illustrato nel capitolo relativo all'implementazione, gli strumenti utilizzati si baseranno completamente sullo standard SQL, i quali permetteranno una semplice gestione di 
+\\Come verrà illustrato nel Cap.4 relativo all'implementazione, gli strumenti utilizzati si baseranno completamente sullo standard SQL, i quali permetteranno una semplice gestione di 
 query di filtraggio, creazione, modifica, cancellazione.
 \\Entrando più in dettaglio nella composizione delle tabelle e degli attributi salvati, si mostra di seguito uno schema riassuntivo di ciò che viene messo a database:
 \\\\ Tabella \textbf{\textit{park\_events}}:
@@ -303,7 +384,7 @@ Come ribadito nel Cap. 2 l'obiettivo del progetto è quello di disseminare inform
 In base alle informazioni ricevute, si riuscirà dunque a fare assunzioni sulle quantità di parcheggi disponibile in determinate zone della città.
 \\L'implementazione riguarda la realizzazione del processo sopradescritto nel Sistema Operativo Android, con l'ausilio della tecnologia WiFiDirect.
 Quest'ultima, presente a partire dalle librerie API 14 e device con Android 4.0 o superiori, permette la comunicazione one-to-one tra dispositivi utente.
-\\Il capitolo seguente mostra i passi necessari alla realizzazione, dettagliando i componenti software realizzati partendo dalla base di progettazione, illustrata precedentemente.
+\\Il capitolo seguente mostra i passi necessari alla realizzazione, dettagliando i componenti software realizzati partendo dalla base di progettazione, illustrata nel Cap.2.
 \section{Componente di disseminazione}                 %crea la sezione
 Il paragrafo illustra tutte gli attori principali che compongono il servizio di disseminazione delle informazioni. Si è cercato di spiegare, in ogni sottoparagrafo, le funzionalità
 del componente e l'interazione con gli altri. Questa è la parte che, in fase di implementazione, ha richiesto maggior sforzo ed essendo il cuore del progetto, verrà maggiormente descritta, addentrandosi anche
@@ -776,7 +857,7 @@ L'ambiente di sviluppo è un surrogato di Eclipse ed il linguaggio principale è i
 \\La logica del simulatore si basa sul concetto fondamentale di Modulo, i quali possono essere aggregati e customizzati a seconda delle proprie esigenze.
 In particolare, per la valutazione del progetto e dell'architettura pensata è stato necessario sviluppare un componente SmartParking che riproponesse la logica pensata in fase di progettazione ed 
 implementata conseguentemente.
-Come verrà illustrato tra poco, sono stati parametrizzati gli aspetti che influenzano maggiormente lo spreading dell'informazione, in modo tale da comprendere le differenze al variare delle condizioni.
+Come verrà illustrato in sezione 4.2, sono stati parametrizzati gli aspetti che influenzano maggiormente lo spreading dell'informazione, in modo tale da comprendere le differenze al variare delle condizioni.
 \\L'utilizzo di OMNeT viene integrato dall'apporto di SUMO e di Veins.
 Il primo è un simulatore di mobilità urbana, anch'esso ottenibile in open source, che si preoccupa di emulare reti stradali, anche di grosse dimensioni.
 Tutte le configurazioni necessarie per il corretto funzionamento di questo, definite in file xml, riguardano la definizione delle strade, delle costruzioni presenti nell'ambiente e dalle macchine(di cui, 
@@ -824,7 +905,7 @@ Infine verrà presa in considerazione l'accuratezza in base al numero di veicoli 
 Si vogliono comparare le metriche sopradescritte, simulando l'architettura con l'utilizzo di tre tecnologie differenti quali VANET V2V, WiFi Direct e Bluetooth.
 Il tempo per ogni run di simulazione è stato settato a 1800 simsec (mezzora simulata) e per ogni tecnologia si considerano scenari con 3000, 1500 e 500 veicoli.
 \\Per ottenere un'analisi statistica che abbia un senso, si effettuano 10 run indipendenti per ogni tecnologia e numero di veicoli, per un totale di 90 run indipendenti.
-I risultati saranno frutto delle medie dei vari run.
+I risultati saranno frutto delle medie dei vari run con la stessa configurazione.
 \subsubsection{VANET V2V}
 Per simulare la tecnologia presente nei sistemi V2V, basato sull'\textit{802.11p}, si settano i parametri di \textit{range}, \textit{min\_latency} e \textit{max\_latency} in modo tale che il range di comunicazione sia piuttosto elevato, 
 sui 500m, e che la \textit{min\_latency} e \textit{max\_latency} siano azzerate.

@@ -1,16 +1,17 @@
 \select@language {italian}
 \select@language {italian}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Esempio di ITS}}{3}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Rappresentazione dell'Architettura generale}}{7}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Rappresentazione dell'Architettura software\relax }}{8}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Network State Machine\relax }}{12}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Rappresentazione dell'Architettura generale}}{11}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Rappresentazione dell'Architettura software\relax }}{12}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Network State Machine\relax }}{16}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Interazione utente per il consenso alla connessione\relax }}{16}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Screenshot della mappa di Bologna con probabilit\`a di parcheggio}}{34}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Screenshot della schermata Network State Machine(1)}}{35}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Screenshot della schermata Network State Machine(2)}}{36}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Screenshot della schermata di Activity Recognition}}{37}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Screenshot delle liste di sincronizzazioni ed eventi parcheggio}}{38}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Interazione utente per il consenso alla connessione\relax }}{20}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Screenshot della mappa di Bologna con probabilit\`a di parcheggio}}{38}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Screenshot della schermata Network State Machine(1)}}{39}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Screenshot della schermata Network State Machine(2)}}{40}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Screenshot della schermata di Activity Recognition}}{41}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Screenshot delle liste di sincronizzazioni ed eventi parcheggio}}{42}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Interfaccia grafica SUMO di Bologna}}{41}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Interfaccia grafica SUMO di Bologna}}{45}

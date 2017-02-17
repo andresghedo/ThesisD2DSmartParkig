@@ -2,36 +2,39 @@
 \select@language {italian}
 \contentsline {chapter}{Introduzione}{i}
 \contentsline {chapter}{\numberline {1}Stato dell'arte}{1}
-\contentsline {chapter}{\numberline {2}Progettazione}{3}
-\contentsline {section}{\numberline {2.1}Scopo e problematiche}{4}
-\contentsline {section}{\numberline {2.2}Scenario generale}{4}
-\contentsline {section}{\numberline {2.3}Architettura generale}{6}
-\contentsline {section}{\numberline {2.4}Architettura software}{7}
-\contentsline {subsection}{\numberline {2.4.1}Organizzazione dell'informazione}{10}
-\contentsline {subsection}{\numberline {2.4.2}Network State Machine}{11}
-\contentsline {section}{\numberline {2.5}Probabilit\`a di occupazione di una cella}{13}
-\contentsline {chapter}{\numberline {3}Implementazione}{15}
-\contentsline {section}{\numberline {3.1}Componente di disseminazione}{15}
-\contentsline {subsection}{\numberline {3.1.1}Strategia di connessione tramite WiFiDirect}{16}
-\contentsline {subsection}{\numberline {3.1.2}Il servizio background}{17}
-\contentsline {subsection}{\numberline {3.1.3}Il NetworkController}{18}
-\contentsline {subsection}{\numberline {3.1.4}Connessione ad un Access Point}{19}
-\contentsline {subsection}{\numberline {3.1.5}Esplorazione dell'ambiente circostante}{20}
-\contentsline {subsubsection}{Scoperta di peers}{21}
-\contentsline {subsubsection}{Beacon di servizio}{21}
-\contentsline {subsubsection}{Logiche di scoperta}{22}
-\contentsline {subsection}{\numberline {3.1.6}Funzionalit\`a Access Point-like}{24}
-\contentsline {subsection}{\numberline {3.1.7}Canali di comunicazione}{27}
-\contentsline {subsection}{\numberline {3.1.8}L'ascoltatore BroadcastReceiverManagement}{30}
-\contentsline {section}{\numberline {3.2}Screenshot}{34}
-\contentsline {chapter}{\numberline {4}Valutazione}{39}
-\contentsline {section}{\numberline {4.1}Strumenti}{39}
-\contentsline {section}{\numberline {4.2}Modellazione}{40}
-\contentsline {section}{\numberline {4.3}Obiettivi di simulazione}{42}
-\contentsline {section}{\numberline {4.4}Configurazioni e run}{43}
-\contentsline {subsubsection}{VANET V2V}{43}
-\contentsline {subsubsection}{WiFi DIRECT}{44}
-\contentsline {subsubsection}{BLUETOOTH}{44}
-\contentsline {section}{\numberline {4.5}Risultati}{45}
-\contentsline {chapter}{Conclusioni}{47}
-\contentsline {chapter}{Bibliografia}{49}
+\contentsline {section}{\numberline {1.1}Sistemi di Trasporto Intelligenti}{3}
+\contentsline {section}{\numberline {1.2}Crowdsensing}{4}
+\contentsline {section}{\numberline {1.3}Smart City}{5}
+\contentsline {chapter}{\numberline {2}Progettazione}{7}
+\contentsline {section}{\numberline {2.1}Scopo e problematiche}{8}
+\contentsline {section}{\numberline {2.2}Scenario generale}{8}
+\contentsline {section}{\numberline {2.3}Architettura generale}{10}
+\contentsline {section}{\numberline {2.4}Architettura software}{11}
+\contentsline {subsection}{\numberline {2.4.1}Organizzazione dell'informazione}{14}
+\contentsline {subsection}{\numberline {2.4.2}Network State Machine}{15}
+\contentsline {section}{\numberline {2.5}Probabilit\`a di occupazione di una cella}{17}
+\contentsline {chapter}{\numberline {3}Implementazione}{19}
+\contentsline {section}{\numberline {3.1}Componente di disseminazione}{19}
+\contentsline {subsection}{\numberline {3.1.1}Strategia di connessione tramite WiFiDirect}{20}
+\contentsline {subsection}{\numberline {3.1.2}Il servizio background}{21}
+\contentsline {subsection}{\numberline {3.1.3}Il NetworkController}{22}
+\contentsline {subsection}{\numberline {3.1.4}Connessione ad un Access Point}{23}
+\contentsline {subsection}{\numberline {3.1.5}Esplorazione dell'ambiente circostante}{24}
+\contentsline {subsubsection}{Scoperta di peers}{25}
+\contentsline {subsubsection}{Beacon di servizio}{25}
+\contentsline {subsubsection}{Logiche di scoperta}{26}
+\contentsline {subsection}{\numberline {3.1.6}Funzionalit\`a Access Point-like}{28}
+\contentsline {subsection}{\numberline {3.1.7}Canali di comunicazione}{31}
+\contentsline {subsection}{\numberline {3.1.8}L'ascoltatore BroadcastReceiverManagement}{34}
+\contentsline {section}{\numberline {3.2}Screenshot}{38}
+\contentsline {chapter}{\numberline {4}Valutazione}{43}
+\contentsline {section}{\numberline {4.1}Strumenti}{43}
+\contentsline {section}{\numberline {4.2}Modellazione}{44}
+\contentsline {section}{\numberline {4.3}Obiettivi di simulazione}{46}
+\contentsline {section}{\numberline {4.4}Configurazioni e run}{47}
+\contentsline {subsubsection}{VANET V2V}{47}
+\contentsline {subsubsection}{WiFi DIRECT}{48}
+\contentsline {subsubsection}{BLUETOOTH}{48}
+\contentsline {section}{\numberline {4.5}Risultati}{49}
+\contentsline {chapter}{Conclusioni}{51}
+\contentsline {chapter}{Bibliografia}{53}
