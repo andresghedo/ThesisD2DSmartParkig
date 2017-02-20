@@ -9,14 +9,14 @@
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Network State Machine\relax }}{22}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Interazione utente per il consenso alla connessione\relax }}{26}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Screenshot della mappa di Bologna con probabilit\`a di parcheggio}}{44}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Screenshot della schermata Network State Machine(1)}}{45}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Screenshot della schermata Network State Machine(2)}}{46}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Screenshot della schermata di Activity Recognition}}{47}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Screenshot delle liste di sincronizzazioni ed eventi parcheggio}}{48}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Screenshot della mappa di Bologna con probabilit\`a di parcheggio}}{40}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Screenshot della schermata Network State Machine(1)}}{41}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Screenshot della schermata Network State Machine(2)}}{42}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Screenshot della schermata di Activity Recognition}}{43}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Screenshot delle liste di sincronizzazioni ed eventi parcheggio}}{44}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Interfaccia grafica SUMO di Bologna}}{53}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Grafico dell'accuratezza media della cella corrente al trascorrere del tempo - 3000 veicoli\relax }}{57}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Grafico dell'accuratezza media della porzione di citt\`a al trascorrere del tempo - 3000 veicoli\relax }}{58}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Grafico dell'accuratezza media in base alla distanza - 3000 veicoli\relax }}{59}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Grafico dell'accuratezza media in base al numero di veicoli\relax }}{60}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Interfaccia grafica SUMO di Bologna}}{49}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Grafico dell'accuratezza media della cella corrente al trascorrere del tempo - 3000 veicoli\relax }}{53}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Grafico dell'accuratezza media della porzione di citt\`a al trascorrere del tempo - 3000 veicoli\relax }}{54}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Grafico dell'accuratezza media in base alla distanza - 3000 veicoli\relax }}{55}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Grafico dell'accuratezza media in base al numero di veicoli\relax }}{56}

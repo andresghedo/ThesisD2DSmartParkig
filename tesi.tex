@@ -435,69 +435,71 @@ probabilità di trovare parcheggio.
 
 \clearpage{\pagestyle{empty}\cleardoublepage}
 \chapter{Implementazione}                %crea il capitolo
-Come ribadito nel Cap. 2 l'obiettivo del progetto è quello di disseminare informazioni di smart parking in modalità Device-to-Device, senza l'ausilio di alcuna infrastruttura di rete intermediaria. 
+Come ribadito nel Cap. 2 l'obiettivo del progetto è quello di disseminare informazioni di smart parking in modalità Device-to-Device, senza l'ausilio di alcuna infrastruttura centralizzata. 
 In base alle informazioni ricevute, si riuscirà dunque a fare assunzioni sulle quantità di parcheggi disponibile in determinate zone della città.
-\\L'implementazione riguarda la realizzazione del processo sopradescritto nel Sistema Operativo Android, con l'ausilio della tecnologia WiFiDirect.
+\\L'implementazione riguarda la realizzazione del processo sopradescritto nel Sistema Operativo Android, con l'ausilio della tecnologia \textit{WiFi Direct}.
 Quest'ultima, presente a partire dalle librerie API 14 e device con Android 4.0 o superiori, permette la comunicazione one-to-one tra dispositivi utente.
 \\Il capitolo seguente mostra i passi necessari alla realizzazione, dettagliando i componenti software realizzati partendo dalla base di progettazione, illustrata nel Cap.2.
 \section{Componente di disseminazione}                 %crea la sezione
-Il paragrafo illustra tutte gli attori principali che compongono il servizio di disseminazione delle informazioni. Si è cercato di spiegare, in ogni sottoparagrafo, le funzionalità
+Il paragrafo illustra tutti gli attori principali che compongono il servizio di disseminazione delle informazioni. Si è cercato di spiegare, in ogni sottoparagrafo, le funzionalità
 del componente e l'interazione con gli altri. Questa è la parte che, in fase di implementazione, ha richiesto maggior sforzo ed essendo il cuore del progetto, verrà maggiormente descritta, addentrandosi anche
-nell'analisi del sorgente.
-\subsection{Strategia di connessione tramite WiFiDirect}
-La tecnologia WiFi Direct rende possibile la creazione di cosiddetti P2P Groups, i quali possono essere comparati ad infrastrutture WiFi. 
-Il device che detiene le funzionalità di Access Point viene definito P2P Group Owner, il quale può comunque mantenere attive connessioni cellulari (come ad esempio il 4G).
-Per realizzare lo scopo del progetto il WiFi Direct non è stato utilizzato in maniera tradizionale, bensì in modalità legacy.
-\\Questo perchè, almeno nel primo incontro tra due device, la nascita della connessione necessità dell'interazione utente (come mostrato in figura XX).
+nell'analisi del codice sorgente.
+\subsection{Strategia di connessione tramite WiFi Direct}
+La tecnologia \textit{WiFi Direct} rende possibile la creazione di cosiddetti \textit{P2P Groups}, i quali possono essere comparati ad infrastrutture WiFi. 
+Il device che detiene le funzionalità di Access Point viene definito \textit{P2P Group Owner}, il quale può comunque mantenere attive connessioni cellulari (come ad esempio il 4G).
+Per realizzare lo scopo del progetto il \textit{WiFi Direct} non è stato utilizzato in maniera tradizionale, bensì in modalità legacy.
+\\Questo perchè, almeno nel primo incontro tra due device, la nascita della connessione necessità dell'interazione utente (come mostrato in figura 3.1).
 \\Il nostro processo di comunicazione peer-to-peer non prevede però alcuna interazione dell'utente, in quanto i dispositivi devono scoprirsi e comunicare in maniera del tutto autonoma e trasparente.
-\\Utilizzando la modalità legacy, un dispositivo crea un P2P Group fungendo da Access Point, mentre gli altri lo percepiscono e si connettono ad esso come un normale HotSpot 802.11.
-Questo dà la possibilità di connettere più client per Access Point, formando logicamente le topologie a stella, citate nel paragrafo di Architettura generale, nel Cap. 2.
+\\Utilizzando la modalità legacy, un dispositivo crea un \textit{P2P Group} fungendo da Access Point, mentre gli altri lo percepiscono e si connettono ad esso come un normale HotSpot 802.11.
+Questo dà la possibilità di connettere più client per Access Point, formando logicamente le topologie a stella, citate in sezione 2.3.
 \begin{figure}[!h]
 \centering
 \includegraphics[scale=0.5]{img/popup.png}
 \caption{Interazione utente per il consenso alla connessione}
 \end{figure}
 \subsection{Il servizio background}
-Il processo di comunicazione tra peers avviene in maniera completamente trasparente all'utente, per questo è stato necessario implementare un servizio che svolgesse 
+Dato che il processo di comunicazione tra peers deve avvenire in maniera completamente trasparente all'utente, è stato necessario implementare un servizio che svolgesse 
 il meccanismo di invio e ricezione dati, anche nel caso in cui l'applicazione venisse chiusa.
-Un Service è un componente Andorid, sprovvisto di interfaccia grafica, che si preoccupa di compiere procedure totalmente in background.
-Questo componente, presente nel package services, viene denominato NetworkAutoService, ed estende appunto la classe Service di Andorid.
+Un Service è un componente Andorid, sprovvisto di interfaccia grafica, che si preoccupa di compiere procedure in background.
+Questo componente è stato denominato \textit{NetworkAutoService}, ed estende appunto la classe \textit{Service} di Android. I metodi che gestiscono il servizio sono:
 \begin{itemize}
- \item onCreate : Si preoccupa di creare il servizio e notificare l'utente di ciò con l'apparizione di un Toast.
- \item onStartCommand : Metodo che inizia l'esecuzione vera e propria del servizio in background. Qui, sostanzialmente, espone in beaconing la 
- possibilità di fungere da AccessPoint e si mette alla ricerca di preesistenti HotSpot nei paraggi. Queste funzionalità verranno descritte meglio in seguito.
-Inoltre richiama il metodo privato startCheckNetworkTimer, illustrato tra poche righe.
-Richiamando tale funzione il servizio è attivo e pronto per il processo di sincronizzazione e disseminazione.
-Si ricorda che la partenza di questo è sancita dall'utente tramite interfaccia grafica, alla pressione di un pulsante.
- \item onDestroy : Metodo che ferma il servizio e libera le strutture dati necessarie al processo di networking. L'utente richiama implicitamente questo metodo alla pressione del bottone di Stop del servizio.
- \item startCheckNetworkTimer : Metodo privato che inizializza un oggetto Timer e lo schedula ogni 30s. Questi 30s possono essere interpretati logicamente come un time slot. 
- L'azione schedulata, prevede l'invio di un Broadcast Intent, in modo tale che il BroadCast Receiver lo possa catturare e controllare lo stato della macchina a stati finiti, definita in fase di progettazione.
+ \item \textit{onCreate} : crea il servizio e lo notifica all'utente.
+ \item \textit{onStartCommand} : metodo che inizia l'esecuzione vera e propria del servizio di disseminazione, in background. Qui, sostanzialmente, espone in beaconing la 
+  possibilità di fungere da Access Point e si mette alla ricerca di preesistenti HotSpot nei paraggi. Queste funzionalità verranno descritte meglio in sezione 3.1.5 e 3.1.6.
+  Si ricorda che l'attivazione del servizio è sancita dall'utente tramite la pressione di un pulstante da interfaccia grafica, come mostrano gli screenshots in figura 3.3.
+ \item \textit{onDestroy} : Metodo che ferma il servizio e libera le strutture dati necessarie al processo di networking. L'utente richiama implicitamente questo metodo alla pressione del bottone di stop del servizio, 
+ come mostrano gli screenshots in figura 3.3.
+ \item \textit{startCheckNetworkTimer} : metodo privato, richiamato nell'\textit{onStartCommand}, che inizializza un oggetto Timer e lo schedula ogni 30s. Questi 30s possono essere interpretati logicamente come un time slot. 
+ L'azione schedulata, prevede l'invio di un \textit{Intent}, in modo tale che il \textit{BroadcastReceiver} (definito nella sezione 3.1.8) lo possa catturare e controllare lo stato della macchina a stati finiti, 
+ definita in fase di progettazione.
 \end{itemize}
 \subsection{Il NetworkController}
-Il NetworkController si preoccupa di fornire gli strumenti necessari alla gestione degli attori coinvolti nel processo di networking e disseminazione locale delle informazioni.
-Questo oggetto è stato implementato seguendo le linee guida del Pattern Singleton.
-Questo pattern permette, fondamentalmente, di creare una ed una sola istanza di una particolare classe, rendendola disponibile in ottica globale. 
-Il concetto è quello di avere oggetti Java che permettano di avere controllo, in ogni punto del progetto, sulle componenti fondamentali dell'architettura implementata.
-Infatti, la mansione principale di questa classe è proprio quella di esporre le istanze degli oggetti che permettono la realizzazione del processo di disseminazione locale.
-Tramite questa è possibile accedere all'oggetto NetworkServiceSearcher, NetworkAccessPoint e NetworkConnection.
-Il primo, come verrà illustrato in seguito, si preoccupa di segnalare la presenza di beacon di servizio nelle vicinanze, il secondo governa eventuali funzionalità da Access Point del device, 
+La classe \textit{NetworkController} si preoccupa di  gestire gli attori coinvolti nel processo di networking e disseminazione locale delle informazioni.
+Questo oggetto è stato implementato seguendo le linee guida del pattern Singleton.
+Questo pattern permette di creare una ed una sola istanza di una particolare classe, rendendola disponibile in ottica globale. 
+Il concetto è quello di avere controllo, in ogni punto del progetto, sulle componenti fondamentali dell'architettura implementata.
+Infatti, la mansione principale di questa classe è proprio quella di esporre le istanze degli oggetti che permettono la realizzazione del processo di spreading.
+Tramite questa è possibile accedere agli oggetti delle classi \textit{NetworkBeaconPeerSearcher}, \textit{NetworkAccessPoint} e\textit{ NetworkConnection}.
+Il primo si preoccupa di segnalare la presenza di beacon di servizio nelle vicinanze, il secondo governa eventuali funzionalità da Access Point del device, 
 mentre il terzo implementa funzionalità client per connettersi ad HotSpot nei paraggi.
-Inoltre, il NetworkController, registra in una variabile lo stato corrente della Network Machine State, la quale scandisce logicamente il processo di spreading.
-Infine, espone metodi per la registrazione e rilascio del BroadcastReceiver.
+Inoltre registra in una variabile lo stato corrente della Network Machine State, la quale scandisce logicamente il processo di spreading.
+Infine, espone metodi per la registrazione e rilascio del \textit{BroadcastReceiver}.
 Di seguito vengono elencate i metodi principali che la classe espone:
 \begin{itemize}
-\item startAccessPoint / stopAccessPoint : Metodi che decretano l'inizio, o la fine, del device come Access Point.
-\item startConnection / stopConnection : Metodi che cercano di connettersi, o scollegarsi, da un HotSpot.
-\item startServiceSearcher / stopServiceSearcher : Metodi che sanciscono l'inizio, o la fine, della ricerca di beacon di servizio nelle vicinanze.
+\item \textit{startAccessPoint} / \textit{stopAccessPoint} : metodi che decretano l'inizio, o la fine, del device come Access Point.
+\item \textit{startConnection} / \textit{stopConnection} : metodi che cercano di connettersi, o scollegarsi, da un HotSpot.
+\item \textit{startServiceSearcher} / \textit{stopServiceSearcher} : metodi che sanciscono l'inizio, o la fine, della ricerca di beacon nelle vicinanze.
 \end{itemize}
 \subsection{Connessione ad un Access Point}
-La classe NetworkConnection, concettualmente molto semplice, detiene la procedura necessaria per connettersi in maniera automatica ad un AccessPoint, presente nella lista ricavata dallo scan delle reti circostanti.
+La classe \textit{NetworkConnection} detiene la procedura necessaria per connettersi in maniera automatica ad un Access Point, presente nella lista ricavata dallo scan delle reti circostanti.
 Questa classe viene utilizzata quando un device, tramite l'arrivo di un beacon, capisce che vi è un Access Point attivo e disponibile a soddisfare richieste di sincronizzazione.
 Infatti, questo, assumerà il ruolo di Client cercando di agganciarsi all'HotSpot individuato.
 \\È necessario ricordare che, per effettuare queste procedure in maniera completamente automatica e trasparente all'utente, vi è la necessità di conoscere la passphrase per connettersi. 
-Questa come vedremo, sarà ricavata dai beacon di servizio, già accennati in precedenza.
+Questa come vedremo in sezione 3.1.8, sarà ricavata dai beacon di servizio.
 \\Di seguito viene mostrato il codice discusso:
-\begin{verbatim}
+\begingroup
+\fontsize{9pt}{8pt}
+\begin{verbatim}  
 ...
 
 public class NetworkConnection {
@@ -537,40 +539,46 @@ public class NetworkConnection {
     this.wifiManager.disconnect();
   }
 }
-\end{verbatim}
+\end{verbatim}  
+\endgroup
 \subsection{Esplorazione dell'ambiente circostante}
-Questa classe ha lo scopo di capire la situazione nell'ambiente esterno, scoprendo quanti e quali attori vi sono nelle vicinanze e comportarsi di conseguenza.
-Ogni device, per decidere se fungere da AccessPoint o se connettersi come client ad un HotSpot già esistente, ha bisogno di comprendere ed essere avvisato della presenza o meno di altri host nell'ambiente locale.
-\subsubsection{Scoperta di peers}         %crea la sottosezione
-La classe WiFiP2PManager di Android, permette di gestire tramite chiamate API la connessione peer-to-peer tra device.
-Molte chiamate implementate fanno riferimento ad eventi asincroni, di conseguenza è stato necessario implementare Listener in modo tale da porre determinate logiche, al succedersi di determinati eventi.
-Uno di questi può essere individuato nella scoperta di peers, dove si prende nota dell'eventuale presenza di altri device Android nell'ambiente circostante.
-Questo può essere ritrovato nella funzione startPeerDiscovery della classe NetworkBeaconPeerSearcher, dove viene richiamato il metodo discoverPeers del WiFiP2PManager.
-A questo punto il device è pronto a notificare la presenza di eventuali peers nelle vicinanze.
-Per catturare queste notifiche è stato necessario implementare un personale PeerListListener, il quale grazie al metodo onPeersAvailable (WifiP2pDeviceList peers) restituisce la lista dei peers presenti nei paraggi.
-\subsubsection{Beacon di servizio}         %crea la sottosezione
+Il sistema ha la necessità di capire la situazione nell'ambiente esterno, scoprendo quanti e quali attori vi sono nelle vicinanze e comportarsi di conseguenza.
+Ogni device, per decidere se fungere da Access Point o se connettersi come client ad un HotSpot già esistente, ha bisogno di comprendere ed essere avvisato della presenza o meno di altri host nell'ambiente locale.
+Tutto quello che verrà illustrato in questa sezione è stato implementato nella classe \textit{NetworkBeaconPeerSearcher}.
+\subsubsection{Scoperta di peers}
+La classe \textit{WiFiP2PManager} di Android, permette di gestire tramite chiamate API la connessione peer-to-peer tra device.
+Molte di queste fungono da listener per gli eventi asincroni della rete, in modo tale da proporre determinate logiche al succedersi di determinati eventi.
+Tramite il metodo \textit{discoverPeers} è possibile mettersi alla ricerca di eventuali device Android nell'ambiente circostante.
+Per catturare le notifiche relative alla presenza di un device è stato necessario implementare un custom \textit{PeerListListener}, il quale grazie al metodo \textit{onPeersAvailable}
+restituisce la lista dei peers presenti nei paraggi.
+\subsubsection{Beacon di servizio}
 Sempre nell'ambito peer-to-peer, la tecnologia Android, permette di pubblicizzare un servizio ad altri device prima di un'effettiva connessione tra i dispositivi.
-La documentazione per developer di Android, specifica che questo meccanismo è stato fatto per individuare, in una fase iniziale, peer che esponessero determinati servizi, piuttosto che altri.
+La documentazione per developer di Android[21] specifica che questo meccanismo è stato fatto per individuare, in una fase iniziale, peers con determinati servizi.
+I Bonjour service vengono creati grazie alla classe \textit{WifiP2pDnsSdServiceInfo}. 
 Questa funzionalità è stata fondamentale per la realizzazione del progetto, in quanto permette di fare assunzioni prima di effettuare tentativi di connessione tra peer.
-In un primo momento si è pensato di inserire le informazioni relative agli eventi parcheggio direttamente all'interno di questi pacchetti, in quanto vi è la possibilità di inserire un tipo di dato Map\textless String, String \textgreater.
+In un primo momento si è pensato di includere le informazioni relative agli eventi parcheggio direttamente all'interno di questi pacchetti, in quanto vi è la possibilità di inserire un tipo di dato 
+\textit{Map\textless String, String\textgreater}.
 Con questo tipo di meccanismo si sarebbe potuto attuare il cosiddetto piggybacking, inserendo il vero payload direttamente dentro a questi pacchetti di servizio.
 Questa strategia, oltre ad abbassare notevolmente la complessità, avrebbe permesso di scambiare dati in broadcast tra device, senza che questi instaurassero una connessione.
-L'implementazione però non è resa possibile a causa del basso contenuto, in termini di dimensione, che può contenere il tipo di dato Map\textless String, String\textgreater.
-Lo standard consiglia di tenere questo contenuto sotto i 200 bytes e non è raccomandato superare i 1300 bytes. Provando empiricamente, si è potuto confermare la restrinzione appena citata.
-Gli ArrayList degli eventi che vogliamo sincronizzare hanno un contenuto maggiore del limite tecnologico imposto, per questo motivo si è dovuto virare sul meccanismo di AccessPoint e connessioni automatiche.
-Questi pacchetti risultano comunque determinanti, in quanto incapsuleranno la stringa passphrase, necessaria ai client per connettersi in maniera automatica all'HotSpot esposto.
-Tornando al progetto, è possibile scoprire questi servizi tramite il metodo startBeaconDiscovery, il quale chiama a sua volta il metodo discoverServices del WiFiP2PManager.
-Il Listener, relativo alla scoperta di un servizio, riguarda la creazione di un oggetto DnsSdServiceResponseListener, il quale implementando il metodo onDnsSdServiceAvailable, fornisce in input tutte le 
-infomazioni necessario sul servizio appena scoperto (ad esempio nome, tipo, device).
-\subsubsection{Logiche di scoperta}         %crea la sottosezione
-Nei precedenti due sottoparagrafi si è cercato di illustrare le funzionalità principali che si ritrovano nella classe NetworkBeaconPeerSearcher, illustrando le funzioni API chiave utilizzate.
+L'implementazione però non è resa possibile a causa del basso contenuto, in termini di dimensione, che può essere inserito in questi beacon.
+Lo standard consiglia di tenere questo contenuto sotto i 200 bytes e non è raccomandato superare i 1300 bytes[22 - sezione 6.2]. Provando empiricamente, si è potuto confermare la restrinzione appena citata.
+Gli \textit{ArrayList} degli eventi che vogliamo sincronizzare hanno un contenuto maggiore del limite tecnologico imposto, per questo motivo si è dovuto virare sul meccanismo di Access Point e connessioni automatiche.
+Questi pacchetti risultano comunque determinanti, in quanto incapsulano la stringa passphrase, necessaria ai client per connettersi in maniera automatica all'HotSpot esposto.
+Tornando al progetto, è possibile scoprire questi servizi tramite il metodo \textit{startBeaconDiscovery}, il quale chiama a sua volta il metodo \textit{discoverServices} del \textit{WiFiP2PManager}.
+Il listener, relativo alla scoperta di un servizio, riguarda la creazione di un oggetto \textit{DnsSdServiceResponseListener}, il quale implementando il metodo \textit{onDnsSdServiceAvailable}, fornisce in input tutte le 
+informazioni necessario sul servizio appena scoperto (nome, tipo, device).
+\subsubsection{Logiche di scoperta}
+Nei precedenti due sottoparagrafi si è cercato di illustrare le funzionalità principali che si ritrovano nella classe \textit{NetworkBeaconPeerSearcher}, illustrando le funzioni API chiave utilizzate.
 Ora si cercherà di spiegare la logica che è stato necessario implementare e come la scoperta di peers e servizi si interfacciano tra loro.
 Quando un device scopre la presenza di almeno un peer attorno a lui, si mette immediatamente all'ascolto di eventuali servizi esposti da altri utenti.
-Nel momento in cui si scoprisse un servizio idoneo che indichi la presenza di un D2DSmartParking AccessPoint, in attesa di possibili sincronizzazioni, viene mandato 
-un broadcast Intent tale da notificare al BroacastReceiver di iniziare il processo di connessione all'HotSpot trovato.
-La classe che implementa tutte queste funzionalità è abbastanza ampia, per questo, di seguito, si mostra il solo codice relativo ai Listeners citati nel paragrafo.
-\begin{verbatim}
+Nel momento in cui si scoprisse un servizio idoneo che indichi la presenza di un AccessPoint, in attesa di possibili sincronizzazioni, viene mandato 
+un broadcast \textit{Intent} tale da notificare al \textit{BroadcastReceiver} di iniziare il processo di connessione all'HotSpot trovato.
+La classe che implementa tutte queste funzionalità è abbastanza ampia, per questo, di seguito, si mostra il solo codice relativo ai listeners citati nel paragrafo.
+\begingroup
+\fontsize{9pt}{8pt}
+\begin{verbatim}  
 ...
+/* peer discover listener */
 peerListListener = new WifiP2pManager.PeerListListener() {
   public void onPeersAvailable(WifiP2pDeviceList peers) {
     int nPeers = 0;
@@ -581,21 +589,25 @@ peerListListener = new WifiP2pManager.PeerListListener() {
     /* if there is someone, looking for D2DSP service */
     if(nPeers > 0){
         Log.d(TAG, "Search for a D2DSP service...");
+        /* change NSM state */
         NetworkController.getInstance().networkStateMachine = 
                            Constants.STATE_ACCESS_POINT_PEERS;
         startBeaconDiscovery();
      } else { /* else search peers */
         Log.d(TAG, "Search for peers...");
+        /* change NSM state */
         NetworkController.getInstance().networkStateMachine = 
                            Constants.STATE_ACCESS_POINT_NO_PEERS;
         startPeerDiscovery();
     }
   }
 };
+
 ...
+
+/* service discover listener */
 serviceListener = new WifiP2pManager.DnsSdServiceResponseListener() {
-  public void onDnsSdServiceAvailable(String serv, String type, 
-                                                 WifiP2pDevice dev) {
+  public void onDnsSdServiceAvailable(String serv, String type, WifiP2pDevice dev) {
     if (serviceType.startsWith(NetworkTestFragment.SERVICE_TYPE)) {
         if(broadcaster != null) {
             Log.d(TAG, "find a D2DSP beacon!");
@@ -606,26 +618,29 @@ serviceListener = new WifiP2pManager.DnsSdServiceResponseListener() {
     } else {
         Log.d(TAG, "This service is not for me!");
     }
-    /* continue search peers */
+    /* continue to search peers */
     startPeerDiscovery();
   }
 };
 ...
-\end{verbatim}
+\end{verbatim}  
+\endgroup
 \subsection{Funzionalità Access Point-like}
-Le funzionalità necessarie ad un device per interpretare il ruolo di Access Point, sono definite nella classe NetworkAccessPoint.
-Queste, sostanzialmente, riguardano la creazione spontanea e autonoma di un WiFi Direct Group, con la conseguente autoelezione a Group Owner.
-La classe implementa delle interfacce astratte Android, le quali permettono di catturare segnali relativi alla gestione del WiFiDirect Group.
-In particolare, l'interfaccia WifiP2pManager.GroupInfoListener permette di essere notificati quando il Gruppo è stato creato.
-Questo è permesso dal metodo onGroupInfoAvailable (WifiP2pGroup group), dove in input vengono date tutte le informazioni necessarie sul gruppo appena formato.
-A questo punto all'interno del metodo si richiama una procedura startBeaconAP
- per creare ed esporre il servizio di notifica, in modo tale da che gli utenti esterni riescano, tramite questo beacon, a connettersi automaticamente all'HotSpot.
-Oltre a questa operazione viene fatto partire il meccanismo per ricevere connessioni in input tramite Socket, operazione che verrà approfondita in seguito.
-Come citato in precedenza, il beacon incorpora l'informazione di passphrase in modo tale che la connessione possa avvenire in maniera automatica tramite la classe NetworkConnection.
-Il codice sottostante mostra la creazione del gruppo tramite il metodo createGroup e l'esposizione del servizio in merito alla notifica della corretta creazione della rete:
-\begin{verbatim}
+Le funzionalità necessarie ad un device per interpretare il ruolo di Access Point, sono definite nella classe \textit{NetworkAccessPoint}.
+Queste, sostanzialmente, riguardano la creazione spontanea e autonoma di un \textit{WiFi Direct Group}, con la conseguente autoelezione a \textit{Group Owner}.
+La classe implementa delle interfacce astratte Android, le quali permettono di catturare segnali relativi alla gestione del gruppo.
+In particolare, l'interfaccia \textit{WifiP2pManager.GroupInfoListener} permette di essere notificati quando il gruppo è stato creato.
+Questo è permesso dal metodo \textit{onGroupInfoAvailable}, dove in input vengono date tutte le informazioni necessarie sul gruppo appena formato.
+A questo punto all'interno del metodo si richiama una procedura \textit{startBeaconAP}
+ per creare ed esporre il servizio di notifica, in modo tale da che gli utenti esterni riescano a connettersi automaticamente all'HotSpot.
+Oltre a questa operazione viene fatto partire il meccanismo per ricevere connessioni in input tramite Socket.
+Come citato in precedenza, il beacon incorpora l'informazione di passphrase in modo tale che la connessione possa avvenire in maniera automatica tramite la classe \textit{NetworkConnection}.
+Il codice sottostante mostra la creazione del gruppo tramite il metodo \textit{createGroup} e l'esposizione del servizio in merito alla notifica della corretta creazione della rete:
+\begingroup
+\fontsize{9pt}{8pt}
+\begin{verbatim}  
 ...
-/* Creation of Group */
+/* Creation of WiFi Direct Group */
 public void start() {
 
   p2p = (WifiP2pManager) NetworkController.getInstance().managerP2P;
@@ -645,12 +660,15 @@ public void start() {
     });
   }
 }
+
 ...
+
 @Override
 public void onGroupInfoAvailable(WifiP2pGroup group) {
   try {
     Log.d(TAG, "WiFi Direct Net is created, expose beacon service...");
     ...
+    /* put passphrase in Bonjour instance service */
     startBeaconAP("D2DSP:" + group.getNetworkName() + ":" + 
                          group.getPassphrase() + ":" + netAddress);
     ...
@@ -662,9 +680,11 @@ public void onGroupInfoAvailable(WifiP2pGroup group) {
     Log.d(TAG, "onGroupInfoAvailable, error: " + e.toString());
   }
 }
+
 ...
+
+/* expose beacon that notifies clients the Access Point presence */
 private void startBeaconAP(String instance) {
-  /* beacon fot notify client of Access Point presence */
   Map<String, String> record = new HashMap<String, String>();
   record.put("D2DSP", "apactive");
 
@@ -683,21 +703,24 @@ private void startBeaconAP(String instance) {
   });
 }
 ...
-\end{verbatim}
+\end{verbatim}  
+\endgroup
 \subsection{Canali di comunicazione}
-Una volta che l'Access Point crea la rete ed altri peer riescono a connettersi, identificandosi con un indirizzo IP, si può passare all'apertura dei canali di comunicazione ed alla sincronizzazione degli 
+Una volta che l'Access Point crea la rete ed altri peers riescono a connettersi, identificandosi con un indirizzo IP, si può passare all'apertura dei canali di comunicazione ed alla sincronizzazione degli 
 eventi di parcheggio/rilascio.
-I canali di comunicazione si basano su Socket serializzate, permettendo di inviare e ricevere, con un semplice casting, direttamente degli ArrayList\textless ParkEvent \textgreater.
-L'AccessPoint, appena notificato dell'avvenuta creazione del gruppo, richiama la creazione di un oggetto di tipo Server, il quale istanzia una ServerSocket, mettendosi in ascolto di eventuali richieste Socket dai 
-client, con il metodo accept().
-I clients invece, quando notificati dal BroadcastReceiver dell'avvenuta connessione all'HotSpot, creano un oggetto Socket con l'indirizzo IP del Server e la porta idonea.
-Ora che il canale di comunicazione bidirezionale è stato messo in piedi, il Server invierà il proprio ArrayList nell' ObjectOutputStream della Socket, grazie al metodo writeObject. 
-Il Client coinvolto, vedendosi arrivare le informazioni nel canale ObjectInputStream, le memorizza in una variabile ed invia le proprie, ripetendo il procedimento sopradescritto a parti inverse.
-Una volta chiuso il canale, viene fatto il merge delle entries ricevuto con quelle già presenti in memoria.
-Si precisa che tutti i meccanismi descritti vengono gestiti tramite Thread, in modo tale che il processo di sincronizzazione non risulti bloccante.
-Anche le classi Client e Server sono corpose dal punto di vista del codice, di conseguenza si illustra il codice dei passi salienti.
-
+I canali di comunicazione si basano su \textit{Socket} serializzate, permettendo di inviare e ricevere, con un semplice casting, direttamente degli \textit{ArrayList\textless ParkEvent\textgreater}.
+L'Access Point, appena notificato dell'avvenuta creazione del gruppo, richiama la creazione di un oggetto della classe \textit{Server}, il quale istanzia una \textit{ServerSocket}, mettendosi in ascolto di eventuali richieste dai 
+client, con il metodo \textit{accept()}.
+I clients invece, quando notificati dal \textit{BroadcastReceiver} dell'avvenuta connessione all'HotSpot, creano un oggetto \textit{Socket} con l'indirizzo IP del Server e la porta idonea.
+Ora che il canale di comunicazione bidirezionale è stato messo in piedi, l'Access Point invierà il proprio\textit{ ArrayList} nell'\textit{ObjectOutputStream}, grazie al metodo \textit{writeObject}. 
+Il Client coinvolto, vedendosi arrivare le informazioni nel canale \textit{ObjectInputStream}, le memorizza in una variabile ed invia le proprie, ripetendo il procedimento sopradescritto a parti inverse.
+Una volta chiuso il canale, viene fatto il merge delle entries ricevute con quelle già presenti in memoria.
+Si precisa che tutti i meccanismi descritti vengono gestiti tramite \textit{Thread}, in modo tale che il processo di sincronizzazione non risulti bloccante.
+Anche le classi \textit{Client} e \textit{Server} sono corpose dal punto di vista del codice, di conseguenza si illustra il codice dei passi salienti.
+\begingroup
+\fontsize{9pt}{8pt}
 \begin{verbatim}
+
 ### CLIENT SIDE ###
 public class Client implements Runnable {
   ...
@@ -712,6 +735,7 @@ public class Client implements Runnable {
         try {
           ObjectInputStream objectInStream = 
               new ObjectInputStream(socket.getInputStream());
+          /* get data from Socket channel */
           parkEventsFromOther = 
               (ArrayList<ParkEvent>) objectInStream.readObject();
           ...
@@ -724,6 +748,7 @@ public class Client implements Runnable {
         try {
          ObjectOutputStream objectOutStream = 
              new ObjectOutputStream(socket.getOutputStream());
+         /* write data in Socket channel */
          objectOutStream.writeObject(Controller.getInstance().parkEvents);
          break;
         } catch (IOException e) {
@@ -731,18 +756,21 @@ public class Client implements Runnable {
         }
       }
      socket.close();
-     /* merge new entries*/
+     /* merge new entries */
      Controller.getInstance().mergeEntries(parkEventsFromOther);
      /* register sync */
      Controller.getInstance().insertSynchronizationOnSQLiteDB(
                         false, macWithSync);
-     /* change stati in NSM*/
+     /* change state in NSM */
      NetworkController.getInstance().networkStateMachine = 
                            Constants.STATE_SYNCED_CONNECTED;
     } catch (Exception e) {
     }
   }
 }
+
+...
+
 ### SERVER SIDE ###
 ...
 /* Thread that attend for client socket requests */
@@ -766,25 +794,27 @@ private class SocketServerThread extends Thread {
   }
 }
 ...
-\end{verbatim}
+\end{verbatim}  
+\endgroup
 \subsection{L'ascoltatore BroadcastReceiverManagement}
-Un componente fondamentale, a livello implementativo, è senza dubbio il BroadcastReceiverManagement. Questo estende la classe Android BroacastReceiver ed è in grado di 
+Un componente fondamentale, a livello implementativo, è senza dubbio il \textit{BroadcastReceiverManagement}. Questo estende la classe Android \textit{BroacastReceiver} ed è in grado di 
 ricevere avvisi sia dall'app stessa, che da componenti esterni di sistema.
-Per avvisi si intendono Intent, i quali vengono catturati dal metodo onReceive della classe.
+Per avvisi si intendono \textit{Intent}, i quali vengono catturati dal metodo \textit{onReceive} della classe.
 Questi oggetti possono tranquillamente lavorare in background e ricevere aggiornamenti anche se l'applicazione è chiusa.
-Si è definito fondamentale in quanto qui vengono prese tutte le decisioni riguardanti il networking, in base ai segnali ricevuti automaticamente in input.
+Qui vengono prese tutte le decisioni riguardanti il networking, in base ai segnali ricevuti automaticamente in input.
 La classe può essere interpretata anche come un decisore, che in base al succedersi di determinati eventi, compie precise azioni.
-Di seguito vengono illustrati i comportamenti fondamentali, in base a determinati Intent in input. Le istruzioni condizionali citate sono tutte all'interno del metodo onReceive.
+Di seguito vengono illustrati i comportamenti fondamentali, in base a determinati Intent in input. Le istruzioni condizionali citate sono tutte all'interno del metodo \textit{onReceive}.
 \begin{itemize}
 \item Tentativi di connessione : 
-\\All'arrivo di un custom Intent INTENT\_D2D\_AP\_FOUND, il sistema capisce che è stato scoperto un AccessPoint attivo nelle vicinanze e cerca di connettersi ad esso, 
-utilizzando la passphrase ricavata dal becon di servizio.
-\begin{verbatim}
+\\All'arrivo di un custom Intent INTENT\_D2D\_AP\_FOUND, il sistema capisce che è stato scoperto un Access Point attivo nelle vicinanze e cerca di connettersi ad esso, 
+utilizzando la passphrase ricavata dal beacon di Bonjour.
+\begingroup
+\fontsize{9pt}{8pt}
+\begin{verbatim}  
 ...
 if (Constants.INTENT_D2D_AP_FOUND.equals(action)) {
   /* get beacon data */
-  String serv = 
-         intent.getStringExtra(Constants.INTENT_D2D_AP_ACCESSDATA);
+  String serv = intent.getStringExtra(Constants.INTENT_D2D_AP_ACCESSDATA);
   String[] separated = serv.split(":");
   
   /* stop my Access Point functionalities */
@@ -793,25 +823,28 @@ if (Constants.INTENT_D2D_AP_FOUND.equals(action)) {
     NetworkController.getInstance().stopNetworkBeaconPeerSearcher();
     /* Now I'm a simple Client */
     String networkSSID = separated[1];
-    String networkPass = separated[2];
+    String networkPass = separated[2];  /* passprhase from beacon */
     String ipAddress   = separated[3];
 
     Log.d(TAG, "start new connection @ " + networkSSID);
     /* start connection mechanism */
     NetworkController.getInstance().networkConnection = 
         new NetworkConnection(ctx, networkSSID,networkPass);
-    /* networkStateMachine update */
+    /* change state of NSM */
     NetworkController.getInstance().networkStateMachine = 
         Constants.STATE_CONNECTION;
   }
 }
 ...
-\end{verbatim}
+\end{verbatim}  
+\endgroup
 
 \item Gestione dello stato di connessione :
-\\L'intent WifiManager.NETWORK\_STATE\_CHANGED\_ACTION decreta un cambiamento di stato della connessione WiFi del device. Se è avvenuta una 
-disconnessionem il device torna disponibile ad interpretare il ruolo di Access Point, mentre se è decretata la connessione ad un HotSpot inizierà il procedimento di sincronizzazione, lato Client.
-\begin{verbatim}
+\\L'Intent \textit{WifiManager.NETWORK\_STATE\_CHANGED\_ACTION} decreta un cambiamento di stato della connessione WiFi del device. Se è avvenuta una 
+disconnessione il device torna disponibile ad interpretare il ruolo di Access Point, mentre se è decretata la connessione ad un HotSpot inizierà il procedimento di sincronizzazione, lato Client.
+\begingroup
+\fontsize{9pt}{8pt}
+\begin{verbatim}  
 ...
 if (WifiManager.NETWORK_STATE_CHANGED_ACTION.equals(action)) {
   NetworkInfo info = 
@@ -839,14 +872,17 @@ if (WifiManager.NETWORK_STATE_CHANGED_ACTION.equals(action)) {
   }
 }
 ...
-\end{verbatim}
+\end{verbatim}  
+\endgroup
 
 \item Sincronizzazioni successive :
 \\Come ribadito in fase di progettazione, se un Client mantiene la propria connessione attiva con l'Access Point per un certo periodo, anche dopo aver effettuato una prima sincronizzazione con esso, 
 ha la possibilità di effettuare un successivo scambio dati, dopo una certa threshold.
 Il componente quindi, periodicamente, controlla lo stato della Network State Machine e se il device continua a trovarsi nello stato STATE\_SYNCED\_CONNECTED anche dopo la soglia stabilita, può effettuare 
 un'ulteriore comunicazione con l'HotSport Server.
-\begin{verbatim}
+\begingroup
+\fontsize{9pt}{8pt}
+\begin{verbatim}  
 ...
 if(Constants.INTENT_D2D_CHECK_MACHINE_STATE.equals(action)) {
 ...
@@ -861,7 +897,8 @@ if(Constants.INTENT_D2D_CHECK_MACHINE_STATE.equals(action)) {
 ...
 }
 ...
-\end{verbatim}
+\end{verbatim}  
+\endgroup
 \end{itemize}
 \newpage
 \section{Screenshot}                 %crea la sezione
@@ -1093,6 +1130,8 @@ bibliografia: questo \`e il mio riferimento \cite{K3,K4}.
 \bibitem{K18} IEEE Smart Cities, http://smartcities.ieee.org/about.html.
 \bibitem{K19} Feng Xia, LaurenceT.Yang, LizheWang, Alexey Vinel, ''Internet of Things``, IEEE, 2012.
 \bibitem{K20} Documentazione WiFi Direct, http://www.wi-fi.org/discover-wi-fi/wi-fi-direct.
+\bibitem{K21} Documentazione ufficiale Android, https://developer.android.com/index.html.
+\bibitem{K22} Standard Bonjour beacon, http://files.dns-sd.org/draft-cheshire-dnsext-dns-sd.txt.
 \end{thebibliography}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
 \clearpage{\pagestyle{empty}\cleardoublepage}

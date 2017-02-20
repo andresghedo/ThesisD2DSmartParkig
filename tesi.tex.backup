@@ -335,10 +335,12 @@ Di seguito vengono spiegati i compiti che ogni struttura deve compiere per la co
 i quali campionano periodicamente lo stato di accelerometro e giroscopio, mappandoli tramite un algoritmo decisionale in un'attività ben definita.
 Questo processo, in realtà, si compone di due fase come training e recognition.
 La prima è necessaria alla seconda e riguarda il campionamento dei dati sensore in una attività definita dall'utente di CAR o NO\_CAR. La seconda, invece, grazie ai campioni rilevati nella prima riuscirà a 
-fare assunzione sul tipo di attività che l'utente sta svolgendo.
+fare assunzione sul tipo di attività che l'utente sta svolgendo. L'algoritmo \textit{Random Forest} permette di classificare i dati grezzi in una precisa classe di movimento, tramite il massiccio utilizzo di alberi decisionali.
 Quando il componente capisce che si è passato da uno stato CAR ad uno stato NO\_CAR, significa che l'utente ha parcheggiato l'autovettura, mentre, dualmente, se si passa da uno stato NO\_CAR a CAR, significa che 
 l'utente ha rilasciato uno slot.
 Quando una di queste due situazioni accade, si registra l'evento nel database locale.
+L'implementazione di questa parte non è stata necessaria perchè è stato possibile usufruire interamente del sistema descritto in [2], dove si mostra come l'algoritmo di recognition riesca a raggiungere una precisione
+di circa 90\%. 
 \item \textbf{Componente Database locale:}
 \\Il Database locale si preoccupa di raccogliere le informazioni sul device utente, le quali poi verranno processate per calcolare la probabilità di parcheggio in una determinata zona.
 Le informazioni che vengono memorizzate sono illustrate più precisamente nella sezione 2.5.
@@ -433,69 +435,71 @@ probabilità di trovare parcheggio.
 
 \clearpage{\pagestyle{empty}\cleardoublepage}
 \chapter{Implementazione}                %crea il capitolo
-Come ribadito nel Cap. 2 l'obiettivo del progetto è quello di disseminare informazioni di smart parking in modalità Device-to-Device, senza l'ausilio di alcuna infrastruttura di rete intermediaria. 
+Come ribadito nel Cap. 2 l'obiettivo del progetto è quello di disseminare informazioni di smart parking in modalità Device-to-Device, senza l'ausilio di alcuna infrastruttura centralizzata. 
 In base alle informazioni ricevute, si riuscirà dunque a fare assunzioni sulle quantità di parcheggi disponibile in determinate zone della città.
-\\L'implementazione riguarda la realizzazione del processo sopradescritto nel Sistema Operativo Android, con l'ausilio della tecnologia WiFiDirect.
+\\L'implementazione riguarda la realizzazione del processo sopradescritto nel Sistema Operativo Android, con l'ausilio della tecnologia \textit{WiFi Direct}.
 Quest'ultima, presente a partire dalle librerie API 14 e device con Android 4.0 o superiori, permette la comunicazione one-to-one tra dispositivi utente.
 \\Il capitolo seguente mostra i passi necessari alla realizzazione, dettagliando i componenti software realizzati partendo dalla base di progettazione, illustrata nel Cap.2.
 \section{Componente di disseminazione}                 %crea la sezione
-Il paragrafo illustra tutte gli attori principali che compongono il servizio di disseminazione delle informazioni. Si è cercato di spiegare, in ogni sottoparagrafo, le funzionalità
+Il paragrafo illustra tutti gli attori principali che compongono il servizio di disseminazione delle informazioni. Si è cercato di spiegare, in ogni sottoparagrafo, le funzionalità
 del componente e l'interazione con gli altri. Questa è la parte che, in fase di implementazione, ha richiesto maggior sforzo ed essendo il cuore del progetto, verrà maggiormente descritta, addentrandosi anche
-nell'analisi del sorgente.
-\subsection{Strategia di connessione tramite WiFiDirect}
-La tecnologia WiFi Direct rende possibile la creazione di cosiddetti P2P Groups, i quali possono essere comparati ad infrastrutture WiFi. 
-Il device che detiene le funzionalità di Access Point viene definito P2P Group Owner, il quale può comunque mantenere attive connessioni cellulari (come ad esempio il 4G).
-Per realizzare lo scopo del progetto il WiFi Direct non è stato utilizzato in maniera tradizionale, bensì in modalità legacy.
-\\Questo perchè, almeno nel primo incontro tra due device, la nascita della connessione necessità dell'interazione utente (come mostrato in figura XX).
+nell'analisi del codice sorgente.
+\subsection{Strategia di connessione tramite WiFi Direct}
+La tecnologia \textit{WiFi Direct} rende possibile la creazione di cosiddetti \textit{P2P Groups}, i quali possono essere comparati ad infrastrutture WiFi. 
+Il device che detiene le funzionalità di Access Point viene definito \textit{P2P Group Owner}, il quale può comunque mantenere attive connessioni cellulari (come ad esempio il 4G).
+Per realizzare lo scopo del progetto il \textit{WiFi Direct} non è stato utilizzato in maniera tradizionale, bensì in modalità legacy.
+\\Questo perchè, almeno nel primo incontro tra due device, la nascita della connessione necessità dell'interazione utente (come mostrato in figura 3.1).
 \\Il nostro processo di comunicazione peer-to-peer non prevede però alcuna interazione dell'utente, in quanto i dispositivi devono scoprirsi e comunicare in maniera del tutto autonoma e trasparente.
-\\Utilizzando la modalità legacy, un dispositivo crea un P2P Group fungendo da Access Point, mentre gli altri lo percepiscono e si connettono ad esso come un normale HotSpot 802.11.
-Questo dà la possibilità di connettere più client per Access Point, formando logicamente le topologie a stella, citate nel paragrafo di Architettura generale, nel Cap. 2.
+\\Utilizzando la modalità legacy, un dispositivo crea un \textit{P2P Group} fungendo da Access Point, mentre gli altri lo percepiscono e si connettono ad esso come un normale HotSpot 802.11.
+Questo dà la possibilità di connettere più client per Access Point, formando logicamente le topologie a stella, citate in sezione 2.3.
 \begin{figure}[!h]
 \centering
 \includegraphics[scale=0.5]{img/popup.png}
 \caption{Interazione utente per il consenso alla connessione}
 \end{figure}
 \subsection{Il servizio background}
-Il processo di comunicazione tra peers avviene in maniera completamente trasparente all'utente, per questo è stato necessario implementare un servizio che svolgesse 
+Dato che il processo di comunicazione tra peers deve avvenire in maniera completamente trasparente all'utente, è stato necessario implementare un servizio che svolgesse 
 il meccanismo di invio e ricezione dati, anche nel caso in cui l'applicazione venisse chiusa.
-Un Service è un componente Andorid, sprovvisto di interfaccia grafica, che si preoccupa di compiere procedure totalmente in background.
-Questo componente, presente nel package services, viene denominato NetworkAutoService, ed estende appunto la classe Service di Andorid.
+Un Service è un componente Andorid, sprovvisto di interfaccia grafica, che si preoccupa di compiere procedure in background.
+Questo componente è stato denominato \textit{NetworkAutoService}, ed estende appunto la classe \textit{Service} di Android. I metodi che gestiscono il servizio sono:
 \begin{itemize}
- \item onCreate : Si preoccupa di creare il servizio e notificare l'utente di ciò con l'apparizione di un Toast.
- \item onStartCommand : Metodo che inizia l'esecuzione vera e propria del servizio in background. Qui, sostanzialmente, espone in beaconing la 
- possibilità di fungere da AccessPoint e si mette alla ricerca di preesistenti HotSpot nei paraggi. Queste funzionalità verranno descritte meglio in seguito.
-Inoltre richiama il metodo privato startCheckNetworkTimer, illustrato tra poche righe.
-Richiamando tale funzione il servizio è attivo e pronto per il processo di sincronizzazione e disseminazione.
-Si ricorda che la partenza di questo è sancita dall'utente tramite interfaccia grafica, alla pressione di un pulsante.
- \item onDestroy : Metodo che ferma il servizio e libera le strutture dati necessarie al processo di networking. L'utente richiama implicitamente questo metodo alla pressione del bottone di Stop del servizio.
- \item startCheckNetworkTimer : Metodo privato che inizializza un oggetto Timer e lo schedula ogni 30s. Questi 30s possono essere interpretati logicamente come un time slot. 
- L'azione schedulata, prevede l'invio di un Broadcast Intent, in modo tale che il BroadCast Receiver lo possa catturare e controllare lo stato della macchina a stati finiti, definita in fase di progettazione.
+ \item \textit{onCreate} : crea il servizio e lo notifica all'utente.
+ \item \textit{onStartCommand} : metodo che inizia l'esecuzione vera e propria del servizio di disseminazione, in background. Qui, sostanzialmente, espone in beaconing la 
+  possibilità di fungere da Access Point e si mette alla ricerca di preesistenti HotSpot nei paraggi. Queste funzionalità verranno descritte meglio in sezione 3.1.5 e 3.1.6.
+  Si ricorda che l'attivazione del servizio è sancita dall'utente tramite la pressione di un pulstante da interfaccia grafica, come mostrano gli screenshots in figura 3.3.
+ \item \textit{onDestroy} : Metodo che ferma il servizio e libera le strutture dati necessarie al processo di networking. L'utente richiama implicitamente questo metodo alla pressione del bottone di stop del servizio, 
+ come mostrano gli screenshots in figura 3.3.
+ \item \textit{startCheckNetworkTimer} : metodo privato, richiamato nell'\textit{onStartCommand}, che inizializza un oggetto Timer e lo schedula ogni 30s. Questi 30s possono essere interpretati logicamente come un time slot. 
+ L'azione schedulata, prevede l'invio di un \textit{Intent}, in modo tale che il \textit{BroadcastReceiver} (definito nella sezione 3.1.8) lo possa catturare e controllare lo stato della macchina a stati finiti, 
+ definita in fase di progettazione.
 \end{itemize}
 \subsection{Il NetworkController}
-Il NetworkController si preoccupa di fornire gli strumenti necessari alla gestione degli attori coinvolti nel processo di networking e disseminazione locale delle informazioni.
-Questo oggetto è stato implementato seguendo le linee guida del Pattern Singleton.
-Questo pattern permette, fondamentalmente, di creare una ed una sola istanza di una particolare classe, rendendola disponibile in ottica globale. 
-Il concetto è quello di avere oggetti Java che permettano di avere controllo, in ogni punto del progetto, sulle componenti fondamentali dell'architettura implementata.
-Infatti, la mansione principale di questa classe è proprio quella di esporre le istanze degli oggetti che permettono la realizzazione del processo di disseminazione locale.
-Tramite questa è possibile accedere all'oggetto NetworkServiceSearcher, NetworkAccessPoint e NetworkConnection.
-Il primo, come verrà illustrato in seguito, si preoccupa di segnalare la presenza di beacon di servizio nelle vicinanze, il secondo governa eventuali funzionalità da Access Point del device, 
+La classe \textit{NetworkController} si preoccupa di  gestire gli attori coinvolti nel processo di networking e disseminazione locale delle informazioni.
+Questo oggetto è stato implementato seguendo le linee guida del pattern Singleton.
+Questo pattern permette di creare una ed una sola istanza di una particolare classe, rendendola disponibile in ottica globale. 
+Il concetto è quello di avere controllo, in ogni punto del progetto, sulle componenti fondamentali dell'architettura implementata.
+Infatti, la mansione principale di questa classe è proprio quella di esporre le istanze degli oggetti che permettono la realizzazione del processo di spreading.
+Tramite questa è possibile accedere agli oggetti delle classi \textit{NetworkBeaconPeerSearcher}, \textit{NetworkAccessPoint} e\textit{ NetworkConnection}.
+Il primo si preoccupa di segnalare la presenza di beacon di servizio nelle vicinanze, il secondo governa eventuali funzionalità da Access Point del device, 
 mentre il terzo implementa funzionalità client per connettersi ad HotSpot nei paraggi.
-Inoltre, il NetworkController, registra in una variabile lo stato corrente della Network Machine State, la quale scandisce logicamente il processo di spreading.
-Infine, espone metodi per la registrazione e rilascio del BroadcastReceiver.
+Inoltre registra in una variabile lo stato corrente della Network Machine State, la quale scandisce logicamente il processo di spreading.
+Infine, espone metodi per la registrazione e rilascio del \textit{BroadcastReceiver}.
 Di seguito vengono elencate i metodi principali che la classe espone:
 \begin{itemize}
-\item startAccessPoint / stopAccessPoint : Metodi che decretano l'inizio, o la fine, del device come Access Point.
-\item startConnection / stopConnection : Metodi che cercano di connettersi, o scollegarsi, da un HotSpot.
-\item startServiceSearcher / stopServiceSearcher : Metodi che sanciscono l'inizio, o la fine, della ricerca di beacon di servizio nelle vicinanze.
+\item \textit{startAccessPoint} / \textit{stopAccessPoint} : metodi che decretano l'inizio, o la fine, del device come Access Point.
+\item \textit{startConnection} / \textit{stopConnection} : metodi che cercano di connettersi, o scollegarsi, da un HotSpot.
+\item \textit{startServiceSearcher} / \textit{stopServiceSearcher} : metodi che sanciscono l'inizio, o la fine, della ricerca di beacon nelle vicinanze.
 \end{itemize}
 \subsection{Connessione ad un Access Point}
-La classe NetworkConnection, concettualmente molto semplice, detiene la procedura necessaria per connettersi in maniera automatica ad un AccessPoint, presente nella lista ricavata dallo scan delle reti circostanti.
+La classe \textit{NetworkConnection} detiene la procedura necessaria per connettersi in maniera automatica ad un Access Point, presente nella lista ricavata dallo scan delle reti circostanti.
 Questa classe viene utilizzata quando un device, tramite l'arrivo di un beacon, capisce che vi è un Access Point attivo e disponibile a soddisfare richieste di sincronizzazione.
 Infatti, questo, assumerà il ruolo di Client cercando di agganciarsi all'HotSpot individuato.
 \\È necessario ricordare che, per effettuare queste procedure in maniera completamente automatica e trasparente all'utente, vi è la necessità di conoscere la passphrase per connettersi. 
-Questa come vedremo, sarà ricavata dai beacon di servizio, già accennati in precedenza.
+Questa come vedremo in sezione 3.1.8, sarà ricavata dai beacon di servizio.
 \\Di seguito viene mostrato il codice discusso:
-\begin{verbatim}
+\begingroup
+\fontsize{9pt}{8pt}
+\begin{verbatim}  
 ...
 
 public class NetworkConnection {
@@ -535,32 +539,35 @@ public class NetworkConnection {
     this.wifiManager.disconnect();
   }
 }
-\end{verbatim}
+\end{verbatim}  
+\endgroup
 \subsection{Esplorazione dell'ambiente circostante}
-Questa classe ha lo scopo di capire la situazione nell'ambiente esterno, scoprendo quanti e quali attori vi sono nelle vicinanze e comportarsi di conseguenza.
-Ogni device, per decidere se fungere da AccessPoint o se connettersi come client ad un HotSpot già esistente, ha bisogno di comprendere ed essere avvisato della presenza o meno di altri host nell'ambiente locale.
-\subsubsection{Scoperta di peers}         %crea la sottosezione
-La classe WiFiP2PManager di Android, permette di gestire tramite chiamate API la connessione peer-to-peer tra device.
-Molte chiamate implementate fanno riferimento ad eventi asincroni, di conseguenza è stato necessario implementare Listener in modo tale da porre determinate logiche, al succedersi di determinati eventi.
-Uno di questi può essere individuato nella scoperta di peers, dove si prende nota dell'eventuale presenza di altri device Android nell'ambiente circostante.
-Questo può essere ritrovato nella funzione startPeerDiscovery della classe NetworkBeaconPeerSearcher, dove viene richiamato il metodo discoverPeers del WiFiP2PManager.
-A questo punto il device è pronto a notificare la presenza di eventuali peers nelle vicinanze.
-Per catturare queste notifiche è stato necessario implementare un personale PeerListListener, il quale grazie al metodo onPeersAvailable (WifiP2pDeviceList peers) restituisce la lista dei peers presenti nei paraggi.
-\subsubsection{Beacon di servizio}         %crea la sottosezione
+Il sistema ha la necessità di capire la situazione nell'ambiente esterno, scoprendo quanti e quali attori vi sono nelle vicinanze e comportarsi di conseguenza.
+Ogni device, per decidere se fungere da Access Point o se connettersi come client ad un HotSpot già esistente, ha bisogno di comprendere ed essere avvisato della presenza o meno di altri host nell'ambiente locale.
+Tutto quello che verrà illustrato in questa sezione è stato implementato nella classe \textit{NetworkBeaconPeerSearcher}.
+\subsubsection{Scoperta di peers}
+La classe \textit{WiFiP2PManager} di Android, permette di gestire tramite chiamate API la connessione peer-to-peer tra device.
+Molte di queste fungono da listener per gli eventi asincroni della rete, in modo tale da proporre determinate logiche al succedersi di determinati eventi.
+Tramite il metodo \textit{discoverPeers} è possibile mettersi alla ricerca di eventuali device Android nell'ambiente circostante.
+Per catturare le notifiche relative alla presenza di un device è stato necessario implementare un custom \textit{PeerListListener}, il quale grazie al metodo \textit{onPeersAvailable}
+restituisce la lista dei peers presenti nei paraggi.
+\subsubsection{Beacon di servizio}
 Sempre nell'ambito peer-to-peer, la tecnologia Android, permette di pubblicizzare un servizio ad altri device prima di un'effettiva connessione tra i dispositivi.
-La documentazione per developer di Android, specifica che questo meccanismo è stato fatto per individuare, in una fase iniziale, peer che esponessero determinati servizi, piuttosto che altri.
+La documentazione per developer di Android[21] specifica che questo meccanismo è stato fatto per individuare, in una fase iniziale, peers con determinati servizi.
+I Bonjour service vengono creati grazie alla classe \textit{WifiP2pDnsSdServiceInfo}. 
 Questa funzionalità è stata fondamentale per la realizzazione del progetto, in quanto permette di fare assunzioni prima di effettuare tentativi di connessione tra peer.
-In un primo momento si è pensato di inserire le informazioni relative agli eventi parcheggio direttamente all'interno di questi pacchetti, in quanto vi è la possibilità di inserire un tipo di dato Map\textless String, String \textgreater.
+In un primo momento si è pensato di includere le informazioni relative agli eventi parcheggio direttamente all'interno di questi pacchetti, in quanto vi è la possibilità di inserire un tipo di dato 
+\textit{Map\textless String, String\textgreater}.
 Con questo tipo di meccanismo si sarebbe potuto attuare il cosiddetto piggybacking, inserendo il vero payload direttamente dentro a questi pacchetti di servizio.
 Questa strategia, oltre ad abbassare notevolmente la complessità, avrebbe permesso di scambiare dati in broadcast tra device, senza che questi instaurassero una connessione.
-L'implementazione però non è resa possibile a causa del basso contenuto, in termini di dimensione, che può contenere il tipo di dato Map\textless String, String\textgreater.
-Lo standard consiglia di tenere questo contenuto sotto i 200 bytes e non è raccomandato superare i 1300 bytes. Provando empiricamente, si è potuto confermare la restrinzione appena citata.
-Gli ArrayList degli eventi che vogliamo sincronizzare hanno un contenuto maggiore del limite tecnologico imposto, per questo motivo si è dovuto virare sul meccanismo di AccessPoint e connessioni automatiche.
-Questi pacchetti risultano comunque determinanti, in quanto incapsuleranno la stringa passphrase, necessaria ai client per connettersi in maniera automatica all'HotSpot esposto.
-Tornando al progetto, è possibile scoprire questi servizi tramite il metodo startBeaconDiscovery, il quale chiama a sua volta il metodo discoverServices del WiFiP2PManager.
-Il Listener, relativo alla scoperta di un servizio, riguarda la creazione di un oggetto DnsSdServiceResponseListener, il quale implementando il metodo onDnsSdServiceAvailable, fornisce in input tutte le 
-infomazioni necessario sul servizio appena scoperto (ad esempio nome, tipo, device).
-\subsubsection{Logiche di scoperta}         %crea la sottosezione
+L'implementazione però non è resa possibile a causa del basso contenuto, in termini di dimensione, che può essere inserito in questi beacon.
+Lo standard consiglia di tenere questo contenuto sotto i 200 bytes e non è raccomandato superare i 1300 bytes[22 - sezione 6.2]. Provando empiricamente, si è potuto confermare la restrinzione appena citata.
+Gli \textit{ArrayList} degli eventi che vogliamo sincronizzare hanno un contenuto maggiore del limite tecnologico imposto, per questo motivo si è dovuto virare sul meccanismo di Access Point e connessioni automatiche.
+Questi pacchetti risultano comunque determinanti, in quanto incapsulano la stringa passphrase, necessaria ai client per connettersi in maniera automatica all'HotSpot esposto.
+Tornando al progetto, è possibile scoprire questi servizi tramite il metodo \textit{startBeaconDiscovery}, il quale chiama a sua volta il metodo \textit{discoverServices} del \textit{WiFiP2PManager}.
+Il listener, relativo alla scoperta di un servizio, riguarda la creazione di un oggetto \textit{DnsSdServiceResponseListener}, il quale implementando il metodo \textit{onDnsSdServiceAvailable}, fornisce in input tutte le 
+informazioni necessario sul servizio appena scoperto (nome, tipo, device).
+\subsubsection{Logiche di scoperta}
 Nei precedenti due sottoparagrafi si è cercato di illustrare le funzionalità principali che si ritrovano nella classe NetworkBeaconPeerSearcher, illustrando le funzioni API chiave utilizzate.
 Ora si cercherà di spiegare la logica che è stato necessario implementare e come la scoperta di peers e servizi si interfacciano tra loro.
 Quando un device scopre la presenza di almeno un peer attorno a lui, si mette immediatamente all'ascolto di eventuali servizi esposti da altri utenti.
@@ -984,16 +991,17 @@ I risultati saranno frutto delle medie dei vari run con la stessa configurazione
 \end{center}
 \end{table}
 \subsubsection{VANET V2V}
-Per simulare la tecnologia presente nei sistemi V2V, basato sull'\textit{802.11p}, si settano i parametri di \textit{range}, \textit{min\_latency} e \textit{max\_latency} in modo tale che 
+Per simulare la tecnologia presente nei sistemi \textit{V2V}, basato sull'\textit{802.11p}, si settano i parametri di \textit{range}, \textit{min\_latency} e \textit{max\_latency} in modo tale che 
 il range di comunicazione sia piuttosto elevato, sui 500m, e che la \textit{min\_latency} e \textit{max\_latency} siano azzerate.
 Questi ultimi due parametri vengono annullati in quanto la logica descritta in fase di progettazione ed implementata sull'app Android, su questi sistemi, non ha senso di esistere.
 I canali di comunicazione V2V non necessitano di un meccanismo di esposizione dell'HotSpot e connessione a questo da parte dei client.
 \subsubsection{WiFi Direct}
-Questa configurazione rispecchia l'architettura progettata ed implementata sull'applicazione Android. La documentazione ufficiale dello standard WiFi Direct dice che il range di comunicazione potrebbe raggiungere
+Questa configurazione rispecchia l'architettura progettata ed implementata sull'applicazione Android. 
+\\La documentazione ufficiale dello standard \textit{WiFi Direct} dice che il range di comunicazione potrebbe raggiungere
 i 200m[20]. In realtà 100m sembra un'assunzione più realistica per garantire la maggior parte delle connessioni.
 La latenza di apertura dei canali di comunicazione viene settata dai 2 ai 10 secondi.
 \subsubsection{Bluetooth}
-La terza tecnologia che si vuole considerare è il Bluetooth, il quale ha un range di comunicazione sui 20m ed una latenza di connessione che va dai 5 ai 15 secondi.
+La terza tecnologia che si vuole considerare è il \textit{Bluetooth}, il quale ha un range di comunicazione sui 20m ed una latenza di connessione che va dai 5 ai 15 secondi.
 Quest'ultimi parametri possono essere visti come un approccio ottimistico, in quanto il protocollo Bluetooth può impiegare più tempo per scoprire peer nelle vicinanze.
 \section{Risultati}
 \subsubsection{Accuratezza della cella corrente}
@@ -1022,8 +1030,8 @@ L'andamento delle curve nel grafico 4.3 può essere comparabile con quello nel gr
 Col il passare dei secondi e con l'inserimento di nuovi veicoli, la tecnologia \textit{WiFi Direct} riesce a fornire all'utente un buon livello di accuratezza generale (65-70\% dopo i primi 20 minuti, fino ad un 75\% a fine simulazione)
 nonostante il range di comunicazione sia ridotto rispetto ad una tecnologia \textit{V2V}.
 \subsubsection{L'accuratezza in base alla distanza}
-Il grafico in figura 4.5 mostra l'accuratezza delle informazioni in base alla distanza. Ricordando che i device si sincronizzano sulle informazioni della cella corrente e su quelle strettamente adiacenti, è normale pensare
-che l'accuratezza decresca con la distanza. L'ipotesi viene dimostrata dall'andamento delle curve nel grafico 4.5, dove per ogni tecnologia l'accuratezza migliore la si ottiene per la cella corrente e per quelle 
+Il grafico in figura 4.4 mostra l'accuratezza delle informazioni in base alla distanza. Ricordando che i device si sincronizzano sulle informazioni della cella corrente e su quelle strettamente adiacenti, è normale pensare
+che l'accuratezza decresca con la distanza. L'ipotesi viene dimostrata dall'andamento delle curve nel grafico 4.4, dove per ogni tecnologia l'accuratezza migliore la si ottiene per la cella corrente e per quelle 
 presenti nel raggio di 250-500m.
 \begin{figure}[h]
 \centering
@@ -1031,9 +1039,9 @@ presenti nel raggio di 250-500m.
 \caption{Grafico dell'accuratezza media in base alla distanza - 3000 veicoli}
 \end{figure}
 \subsubsection{L'accuratezza in base al numero di veicoli}
-Il grafico in figura 4.6 mostra l'accuratezza media dopo 1800 simsec, per  ogni tecnologia, in scenari con 3000, 1500 e 500 veicoli.
+Il grafico in figura 4.5 mostra l'accuratezza media dopo 1800 simsec, per  ogni tecnologia, in scenari con 3000, 1500 e 500 veicoli.
 Come citato in sezione 1.2, il tasso di partecipazione in sistemi Crowdsensing è un fattore determinante per un efficace processo di spreading dell'informazione.
-La tecnologia \textit{V2V} riesce a mantenere livelli di accuratezza soddisfacenti anche con 1500 e 500 veicoli. Questo è determinato dall'alto range di comunicazione che il protocollo 802.11p riesce a 
+La tecnologia \textit{V2V} riesce a mantenere livelli di accuratezza soddisfacenti anche con 1500 e 500 veicoli. Questo è determinato dall'alto range di comunicazione che il protocollo \textit{802.11p} riesce a 
 garantire nella creazione di \textit{VANETs}.
 L'accuratezza della tecnologia \textit{WiFi Direct}, invece, decresce notevolmente con la diminuzione dei veicoli nella porzione di città considerata.
 Si passa da 70-72\% con 3000 veicoli, a 35\% con 1500 veicoli fino ad un 5\% con 500 veicoli.
@@ -1090,6 +1098,8 @@ bibliografia: questo \`e il mio riferimento \cite{K3,K4}.
 \bibitem{K18} IEEE Smart Cities, http://smartcities.ieee.org/about.html.
 \bibitem{K19} Feng Xia, LaurenceT.Yang, LizheWang, Alexey Vinel, ''Internet of Things``, IEEE, 2012.
 \bibitem{K20} Documentazione WiFi Direct, http://www.wi-fi.org/discover-wi-fi/wi-fi-direct.
+\bibitem{K21} Documentazione ufficiale Android, https://developer.android.com/index.html.
+\bibitem{K22} Standard Bonjour beacon, http://files.dns-sd.org/draft-cheshire-dnsext-dns-sd.txt.
 \end{thebibliography}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
 \clearpage{\pagestyle{empty}\cleardoublepage}
