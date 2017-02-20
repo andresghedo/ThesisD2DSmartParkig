@@ -16,3 +16,7 @@
 \contentsline {figure}{\numberline {3.6}{\ignorespaces Screenshot delle liste di sincronizzazioni ed eventi parcheggio}}{48}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Interfaccia grafica SUMO di Bologna}}{53}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Grafico dell'accuratezza media della cella corrente al trascorrere del tempo - 3000 veicoli\relax }}{57}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Grafico dell'accuratezza media della porzione di citt\`a al trascorrere del tempo - 3000 veicoli\relax }}{58}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Grafico dell'accuratezza media in base alla distanza - 3000 veicoli\relax }}{59}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Grafico dell'accuratezza media in base al numero di veicoli\relax }}{60}

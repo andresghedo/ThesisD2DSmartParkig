@@ -38,8 +38,12 @@
 \contentsline {section}{\numberline {4.3}Obiettivi di simulazione}{54}
 \contentsline {section}{\numberline {4.4}Configurazioni e run}{55}
 \contentsline {subsubsection}{VANET V2V}{55}
-\contentsline {subsubsection}{WiFi DIRECT}{56}
-\contentsline {subsubsection}{BLUETOOTH}{56}
-\contentsline {section}{\numberline {4.5}Risultati}{56}
-\contentsline {chapter}{Conclusioni}{59}
-\contentsline {chapter}{Bibliografia}{61}
+\contentsline {subsubsection}{WiFi Direct}{56}
+\contentsline {subsubsection}{Bluetooth}{56}
+\contentsline {section}{\numberline {4.5}Risultati}{57}
+\contentsline {subsubsection}{Accuratezza della cella corrente}{57}
+\contentsline {subsubsection}{Accuratezza dello scenario generale}{58}
+\contentsline {subsubsection}{L'accuratezza in base alla distanza}{59}
+\contentsline {subsubsection}{L'accuratezza in base al numero di veicoli}{59}
+\contentsline {chapter}{Conclusioni}{61}
+\contentsline {chapter}{Bibliografia}{63}

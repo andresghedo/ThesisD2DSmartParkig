@@ -171,7 +171,7 @@ I sistemi ITS si pongono l'obiettivo di migliorare la qualità dei trasporti in t
 Per fare ciò vengono sfruttati meccanismi intelligenti, in grado di fare determinate assunzioni sulla base delle informazione scambiate tra veicoli che si trovano in una determinata zona.
 Gli utenti, sfruttando le deduzioni offerte da questi sistemi, potrebbero variare il loro comportamento, permettendo così di smaltire le congestioni e favorire la viabilità generale.
 \section{Crowdsensing}
-Per Crowdsensing si definisce quell'attività di condivisione e raccolta dati, utilizzando i vari sensori presenti all'interno dei dispositivi. Lo scopo di ogni device deve essere quello 
+Per Crowdsensing si definisce quell'attività di condivisione e raccolta dati, utilizzando i vari sensori presenti all'interno dei dispositivi mobili. Lo scopo di ogni device deve essere quello 
 di condividere con molti utenti le proprie informazioni.
 In questa maniera, si potrà giungere ad una conoscenza condivisa tra gli utenti ed ottenere, in maniera intelligente, i risultati prefissati.
 Il Crowdsensing si suddivide principalmente in 2 categorie[3]:
@@ -180,12 +180,12 @@ Il Crowdsensing si suddivide principalmente in 2 categorie[3]:
 \item \textit{Opportunistic Crowdsensing} : la propagazione avviene in maniera automatica e trasparente all'utente.
 \end{itemize}
 La seconda categoria, dove l'utente deve solo accettare la condivisione dei propri dati, è quella maggiormente utilizzata nelle applicazioni mobili, in quanto è quella che garantisce una buona quantità di raccolta dati.
-Il Crowdsensing può essere uno strumento molto potente per ottenere risultati che possono essere ricavati soltanto dall'aggregazione di dati collettivi.
+\\Il Crowdsensing può essere uno strumento molto potente per ottenere risultati che possono essere ricavati soltanto dall'aggregazione di dati collettivi.
 Numerosi contributi, in letteratura, si basano proprio su questo concetto. Ad esempio, il progetto in [4] utilizza il concetto di Crowdsensing per la costruzione intelligente di mappe indicanti il 
 numero di parcheggi disponibili per una determinata strada.
-In questo caso, prendendo un numero elevato di utenti in una determinata zona e condividendo i dati di dove essi parcheggiano abitualmente, è possibile  tracciare gli slot disponibili in una 
+In questo caso, prendendo un numero elevato di utenti in una determinata zona e condividendo i dati di dove essi parcheggiano abitualmente, è possibile  tracciare le zone adibite al parcheggio di una 
 determinata strada.
-Il sistema presentato in [8], vuole fornire agli utenti la situazione di occupazione del parcheggio universitario, tramite i dati raccolti dagli utenti.
+Il sistema presentato in [8], vuole fornire agli utenti la situazione di occupazione del parcheggio universitario tramite i dati raccolti dagli utenti.
 Ogni studente quando lascia il parcheggio, contribuisce alla conoscenza globale, con la propria visione del parcheggio (pieno, semi-pieno, vuoto).
 I lavori proposti sul tema dello Smart Parking in [6][9], mostrano quanto sia fondamentale il tasso di partecipazione utente.
 Più utenti condividono le proprie informazioni, più l'accuratezza dei risultati sarà precisa. In particolare viene mostrato che un alto tasso di partecipazione corrisponde ad una diminuzione notevole del tempo di ricerca 
@@ -204,7 +204,7 @@ Il mondo tecnologico, i governi e la società dovrebbero favorire in maniera posi
 \item smart governance
 \end{itemize}
 La Smart City si pone l'obiettivo di semplificare ogni operazione della città, grazie agli ultimi sviluppi tecnologici.
-Soprattutto la recente espansione del paradigma IoT (Internet of Things, in italiano Internet delle Cose) ha permesso l'apertura verso nuove applicazioni, in grado di portare miglioramenti nella vita metropolitana.
+Soprattutto la recente espansione del paradigma \textit{IoT} (Internet of Things, in italiano Internet delle Cose) ha permesso l'apertura verso nuove applicazioni, in grado di portare miglioramenti nella vita metropolitana.
 In [19], si definisce l'Internet delle Cose come \textit{``l'interconnessione in rete di oggetti di uso quotidiano, formando una rete distribuita di dispositivi, comunicanti con l'uomo o con altri dispositivi''}.
 \\Ogni dispositivo potrà aumentare il proprio livello di intelligenza grazie all'interconnessione ed alle informazioni derivanti da altri device.
 \\Il progetto di tesi può essere visto come un primo passo verso il tema dello Smart City, dove numerosi dispositivi vengono coinvolti per migliorare un aspetto quotidiano dei cittadini.
@@ -250,12 +250,12 @@ parziali nel tempo, di conseguenza è necessario pensare ad efficaci metodi di pr
 \end{itemize}
 Il secondo paradigma è quello che verrà utilizzato in questo lavoro di tesi, dove gli attori della rete saranno solamente dispositivi end-point. 
 Risparmiando l'utilizzo di agenti centralizzati, si evitano importanti costi di installazione e gestione.
-Il tema dello Smart Parking porta a considerare la Smart City come una rete veicolare distribuita ed in queste condizioni è normale pensare ad una comunicazione V2V (Vehicle-To-Vehicle).
-Il V2V riguarda comunicazioni tra veicoli in movimento portanto alla creazione di resti spontanee, denominate VANETs (Vehicular ad hoc networks).
+Il tema dello Smart Parking porta a considerare la Smart City come una rete veicolare distribuita ed in queste condizioni è normale pensare ad una comunicazione \textit{V2V} (Vehicle-To-Vehicle).
+Il \textit{V2V} riguarda comunicazioni tra veicoli in movimento portanto alla creazione di resti spontanee, denominate \textit{VANETs} (Vehicular ad hoc networks).
 Questi tipi di sistemi sono stati realizzati per propagare informazioni in maniera totalmente distribuita tra i vecoli, segnalando eventuali pericoli, incidenti, percorsi trafficati.
 Ad oggi questo tipo di comunicazione non è disponibile per molte delle auto in commercio, trattandosi comunque di progetti costosi ed altamente innovativi.
-Un altro modo di propagazione distribuita può avvenire invece tramite l'utilizzo di Smartphone, utilizzando il paradigma D2D (Device-To-Device).
-Il D2D permette comunicazioni wireless distribuita tra device che sono nelle vicinanze. Questo approccio è quello che viene preso in considerazione nel lavoro di tesi, sfruttando i dispositivi utente per la 
+Un altro modo di propagazione distribuita può avvenire invece tramite l'utilizzo di Smartphone, utilizzando il paradigma \textit{D2D} (Device-To-Device).
+Il \textit{D2D} permette comunicazioni wireless distribuita tra device che sono nelle vicinanze. Questo approccio è quello che viene preso in considerazione nel lavoro di tesi, sfruttando i dispositivi utente per la 
 propagazione di informazioni, relativa alla situazione parcheggi, all'interno della Smart City.
 \part{Progettazione ed Implementazione}
 \chapter{Progettazione}                %crea il capitolo
@@ -918,7 +918,7 @@ Tutte le configurazioni necessarie per il corretto funzionamento di questo, defi
 per ognuna, viene specificato il tempo di partenza ed il percorso da effettuare).
 La gestione di questi file risulta complicata quando si vanno a simulare intere città, in quanto la mole di dati diventa importante.
 Veins è un framework open source, scritto anch'esso in C++, che fornisce una grossa quantità di moduli preimplementati, per la simulazione di protocolli wireless in ambito veicolare.
-Inoltre fornisce lo strumento TraCi che permette l'interazione tra i simulatori SUMO e OmNet, in modo che questi lavorino simultaneamente sull'esecuzione dello scenario definito dall'utente.
+Inoltre vengono fornite API per interfacciarsi a TraCi, un server di SUMO che permette l'interazione tra i diversi simulatori.
 \\I risultati delle simulazioni possono essere visualizzati direttamente da un apposita interfaccia grafica fornita da OMNeT ma possono anche essere esportati in vari formati. Si è scelto di esportare i risultati
 in formato CSV, per poi analizzarli tramite degli script PHP.
 \section{Modellazione}
@@ -953,26 +953,16 @@ A questo punto, in un determinato istante \textit{t\ped{i}}, se il device ha nel
 fino al limite superiore del 100\%, il quale può essere raggiunto solo da una struttura di tipo centralizzata.
 L'accuratezza, appena descritta, verrà calcolata e registrata nel corso del tempo per comprendere il relativo andamento, col trascorrere dei secondi.
 Inoltre verrà stabilita l'accuratezza in relazione alla distanza, per capire il grado di allineamento non solo sulle celle strettamente adiacenti, ma anche su quelle progressivamente più lontane.
-Infine verrà presa in considerazione l'accuratezza in base al numero di veicoli presenti nella porzione di Bologna considerata.
+Infine verrà presa in considerazione l'accuratezza media dopo 1800 secondi in base al numero di veicoli presenti nella porzione di Bologna considerata.
 \\Tutte queste misurazioni verranno comparate simulando diverse tecnologie, in modo tale da capire dove si colloca l'implementazione tramite WiFiDirect.
 \section{Configurazioni e run}
-Si vogliono comparare le metriche sopradescritte, simulando l'architettura con l'utilizzo di tre tecnologie differenti quali VANET V2V, WiFi Direct e Bluetooth.
-Il tempo per ogni run di simulazione è stato settato a 1800 simsec (mezzora simulata) e per ogni tecnologia si considerano scenari con 3000, 1500 e 500 veicoli.
-L'accuratezza dei sensori è stata settata per tutte le simulazioni a 90\%. Questo è frutto dello studio in [2], dove viene stimata l'accuratezza del componente di activity recognition presente nell'architettura.
+Si vogliono comparare le metriche sopradescritte, simulando l'architettura con l'utilizzo di tre tecnologie differenti quali \textit{VANET V2V}, \textit{WiFi Direct} e \textit{Bluetooth}.
+Il tempo per ogni run di simulazione è stato settato a 1800 simsec (mezzora simulata) e per ogni tecnologia si considera lo scenario target con 3000 veicoli.
+Il numero di veicoli fa riferimento a rilevamenti reali della porzione di Bologna considerata, in orari centrali della giornata. Per ottenere una stima dell'accuratezza media, dopo 1800 secondi,
+in base al numero di veicoli è stato necessario effettuare simulazioni riducendo le autovetture anche a 1500 e 500.
+L'accuratezza dei sensori è stata settata per tutte le simulazioni a 90\%. Questo deriva dello studio in [2], dove viene stimata l'accuratezza del componente di activity recognition presente nell'architettura.
 \\Per ottenere un'analisi statistica che abbia un senso, si effettuano 10 run indipendenti per ogni tecnologia e numero di veicoli, per un totale di 90 run indipendenti.
 I risultati saranno frutto delle medie dei vari run con la stessa configurazione.
-\subsubsection{VANET V2V}
-Per simulare la tecnologia presente nei sistemi V2V, basato sull'\textit{802.11p}, si settano i parametri di \textit{range}, \textit{min\_latency} e \textit{max\_latency} in modo tale che 
-il range di comunicazione sia piuttosto elevato, sui 500m, e che la \textit{min\_latency} e \textit{max\_latency} siano azzerate.
-Questi ultimi due parametri vengono annullati in quanto la logica descritta in fase di progettazione ed implementata sull'app Android, su questi sistemi, non ha senso di esistere.
-I canali di comunicazione V2V non necessitano di un meccanismo di esposizione dell'HotSpot e connessione a questo da parte dei client.
-\subsubsection{WiFi DIRECT}
-Questa configurazione rispecchia l'architettura progettata ed implementata sull'applicazione Android. Il range di comunicazione si aggira sui 100m, 
-con latenza di apertura dei canali di comunicazione che va dai 2 ai 10 secondi.
-\subsubsection{BLUETOOTH}
-La terza tecnologia che si vuole considerare è il Bluetooth, il quale ha un range di comunicazione sui 20m ed una latenza di connessione che va dai 5 ai 15 secondi.
-Quest'ultimi parametri possono essere visti come un approccio ottimistico, in quanto il protocollo Bluetooth può impiegare più tempo per scoprire peer nelle vicinanze.
-\\\\
 \begin{table}[h]                        %ambiente tabella
                                         %(serve per avere la legenda)
 \begin{center}                          %centra nella pagina la tabella
@@ -980,7 +970,7 @@ Quest'ultimi parametri possono essere visti come un approccio ottimistico, in qu
  \hline
  \multicolumn{4}{|c|}{\textbf{Simulation parameters}} \\
  \hline
- \textbf{technology}&V2V&WiFiDirect&Bluetooth\\
+ \textbf{technology}&V2V&WiFi Direct&Bluetooth\\
  \textbf{range(m)}&500&100&20\\
  \textbf{min\_latency(s)}&0&2&5\\
  \textbf{max\_latency(s)}&0&10&15\\
@@ -993,7 +983,69 @@ Quest'ultimi parametri possono essere visti come un approccio ottimistico, in qu
 \caption[parametri di simulazione]{parametri di simulazione}\label{tab:uno}
 \end{center}
 \end{table}
+\subsubsection{VANET V2V}
+Per simulare la tecnologia presente nei sistemi V2V, basato sull'\textit{802.11p}, si settano i parametri di \textit{range}, \textit{min\_latency} e \textit{max\_latency} in modo tale che 
+il range di comunicazione sia piuttosto elevato, sui 500m, e che la \textit{min\_latency} e \textit{max\_latency} siano azzerate.
+Questi ultimi due parametri vengono annullati in quanto la logica descritta in fase di progettazione ed implementata sull'app Android, su questi sistemi, non ha senso di esistere.
+I canali di comunicazione V2V non necessitano di un meccanismo di esposizione dell'HotSpot e connessione a questo da parte dei client.
+\subsubsection{WiFi Direct}
+Questa configurazione rispecchia l'architettura progettata ed implementata sull'applicazione Android. La documentazione ufficiale dello standard WiFi Direct dice che il range di comunicazione potrebbe raggiungere
+i 200m[20]. In realtà 100m sembra un'assunzione più realistica per garantire la maggior parte delle connessioni.
+La latenza di apertura dei canali di comunicazione viene settata dai 2 ai 10 secondi.
+\subsubsection{Bluetooth}
+La terza tecnologia che si vuole considerare è il Bluetooth, il quale ha un range di comunicazione sui 20m ed una latenza di connessione che va dai 5 ai 15 secondi.
+Quest'ultimi parametri possono essere visti come un approccio ottimistico, in quanto il protocollo Bluetooth può impiegare più tempo per scoprire peer nelle vicinanze.
 \section{Risultati}
+\subsubsection{Accuratezza della cella corrente}
+Il primo grafico (figura 4.2) misura l'accuratezza delle informazioni sulla cella corrente nel tempo. Ad intervalli di tempo costante e per ogni veicolo, viene calcolata la percentuale di informazioni disponibile per la cella corrente,
+rispetto al numero di eventi totali che sono stati compiuti in quel quadrante.
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.5]{img/graphics/local_accuracy.png}
+\caption{Grafico dell'accuratezza media della cella corrente al trascorrere del tempo - 3000 veicoli}
+\end{figure}
+L'andamento delle curve nel grafico 4.2 mostra come la tecnologia \textit{V2V}, dopo una prima fase di apprendimento di circa 400 simsec, riesca a mantenere un livello di accuratezza sull'80-85\%, raggiungendo il 90\% dopo la mezzora di simulazione.
+Si ricorda che i 3000 veicoli non vengono creati tutti nell'istante 0, ma ciascuno viene inserito nello scenario in un istante che va da 0 a 1800 simsec.
+Questo determina che nella fase iniziale, detta anche transiente, il numero di veicoli sia basso e per questo l'informazione non riesce a raggiungere i nodi già presenti nella città.
+Man mano che altri veicoli vengono inseriti, l'accuratezza sale grazie all'aumentare delle sincronizzazioni possibili, rendendo il processo di spreading più efficace.
+La tecnologia \textit{WiFi Direct} cresce meno rapidamente del \textit{V2V} a causa del minor range di comunicazione e della latenza di connessione. Si ottiene comunque un buon livello di accuratezza 
+già dopo 20 minuti, mantenendosi sul 70-75\% e raggiungendo anche l'80\% a fine simulazione.
+La tencologia \textit{Bluetooth} non riesce a raggiungere livelli di accuratezza soddisfacente. La latenza di connessione e soprattutto il basso range di comunicazione incidono negativamente sulla disseminazione.
+\subsubsection{Accuratezza dello scenario generale}
+Il secondo grafico (figura 4.3) misura l'accuratezza delle informazioni rispetto a tutta la città e non solo rispetto alla cella corrente in cui si trova il veicolo.
+L'andamento delle curve nel grafico 4.3 può essere comparabile con quello nel grafico 4.2 con un abbassamento generale dell'accuratezza di circa un 10\%.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.5]{img/graphics/global_accuracy.png}
+\caption{Grafico dell'accuratezza media della porzione di città al trascorrere del tempo - 3000 veicoli}
+\end{figure}
+Col il passare dei secondi e con l'inserimento di nuovi veicoli, la tecnologia \textit{WiFi Direct} riesce a fornire all'utente un buon livello di accuratezza generale (65-70\% dopo i primi 20 minuti, fino ad un 75\% a fine simulazione)
+nonostante il range di comunicazione sia ridotto rispetto ad una tecnologia \textit{V2V}.
+\subsubsection{L'accuratezza in base alla distanza}
+Il grafico in figura 4.5 mostra l'accuratezza delle informazioni in base alla distanza. Ricordando che i device si sincronizzano sulle informazioni della cella corrente e su quelle strettamente adiacenti, è normale pensare
+che l'accuratezza decresca con la distanza. L'ipotesi viene dimostrata dall'andamento delle curve nel grafico 4.5, dove per ogni tecnologia l'accuratezza migliore la si ottiene per la cella corrente e per quelle 
+presenti nel raggio di 250-500m.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.5]{img/graphics/distance.png}
+\caption{Grafico dell'accuratezza media in base alla distanza - 3000 veicoli}
+\end{figure}
+\subsubsection{L'accuratezza in base al numero di veicoli}
+Il grafico in figura 4.6 mostra l'accuratezza media dopo 1800 simsec, per  ogni tecnologia, in scenari con 3000, 1500 e 500 veicoli.
+Come citato in sezione 1.2, il tasso di partecipazione in sistemi Crowdsensing è un fattore determinante per un efficace processo di spreading dell'informazione.
+La tecnologia \textit{V2V} riesce a mantenere livelli di accuratezza soddisfacenti anche con 1500 e 500 veicoli. Questo è determinato dall'alto range di comunicazione che il protocollo 802.11p riesce a 
+garantire nella creazione di \textit{VANETs}.
+L'accuratezza della tecnologia \textit{WiFi Direct}, invece, decresce notevolmente con la diminuzione dei veicoli nella porzione di città considerata.
+Si passa da 70-72\% con 3000 veicoli, a 35\% con 1500 veicoli fino ad un 5\% con 500 veicoli.
+Questo determina che il sistema tramite l'applicazione Android può funzionare in modo soddisfacente se il numero di utenti rimane elevato.
+La tecnologia \textit{Bluetooth} non può essere considerata efficace in alcuna situazione.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.5]{img/graphics/n_car.png}
+\caption{Grafico dell'accuratezza media in base al numero di veicoli}
+\end{figure}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
 \clearpage{\pagestyle{empty}\cleardoublepage}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%per fare le conclusioni
