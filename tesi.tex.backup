@@ -72,7 +72,7 @@
 \newcommand{\seq}[1]{\left<#1\right>}   %crea un comando per il "generato"
                                         %   di un insieme, per richiamarlo
                                         %   si può scrivere ad esempio:
-                                        %           $\seq{q_1,q_2}$
+                                        %           $\seq{q_1,q_2}$\
 \begin{document}
 \begin{titlepage}                       %crea un ambiente libero da vincoli
                                         %   di margini e grandezza caratteri:
@@ -293,7 +293,7 @@ In questo modo, si cerca di fornire all'utente, previsioni più precise sulle cel
 Questo evita overhead nella comunicazione e sincronizzazione di entries che non sono utili all'utente.
 Rimanendo nel discorso di overhead, è normale pensare che questo modello possa ``esplodere``, in quanto la mole di dati potrebbe diventare enorme con il passare del tempo, così come le opportunità di sincronizzazione.
 Per evitare che questo succeda, viene controllata la dimensione del database locale, ed eventualmente eliminate le entries meno aggiornate.
-Inoltre i peers possono effettuare sincronizzazioni soltanto dopo una certa threshold, espressa in secondi.
+Inoltre i peer possono effettuare sincronizzazioni soltanto dopo una certa threshold, espressa in secondi.
 Questi concetti sono stati parametrizzati in fase di implementazione, quindi possono essere giustamente calibrati in base all'ambiente in cui si intende utilizzare l'app.
 
 \section{Architettura generale}               %crea la sezione
@@ -458,7 +458,7 @@ Questo dà la possibilità di connettere più client per Access Point, formando log
 \caption{Interazione utente per il consenso alla connessione}
 \end{figure}
 \subsection{Il servizio background}
-Dato che il processo di comunicazione tra peers deve avvenire in maniera completamente trasparente all'utente, è stato necessario implementare un servizio che svolgesse 
+Dato che il processo di comunicazione tra peer deve avvenire in maniera completamente trasparente all'utente, è stato necessario implementare un servizio che svolgesse 
 il meccanismo di invio e ricezione dati, anche nel caso in cui l'applicazione venisse chiusa.
 Un Service è un componente Andorid, sprovvisto di interfaccia grafica, che si preoccupa di compiere procedure in background.
 Questo componente è stato denominato \textit{NetworkAutoService}, ed estende appunto la classe \textit{Service} di Android. I metodi che gestiscono il servizio sono:
@@ -545,15 +545,15 @@ public class NetworkConnection {
 Il sistema ha la necessità di capire la situazione nell'ambiente esterno, scoprendo quanti e quali attori vi sono nelle vicinanze e comportarsi di conseguenza.
 Ogni device, per decidere se fungere da Access Point o se connettersi come client ad un HotSpot già esistente, ha bisogno di comprendere ed essere avvisato della presenza o meno di altri host nell'ambiente locale.
 Tutto quello che verrà illustrato in questa sezione è stato implementato nella classe \textit{NetworkBeaconPeerSearcher}.
-\subsubsection{Scoperta di peers}
+\subsubsection{Scoperta di peer}
 La classe \textit{WiFiP2PManager} di Android, permette di gestire tramite chiamate API la connessione peer-to-peer tra device.
 Molte di queste fungono da listener per gli eventi asincroni della rete, in modo tale da proporre determinate logiche al succedersi di determinati eventi.
 Tramite il metodo \textit{discoverPeers} è possibile mettersi alla ricerca di eventuali device Android nell'ambiente circostante.
 Per catturare le notifiche relative alla presenza di un device è stato necessario implementare un custom \textit{PeerListListener}, il quale grazie al metodo \textit{onPeersAvailable}
-restituisce la lista dei peers presenti nei paraggi.
+restituisce la lista dei peer presenti nei paraggi.
 \subsubsection{Beacon di servizio}
 Sempre nell'ambito peer-to-peer, la tecnologia Android, permette di pubblicizzare un servizio ad altri device prima di un'effettiva connessione tra i dispositivi.
-La documentazione per developer di Android[21] specifica che questo meccanismo è stato fatto per individuare, in una fase iniziale, peers con determinati servizi.
+La documentazione per developer di Android[21] specifica che questo meccanismo è stato fatto per individuare, in una fase iniziale, peer con determinati servizi.
 I Bonjour service vengono creati grazie alla classe \textit{WifiP2pDnsSdServiceInfo}. 
 Questa funzionalità è stata fondamentale per la realizzazione del progetto, in quanto permette di fare assunzioni prima di effettuare tentativi di connessione tra peer.
 In un primo momento si è pensato di includere le informazioni relative agli eventi parcheggio direttamente all'interno di questi pacchetti, in quanto vi è la possibilità di inserire un tipo di dato 
@@ -569,7 +569,7 @@ Il listener, relativo alla scoperta di un servizio, riguarda la creazione di un 
 informazioni necessario sul servizio appena scoperto (nome, tipo, device).
 \subsubsection{Logiche di scoperta}
 Nei precedenti due sottoparagrafi si è cercato di illustrare le funzionalità principali che si ritrovano nella classe \textit{NetworkBeaconPeerSearcher}, illustrando le funzioni API chiave utilizzate.
-Ora si cercherà di spiegare la logica che è stato necessario implementare e come la scoperta di peers e servizi si interfacciano tra loro.
+Ora si cercherà di spiegare la logica che è stato necessario implementare e come la scoperta di peer e servizi si interfacciano tra loro.
 Quando un device scopre la presenza di almeno un peer attorno a lui, si mette immediatamente all'ascolto di eventuali servizi esposti da altri utenti.
 Nel momento in cui si scoprisse un servizio idoneo che indichi la presenza di un AccessPoint, in attesa di possibili sincronizzazioni, viene mandato 
 un broadcast \textit{Intent} tale da notificare al \textit{BroadcastReceiver} di iniziare il processo di connessione all'HotSpot trovato.
@@ -706,7 +706,7 @@ private void startBeaconAP(String instance) {
 \end{verbatim}  
 \endgroup
 \subsection{Canali di comunicazione}
-Una volta che l'Access Point crea la rete ed altri peers riescono a connettersi, identificandosi con un indirizzo IP, si può passare all'apertura dei canali di comunicazione ed alla sincronizzazione degli 
+Una volta che l'Access Point crea la rete ed altri peer riescono a connettersi, identificandosi con un indirizzo IP, si può passare all'apertura dei canali di comunicazione ed alla sincronizzazione degli 
 eventi di parcheggio/rilascio.
 I canali di comunicazione si basano su \textit{Socket} serializzate, permettendo di inviare e ricevere, con un semplice casting, direttamente degli \textit{ArrayList\textless ParkEvent\textgreater}.
 L'Access Point, appena notificato dell'avvenuta creazione del gruppo, richiama la creazione di un oggetto della classe \textit{Server}, il quale istanzia una \textit{ServerSocket}, mettendosi in ascolto di eventuali richieste dai 
@@ -902,25 +902,57 @@ if(Constants.INTENT_D2D_CHECK_MACHINE_STATE.equals(action)) {
 \end{verbatim}  
 \endgroup
 \end{itemize}
-\newpage
-\section{Dati}
-\hyphenation{AppCompactActivity}
+\section{Gestione dell'informazione}
+Ogni device Android deve essere in grado di registrare tutte le informazioni sincronizzate nella propria memoria locale. Le informazioni vengono organizzate in un database di tipo relazionale
+basandosi sullo standard SQL e mappate in oggetti Java, in modo da semplificarne la gestione.
+\subsection{Il Modello}
+Il modello si compone di due entità, definite come \textit{Synchronization} e \textit{ParkEvent}. 
+Gli attributi che compongono queste due classi sono i medesimi definiti in fase di progettazione (sezione 2.4.1) ed i metodi 
+sono i tradizionali getter e setter, i quali permettono di leggere informazioni e settare attributi delle istanze Java in questione.
+All'interno dell'architettura, queste istanze, vengono gestite e rese accessibili dal \textit{Controller} tramite degli \textit{ArrayList\textless *\textgreater}.
+\subsection{Il database SQLite}
+Salvare le informazioni dei parcheggi in maniera strutturata è sembrato la soluzione migliore fin dalla progettazione. Nei sistemi mobili Android è possibile lavorare con basi di dati 
+tramite l'utilizzo di \textit{SQLite}. Si tratta di una serie di API, presenti nel package \textit{android.database.sqlite}, che permettono di gestire un file come un database transazionale a tutti gli effetti.
+All'avvio dell'applicazione viene istanziato un oggetto \textit{CustomSQLiteHelper} (estensione della classe \textit{SQLiteOpenHelper}) che controlla se esiste un database SQLite e ne apre la connessione.
+Se è la prima volta che l'utente avvia l'applicazione, dopo l'installazione, viene automaticamente creato il database con le tabelle \textit{synchronizations} e \textit{park\_events}.
+\subsection{Il Controller}
+L'oggetto \textit{Controller} si avvicina concettualmente al \textit{NetworkController}, illustrato in 3.1.3. Implementato anch'esso con il pattern Singleton, ha l'obiettivo di fornire agli altri componenti dell'
+architettura le informazioni presenti nel database \textit{SQLite}. Quando si deve effettuare una query sulla base di dati, non si crea un oggetto \textit{SQLiteDBManager} ma si contatta direttamente il \textit{Controller}, 
+il quale fornirà la risposta. 
+Oltre a fungere da interfaccia verso il database, implementa anche altri metodi utili:
+\begin{itemize}
+\item \textit{isMyServiceRunning(Class<?> class, Context ctx)} : 
+\item \textit{mergeEntries(ArrayList<ParkEvent> pe)} : 
+\item \textit{getMacAddr()} : 
+\item \textit{isPossibleSync()} : 
+\end{itemize}
+
+
+
+
+
+
+
 \section{Interfaccia grafica}
 L'interfaccia grafica è gestita da un'estensione della classe Android \\\textit{AppCompactActivity}. L'utente tramite il movimento di swipe laterale ha la possibilità di spostarsi da una schermata all'altra.
 La \textit{MainActivity} utilizza un \textit{FragmentPagerAdapter} per catturare l'evento di swipe e mostrare il \textit{Fragment} corretto.
-Ogni schermata viene gestita da un'estensione della classe \textit{Fragment}, fornendo all'utente una determinata interfaccia grafica in base ai file xml di layout che vengono settati nel metodo \textit{onCreateView}.
+Ogni schermata viene gestita da un'estensione della classe \textit{Fragment}, fornendo all'utente una determinata interfaccia grafica in base ai file \textit{xml} di layout che vengono settati nel metodo \textit{onCreateView}.
 L'applicazione è composta da 5 schermate:
 \begin{itemize}
 \item \textit{MapFragment} : schermata che mostra la città divisa in celle, colorate in base alla probabilità di occupazione. La pressione di una cella fornisce un \textit{Toast} indicante la probabilità in numero. La figura 3.2 
                               mostra lo screenshot della schermata.
-\item \textit{DisseminationFragment} : 
-\item \textit{RecognitionFragment} : 
-\item \textit{SyncListFragment} : 
-\item \textit{ParkEventListFragment} : 
+\item \textit{DisseminationFragment} : schermata in cui l'utente può attivare/disattivare il servizio di disseminazione tramite \textit{WiFi Direct}. Inoltre si forniscono all'utente informazioni sullo 
+                              stato in cui si trova. Le figure 3.3 e 3.4 mostrano lo screenshot della schermata.
+\item \textit{RecognitionFragment} : schermata in cui l'utente può attivare/disattivare le fasi di training e recognition della mobilità. Se la fase di recognition è attiva viene mostrata la predizione corrente. 
+                              La figura 3.5 mostra lo screenshot della schermata.
+\item \textit{SyncListFragment} : schermata in cui viene mostrato all'utente la lista delle ultime sincronizzazione. È possibile filtrare per tempo e ruolo (se il device fungeva da Access Point o no al momento della sincronizzazione).
+                              La figura 3.6 mostra lo screenshot della schermata.
+\item \textit{ParkEventListFragment} : schermata in cui viene mostrato all'utente la lista degli ultimi eventi di parcheggio. È possibile filtrare per cella e tipo (parcheggio o rilascio).
+                              La figura 3.6 mostra lo screenshot della schermata.
 \end{itemize}
 \newpage
 \section{Screenshot}
-Di seguito sono mostrati gli screenshot dell'applicazione D2DSP:
+Di seguito sono mostrati gli screenshot dell'applicazione D2DSmartParking:
 \begin{figure}[!h]
 \centering
 \includegraphics[scale=0.2]{img/screenshot/map.jpg}
