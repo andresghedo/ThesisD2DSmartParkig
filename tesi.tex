@@ -72,7 +72,7 @@
 \newcommand{\seq}[1]{\left<#1\right>}   %crea un comando per il "generato"
                                         %   di un insieme, per richiamarlo
                                         %   si può scrivere ad esempio:
-                                        %           $\seq{q_1,q_2}$
+                                        %           $\seq{q_1,q_2}$\
 \begin{document}
 \begin{titlepage}                       %crea un ambiente libero da vincoli
                                         %   di margini e grandezza caratteri:
@@ -805,7 +805,7 @@ Qui vengono prese tutte le decisioni riguardanti il networking, in base ai segna
 La classe può essere interpretata anche come un decisore, che in base al succedersi di determinati eventi, compie precise azioni.
 Di seguito vengono illustrati i comportamenti fondamentali, in base a determinati Intent in input. Le istruzioni condizionali citate sono tutte all'interno del metodo \textit{onReceive}.
 \begin{itemize}
-\item Tentativi di connessione : 
+\item \textbf{Tentativi di connessione :}
 \\All'arrivo di un custom Intent INTENT\_D2D\_AP\_FOUND, il sistema capisce che è stato scoperto un Access Point attivo nelle vicinanze e cerca di connettersi ad esso, 
 utilizzando la passphrase ricavata dal beacon di Bonjour.
 \begingroup
@@ -817,10 +817,12 @@ if (Constants.INTENT_D2D_AP_FOUND.equals(action)) {
   String serv = intent.getStringExtra(Constants.INTENT_D2D_AP_ACCESSDATA);
   String[] separated = serv.split(":");
   
-  /* stop my Access Point functionalities */
   if(NetworkController.getInstance().networkConnection == null) {
+  
+    /* stop my Access Point functionalities */
     NetworkController.getInstance().stopNetworkAccessPoint();
     NetworkController.getInstance().stopNetworkBeaconPeerSearcher();
+    
     /* Now I'm a simple Client */
     String networkSSID = separated[1];
     String networkPass = separated[2];  /* passprhase from beacon */
@@ -839,7 +841,7 @@ if (Constants.INTENT_D2D_AP_FOUND.equals(action)) {
 \end{verbatim}  
 \endgroup
 
-\item Gestione dello stato di connessione :
+\item \textbf{Gestione dello stato di connessione :}
 \\L'Intent \textit{WifiManager.NETWORK\_STATE\_CHANGED\_ACTION} decreta un cambiamento di stato della connessione WiFi del device. Se è avvenuta una 
 disconnessione il device torna disponibile ad interpretare il ruolo di Access Point, mentre se è decretata la connessione ad un HotSpot inizierà il procedimento di sincronizzazione, lato Client.
 \begingroup
@@ -860,7 +862,7 @@ if (WifiManager.NETWORK_STATE_CHANGED_ACTION.equals(action)) {
        }
      }
     if(this.connetionState.equals(Constants.CONN_STATE_DISCONNECTED)){
-      /* start access point funztionalities */
+      /* start access point functionalities */
       ...
     }
   }
@@ -875,7 +877,7 @@ if (WifiManager.NETWORK_STATE_CHANGED_ACTION.equals(action)) {
 \end{verbatim}  
 \endgroup
 
-\item Sincronizzazioni successive :
+\item \textbf{Sincronizzazioni successive :}
 \\Come ribadito in fase di progettazione, se un Client mantiene la propria connessione attiva con l'Access Point per un certo periodo, anche dopo aver effettuato una prima sincronizzazione con esso, 
 ha la possibilità di effettuare un successivo scambio dati, dopo una certa threshold.
 Il componente quindi, periodicamente, controlla lo stato della Network State Machine e se il device continua a trovarsi nello stato STATE\_SYNCED\_CONNECTED anche dopo la soglia stabilita, può effettuare 
@@ -901,7 +903,27 @@ if(Constants.INTENT_D2D_CHECK_MACHINE_STATE.equals(action)) {
 \endgroup
 \end{itemize}
 \newpage
-\section{Screenshot}                 %crea la sezione
+\section{Dati}
+\hyphenation{AppCompactActivity}
+\section{Interfaccia grafica}
+L'interfaccia grafica è gestita da un'estensione della classe Android \\\textit{AppCompactActivity}. L'utente tramite il movimento di swipe laterale ha la possibilità di spostarsi da una schermata all'altra.
+La \textit{MainActivity} utilizza un \textit{FragmentPagerAdapter} per catturare l'evento di swipe e mostrare il \textit{Fragment} corretto.
+Ogni schermata viene gestita da un'estensione della classe \textit{Fragment}, fornendo all'utente una determinata interfaccia grafica in base ai file \textit{xml} di layout che vengono settati nel metodo \textit{onCreateView}.
+L'applicazione è composta da 5 schermate:
+\begin{itemize}
+\item \textit{MapFragment} : schermata che mostra la città divisa in celle, colorate in base alla probabilità di occupazione. La pressione di una cella fornisce un \textit{Toast} indicante la probabilità in numero. La figura 3.2 
+                              mostra lo screenshot della schermata.
+\item \textit{DisseminationFragment} : schermata in cui l'utente può attivare/disattivare il servizio di disseminazione tramite \textit{WiFi Direct}. Inoltre si forniscono all'utente informazioni sullo 
+                              stato in cui si trova. Le figure 3.3 e 3.4 mostrano lo screenshot della schermata.
+\item \textit{RecognitionFragment} : schermata in cui l'utente può attivare/disattivare le fasi di training e recognition della mobilità. Se la fase di recognition è attiva viene mostrata la predizione corrente. 
+                              La figura 3.5 mostra lo screenshot della schermata.
+\item \textit{SyncListFragment} : schermata in cui viene mostrato all'utente la lista delle ultime sincronizzazione. È possibile filtrare per tempo e ruolo (se il device fungeva da Access Point o no al momento della sincronizzazione).
+                              La figura 3.6 mostra lo screenshot della schermata.
+\item \textit{ParkEventListFragment} : schermata in cui viene mostrato all'utente la lista degli ultimi eventi di parcheggio. È possibile filtrare per cella e tipo (parcheggio o rilascio).
+                              La figura 3.6 mostra lo screenshot della schermata.
+\end{itemize}
+\newpage
+\section{Screenshot}
 Di seguito sono mostrati gli screenshot dell'applicazione D2DSP:
 \begin{figure}[!h]
 \centering
@@ -1036,7 +1058,7 @@ La latenza di apertura dei canali di comunicazione viene settata dai 2 ai 10 sec
 La terza tecnologia che si vuole considerare è il \textit{Bluetooth}, il quale ha un range di comunicazione sui 20m ed una latenza di connessione che va dai 5 ai 15 secondi.
 Quest'ultimi parametri possono essere visti come un approccio ottimistico, in quanto il protocollo Bluetooth può impiegare più tempo per scoprire peer nelle vicinanze.
 \section{Risultati}
-\subsubsection{Accuratezza della cella corrente}
+\subsubsection{L'accuratezza della cella corrente}
 Il primo grafico (figura 4.2) misura l'accuratezza delle informazioni sulla cella corrente nel tempo. Ad intervalli di tempo costante e per ogni veicolo, viene calcolata la percentuale di informazioni disponibile per la cella corrente,
 rispetto al numero di eventi totali che sono stati compiuti in quel quadrante.
 \begin{figure}[!h]
@@ -1051,7 +1073,7 @@ Man mano che altri veicoli vengono inseriti, l'accuratezza sale grazie all'aumen
 La tecnologia \textit{WiFi Direct} cresce meno rapidamente del \textit{V2V} a causa del minor range di comunicazione e della latenza di connessione. Si ottiene comunque un buon livello di accuratezza 
 già dopo 20 minuti, mantenendosi sul 70-75\% e raggiungendo anche l'80\% a fine simulazione.
 La tencologia \textit{Bluetooth} non riesce a raggiungere livelli di accuratezza soddisfacente. La latenza di connessione e soprattutto il basso range di comunicazione incidono negativamente sulla disseminazione.
-\subsubsection{Accuratezza dello scenario generale}
+\subsubsection{L'accuratezza dello scenario generale}
 Il secondo grafico (figura 4.3) misura l'accuratezza delle informazioni rispetto a tutta la città e non solo rispetto alla cella corrente in cui si trova il veicolo.
 L'andamento delle curve nel grafico 4.3 può essere comparabile con quello nel grafico 4.2 con un abbassamento generale dell'accuratezza di circa un 10\%.
 \begin{figure}[h]
@@ -1084,8 +1106,6 @@ La tecnologia \textit{Bluetooth} non può essere considerata efficace in alcuna s
 \includegraphics[scale=0.5]{img/graphics/n_car.png}
 \caption{Grafico dell'accuratezza media in base al numero di veicoli}
 \end{figure}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
 \clearpage{\pagestyle{empty}\cleardoublepage}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%per fare le conclusioni

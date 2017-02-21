@@ -30,20 +30,22 @@
 \contentsline {subsection}{\numberline {3.1.6}Funzionalit\`a Access Point-like}{33}
 \contentsline {subsection}{\numberline {3.1.7}Canali di comunicazione}{34}
 \contentsline {subsection}{\numberline {3.1.8}L'ascoltatore BroadcastReceiverManagement}{36}
-\contentsline {section}{\numberline {3.2}Screenshot}{40}
-\contentsline {part}{III\hspace {1em}Valutazione}{45}
-\contentsline {chapter}{\numberline {4}Valutazione}{47}
-\contentsline {section}{\numberline {4.1}Strumenti}{47}
-\contentsline {section}{\numberline {4.2}Modellazione}{48}
-\contentsline {section}{\numberline {4.3}Obiettivi di simulazione}{50}
-\contentsline {section}{\numberline {4.4}Configurazioni e run}{51}
-\contentsline {subsubsection}{VANET V2V}{51}
-\contentsline {subsubsection}{WiFi Direct}{52}
-\contentsline {subsubsection}{Bluetooth}{52}
-\contentsline {section}{\numberline {4.5}Risultati}{53}
-\contentsline {subsubsection}{Accuratezza della cella corrente}{53}
-\contentsline {subsubsection}{Accuratezza dello scenario generale}{54}
-\contentsline {subsubsection}{L'accuratezza in base alla distanza}{55}
-\contentsline {subsubsection}{L'accuratezza in base al numero di veicoli}{55}
-\contentsline {chapter}{Conclusioni}{57}
-\contentsline {chapter}{Bibliografia}{59}
+\contentsline {section}{\numberline {3.2}Dati}{40}
+\contentsline {section}{\numberline {3.3}Interfaccia grafica}{40}
+\contentsline {section}{\numberline {3.4}Screenshot}{42}
+\contentsline {part}{III\hspace {1em}Valutazione}{47}
+\contentsline {chapter}{\numberline {4}Valutazione}{49}
+\contentsline {section}{\numberline {4.1}Strumenti}{49}
+\contentsline {section}{\numberline {4.2}Modellazione}{50}
+\contentsline {section}{\numberline {4.3}Obiettivi di simulazione}{52}
+\contentsline {section}{\numberline {4.4}Configurazioni e run}{53}
+\contentsline {subsubsection}{VANET V2V}{53}
+\contentsline {subsubsection}{WiFi Direct}{54}
+\contentsline {subsubsection}{Bluetooth}{54}
+\contentsline {section}{\numberline {4.5}Risultati}{55}
+\contentsline {subsubsection}{L'accuratezza della cella corrente}{55}
+\contentsline {subsubsection}{L'accuratezza dello scenario generale}{56}
+\contentsline {subsubsection}{L'accuratezza in base alla distanza}{57}
+\contentsline {subsubsection}{L'accuratezza in base al numero di veicoli}{57}
+\contentsline {chapter}{Conclusioni}{59}
+\contentsline {chapter}{Bibliografia}{61}
