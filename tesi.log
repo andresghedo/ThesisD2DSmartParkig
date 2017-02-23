@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.7.12)  23 FEB 2017 17:29
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.7.12)  23 FEB 2017 18:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -410,11 +410,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [13
 
 ]
-[14]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [15]
-<img/arch_general.png, id=90, 525.965pt x 519.9425pt>
+[14] [15] <img/arch_general.png, id=90, 525.965pt x 519.9425pt>
 File: img/arch_general.png Graphic file (type png)
 
 <use img/arch_general.png>
@@ -424,13 +420,20 @@ Package pdftex.def Info: img/arch_general.png used on input line 315.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[16] <img/arch_soft.png, id=94, 745.78625pt x 320.19624pt>
+<img/arch_soft.png, id=91, 745.78625pt x 320.19624pt>
 File: img/arch_soft.png Graphic file (type png)
-
-<use img/arch_soft.png>
+ <use img/arch_soft.png>
 Package pdftex.def Info: img/arch_soft.png used on input line 329.
 (pdftex.def)             Requested size: 372.89221pt x 160.09772pt.
- [17 <./img/arch_general.png>] [18 <./img/arch_soft.png>] [19]
+
+[16]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[17 <./img/arch_general.png>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [18 <./img/arch_soft.png>] [19]
 Underfull \hbox (badness 10000) in paragraph at lines 363--371
 
  []
@@ -744,7 +747,7 @@ ts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
 lic/amsfonts/cm/cmti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmtt9.pfb>
-Output written on tesi.pdf (78 pages, 4340548 bytes).
+Output written on tesi.pdf (78 pages, 4341130 bytes).
 PDF statistics:
  325 PDF objects out of 1000 (max. 8388607)
  205 compressed objects within 3 object streams

@@ -259,27 +259,27 @@ Il \textit{D2D} permette comunicazioni wireless tra device che sono nelle vicina
 propagazione di informazioni, relativa alla situazione parcheggi, all'interno della Smart City.
 \part{Progettazione ed Implementazione}
 \chapter{Progettazione}                %crea il capitolo
-Il seguente capitolo ha lo scopo di illustrare in dettaglio il goal del progetto, le problematiche che vi stanno dietro ed il processo di progettazione su cui è stato necessario soffermarsi, per la successiva realizzazione ed implementazione.
+Il seguente capitolo ha lo scopo di illustrare in dettaglio il goal del progetto, le problematiche che vi stanno dietro e la fase di progettazione su cui è stato necessario soffermarsi, per la successiva realizzazione ed implementazione.
 \\La mission, descrivendola in pochi concetti, è sostanzialmente quella di determinare quando un utente parcheggia o rilascia uno slot e disseminare queste informazioni in maniera totalmente distribuita, senza alcun appoggio di una struttura centralizzata.
 Questo concetto diventa innovativo dal momento in cui non si passa dalla rete cellulare o da qualche gateway verso Internet per la comunicazione tra dispositivi, 
 ma la comunicazione avverrà esclusivamente peer-to-peer, utilizzando tecnologie presenti nei più comuni device in commercio.
-\\Quello che si vuole fornire all'utente sono delle probabilità di trovare parcheggio in una determinata zona della città, piuttosto che in altre.
-\\Dettagli tecnologici ed implementativi saranno comunque discussi nel prossimo capitolo.
-\\Di seguito verranno illustrati soprattutto le principali strutture che compongono il sistema, descrivendone funzionalità, utilità ed integrazione con le restanti componenti.
+Quello che si vuole fornire all'utente sono delle probabilità di trovare parcheggio in una determinata zona della città, piuttosto che in altre.
+Dettagli tecnologici ed implementativi saranno comunque discussi nel prossimo capitolo.
+Di seguito verranno illustrate le principali strutture che compongono il sistema, descrivendone funzionalità, utilità ed integrazione con le restanti componenti.
 \section{Scopo e problematiche}                 %crea la sezione
-Come già accennato e discusso in precedenza lo scopo principale è quello di propagare informazioni, tra dispositivi mobili, in maniera completamente distribuita, senza l'appoggio di agenti centralizzati.
-Il device utente, tramite la componente di Activity Recognition presente nel software, rileva un evento di parcheggio o rilascio, dopo di chè tiene traccia dell'evento salvandolo in memoria locale.
-\\Le informazioni campionate, sopradescritte, saranno l'oggetto della comunicazione tra i device che potranno fare assunzioni su eventuali zone dense di parcheggi liberi.
+Come già accennato lo scopo principale è quello di propagare informazioni, tra dispositivi mobili, in maniera completamente distribuita, senza l'appoggio di agenti centralizzati.
+Il device utente, tramite la componente di Activity Recognition presente nel software, rileva un evento di parcheggio (o rilascio) e ne tiene traccia, salvandolo in memoria locale.
+Le informazioni sopradescritte saranno l'oggetto della comunicazione tra i device che potranno fare assunzioni su eventuali zone dense di parcheggi liberi.
 Più gli utenti restano allineati e sincronizzati su questi dati, più restano aggiornati e consapevoli della situazione parcheggi nei dintorni.
 Per scelta progettuale, la città viene divisa in celle (identificate con id univoci), permettendo così alla logica di disseminare informazioni relative alla cella in questione e a quelle adiacenti.
 Un altro aspetto non meno importante di quelli già illustrati, è il fatto che il servizio deve funzionare in modo continuativo nel tempo e soprattutto in maniera totalmente autonoma.
-Questo significa che l'utente, senza nessuna interazione con il device (mantenendolo per esempio in tasca), sincronizza comunque i propri dati con quelli di utenti circostanti, nei paraggi.
+Questo significa che l'utente, senza nessuna interazione con il device (per esempio mantenendolo in tasca), sincronizza comunque i propri dati con quelli di utenti circostanti.
 La funzionalità appena descritta, per renderla robusta, ha richiesto una fase implementativa consistente, la quale verrà illustrata tecnicamente nel Cap.3.
 \section{Scenario generale}                 %crea la sezione
 Lo scenario che si va a considerare per l'utilizzo di un'applicazione di questo genere è una città metropolitana.
-Questa può essere diversamente interpretata e suddivisa logicamente in una griglia composta da celle (quadranti), dove ognuna di queste viene identificata univocamente da una coppia di  coordinate X e Y.
-Queste coordinate sono considerati come indici matriciali che individuano una cella all'interno della matrice griglia della città. 
-Si presuppone che il numero di parcheggi disponibili in una data cella sia un dato noto a priori, il quale comprende tutti gli slot disponibili nelle strade che sono logicamente raggruppate, all'interno del 
+Questa può essere diversamente interpretata e suddivisa logicamente in una griglia composta da celle (quadranti), dove ognuna di queste viene identificata univocamente da una coppia di coordinate X e Y.
+Queste coordinate sono considerate come indici matriciali che individuano una cella all'interno della matrice griglia della città. 
+Si presuppone che il numero di parcheggi disponibili in una data cella sia un dato noto a priori, il quale comprende tutti gli slot disponibili nelle strade che sono raggruppate all'interno del 
 quadrante considerato.
 Si ricorda che si fa riferimento a parcheggi pubblici su strada e non a strutture private o a circuito chiuso.
 \\Il device dell'utente, tramite l'implementazione presente nell'app, performando un evento di parcheggio o rilascio, riesce a recuperare la cella in cui risiede logicamente e registrerà nel proprio database locale 
@@ -291,7 +291,7 @@ Da ciò deriva la necessità di sincronizzarsi su tutti gli eventi che sono succes
 Quando due peer cercheranno di sincronizzarsi verranno scambiate le informazioni relative alla cella corrente e quelle adiacenti.
 In questo modo, si cerca di fornire all'utente, previsioni più precise sulle celle che sono nei pressi della posizione corrente del device.
 Questo evita overhead nella comunicazione e sincronizzazione di entries che non sono utili all'utente.
-Rimanendo nel discorso di overhead, è normale pensare che questo modello possa ``esplodere``, in quanto la mole di dati potrebbe diventare enorme con il passare del tempo, così come le opportunità di sincronizzazione.
+Rimanendo nel discorso di overhead, è normale pensare che questo modello possa ``esplodere``, in quanto la mole di dati potrebbe diventare enorme con il passare del tempo.
 Per evitare che questo succeda, viene controllata la dimensione del database locale, ed eventualmente eliminate le entries meno aggiornate.
 Inoltre i peer possono effettuare sincronizzazioni soltanto dopo una certa threshold, espressa in secondi.
 Questi concetti sono stati parametrizzati in fase di implementazione, quindi possono essere giustamente calibrati in base all'ambiente in cui si intende utilizzare l'app.
@@ -1108,7 +1108,7 @@ implementata conseguentemente.
 Come verrà illustrato in sezione 4.2, sono stati parametrizzati gli aspetti che influenzano maggiormente lo spreading dell'informazione, in modo tale da comprendere le differenze al variare delle condizioni.
 \\L'utilizzo di OMNeT viene integrato dall'apporto di SUMO e di Veins.
 Il primo è un simulatore di mobilità urbana, anch'esso ottenibile in open source, che si preoccupa di emulare reti stradali, anche di grosse dimensioni.
-Tutte le configurazioni necessarie per il corretto funzionamento di questo, definite in file xml, riguardano la definizione delle strade, delle costruzioni presenti nell'ambiente e dalle macchine(di cui, 
+Tutte le configurazioni necessarie per il corretto funzionamento di questo, definite in file xml, riguardano la definizione delle strade, delle costruzioni presenti nell'ambiente e delle macchine (di cui, 
 per ognuna, viene specificato il tempo di partenza ed il percorso da effettuare).
 La gestione di questi file risulta complicata quando si vanno a simulare intere città, in quanto la mole di dati diventa importante.
 Veins è un framework open source, scritto anch'esso in C++, che fornisce una grossa quantità di moduli preimplementati, per la simulazione di protocolli wireless in ambito veicolare.
@@ -1116,7 +1116,7 @@ Inoltre vengono fornite API per interfacciarsi a TraCi, un server di SUMO che pe
 \\I risultati delle simulazioni possono essere visualizzati direttamente da un apposita interfaccia grafica fornita da OMNeT ma possono anche essere esportati in vari formati. Si è scelto di esportare i risultati
 in formato CSV, per poi analizzarli tramite degli script PHP.
 \section{Modellazione}
-La città presa in considerazione per l'analisi simulata del processo di disseminazione locale, è naturalmente Bologna.
+La città presa in considerazione per l'analisi simulata del processo di disseminazione locale è Bologna.
 In realtà, viene presa in considerazione soltanto una porzione di questa, più precisamente la zona nord-est del centro storico fino ad arrivare in zona Bologna fiere, fuori dall'anello del centro.
 Quantificandola, l'area appare come un rettangolo di 2.5 km per 1.5 km, per un totale di 3.75 km\ap{2}.
 Comprendendo le strutture universitarie e la stazione dei treni, si tratta di una zona abbastanza movimentata e del tutto idonea al testing dell'architettura implementata.
@@ -1130,7 +1130,7 @@ Comprendendo le strutture universitarie e la stazione dei treni, si tratta di un
 \item \underline{\textit{range}} : quando i due dispositivi risiedono l'uno nel range trasmissivo dell'altro la comunicazione avrà esito positivo. Misura espressa in metri.
 \item \underline{\textit{min\_latency}} : latenza minima che un utente aspetta per effettuare una sincronizzazione. Misura espressa in secondi.
 \item \underline{\textit{max\_latency}} : latenza massima che un utente può verificare prima che avvenga una sincronizzazione o un fallimento. Misura espressa in secondi.
-\item \underline{\textit{sensor\_accuracy}} : accuratezza dei device android nel performare l'evento di activity recognition rilascio o parcheggio. Misura espressa in percentuale da 0 a 1, compresi.
+\item \underline{\textit{sensor\_accuracy}} : accuratezza dei device Android nel performare l'evento di activity recognition rilascio o parcheggio. Misura espressa in percentuale da 0 a 1, compresi.
 \item \underline{\textit{synchronization\_time}} : tempo minimo per cui un utente deve aspettare prima di poter ri-sincronizzarsi. Misura espressa in secondi.
 \item \underline{\textit{cell\_size}} : lunghezza del lato di una cella, espresso in metri.
 \end{itemize}
@@ -1138,7 +1138,7 @@ La logica progettata per la simulazione è una versione semplificata di quella im
 ottenuti possano essere ritenuti affidabili.
 I dispositivi si possono sincronizzare continuamente nel tempo ma, per problemi di overhead già citati, tra due scambi di dati deve passare una certa threshold, rappresentata nel modello dal parametro 
 \textit{synchronization\_time}.
-\\I parametri di \textit{min\_latency} e \textit{max\_latency} rappresentano il tempo che gli AccessPoint e i Client ci mettono per identificare il loro ruolo, scoprire peer, rilevare beacon e connettersi ad un WiFiDirect Group.
+\\I parametri di \textit{min\_latency} e \textit{max\_latency} rappresentano il tempo che gli \\Access Point e i Client ci mettono per identificare il loro ruolo, scoprire peer, rilevare beacon e connettersi ad un \textit{WiFiDirect Group}.
 \section{Obiettivi di simulazione}
 In fase di simulazione, si vuole dimostrare che il movimento inerziale degli utenti e la strategia di disseminazione locale, permettono di restare sincronizzati sugli eventi che effettivamente accadono.
 In particolare si cercherà di analizzare l'accuratezza dei dati presenti nei database locali ai device utente, rispetto a ciò che è accaduto realmente.
@@ -1148,7 +1148,7 @@ fino al limite superiore del 100\%, il quale può essere raggiunto solo da una st
 L'accuratezza, appena descritta, verrà calcolata e registrata nel corso del tempo per comprendere il relativo andamento, col trascorrere dei secondi.
 Inoltre verrà stabilita l'accuratezza in relazione alla distanza, per capire il grado di allineamento non solo sulle celle strettamente adiacenti, ma anche su quelle progressivamente più lontane.
 Infine verrà presa in considerazione l'accuratezza media dopo 1800 secondi in base al numero di veicoli presenti nella porzione di Bologna considerata.
-\\Tutte queste misurazioni verranno comparate simulando diverse tecnologie, in modo tale da capire dove si colloca l'implementazione tramite WiFiDirect.
+\\Tutte queste misurazioni verranno comparate simulando diverse tecnologie, in modo tale da capire dove si colloca l'implementazione tramite WiFi Direct.
 \section{Configurazioni e run}
 Si vogliono comparare le metriche sopradescritte, simulando l'architettura con l'utilizzo di tre tecnologie differenti quali \textit{VANET V2V}, \textit{WiFi Direct} e \textit{Bluetooth}.
 Il tempo per ogni run di simulazione è stato settato a 1800 simsec (mezzora simulata) e per ogni tecnologia si considera lo scenario target con 3000 veicoli.
@@ -1184,7 +1184,7 @@ Questi ultimi due parametri vengono annullati in quanto la logica descritta in f
 I canali di comunicazione V2V non necessitano di un meccanismo di esposizione dell'HotSpot e connessione a questo da parte dei client.
 \subsubsection{WiFi Direct}
 Questa configurazione rispecchia l'architettura progettata ed implementata sull'applicazione Android. 
-\\La documentazione ufficiale dello standard \textit{WiFi Direct} dice che il range di comunicazione potrebbe raggiungere
+La documentazione ufficiale dello standard \textit{WiFi Direct} dice che il range di comunicazione potrebbe raggiungere
 i 200m[20]. In realtà 100m sembra un'assunzione più realistica per garantire la maggior parte delle connessioni.
 La latenza di apertura dei canali di comunicazione viene settata dai 2 ai 10 secondi.
 \subsubsection{Bluetooth}
@@ -1205,7 +1205,7 @@ Questo determina che nella fase iniziale, detta anche transiente, il numero di v
 Man mano che altri veicoli vengono inseriti, l'accuratezza sale grazie all'aumentare delle sincronizzazioni possibili, rendendo il processo di spreading più efficace.
 La tecnologia \textit{WiFi Direct} cresce meno rapidamente del \textit{V2V} a causa del minor range di comunicazione e della latenza di connessione. Si ottiene comunque un buon livello di accuratezza 
 già dopo 20 minuti, mantenendosi sul 70-75\% e raggiungendo anche l'80\% a fine simulazione.
-La tencologia \textit{Bluetooth} non riesce a raggiungere livelli di accuratezza soddisfacente. La latenza di connessione e soprattutto il basso range di comunicazione incidono negativamente sulla disseminazione.
+La tencologia \textit{Bluetooth} non riesce a raggiungere livelli di accuratezza soddisfacenti. La latenza di connessione e soprattutto il basso range di comunicazione incidono negativamente sulla disseminazione.
 \subsubsection{L'accuratezza dello scenario generale}
 Il secondo grafico (figura 4.3) misura l'accuratezza delle informazioni rispetto a tutta la città e non solo rispetto alla cella corrente in cui si trova il veicolo.
 L'andamento delle curve nel grafico 4.3 può essere comparabile con quello nel grafico 4.2 con un abbassamento generale dell'accuratezza di circa un 10\%.
