@@ -210,7 +210,7 @@ In [19], si definisce l'Internet delle Cose come \textit{``l'interconnessione in
 \\Il progetto di tesi può essere visto come un primo passo verso il tema dello Smart City, dove numerosi dispositivi vengono coinvolti per migliorare un aspetto quotidiano dei cittadini.
 \section{Smart Parking}
 Il problema del parcheggio può essere visto come una grossa sfida all'interno delle Città intelligenti, definite nella sezione 1.3.
-Con il termine Smart Parking si intendono tutte quelle soluzioni che intendono favorire l'utente nell'attività di parcheggio.
+Con il termine Smart Parking si intendono tutte quelle soluzioni che potrebbero favorire l'utente nell'attività di parcheggio.
 Secondo recenti studi, la maggior parte della congestione veicolare nelle grandi città è causata dai parcheggi.
 Gli utenti passano molto tempo nel cercare uno slot libero, soprattutto se si considerano parcheggi su strada (on-street parking).
 \\Le conseguenze negative di tutto ciò si possono riassumere in:
@@ -251,7 +251,7 @@ parziali nel tempo, di conseguenza è necessario pensare ad efficaci metodi di pr
 Il secondo paradigma è quello che verrà utilizzato in questo lavoro di tesi, dove gli attori della rete saranno solamente dispositivi end-point. 
 Risparmiando l'utilizzo di agenti centralizzati, si evitano importanti costi di installazione e gestione.
 Il tema dello Smart Parking porta a considerare la Smart City come una rete veicolare distribuita ed in queste condizioni è normale pensare ad una comunicazione \textit{V2V} (Vehicle-To-Vehicle).
-Il \textit{V2V} riguarda comunicazioni tra veicoli in movimento portanto alla creazione di resti spontanee, denominate \textit{VANETs} (Vehicular ad hoc networks).
+Il \textit{V2V} riguarda comunicazioni tra veicoli in movimento portanto alla creazione di reti spontanee, denominate \textit{VANETs} (Vehicular Ad-Hoc Networks).
 Questi tipi di sistemi sono stati realizzati per propagare informazioni in maniera totalmente distribuita tra i vecoli, segnalando eventuali pericoli, incidenti, percorsi trafficati.
 Ad oggi questo tipo di comunicazione non è disponibile per molte delle auto in commercio, trattandosi comunque di progetti costosi ed altamente innovativi.
 Un altro modo di propagazione distribuita può avvenire invece tramite l'utilizzo di Smartphone, utilizzando il paradigma \textit{D2D} (Device-To-Device).
@@ -434,15 +434,15 @@ probabilità di trovare parcheggio.
 
 
 \clearpage{\pagestyle{empty}\cleardoublepage}
-\chapter{Implementazione}                %crea il capitolo
-Come ribadito nel Cap. 2 l'obiettivo del progetto è quello di disseminare informazioni di smart parking in modalità Device-to-Device, senza l'ausilio di alcuna infrastruttura centralizzata. 
+\chapter{Implementazione}
+Come ribadito nel Cap. 2 l'obiettivo del progetto è quello di disseminare informazioni di Smart Parking in modalità Device-to-Device, senza l'ausilio di alcuna infrastruttura centralizzata. 
 In base alle informazioni ricevute, si riuscirà dunque a fare assunzioni sulle quantità di parcheggi disponibile in determinate zone della città.
-\\L'implementazione riguarda la realizzazione del processo sopradescritto nel Sistema Operativo Android, con l'ausilio della tecnologia \textit{WiFi Direct}.
+\\L'implementazione riguarda la realizzazione del processo di spreading nel Sistema Operativo Android, con l'ausilio della tecnologia \textit{WiFi Direct}.
 Quest'ultima, presente a partire dalle librerie API 14 e device con Android 4.0 o superiori, permette la comunicazione one-to-one tra dispositivi utente.
-\\Il capitolo seguente mostra i passi necessari alla realizzazione, dettagliando i componenti software realizzati partendo dalla base di progettazione, illustrata nel Cap.2.
-\section{Componente di disseminazione}                 %crea la sezione
-Il paragrafo illustra tutti gli attori principali che compongono il servizio di disseminazione delle informazioni. Si è cercato di spiegare, in ogni sottoparagrafo, le funzionalità
-del componente e l'interazione con gli altri. Questa è la parte che, in fase di implementazione, ha richiesto maggior sforzo ed essendo il cuore del progetto, verrà maggiormente descritta, addentrandosi anche
+\\Il capitolo seguente mostra i passi necessari alla realizzazione, dettagliando i componenti software realizzati partendo dalla base di progettazione, illustrata in sezione 2.4.
+\section{Componente di disseminazione}
+Il paragrafo illustra tutti gli attori principali che compongono il servizio di disseminazione delle informazioni. Ogni sottoparagrafo spiega le funzionalità
+dei componenti e l'interazione con gli altri. Questa è la parte che, in fase di implementazione, ha richiesto maggior sforzo ed essendo il cuore del progetto, verrà maggiormente descritta, addentrandosi anche
 nell'analisi del codice sorgente.
 \subsection{Strategia di connessione tramite WiFi Direct}
 La tecnologia \textit{WiFi Direct} rende possibile la creazione di cosiddetti \textit{P2P Groups}, i quali possono essere comparati ad infrastrutture WiFi. 
@@ -460,40 +460,38 @@ Questo dà la possibilità di connettere più client per Access Point, formando log
 \subsection{Il servizio background}
 Dato che il processo di comunicazione tra peer deve avvenire in maniera completamente trasparente all'utente, è stato necessario implementare un servizio che svolgesse 
 il meccanismo di invio e ricezione dati, anche nel caso in cui l'applicazione venisse chiusa.
-Un Service è un componente Andorid, sprovvisto di interfaccia grafica, che si preoccupa di compiere procedure in background.
+Un \textit{Service} è un componente Andorid, sprovvisto di interfaccia grafica, che si preoccupa di compiere procedure in background.
 Questo componente è stato denominato \textit{NetworkAutoService}, ed estende appunto la classe \textit{Service} di Android. I metodi che gestiscono il servizio sono:
 \begin{itemize}
  \item \textit{onCreate} : crea il servizio e lo notifica all'utente.
  \item \textit{onStartCommand} : metodo che inizia l'esecuzione vera e propria del servizio di disseminazione, in background. Qui, sostanzialmente, espone in beaconing la 
   possibilità di fungere da Access Point e si mette alla ricerca di preesistenti HotSpot nei paraggi. Queste funzionalità verranno descritte meglio in sezione 3.1.5 e 3.1.6.
-  Si ricorda che l'attivazione del servizio è sancita dall'utente tramite la pressione di un pulstante da interfaccia grafica, come mostrano gli screenshots in figura 3.3.
- \item \textit{onDestroy} : Metodo che ferma il servizio e libera le strutture dati necessarie al processo di networking. L'utente richiama implicitamente questo metodo alla pressione del bottone di stop del servizio, 
- come mostrano gli screenshots in figura 3.3.
- \item \textit{startCheckNetworkTimer} : metodo privato, richiamato nell'\textit{onStartCommand}, che inizializza un oggetto Timer e lo schedula ogni 30s. Questi 30s possono essere interpretati logicamente come un time slot. 
- L'azione schedulata, prevede l'invio di un \textit{Intent}, in modo tale che il \textit{BroadcastReceiver} (definito nella sezione 3.1.8) lo possa catturare e controllare lo stato della macchina a stati finiti, 
- definita in fase di progettazione.
+  Si ricorda che l'attivazione del servizio è sancita dall'utente tramite la pressione di un pulstante da interfaccia grafica, come mostrano gli screenshot in figura 3.3.
+ \item \textit{onDestroy} : Metodo che ferma il servizio e libera le strutture dati necessarie al processo di networking. L'utente richiama implicitamente questo metodo alla pressione del bottone stop del servizio, 
+ come mostrano gli screenshot in figura 3.3.
+ \item \textit{startCheckNetworkTimer} : metodo privato che inizializza un oggetto \textit{Timer} e lo schedula ogni 3s. Questi 3s possono essere interpretati logicamente come un time slot. 
+ L'azione schedulata, prevede l'invio di un \textit{Intent}, in modo tale che il \textit{BroadcastReceiver} (definito nella sezione 3.1.8) lo possa catturare e controllare lo stato della Network State Machine (definita in sezione 2.4.2).
 \end{itemize}
 \subsection{Il NetworkController}
 La classe \textit{NetworkController} si preoccupa di  gestire gli attori coinvolti nel processo di networking e disseminazione locale delle informazioni.
 Questo oggetto è stato implementato seguendo le linee guida del pattern Singleton.
 Questo pattern permette di creare una ed una sola istanza di una particolare classe, rendendola disponibile in ottica globale. 
 Il concetto è quello di avere controllo, in ogni punto del progetto, sulle componenti fondamentali dell'architettura implementata.
-Infatti, la mansione principale di questa classe è proprio quella di esporre le istanze degli oggetti che permettono la realizzazione del processo di spreading.
-Tramite questa è possibile accedere agli oggetti delle classi \textit{NetworkBeaconPeerSearcher}, \textit{NetworkAccessPoint} e\textit{ NetworkConnection}.
+Questo componente dà accesso agli oggetti delle classi \textit{NetworkBeaconPeerSearcher}, \textit{NetworkAccessPoint} e\textit{ NetworkConnection}.
 Il primo si preoccupa di segnalare la presenza di beacon di servizio nelle vicinanze, il secondo governa eventuali funzionalità da Access Point del device, 
 mentre il terzo implementa funzionalità client per connettersi ad HotSpot nei paraggi.
 Inoltre registra in una variabile lo stato corrente della Network Machine State, la quale scandisce logicamente il processo di spreading.
 Infine, espone metodi per la registrazione e rilascio del \textit{BroadcastReceiver}.
 Di seguito vengono elencate i metodi principali che la classe espone:
 \begin{itemize}
-\item \textit{startAccessPoint} / \textit{stopAccessPoint} : metodi che decretano l'inizio, o la fine, del device come Access Point.
-\item \textit{startConnection} / \textit{stopConnection} : metodi che cercano di connettersi, o scollegarsi, da un HotSpot.
-\item \textit{startServiceSearcher} / \textit{stopServiceSearcher} : metodi che sanciscono l'inizio, o la fine, della ricerca di beacon nelle vicinanze.
+\item \textit{startNetworkAccessPoint} / \textit{stopNetworkAccessPoint} : metodi che decretano l'inizio, o la fine, del device come Access Point.
+\item \textit{startNetworkConnection} / \textit{stopNetworkConnection} : metodi che cercano di connettersi, o scollegarsi, da un HotSpot.
+\item \textit{startNetworkBeaconPeerSearcher} / \textit{stopNetworkBeaconPeerSearcher} : metodi che sanciscono l'inizio, o la fine, della ricerca di beacon nelle vicinanze.
 \end{itemize}
 \subsection{Connessione ad un Access Point}
-La classe \textit{NetworkConnection} detiene la procedura necessaria per connettersi in maniera automatica ad un Access Point, presente nella lista ricavata dallo scan delle reti circostanti.
+La classe \textit{NetworkConnection} detiene la procedura necessaria per connettersi in maniera automatica ad un Access Point (presente nella lista ricavata dallo scan delle reti circostanti).
 Questa classe viene utilizzata quando un device, tramite l'arrivo di un beacon, capisce che vi è un Access Point attivo e disponibile a soddisfare richieste di sincronizzazione.
-Infatti, questo, assumerà il ruolo di Client cercando di agganciarsi all'HotSpot individuato.
+Assumendo il ruolo di Client si cercherà di agganciarsi all'HotSpot individuato.
 \\È necessario ricordare che, per effettuare queste procedure in maniera completamente automatica e trasparente all'utente, vi è la necessità di conoscere la passphrase per connettersi. 
 Questa come vedremo in sezione 3.1.8, sarà ricavata dai beacon di servizio.
 \\Di seguito viene mostrato il codice discusso:
@@ -543,7 +541,6 @@ public class NetworkConnection {
 \endgroup
 \subsection{Esplorazione dell'ambiente circostante}
 Il sistema ha la necessità di capire la situazione nell'ambiente esterno, scoprendo quanti e quali attori vi sono nelle vicinanze e comportarsi di conseguenza.
-Ogni device, per decidere se fungere da Access Point o se connettersi come client ad un HotSpot già esistente, ha bisogno di comprendere ed essere avvisato della presenza o meno di altri host nell'ambiente locale.
 Tutto quello che verrà illustrato in questa sezione è stato implementato nella classe \textit{NetworkBeaconPeerSearcher}.
 \subsubsection{Scoperta di peer}
 La classe \textit{WiFiP2PManager} di Android, permette di gestire tramite chiamate API la connessione peer-to-peer tra device.
@@ -553,7 +550,7 @@ Per catturare le notifiche relative alla presenza di un device è stato necessari
 restituisce la lista dei peer presenti nei paraggi.
 \subsubsection{Beacon di servizio}
 Sempre nell'ambito peer-to-peer, la tecnologia Android, permette di pubblicizzare un servizio ad altri device prima di un'effettiva connessione tra i dispositivi.
-La documentazione per developer di Android[21] specifica che questo meccanismo è stato fatto per individuare, in una fase iniziale, peer con determinati servizi.
+La documentazione per developer di Android[21] specifica che questo meccanismo è stato fatto per individuare peer con determinati servizi.
 I Bonjour service vengono creati grazie alla classe \textit{WifiP2pDnsSdServiceInfo}. 
 Questa funzionalità è stata fondamentale per la realizzazione del progetto, in quanto permette di fare assunzioni prima di effettuare tentativi di connessione tra peer.
 In un primo momento si è pensato di includere le informazioni relative agli eventi parcheggio direttamente all'interno di questi pacchetti, in quanto vi è la possibilità di inserire un tipo di dato 
@@ -563,7 +560,7 @@ Questa strategia, oltre ad abbassare notevolmente la complessità, avrebbe permes
 L'implementazione però non è resa possibile a causa del basso contenuto, in termini di dimensione, che può essere inserito in questi beacon.
 Lo standard consiglia di tenere questo contenuto sotto i 200 bytes e non è raccomandato superare i 1300 bytes[22 - sezione 6.2]. Provando empiricamente, si è potuto confermare la restrinzione appena citata.
 Gli \textit{ArrayList} degli eventi che vogliamo sincronizzare hanno un contenuto maggiore del limite tecnologico imposto, per questo motivo si è dovuto virare sul meccanismo di Access Point e connessioni automatiche.
-Questi pacchetti risultano comunque determinanti, in quanto incapsulano la stringa passphrase, necessaria ai client per connettersi in maniera automatica all'HotSpot esposto.
+Questi pacchetti risultano comunque determinanti, in quanto incapsulano la stringa passphrase, necessaria ai client per connettersi in maniera automatica agli Access Point.
 Tornando al progetto, è possibile scoprire questi servizi tramite il metodo \textit{startBeaconDiscovery}, il quale chiama a sua volta il metodo \textit{discoverServices} del \textit{WiFiP2PManager}.
 Il listener, relativo alla scoperta di un servizio, riguarda la creazione di un oggetto \textit{DnsSdServiceResponseListener}, il quale implementando il metodo \textit{onDnsSdServiceAvailable}, fornisce in input tutte le 
 informazioni necessario sul servizio appena scoperto (nome, tipo, device).
@@ -571,9 +568,9 @@ informazioni necessario sul servizio appena scoperto (nome, tipo, device).
 Nei precedenti due sottoparagrafi si è cercato di illustrare le funzionalità principali che si ritrovano nella classe \textit{NetworkBeaconPeerSearcher}, illustrando le funzioni API chiave utilizzate.
 Ora si cercherà di spiegare la logica che è stato necessario implementare e come la scoperta di peer e servizi si interfacciano tra loro.
 Quando un device scopre la presenza di almeno un peer attorno a lui, si mette immediatamente all'ascolto di eventuali servizi esposti da altri utenti.
-Nel momento in cui si scoprisse un servizio idoneo che indichi la presenza di un AccessPoint, in attesa di possibili sincronizzazioni, viene mandato 
+Nel momento in cui si scoprisse un servizio idoneo (indicante la presenza di un AccessPoint) viene mandato 
 un broadcast \textit{Intent} tale da notificare al \textit{BroadcastReceiver} di iniziare il processo di connessione all'HotSpot trovato.
-La classe che implementa tutte queste funzionalità è abbastanza ampia, per questo, di seguito, si mostra il solo codice relativo ai listeners citati nel paragrafo.
+La classe che implementa tutte queste funzionalità è abbastanza ampia, per questo si mostra il solo codice relativo ai listener citati nel paragrafo.
 \begingroup
 \fontsize{9pt}{8pt}
 \begin{verbatim}  
@@ -631,10 +628,9 @@ Queste, sostanzialmente, riguardano la creazione spontanea e autonoma di un \tex
 La classe implementa delle interfacce astratte Android, le quali permettono di catturare segnali relativi alla gestione del gruppo.
 In particolare, l'interfaccia \textit{WifiP2pManager.GroupInfoListener} permette di essere notificati quando il gruppo è stato creato.
 Questo è permesso dal metodo \textit{onGroupInfoAvailable}, dove in input vengono date tutte le informazioni necessarie sul gruppo appena formato.
-A questo punto all'interno del metodo si richiama una procedura \textit{startBeaconAP}
- per creare ed esporre il servizio di notifica, in modo tale da che gli utenti esterni riescano a connettersi automaticamente all'HotSpot.
+A questo punto all'interno del metodo si richiama una procedura \textit{startBeaconAP} per creare ed esporre il servizio di notifica.
 Oltre a questa operazione viene fatto partire il meccanismo per ricevere connessioni in input tramite Socket.
-Come citato in precedenza, il beacon incorpora l'informazione di passphrase in modo tale che la connessione possa avvenire in maniera automatica tramite la classe \textit{NetworkConnection}.
+Come citato in precedenza (sezione 3.1.5), il beacon incorpora l'informazione di passphrase in modo tale che la connessione possa avvenire in maniera automatica tramite la classe \textit{NetworkConnection}.
 Il codice sottostante mostra la creazione del gruppo tramite il metodo \textit{createGroup} e l'esposizione del servizio in merito alla notifica della corretta creazione della rete:
 \begingroup
 \fontsize{9pt}{8pt}
@@ -709,9 +705,9 @@ private void startBeaconAP(String instance) {
 Una volta che l'Access Point crea la rete ed altri peer riescono a connettersi, identificandosi con un indirizzo IP, si può passare all'apertura dei canali di comunicazione ed alla sincronizzazione degli 
 eventi di parcheggio/rilascio.
 I canali di comunicazione si basano su \textit{Socket} serializzate, permettendo di inviare e ricevere, con un semplice casting, direttamente degli \textit{ArrayList\textless ParkEvent\textgreater}.
-L'Access Point, appena notificato dell'avvenuta creazione del gruppo, richiama la creazione di un oggetto della classe \textit{Server}, il quale istanzia una \textit{ServerSocket}, mettendosi in ascolto di eventuali richieste dai 
-client, con il metodo \textit{accept()}.
-I clients invece, quando notificati dal \textit{BroadcastReceiver} dell'avvenuta connessione all'HotSpot, creano un oggetto \textit{Socket} con l'indirizzo IP del Server e la porta idonea.
+L'Access Point, appena notificato dell'avvenuta creazione del gruppo, richiama la creazione di un oggetto della classe \textit{Server}, il quale istanzia una \textit{ServerSocket}, mettendosi in ascolto di eventuali richieste,
+con il metodo \textit{accept()}.
+I client invece, quando notificati dal \textit{BroadcastReceiver} dell'avvenuta connessione all'HotSpot, creano un oggetto \textit{Socket} con IP e idonea.
 Ora che il canale di comunicazione bidirezionale è stato messo in piedi, l'Access Point invierà il proprio\textit{ ArrayList} nell'\textit{ObjectOutputStream}, grazie al metodo \textit{writeObject}. 
 Il Client coinvolto, vedendosi arrivare le informazioni nel canale \textit{ObjectInputStream}, le memorizza in una variabile ed invia le proprie, ripetendo il procedimento sopradescritto a parti inverse.
 Una volta chiuso il canale, viene fatto il merge delle entries ricevute con quelle già presenti in memoria.
@@ -878,9 +874,9 @@ if (WifiManager.NETWORK_STATE_CHANGED_ACTION.equals(action)) {
 \endgroup
 
 \item \textbf{Sincronizzazioni successive :}
-\\Come ribadito in fase di progettazione, se un Client mantiene la propria connessione attiva con l'Access Point per un certo periodo, anche dopo aver effettuato una prima sincronizzazione con esso, 
+\\Come ribadito in fase di progettazione, se un Client mantiene la propria connessione attiva con l'Access Point per un certo periodo 
 ha la possibilità di effettuare un successivo scambio dati, dopo una certa threshold.
-Il componente quindi, periodicamente, controlla lo stato della Network State Machine e se il device continua a trovarsi nello stato STATE\_SYNCED\_CONNECTED anche dopo la soglia stabilita, può effettuare 
+Il componente quindi controlla periodicamente lo stato della Network State Machine e se il device continua a trovarsi nello stato STATE\_SYNCED\_CONNECTED anche dopo la soglia stabilita, può effettuare 
 un'ulteriore comunicazione con l'HotSport Server.
 \begingroup
 \fontsize{9pt}{8pt}
@@ -915,24 +911,133 @@ Salvare le informazioni dei parcheggi in maniera strutturata è sembrato la soluz
 tramite l'utilizzo di \textit{SQLite}. Si tratta di una serie di API, presenti nel package \textit{android.database.sqlite}, che permettono di gestire un file come un database transazionale a tutti gli effetti.
 All'avvio dell'applicazione viene istanziato un oggetto \textit{CustomSQLiteHelper} (estensione della classe \textit{SQLiteOpenHelper}) che controlla se esiste un database SQLite e ne apre la connessione.
 Se è la prima volta che l'utente avvia l'applicazione, dopo l'installazione, viene automaticamente creato il database con le tabelle \textit{synchronizations} e \textit{park\_events}.
+La classe che effettua le query sql e che viene contatta dal \textit{Controller} per recuperare informazione dal database è \textit{SQLiteDBManager}.
+I metodi che fornisce questa classe sono i necessari per operazioni CRUD(Create Read Update Delete) su una base di dati. La chiamata \textit{rawQuery} dell'oggetto \textit{SQLiteDatabase} permette di 
+effettuare del codice SQL puro, in modo da facilitare le query più particolari. Di seguito viene mostrato il codice di alcune funzionalità.
+\begingroup
+\fontsize{9pt}{8pt}
+\begin{verbatim}
+/* INSERT a new park event in SQLite DB, return the unique id of new entry */
+public boolean insert(int cellId, String event, String timestamp, String mac) {
+  ContentValues values = new ContentValues();
+  values.put(ParkEventEntrySQLiteDb.COLUMN_PARK_CELL_ID, cellId);
+  values.put(ParkEventEntrySQLiteDb.COLUMN_PARK_EVENT, event);
+  values.put(ParkEventEntrySQLiteDb.COLUMN_PARK_TIMESTAMP, timestamp);
+  values.put(ParkEventEntrySQLiteDb.COLUMN_PARK_MAC, mac);
+
+  long idRow = this.db.insert(ParkEventEntrySQLiteDb.TABLE_NAME, null, values);
+  /* if entity already exists -> return FALSE */
+  if(idRow < 0)
+    return false;
+  
+  return true;
+}
+
+...
+
+/* Get all Synchronizations from DB, return the ArrayList of these entities */
+public ArrayList<Synchronization> getSyncByTimeRole(int apRole, String timeLimit) {
+
+  ArrayList<Synchronization> toReturn = new ArrayList<Synchronization>();
+  Cursor c = null;
+
+  /* filter on time */
+  if((apRole == -1)&&(!timeLimit.equals("ALL"))) {
+    c = this.db.rawQuery(
+          "SELECT * " + 
+          "FROM " + SynchronizationEntrySQLiteDb.TABLE_NAME + " " + 
+          "WHERE " + SynchronizationEntrySQLiteDb.COLUMN_SYNC_TIMESTAMP + " >= '" + timeLimit + "' " + 
+          "ORDER BY " + SynchronizationEntrySQLiteDb.COLUMN_SYNC_TIMESTAMP + " DESC;", null);
+  } else if((apRole != -1)&&(!timeLimit.equals("ALL"))) {
+    /* filter on time and role - same logic */
+  } else if((apRole == -1)&&(timeLimit.equals("ALL"))) {
+    /* all entities - same logic  */
+  } else if((apRole != -1)&&(timeLimit.equals("ALL"))) {
+    /* filter on role - same logic */
+  }
+
+  /* return data in ArrayList of entities Synchronization */
+  if(c.moveToFirst()) {
+    do{
+      int id = c.getInt(0);
+      String timestamp = c.getString(1);
+      String mac = c.getString(2);
+      boolean roleAp = c.getInt(3) == 1;
+
+      Synchronization sy = new Synchronization(timestamp, mac, roleAp);
+      toReturn.add(sy);
+    }while(c.moveToNext());
+  }
+
+  c.close();
+  return toReturn;
+}
+\end{verbatim}  
+\endgroup
+
 \subsection{Il Controller}
 L'oggetto \textit{Controller} si avvicina concettualmente al \textit{NetworkController}, illustrato in 3.1.3. Implementato anch'esso con il pattern Singleton, ha l'obiettivo di fornire agli altri componenti dell'
 architettura le informazioni presenti nel database \textit{SQLite}. Quando si deve effettuare una query sulla base di dati, non si crea un oggetto \textit{SQLiteDBManager} ma si contatta direttamente il \textit{Controller}, 
 il quale fornirà la risposta. 
 Oltre a fungere da interfaccia verso il database, implementa anche altri metodi utili:
 \begin{itemize}
-\item \textit{isMyServiceRunning(Class<?> class, Context ctx)} : 
-\item \textit{mergeEntries(ArrayList<ParkEvent> pe)} : 
-\item \textit{getMacAddr()} : 
-\item \textit{isPossibleSync()} : 
+\item \textit{isMyServiceRunning(Class\textless ?\textgreater class, Context ctx)} : metodo che controlla se un determinato servizio background è attivo.
+\item \textit{mergeEntries(ArrayList\textless ParkEvent\textgreater pe)} : metodo che unisce le nuove entries in input con quelle preesistenti nella memoria locale.
+\item \textit{getMacAddr()} : metodo che ritorna l'indirizzo MAC del device.
+\item \textit{isPossibleSync()} : metodo che sancisce se è possibile effettuare una sincronizzazione. I client, prima di effettuare una sincronizzazione con l'Access Point, controllano che sia passata
+                                  una certa threshold dall'ultimo scambio dati.
+\begingroup
+\fontsize{9pt}{8pt}
+\begin{verbatim}    
+/* Return if is possible a synchronization */
+public boolean isPossibleSync() {
+  /* get last sync time */
+  String lastSyncStr = dbManager.selectLastSyncTimestamp();
+  /* if is first time */
+  if(lastSyncStr.equals(""))
+    return true;
+  
+  SimpleDateFormat format = 
+          new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+  Date date = null;
+  ...
+  date = format.parse(lastSyncStr);
+  ...
+  if(date != null) {
+    Date now = new Date();
+    /* get difference from now and last sync in seconds */
+    long diff = (now.getTime() - date.getTime())/1000;
+    /* check threshold in seconds */
+    if(diff < Constants.TIME_FOR_NEXT_SYNC)
+      return false;
+    }
+  return true;
+}
+\end{verbatim}  
+\endgroup
 \end{itemize}
+\subsection{L'informazione utente}
+La classe \textit{ProbabilityPark} tramite il metodo \textit{getProbabilityToParkByCell} implementa i calcoli relativi alla probabilità di trovare parcheggio in una determinata cella della città. Sostanzialmente
+si tratta della traduzione in codice sorgente di quanto detto in sezione 2.5.
+\begingroup
+\fontsize{9pt}{8pt}
+\begin{verbatim}
+/* return a probability in % to find a vacant slot in a particular cell */
+public int getProbabilityToParkByCell(int cell, int totSlot) {
+  /* count of parked events in cell */
+  int eventParked = Controller.getInstance().getCountParkedByCell(cell);
+  /* count of released events in cell */
+  int eventReleased = Controller.getInstance().getCountReleasedByCell(cell);
+  /* occupied slots */
+  int occupiedSlots = eventParked - eventReleased;
+  float occupiedLevel = (float)occupiedSlots / totSlot;
+  /* % probability to find free slot */
+  float probabilityToPark = (1 - occupiedLevel) * 100;
 
-
-
-
-
-
-
+  return (int)probabilityToPark;
+}
+\end{verbatim}  
+\endgroup
 \section{Interfaccia grafica}
 L'interfaccia grafica è gestita da un'estensione della classe Android \\\textit{AppCompactActivity}. L'utente tramite il movimento di swipe laterale ha la possibilità di spostarsi da una schermata all'altra.
 La \textit{MainActivity} utilizza un \textit{FragmentPagerAdapter} per catturare l'evento di swipe e mostrare il \textit{Fragment} corretto.
@@ -1134,6 +1239,27 @@ La tecnologia \textit{Bluetooth} non può essere considerata efficace in alcuna s
 \includegraphics[scale=0.5]{img/graphics/n_car.png}
 \caption{Grafico dell'accuratezza media in base al numero di veicoli}
 \end{figure}
+\subsubsection{Falsi Positivi e Falsi Negativi}
+La tabella 4.2 mostra un' analisi sull'accuratezza dei sensori Andorid. Si ricorda che viene settata la precisione dei sensori a 90\%[2].
+\begin{table}[h]                        %ambiente tabella
+                                        %(serve per avere la legenda)
+\begin{center}                          %centra nella pagina la tabella
+\begin{tabular}{ |p{2cm}||p{3cm}||p{4cm}||p{4cm}|  }
+ \hline
+ \textbf{vehicles}&\textbf{events avg}&\textbf{false positive avg}&\textbf{false negative avg}\\
+ \hline
+ 3000&3695&361&369\\
+ 1500&1713&163&170\\
+ 500&514&49&48\\
+ \hline
+\end{tabular}
+\caption{Risultati di Falsi Positivi e Falsi Negativi}\label{tab:uno}
+\end{center}
+\end{table}
+L'analisi riguarda il calcolo dei falsi positivi e dei falsi negativi in proporzione al numero di eventi prodotti nei 1800 simsec, nella porzione di Bologna considerata. 
+Per falso positivo si intende l'errore di activity recognition per cui si rileva un evento di parcheggio quando questo, in verità, non è stato compiuto.
+Il falso negativo invece non rileva un evento parcheggio realmente accaduto.
+I risultati ci mostrano come circa un 10\% dell'informazione, che circola all'interno della Smart City, sia realtiva a falsi positivi.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
 \clearpage{\pagestyle{empty}\cleardoublepage}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%per fare le conclusioni
@@ -1145,10 +1271,22 @@ CONCLUSIONI}]{\fancyplain{}{\bfseries\thepage}}
 CONCLUSIONI}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%aggiunge la voce Conclusioni
                                         %   nell'indice
-\addcontentsline{toc}{chapter}{Conclusioni} Queste sono le
-conclusioni.\\
-In queste conclusioni voglio fare un riferimento alla
-bibliografia: questo \`e il mio riferimento \cite{K3,K4}.
+\addcontentsline{toc}{chapter}{Conclusioni}
+Questa tesi descrive un sistema di Smart Parking, cercando di favorire l'attività di parcheggio dell'utente. Il sistema fornisce una mappa della città suddivisa in quadranti e per ognuno di questi viene
+indicata la probabilità di trovare parcheggio. L'utente, durante la fase di parcheggio, può individuare le zone che forniscono un'alta probabilità di trovare uno slot libero.
+Questo favorisce l'utente stesso, ma aiuta anche a smaltire la congestione del traffico nella metropoli.
+Tramite un componente di activity recognition (basato su sensori) ogni Smartphone riesce a determinare quando l'utente parcheggia o rilascia la propria autovettura.
+Il sistema si basa sul concetto di crowdsensing, dove ogni individuo condivide i propri eventi di parcheggio e rilascio con la comunità. In base a queste informazioni è possibile dare
+una stima delle zone più dense di parcheggi liberi della città. La propagazione delle informazioni non si basa su una struttura centralizzata, ma l'approccio è completamente distribuito tra i dispositivi utente.
+I più comuni Smartphone in commercio danno la possibilità di comunicare tra loro secondo il paradigma \textit{D2D} (Device-To-Device).
+Il meccanismo di disseminazione che è stato implementato in questo lavoro è stato reso totalmente automatico e trasparente all'utente. Una volta attivato permette di restare aggiornati sulla situazione parcheggi, 
+sincronizzando spontanemante i propri dati con gli altri utenti nelle vicinanze.
+I risultati ottenuti in fase di valutazione, mostrano come l'efficacia del processo di spreading cresca all'aumentare del tasso di partecipazione. Più utenti utilizzano l'applicazione, condividendo le proprie informazioni,
+più resteranno aggiornati sulla situazione parcheggi in città. Con una buona partecipazione si possono ottenere risultati di poco inferiori a tecnologie molto più costose ed articolate (come ad esempio sistemi \textit{V2V}).
+Questo meccanismo di disseminazione locale, oltre al problema del parcheggio, può essere facilmente adottato in altri ambiti (come ad esempio il marketing di prossimità).
+Possibili sviluppi futuri potrebbero riguardare: un metodo per garantire l'esclusione di parcheggi privati (l'applicazione si basa su parcheggi on-street pubblici); un meccanismo di 
+risparmio energetico e ponderare le attività di disseminazione in base allo stato della batteria; ottimizzare lo scambio dati inviando solo le entry necessarie evitando numerosi controlli; 
+individuare automaticamente la cella con maggior quantità di slot liberi, in base alla destinazione dell'utente.
 
 \begin{thebibliography}{90}             %crea l'ambiente bibliografia
 \rhead[\fancyplain{}{\bfseries \leftmark}]{\fancyplain{}{\bfseries
