@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.7.12)  24 FEB 2017 16:04
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.7.12)  27 FEB 2017 19:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -210,10 +210,46 @@ Package: amsthm 2004/08/06 v2.20
 \thm@headsep=\skip57
 \dth@everypar=\toks28
 )
-\c@teo=\count107
-\c@defin=\count108
-\c@ese=\count109
-\c@oss=\count110
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count107
+\lst@gtempboxa=\box28
+\lst@token=\toks29
+\lst@length=\count108
+\lst@currlwidth=\dimen122
+\lst@column=\count109
+\lst@pos=\count110
+\lst@lostspace=\dimen123
+\lst@width=\dimen124
+\lst@newlines=\count111
+\lst@lineno=\count112
+\lst@maxwidth=\dimen125
+
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
+\c@lstnumber=\count113
+\lst@skipnumbers=\count114
+\lst@framebox=\box29
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2013/08/26 1.5b listings configuration
+))
+Package: listings 2013/08/26 1.5b (Carsten Heinz)
+
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2013/08/26 1.5b listings language file
+)
+\c@teo=\count115
+\c@defin=\count116
+\c@ese=\count117
+\c@oss=\count118
  (./tesi.aux
 
 LaTeX Warning: Label `tab:uno' multiply defined.
@@ -221,20 +257,20 @@ LaTeX Warning: Label `tab:uno' multiply defined.
 )
 \openout1 = `tesi.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Info: Redefining \it@ocap on input line 76.
-LaTeX Info: Redefining \it@ccap on input line 76.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Info: Redefining \it@ocap on input line 101.
+LaTeX Info: Redefining \it@ccap on input line 101.
 
 
 File italian.ldf warning: 
@@ -242,23 +278,24 @@ italian.ldf    With OT1 encoding guillemets are poorly faked
 italian.ldf    Use T1 encoding
 italian.ldf    or specify a font with command \CaporaliFrom
 italian.ldf    See the documentation concerning the babel-italian typesetting 
-italian.ldf    on input line 76.
+italian.ldf    on input line 101.
 
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count111
-\scratchdimen=\dimen122
-\scratchbox=\box28
-\nofMPsegments=\count112
-\nofMParguments=\count113
-\everyMPshowfont=\toks29
-\MPscratchCnt=\count114
-\MPscratchDim=\dimen123
-\MPnumerator=\count115
-\makeMPintoPDFobject=\count116
-\everyMPtoPDFconversion=\toks30
+\scratchcounter=\count119
+\scratchdimen=\dimen126
+\scratchbox=\box30
+\nofMPsegments=\count120
+\nofMParguments=\count121
+\everyMPshowfont=\toks30
+\MPscratchCnt=\count122
+\MPscratchDim=\dimen127
+\MPnumerator=\count123
+\makeMPintoPDFobject=\count124
+\everyMPtoPDFconversion=\toks31
 ) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -307,6 +344,8 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
+\c@lstlisting=\count125
+
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2
@@ -375,7 +414,7 @@ Capitolo 1.
 <img/its.jpg, id=43, 281.05pt x 254.9525pt>
 File: img/its.jpg Graphic file (type jpg)
  <use img/its.jpg>
-Package pdftex.def Info: img/its.jpg used on input line 166.
+Package pdftex.def Info: img/its.jpg used on input line 191.
 (pdftex.def)             Requested size: 196.73364pt x 178.46552pt.
  [3
 
@@ -383,18 +422,18 @@ Package pdftex.def Info: img/its.jpg used on input line 166.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [4 <./img/its.jpg>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 178.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 203.
 
  (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 178.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 203.
  [5] [6]
 <img/sensor-sp.png, id=58, 610.28pt x 369.38pt>
 File: img/sensor-sp.png Graphic file (type png)
  <use img/sensor-sp.png>
-Package pdftex.def Info: img/sensor-sp.png used on input line 232.
+Package pdftex.def Info: img/sensor-sp.png used on input line 257.
 (pdftex.def)             Requested size: 244.10767pt x 147.74937pt.
 
 [7]
@@ -414,7 +453,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 File: img/arch_general.png Graphic file (type png)
 
 <use img/arch_general.png>
-Package pdftex.def Info: img/arch_general.png used on input line 314.
+Package pdftex.def Info: img/arch_general.png used on input line 339.
 (pdftex.def)             Requested size: 315.58142pt x 311.96791pt.
 
 
@@ -423,7 +462,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <img/arch_soft.png, id=90, 745.78625pt x 320.19624pt>
 File: img/arch_soft.png Graphic file (type png)
  <use img/arch_soft.png>
-Package pdftex.def Info: img/arch_soft.png used on input line 328.
+Package pdftex.def Info: img/arch_soft.png used on input line 353.
 (pdftex.def)             Requested size: 372.89221pt x 160.09772pt.
 
 [16]
@@ -434,29 +473,29 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [18 <./img/arch_soft.png>] [19]
-Underfull \hbox (badness 10000) in paragraph at lines 362--370
+Underfull \hbox (badness 10000) in paragraph at lines 387--395
 
  []
 
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 376.
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 401.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omlcmr.fd
 File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/it' in size <12> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 376.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 401.
 
-Underfull \hbox (badness 10000) in paragraph at lines 376--379
+Underfull \hbox (badness 10000) in paragraph at lines 401--404
 
  []
 
 [20] <img/nsm.png, id=109, 934.49126pt x 693.59125pt>
 File: img/nsm.png Graphic file (type png)
  <use img/nsm.png>
-Package pdftex.def Info: img/nsm.png used on input line 396.
+Package pdftex.def Info: img/nsm.png used on input line 421.
 (pdftex.def)             Requested size: 467.24449pt x 346.79477pt.
 
-Overfull \hbox (77.24449pt too wide) in paragraph at lines 396--397
+Overfull \hbox (77.24449pt too wide) in paragraph at lines 421--422
  [][] 
  []
 
@@ -479,230 +518,216 @@ Underfull \vbox (badness 2293) has occurred while \output is active []
 <img/popup.png, id=128, 314.17375pt x 160.6pt>
 File: img/popup.png Graphic file (type png)
  <use img/popup.png>
-Package pdftex.def Info: img/popup.png used on input line 456.
+Package pdftex.def Info: img/popup.png used on input line 481.
 (pdftex.def)             Requested size: 157.08649pt x 80.29979pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [26 <./img/popup.png>] [27] [28]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [29]
-[30] [31]
-Overfull \hbox (6.89539pt too wide) in paragraph at lines 622--622
-[]  \OT1/cmtt/m/n/9 public void onDnsSdServiceAvailable(String serv, String typ
-e, WifiP2pDevice dev) {[] 
- []
-
-[32] [33] [34] [35] [36] [37] [38] [39]
-Overfull \hbox (2.17044pt too wide) in paragraph at lines 975--975
-[]\OT1/cmtt/m/n/9 public ArrayList<Synchronization> getSyncByTimeRole(int apRol
-e, String timeLimit) {[] 
- []
-
-[40] [41] [42] [43] <img/screenshot/map.jpg, id=188, 1084.05pt x 1927.2pt>
+ [26 <./img/popup.png>] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36] [37] 
+[38]
+[39] [40] <img/screenshot/map.jpg, id=179, 1084.05pt x 1927.2pt>
 File: img/screenshot/map.jpg Graphic file (type jpg)
 
 <use img/screenshot/map.jpg>
-Package pdftex.def Info: img/screenshot/map.jpg used on input line 1063.
+Package pdftex.def Info: img/screenshot/map.jpg used on input line 917.
 (pdftex.def)             Requested size: 216.80615pt x 385.43318pt.
 
-<img/screenshot/state_ap_no_peers.jpg, id=189, 1084.05pt x 1927.2pt>
+<img/screenshot/state_ap_no_peers.jpg, id=180, 1084.05pt x 1927.2pt>
 File: img/screenshot/state_ap_no_peers.jpg Graphic file (type jpg)
 
 <use img/screenshot/state_ap_no_peers.jpg>
 Package pdftex.def Info: img/screenshot/state_ap_no_peers.jpg used on input lin
-e 1068.
+e 922.
 (pdftex.def)             Requested size: 162.60048pt x 289.06754pt.
 
-<img/screenshot/state_ap_peers.jpg, id=190, 1084.05pt x 1927.2pt>
+<img/screenshot/state_ap_peers.jpg, id=181, 1084.05pt x 1927.2pt>
 File: img/screenshot/state_ap_peers.jpg Graphic file (type jpg)
 
 <use img/screenshot/state_ap_peers.jpg>
-Package pdftex.def Info: img/screenshot/state_ap_peers.jpg used on input line 1
-070.
+Package pdftex.def Info: img/screenshot/state_ap_peers.jpg used on input line 9
+24.
 (pdftex.def)             Requested size: 162.60048pt x 289.06754pt.
 
-Underfull \hbox (badness 4699) in paragraph at lines 1071--1071
+Underfull \hbox (badness 4699) in paragraph at lines 925--925
 []\OT1/cmr/bx/n/12 Figura 3.3: |\OT1/cmr/m/n/12 Ser-vi-zio di dis-se-mi-na-zio-
 ne at-ti-vo ne-gli sta-ti STA-
  []
 
-<img/screenshot/state_conn.jpg, id=191, 1084.05pt x 1927.2pt>
+<img/screenshot/state_conn.jpg, id=182, 1084.05pt x 1927.2pt>
 File: img/screenshot/state_conn.jpg Graphic file (type jpg)
 
 <use img/screenshot/state_conn.jpg>
-Package pdftex.def Info: img/screenshot/state_conn.jpg used on input line 1075.
-
+Package pdftex.def Info: img/screenshot/state_conn.jpg used on input line 929.
 (pdftex.def)             Requested size: 162.60048pt x 289.06754pt.
 
-<img/screenshot/state_in_sync.jpg, id=192, 1084.05pt x 1927.2pt>
+<img/screenshot/state_in_sync.jpg, id=183, 1084.05pt x 1927.2pt>
 File: img/screenshot/state_in_sync.jpg Graphic file (type jpg)
 
 <use img/screenshot/state_in_sync.jpg>
-Package pdftex.def Info: img/screenshot/state_in_sync.jpg used on input line 10
-77.
+Package pdftex.def Info: img/screenshot/state_in_sync.jpg used on input line 93
+1.
 (pdftex.def)             Requested size: 162.60048pt x 289.06754pt.
 
-Underfull \hbox (badness 4699) in paragraph at lines 1078--1078
+Underfull \hbox (badness 4699) in paragraph at lines 932--932
 []\OT1/cmr/bx/n/12 Figura 3.4: |\OT1/cmr/m/n/12 Ser-vi-zio di dis-se-mi-na-zio-
 ne at-ti-vo ne-gli sta-ti STA-
  []
 
-<img/screenshot/state_synced_connected.jpg, id=193, 1084.05pt x 1927.2pt>
+<img/screenshot/state_synced_connected.jpg, id=184, 1084.05pt x 1927.2pt>
 File: img/screenshot/state_synced_connected.jpg Graphic file (type jpg)
 
 <use img/screenshot/state_synced_connected.jpg>
 Package pdftex.def Info: img/screenshot/state_synced_connected.jpg used on inpu
-t line 1082.
+t line 936.
 (pdftex.def)             Requested size: 162.60048pt x 289.06754pt.
 
-<img/screenshot/activity_recogn.jpg, id=194, 1084.05pt x 1927.2pt>
+<img/screenshot/activity_recogn.jpg, id=185, 1084.05pt x 1927.2pt>
 File: img/screenshot/activity_recogn.jpg Graphic file (type jpg)
 
 <use img/screenshot/activity_recogn.jpg>
 Package pdftex.def Info: img/screenshot/activity_recogn.jpg used on input line 
-1084.
+938.
 (pdftex.def)             Requested size: 162.60048pt x 289.06754pt.
 
-Underfull \hbox (badness 4699) in paragraph at lines 1085--1085
+Underfull \hbox (badness 4699) in paragraph at lines 939--939
 []\OT1/cmr/bx/n/12 Figura 3.5: |\OT1/cmr/m/n/12 Ser-vi-zio di dis-se-mi-na-zio-
 ne at-ti-vo ne-gli sta-ti STA-
  []
 
 
-Underfull \hbox (badness 1603) in paragraph at lines 1085--1085
+Underfull \hbox (badness 1603) in paragraph at lines 939--939
 \OT1/cmr/m/n/12 TE[]SYNCED[]CONNECTED e scher-ma-ta del com-po-nen-te di Ac-ti-
 vi-ty
  []
 
-<img/screenshot/last_sync.jpg, id=195, 1084.05pt x 1927.2pt>
+<img/screenshot/last_sync.jpg, id=186, 1084.05pt x 1927.2pt>
 File: img/screenshot/last_sync.jpg Graphic file (type jpg)
 
 <use img/screenshot/last_sync.jpg>
-Package pdftex.def Info: img/screenshot/last_sync.jpg used on input line 1089.
+Package pdftex.def Info: img/screenshot/last_sync.jpg used on input line 943.
 (pdftex.def)             Requested size: 162.60048pt x 289.06754pt.
 
-<img/screenshot/park_event_list.jpg, id=196, 1084.05pt x 1927.2pt>
+<img/screenshot/park_event_list.jpg, id=187, 1084.05pt x 1927.2pt>
 File: img/screenshot/park_event_list.jpg Graphic file (type jpg)
 
 <use img/screenshot/park_event_list.jpg>
 Package pdftex.def Info: img/screenshot/park_event_list.jpg used on input line 
-1091.
+945.
 (pdftex.def)             Requested size: 162.60048pt x 289.06754pt.
 
-Overfull \hbox (8.182pt too wide) in paragraph at lines 1060--1094
+Overfull \hbox (8.182pt too wide) in paragraph at lines 914--948
 []\OT1/cmr/m/n/12 Di se-gui-to so-no mo-stra-ti gli screen-shot del-l'ap-pli-ca
 -zio-ne D2DSmartParking:
  []
 
-[44 <./img/screenshot/map.jpg>] [45 <./img/screenshot/state_ap_no_peers.jpg> <.
-/img/screenshot/state_ap_peers.jpg>] [46 <./img/screenshot/state_conn.jpg> <./i
-mg/screenshot/state_in_sync.jpg>] [47 <./img/screenshot/state_synced_connected.
-jpg> <./img/screenshot/activity_recogn.jpg>] [48 <./img/screenshot/last_sync.jp
-g> <./img/screenshot/park_event_list.jpg>] [49
+[41 <./img/screenshot/map.jpg>] [42 <./img/screenshot/state_ap_no_peers.jpg> <.
+/img/screenshot/state_ap_peers.jpg>] [43 <./img/screenshot/state_conn.jpg> <./i
+mg/screenshot/state_in_sync.jpg>] [44 <./img/screenshot/state_synced_connected.
+jpg> <./img/screenshot/activity_recogn.jpg>] [45 <./img/screenshot/last_sync.jp
+g> <./img/screenshot/park_event_list.jpg>] [46
 
 
+] [47
 
-] [50]
+] [48]
 Capitolo 4.
-[51
+[49
 
-] <img/sumo-bolo.png, id=223, 687.56876pt x 405.515pt>
+] <img/sumo-bolo.png, id=216, 687.56876pt x 405.515pt>
 File: img/sumo-bolo.png Graphic file (type png)
 
 <use img/sumo-bolo.png>
-Package pdftex.def Info: img/sumo-bolo.png used on input line 1125.
+Package pdftex.def Info: img/sumo-bolo.png used on input line 979.
 (pdftex.def)             Requested size: 412.54443pt x 243.31087pt.
 
-Overfull \hbox (22.54443pt too wide) in paragraph at lines 1125--1126
+Overfull \hbox (22.54443pt too wide) in paragraph at lines 979--980
  [][] 
  []
 
-[52] [53 <./img/sumo-bolo.png>] [54]
-Overfull \hbox (2.92284pt too wide) in paragraph at lines 1172--1172
+[50] [51 <./img/sumo-bolo.png>] [52]
+Overfull \hbox (2.92284pt too wide) in paragraph at lines 1026--1026
 []\OT1/cmr/bx/n/12 synchronization[]time(s)| 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[55] [56] <img/graphics/local_accuracy.png, id=241, 505.89pt x 311.1625pt>
+[53] [54] <img/graphics/local_accuracy.png, id=235, 505.89pt x 311.1625pt>
 File: img/graphics/local_accuracy.png Graphic file (type png)
 
 <use img/graphics/local_accuracy.png>
-Package pdftex.def Info: img/graphics/local_accuracy.png used on input line 120
-0.
+Package pdftex.def Info: img/graphics/local_accuracy.png used on input line 105
+4.
 (pdftex.def)             Requested size: 252.94437pt x 155.58087pt.
- [57 <./img/graphics/local_accuracy.png>]
-<img/graphics/global_accuracy.png, id=247, 505.89pt x 312.16624pt>
+ [55 <./img/graphics/local_accuracy.png>]
+<img/graphics/global_accuracy.png, id=240, 505.89pt x 312.16624pt>
 File: img/graphics/global_accuracy.png Graphic file (type png)
 
 <use img/graphics/global_accuracy.png>
-Package pdftex.def Info: img/graphics/global_accuracy.png used on input line 12
-15.
+Package pdftex.def Info: img/graphics/global_accuracy.png used on input line 10
+69.
 (pdftex.def)             Requested size: 252.94437pt x 156.08273pt.
 
-<img/graphics/distance.png, id=248, 504.88625pt x 314.17375pt>
+<img/graphics/distance.png, id=241, 504.88625pt x 314.17375pt>
 File: img/graphics/distance.png Graphic file (type png)
 
 <use img/graphics/distance.png>
-Package pdftex.def Info: img/graphics/distance.png used on input line 1226.
+Package pdftex.def Info: img/graphics/distance.png used on input line 1080.
 (pdftex.def)             Requested size: 252.44249pt x 157.08649pt.
- [58 <./img/graphics/global_accuracy.png>]
-<img/graphics/n_car.png, id=253, 505.89pt x 312.16624pt>
+ [56 <./img/graphics/global_accuracy.png>]
+<img/graphics/n_car.png, id=246, 505.89pt x 312.16624pt>
 File: img/graphics/n_car.png Graphic file (type png)
 
 <use img/graphics/n_car.png>
-Package pdftex.def Info: img/graphics/n_car.png used on input line 1240.
+Package pdftex.def Info: img/graphics/n_car.png used on input line 1094.
 (pdftex.def)             Requested size: 252.94437pt x 156.08273pt.
- [59 <./img/graphics/distance.png>]
-Overfull \hbox (33.8858pt too wide) in paragraph at lines 1248--1257
+ [57 <./img/graphics/distance.png>]
+Overfull \hbox (33.8858pt too wide) in paragraph at lines 1102--1111
  [] 
  []
 
-[60 <./img/graphics/n_car.png>] [61] [62
+[58 <./img/graphics/n_car.png>] [59] [60
 
 
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [63
+ [61
 
 ]
-[64]
-Underfull \hbox (badness 1087) in paragraph at lines 1305--1306
+[62]
+Underfull \hbox (badness 1087) in paragraph at lines 1159--1160
 []\OT1/cmr/m/n/12 Elena Po-ly-car-pou, Lam-bros Lam-bri-nos, Ef-ty-chios Pro-to
 -pa-pa-da-kis,
  []
 
-[65
+[63
 
-] [66]
-Overfull \hbox (32.1734pt too wide) in paragraph at lines 1321--1322
+] [64]
+Overfull \hbox (32.1734pt too wide) in paragraph at lines 1175--1176
 []\OT1/cmr/m/n/12 Documentazione uf-fi-cia-le An-droid, https://developer.andro
 id.com/index.html. 
  []
 
 
-Overfull \hbox (64.93835pt too wide) in paragraph at lines 1323--1324
+Overfull \hbox (64.93835pt too wide) in paragraph at lines 1177--1178
 []\OT1/cmr/m/n/12 Documentazione An-droid sul D2D, https://developer.android.co
 m/training/connect-
  []
 
 
-Underfull \hbox (badness 2158) in paragraph at lines 1325--1326
+Underfull \hbox (badness 2158) in paragraph at lines 1179--1180
 []\OT1/cmr/m/n/12 Progetto for-ni-to da Goo-gle su Wi-Fi Di-rect e Bo-n-jour be
 a-con,
  []
 
 
-Underfull \hbox (badness 1163) in paragraph at lines 1328--1329
+Underfull \hbox (badness 1163) in paragraph at lines 1182--1183
 \OT1/cmr/m/n/12 Vehicle Com-mu-ni-ca-tion using IEEE 802.11p in Ve-hi-cu-lar Ad
 -hoc
  []
 
-[67] [68
+[65] [66
 
 
 ] (./tesi.aux)
@@ -711,13 +736,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 4748 strings out of 493304
- 67674 string characters out of 6139871
- 134283 words of memory out of 5000000
- 8080 multiletter control sequences out of 15000+600000
+ 6637 strings out of 493304
+ 92919 string characters out of 6139871
+ 212833 words of memory out of 5000000
+ 9949 multiletter control sequences out of 15000+600000
  12598 words of font info for 48 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,11n,43p,803b,492s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,12n,43p,803b,1792s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/te
@@ -727,10 +752,10 @@ t/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/font
 s/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmtt9.pfb>
-Output written on tesi.pdf (78 pages, 4332723 bytes).
+Output written on tesi.pdf (76 pages, 4338626 bytes).
 PDF statistics:
- 321 PDF objects out of 1000 (max. 8388607)
- 202 compressed objects within 3 object streams
+ 314 PDF objects out of 1000 (max. 8388607)
+ 198 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  101 words of extra memory for PDF output out of 10000 (max. 10000000)
 
