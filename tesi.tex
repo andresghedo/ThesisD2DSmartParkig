@@ -192,7 +192,7 @@ Il 54\% della popolazione mondiale risiede in città metropolitane e si stima che
 \end{figure}
 I sistemi ITS si pongono l'obiettivo di migliorare la qualità dei trasporti in termini di riduzione delle congestioni, rischi di incidente e situazioni di emergenza.
 Per fare ciò vengono sfruttati meccanismi intelligenti, in grado di fare determinate assunzioni sulla base delle informazione scambiate tra veicoli che si trovano in una determinata zona.
-Gli utenti, sfruttando le deduzioni offerte, potrebbero variare il loro comportamento, permettendo così di smaltire le congestioni e favorire la viabilità generale.
+Gli utenti, consultando i dati sul traffico forniti da sistemi ITS, potrebbero variare il loro comportamento, permettendo così di smaltire le congestioni e favorire la viabilità generale.
 \section{Crowdsensing}
 Per Crowdsensing si definisce quell'attività di condivisione e raccolta dati, utilizzando i vari sensori presenti all'interno dei dispositivi mobili. Lo scopo di ogni device deve essere quello 
 di condividere con molti utenti le proprie informazioni.
@@ -275,8 +275,8 @@ Il secondo paradigma è quello che verrà utilizzato in questo lavoro di tesi, dov
 Risparmiando l'utilizzo di agenti centralizzati, si evitano importanti costi di installazione e gestione.
 Il tema dello Smart Parking porta a considerare la Smart City come una rete veicolare distribuita ed in queste condizioni è normale pensare ad una comunicazione \textit{V2V} (Vehicle-To-Vehicle).
 Il \textit{V2V} riguarda comunicazioni tra veicoli in movimento portanto alla creazione di reti spontanee, denominate \textit{VANETs} (Vehicular Ad-Hoc Networks).
-Questi tipi di sistemi sono stati realizzati per propagare informazioni in maniera totalmente distribuita tra i vecoli, segnalando eventuali pericoli, incidenti, percorsi trafficati.
-Ad oggi questo tipo di comunicazione non è disponibile per molte delle auto in commercio, trattandosi comunque di progetti costosi ed altamente innovativi.
+La comunicazione veicolare è stata pensata per propagare informazioni in maniera totalmente distribuita tra i vecoli, segnalando eventuali pericoli, incidenti, percorsi trafficati.
+Le connessioni Vehicle-To-Vehicle richiedono componenti hardware e software che la maggior parte delle automobili in commercio non possiedono ancora.
 Un altro modo di propagazione distribuita può avvenire invece tramite l'utilizzo di Smartphone, utilizzando il paradigma \textit{D2D} (Device-To-Device).
 Il \textit{D2D} permette comunicazioni wireless tra device che sono nelle vicinanze. Questo approccio è quello che viene preso in considerazione nel lavoro di tesi, sfruttando i dispositivi utente per la 
 propagazione di informazioni, relativa alla situazione parcheggi, all'interno della Smart City.
@@ -1061,11 +1061,11 @@ Si ricorda che i 3000 veicoli non vengono creati tutti nell'istante 0, ma ciascu
 Questo determina che nella fase iniziale, detta anche transiente, il numero di veicoli sia basso e per questo l'informazione non riesce a raggiungere i nodi già presenti nella città.
 Man mano che altri veicoli vengono inseriti, l'accuratezza sale grazie all'aumentare delle sincronizzazioni possibili, rendendo il processo di spreading più efficace.
 La tecnologia \textit{WiFi Direct} cresce meno rapidamente del \textit{V2V} a causa del minor range di comunicazione e della latenza di connessione. Si ottiene comunque un buon livello di accuratezza 
-già dopo 20 minuti, mantenendosi sul 70-75\% e raggiungendo anche l'80\% a fine simulazione.
+già dopo 20 minuti, mantenendosi sul 75\% e raggiungendo anche l'80\% a fine simulazione.
 La tencologia \textit{Bluetooth} non riesce a raggiungere livelli di accuratezza soddisfacenti. La latenza di connessione e soprattutto il basso range di comunicazione incidono negativamente sulla disseminazione.
 \subsubsection{L'accuratezza dello scenario generale}
 Il secondo grafico (figura 4.3) misura l'accuratezza delle informazioni rispetto a tutta la città e non solo rispetto alla cella corrente in cui si trova il veicolo.
-L'andamento delle curve nel grafico 4.3 può essere comparabile con quello nel grafico 4.2 con un abbassamento generale dell'accuratezza di circa un 10\%.
+L'andamento delle curve nel grafico 4.3 può essere comparabile con quello nel grafico 4.2 con un abbassamento generale dell'accuratezza di circa 5-10\%.
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.5]{img/graphics/global_accuracy.png}
