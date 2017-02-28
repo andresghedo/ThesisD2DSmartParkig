@@ -1,0 +1,21 @@
+\subsubsection{Falsi Positivi e Falsi Negativi}
+La tabella 4.2 mostra un' analisi sull'accuratezza dei sensori Andorid. Si ricorda che viene settata la precisione dei sensori a 90\%[2].
+\begin{table}[h]                        %ambiente tabella
+                                        %(serve per avere la legenda)
+\begin{center}                          %centra nella pagina la tabella
+\begin{tabular}{ |p{2cm}||p{3cm}||p{4cm}||p{4cm}|  }
+ \hline
+ \textbf{vehicles}&\textbf{events avg}&\textbf{false positive avg}&\textbf{false negative avg}\\
+ \hline
+ 3000&3695&361&369\\
+ 1500&1713&163&170\\
+ 500&514&49&48\\
+ \hline
+\end{tabular}
+\caption{Risultati di Falsi Positivi e Falsi Negativi}\label{tab:uno}
+\end{center}
+\end{table}
+L'analisi riguarda il calcolo dei falsi positivi e dei falsi negativi in proporzione al numero di eventi prodotti nei 1800 simsec, nella porzione di Bologna considerata. 
+Per falso positivo si intende l'errore di activity recognition per cui si rileva un evento di parcheggio quando questo, in verità, non è stato compiuto.
+Il falso negativo invece non rileva un evento parcheggio realmente accaduto.
+I risultati ci mostrano come circa un 10\% dell'informazione, che circola all'interno della Smart City, sia realtiva a falsi positivi.

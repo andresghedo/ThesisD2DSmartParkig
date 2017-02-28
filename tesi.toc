@@ -4,10 +4,10 @@
 \contentsline {part}{I\hspace {1em}Stato dell'arte}{1}
 \contentsline {chapter}{\numberline {1}Stato dell'arte}{3}
 \contentsline {section}{\numberline {1.1}Sistemi di Trasporto Intelligenti}{3}
-\contentsline {section}{\numberline {1.2}Crowdsensing}{5}
+\contentsline {section}{\numberline {1.2}Crowdsensing}{4}
 \contentsline {section}{\numberline {1.3}Smart City}{6}
 \contentsline {section}{\numberline {1.4}Smart Parking}{7}
-\contentsline {subsection}{\numberline {1.4.1}Propagazione dell'informazione}{9}
+\contentsline {subsection}{\numberline {1.4.1}Propagazione dell'informazione}{8}
 \contentsline {part}{II\hspace {1em}Progettazione ed Implementazione}{11}
 \contentsline {chapter}{\numberline {2}Progettazione}{13}
 \contentsline {section}{\numberline {2.1}Scopo e problematiche}{14}
@@ -41,16 +41,15 @@
 \contentsline {chapter}{\numberline {4}Valutazione}{49}
 \contentsline {section}{\numberline {4.1}Strumenti}{49}
 \contentsline {section}{\numberline {4.2}Modellazione}{50}
-\contentsline {section}{\numberline {4.3}Obiettivi di simulazione}{52}
+\contentsline {section}{\numberline {4.3}Metriche di prestazione}{52}
 \contentsline {section}{\numberline {4.4}Configurazioni e run}{53}
-\contentsline {subsubsection}{VANET V2V}{53}
+\contentsline {subsubsection}{VANET V2V}{54}
 \contentsline {subsubsection}{WiFi Direct}{54}
-\contentsline {subsubsection}{Bluetooth}{54}
+\contentsline {subsubsection}{Bluetooth}{55}
 \contentsline {section}{\numberline {4.5}Risultati}{55}
 \contentsline {subsubsection}{L'accuratezza della cella corrente}{55}
 \contentsline {subsubsection}{L'accuratezza dello scenario generale}{56}
 \contentsline {subsubsection}{L'accuratezza in base alla distanza}{57}
 \contentsline {subsubsection}{L'accuratezza in base al numero di veicoli}{57}
-\contentsline {subsubsection}{Falsi Positivi e Falsi Negativi}{58}
-\contentsline {chapter}{Conclusioni}{61}
-\contentsline {chapter}{Bibliografia}{63}
+\contentsline {chapter}{Conclusioni}{59}
+\contentsline {chapter}{Bibliografia}{61}
