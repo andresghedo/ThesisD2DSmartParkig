@@ -4,19 +4,19 @@
 \contentsline {figure}{\numberline {1.1}{\ignorespaces Esempio di ITS}}{4}
 \contentsline {figure}{\numberline {1.2}{\ignorespaces Sistema di Smart parking con sensori in-ground\relax }}{8}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Rappresentazione dell'Architettura generale}}{17}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Rappresentazione dei ruoli utente in una porzione di Bologna}}{17}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Rappresentazione dell'Architettura software\relax }}{18}
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Network State Machine\relax }}{22}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Interazione utente per il consenso alla connessione\relax }}{26}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Screenshot della mappa di Bologna con probabilit\`a di parcheggio}}{41}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Screenshot della schermata Network State Machine(1)}}{42}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Screenshot della schermata Network State Machine(2)}}{43}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Screenshot della schermata di Activity Recognition}}{44}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Screenshot delle liste di sincronizzazioni ed eventi parcheggio}}{45}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Interazione utente per il consenso alla connessione WiFi Direct\relax }}{27}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Screenshot della mappa di Bologna con probabilit\`a di parcheggio}}{42}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Screenshot della schermata Network State Machine(1)}}{43}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Screenshot della schermata Network State Machine(2)}}{44}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Screenshot della schermata di Activity Recognition}}{45}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Screenshot delle liste di sincronizzazioni ed eventi parcheggio}}{46}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Interfaccia grafica SUMO di Bologna}}{51}
 \contentsline {figure}{\numberline {4.2}{\ignorespaces Grafico dell'accuratezza media della cella corrente al trascorrere del tempo - 3000 veicoli\relax }}{55}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Grafico dell'accuratezza media della porzione di citt\`a al trascorrere del tempo - 3000 veicoli\relax }}{56}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Grafico dell'accuratezza media della porzione di citt\`a al trascorrere del tempo - 3000 veicoli\relax }}{57}
 \contentsline {figure}{\numberline {4.4}{\ignorespaces Grafico dell'accuratezza media in base alla distanza - 3000 veicoli\relax }}{57}
 \contentsline {figure}{\numberline {4.5}{\ignorespaces Grafico dell'accuratezza media in base al numero di veicoli\relax }}{58}

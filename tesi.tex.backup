@@ -133,24 +133,27 @@ Questa problematica causa una serie di conseguenze negative, danneggiando progre
 La ricerca prolungata di uno slot libero comporta all'utente perdita di tempo e di denaro, contribuendo ad un peggioramento, anche se leggero, della qualità di vita nelle grandi città.
 Inoltre, sono evidenti le conseguenze negative sull'impatto ambientale, dove la qualità dell'aria viene messa costantemente a rischio dall'enorme quantità 
 di carburante che viene consumato, producendo emissioni di agenti inquinanti nell'atmosfera.
-Enti governativi stanno iniziando a prendere in considerazione queste problematiche, cercando di trovare le giuste soluzioni per migliorare la situazione.
+Enti governativi stanno iniziando a prendere in considerazione il tema del parcheggio, cercando di trovare le giuste soluzioni per migliorare la situazione.
 In questo senso, numerose proposte sono già presenti in letteratura, basandosi sui concetti innovativi di Smart Parking, IoT(Internet of Things) e Smart City.
 Infrastrutture informatiche, comunicazione tra dispositivi eterogenei e sensoristica sono tutti elementi che possono favorire un miglior utilizzo dei parcheggi, 
 fornendo agli utenti importanti indicazioni sullo stato degli slot, in una determinata zona.
-Queste diventano fondamentali soprattutto se si considerano parcheggi su strada (on-street parking), i quali sono limitati e non circoscritti in precisi punti 
+I sistemi di Smart Parking diventano fondamentali soprattutto se si considerano parcheggi su strada (on-street parking), i quali sono limitati e non circoscritti in precisi punti 
 (al contrario di parcheggi-garage e sistemi a circuito chiuso, in cui tramite semplici apparecchiatura è possibile contare il numero di veicoli in entrata ed in uscita).
 Molte soluzioni proposte prevedono l'utilizzo di sensori su strada o telecamere per comprendere l'occupazione o meno di un determinato parcheggio.
 Mentre per la disseminazione delle informazioni raccolte, si propongono sistemi decentralizzati basati sull'IoT e WSN(Wireless Sensor Network), oppure classici sistemi centralizzati.
-Tutti questi componenti prevedono un investimento iniziale enorme per apparecchiature ed installazione, senza contare i futuri e necessari costi di manutenzione.
-Questo è ovviamente un grosso limite per i governi che spesso non sono intenzionati ad utilizzare ingenti fondi per questi scopi.
-\\Il sistema che viene proposto non necessita di alcuna infrastruttura particolare e si pone l'obiettivo di fornire all'utente una stima sulle zone più dense di parcheggi liberi della città.
-Questo è reso possibile tramite il concetto di Crowdsensing, dove gli utenti condividono le proprie rilevazioni con altri utenti e grazie a questi continui contributi, il singolo riesce a fare 
-assunzioni sulla situazione parcheggi in città.
+Tutti i componenti citati comportano un investimento iniziale enorme per apparecchiature ed installazione, senza contare i futuri e necessari costi di manutenzione.
+L'investimento è ovviamente un grosso limite per i governi che spesso non sono intenzionati ad utilizzare ingenti fondi per questi scopi.
+\\Il progetto riguarda l'implementazione prototipale di un sistema Smart Parking in ambiente Android, dove le informazioni sui parcheggi vengono propagate in modalità Device-To-Device tra gli Smartphone utente.
+Il sistema che viene proposto non necessita di alcuna infrastruttura particolare e si pone l'obiettivo di fornire all'utente una stima sulle zone più dense di parcheggi liberi della città.
+Grazie al concetto di Crowdsensing, gli utenti condividono le proprie rilevazioni con altri utenti, cercando di restare aggiornati sulla situazione parcheggi in città.
 Ogni Smartphone, avendo la possibilità di rilevare il tipo di mobilità dell'utente tramite i propri sensori, riesce a dedurre in probabilità un evento di parcheggio, piuttosto che di rilascio. 
-Questi dati vengono disseminati localmente nell'ambiente ad altri device in maniera totalmente decentralizzata, permettendo agli utenti di restare aggiornati sulla situazione 
-parcheggio nelle zone limitrofe.
+I dati vengono disseminati localmente nell'ambiente ad altri device in maniera totalmente decentralizzata, permettendo agli utenti di restare informati sulla situazione 
+parcheggio nelle zone limitrofe. L'utilizzo della tecnologia \textit{WiFi Direct} permette la comunicazione wireless tra dispositivi mobili.
 Il servizio, una volta avviato, non avrà bisogno di alcuna interazione utente, in quanto il processo di rilevazione e di comunicazione sono stati automatizzati.
-\\Questo documento viene organizzato in quattro capitoli, secondo la seguente struttura. Nel primo capitolo viene analizzato lo stato dell'arte per quanto riguarda l'argomento in questione. 
+Oltre all'implementazione dell'applicazione è stato necessario studiare l'efficacia del processo di spreading. La logica di disseminazione è stata testata su una porzione del centro di Bologna, grazie ai simulatori
+\textit{OMNeT++}, \textit{SUMO} ed al framework \textit{Veins}.
+Per ottenere risultati attendibili, sono stati sviluppati moduli che replicassero fedelmente il comportamento dell'applicazione Android in uno scenario urbano.
+\\Il documento viene organizzato in quattro capitoli, secondo la seguente struttura. Nel primo capitolo viene analizzato lo stato dell'arte per quanto riguarda l'argomento in questione. 
 Il secondo capitolo illustra i passi di progettazione necessari alla realizzazione del sistema. Il terzo capitolo riguarda l'implementazione dell'applicazione Android, entrando nei dettagli più 
 tecnici. Il quarto ed ultimo capitolo mostra la valutazione del sistema, dove i risultati sono stati ottenuti simulando il funzionamento del sistema in una città metropolitana.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
@@ -184,7 +187,7 @@ Lo sviluppo esponenziale dell'informatica e delle reti di comunicazione ha porta
 La gestione del traffico veicolare (acquisizione dei dati di traffico, controllo semaforico, controllo degli accessi, gestione dei parcheggi), del trasporto collettivo e della logistica (indicazioni di percorso e 
 instradamento parcheggi, sistemi di distribuzione delle merci, sistemi misti merci/passeggeri, ecc...) sono esempi tangibili di come i sistemi ITS stiano diventando uno strumento prezioso per il controllo della mobilità.
 Le città metropolitane sono sovraffollate di veicoli, portando a costanti situazioni di inefficienza dei trasporti, congestione del traffico ed un aumento dei tempi di percorrenza per giungere a destinazione. 
-Questa situazione è in costante aumento in tutto il mondo, data l'urbanizzazione e la crescente densità di popolazione nelle grandi città.
+L'urbanizzazione e la crescente densità di popolazione nelle grandi città potrà soltanto peggiorare la situazione.
 Il 54\% della popolazione mondiale risiede in città metropolitane e si stima che possa diventare il 66\% entro il 2050[2].
 \begin{figure}[!h]
 \centering
@@ -193,21 +196,21 @@ Il 54\% della popolazione mondiale risiede in città metropolitane e si stima che
 \end{figure}
 I sistemi ITS si pongono l'obiettivo di migliorare la qualità dei trasporti in termini di riduzione delle congestioni, rischi di incidente e situazioni di emergenza.
 Per fare ciò vengono sfruttati meccanismi intelligenti, in grado di fare determinate assunzioni sulla base delle informazione scambiate tra veicoli che si trovano in una determinata zona.
-Gli utenti, sfruttando le deduzioni offerte da questi sistemi, potrebbero variare il loro comportamento, permettendo così di smaltire le congestioni e favorire la viabilità generale.
+Gli utenti, consultando i dati sul traffico forniti da sistemi ITS, potrebbero variare il loro comportamento, permettendo così di smaltire le congestioni e favorire la viabilità generale.
 \section{Crowdsensing}
 Per Crowdsensing si definisce quell'attività di condivisione e raccolta dati, utilizzando i vari sensori presenti all'interno dei dispositivi mobili. Lo scopo di ogni device deve essere quello 
 di condividere con molti utenti le proprie informazioni.
 In questa maniera, si potrà giungere ad una conoscenza condivisa tra gli utenti ed ottenere, in maniera intelligente, i risultati prefissati.
 Il Crowdsensing si suddivide principalmente in 2 categorie[3]:
 \begin{itemize}
-\item \textit{Partecipatory Crowdsensing} : l'utente viene coinvolto direttamente nella fase di propagazione dei dati. 
-\item \textit{Opportunistic Crowdsensing} : la propagazione avviene in maniera automatica e trasparente all'utente.
+\item \textit{Partecipatory Crowdsensing}: l'utente viene coinvolto direttamente nella fase di propagazione dei dati. 
+\item \textit{Opportunistic Crowdsensing}: la propagazione avviene in maniera automatica e trasparente all'utente.
 \end{itemize}
 La seconda categoria, dove l'utente deve solo accettare la condivisione dei propri dati, è quella maggiormente utilizzata nelle applicazioni mobili, in quanto è quella che garantisce una buona quantità di raccolta dati.
 \\Il Crowdsensing può essere uno strumento molto potente per ottenere risultati che possono essere ricavati soltanto dall'aggregazione di dati collettivi.
-Numerosi contributi, in letteratura, si basano proprio su questo concetto. Ad esempio, il progetto in [4] utilizza il concetto di Crowdsensing per la costruzione intelligente di mappe indicanti il 
+Numerosi contributi, in letteratura, si basano sulla condivisione massiva di dati. Ad esempio, il progetto in [4] utilizza il concetto di Crowdsensing per la costruzione intelligente di mappe indicanti il 
 numero di parcheggi disponibili per una determinata strada.
-In questo caso, prendendo un numero elevato di utenti in una determinata zona e condividendo i dati di dove essi parcheggiano abitualmente, è possibile  tracciare le zone adibite al parcheggio di una 
+Prendendo un numero elevato di utenti in una determinata zona e condividendo i dati di dove essi parcheggiano abitualmente, è possibile  tracciare le zone adibite al parcheggio di una 
 determinata strada.
 Il sistema presentato in [8], vuole fornire agli utenti la situazione di occupazione del parcheggio universitario tramite i dati raccolti dagli utenti.
 Ogni studente, quando lascia il parcheggio, contribuisce alla conoscenza globale con la propria visione del parcheggio (pieno, semi-pieno, vuoto).
@@ -246,43 +249,50 @@ Gli utenti passano molto tempo nel cercare uno slot libero, soprattutto se si co
 \end{itemize}
 Lo studio in [4], quantifica gli effetti negativi evidenziando come in una porzione di Los Angeles, nel periodo di un anno, le macchine abbiano compiuto una distanza pari a 
 37 giri intorno al mondo, soltanto per le attività di ricerca parcheggio.
-Questo ha portato al consumo di 47000 galloni di gasolio, tramutati in 730 tonnellate di CO\ped{2} (diossido di carbonio) emesso nell'aria.
+Con il conseguente consumo di 47000 galloni di gasolio, tramutati in 730 tonnellate di CO\ped{2} (diossido di carbonio) emesso nell'aria.
 Un'altra analisi molto interessante viene fatta in [5], dove si dimostra come gli utenti, non trovando parcheggio in un tempo ragionevole, possano assumere comportamenti negativi.
 Molte persone sarebbero disposte a parcheggiare illegalmente o addirittura rinunciare all'attività da compiersi.
 Lo stato dell'arte presenta numerosi lavori sul tema dello Smart Parking, proponendo idee sempre più innovative per limitare gli effetti negativi appena descritti.
-In [4] si cerca di fornire all'utente una mappa dettagliata della quantità di parcheggi per strada. Questa può essere un'informazione utile per l'utente, il quale riesce quantomeno a farsi un'idea sulle strade 
-più dense di parcheggi on-street.
 \begin{figure}[!h]
 \centering
 \includegraphics[scale=0.4]{img/sensor-sp.png}
 \caption{Sistema di Smart parking con sensori in-ground}
 \end{figure}
-I progetti mostrati in [5][10][11][14][15] si affidano a reti \textit{WSN} (Wireless Sensor Network), dove ogni sensore viene posizionato in prossimità del parcheggio (come mostrato in figura 1.2) ed instrada le proprie 
-informazioni verso una struttura centralizzata.
-L'efficienza di questi sistemi è molto alta, ma il costo per l'installazione e la manutenzione (come riportato anche nell'Introduzione) sono un limite per la loro diffusione.
-Questo ha favorito lo sviluppo di sistemi Crowdsensing e Crowdsourcing, i quali permettono di ottenere risultati soddisfacenti partendo dal contributo degli utenti stessi.
-I progetti in [2][4][7][8][9] forniscono all'utente, tramite l'ausilio di mappe, indicazioni riguardo la situazione parcheggi nelle vicinanze. 
+\\I sistemi di Smart Parking possono essere suddivisi in 3 macrocategorie:
+\begin{itemize}
+\item \textit{Sistemi basati su reti di sensori}:
+\\I progetti mostrati in [5][10][11][14][15] si affidano a reti \textit{WSN} (Wireless Sensor Network), dove ogni sensore viene posizionato in prossimità del parcheggio (come mostrato in figura 1.2) ed instrada le proprie 
+informazioni verso una struttura centralizzata. L'efficienza di questi sistemi è molto alta, ma il costo per l'installazione e la manutenzione (come riportato anche nell'introduzione) sono un limite per la loro diffusione.
+\item \textit{Sistemi basati su computer vision}:
+\\Come citato in [31] molti sistemi si basano su tecniche di \textit{VIP} (Video Image Processing) per dedurre l'occupazione o meno dei parcheggi. 
+I risultati vengono ottenuti processando le immagini (ricavate da telecamere) con algoritmi basati sull'Intelligenza Artificiale. Anche per questi sistemi il costo dell'infrastruttura può essere notevole.
+\item \textit{Sistemi di Crowdsensing e Crowdsourcing}:
+\\Questi sistemi permettono di ottenere risultati soddisfacenti partendo dal contributo degli utenti stessi.
+In [4] si cerca di fornire all'utente una mappa dettagliata della quantità di parcheggi per strada. La mappa può essere un'informazione utile per l'utente, il quale riesce quantomeno a farsi un'idea sulle strade 
+più dense di parcheggi on-street.
+I progetti in [2][7][8][9] forniscono all'utente, tramite l'ausilio di mappe, indicazioni riguardo la situazione parcheggi nelle vicinanze. 
 Gli utenti che compiono un'attività di parcheggio, condividono i propri dati (ottenuti tramite sensori dello Smartphone o altro) con la comunità, evitando congestione del traffico stradale.
 Questi lavori possono essere correlati all'attività di tesi presentata in questo documento, dove si cercherà di fornire agli utenti preziose informazioni sui parcheggi vicini, 
 senza l'aiuto di architetture \textit{WSN} ed agenti centralizzati.
+\end{itemize}
 \subsection{Propagazione dell'informazione}
-Una parte fondamentale all'interno dei sistemi Smart City e Smart Parking riguarda la propagazione dei dati tra i diversi utenti. Innanzitutto è bene distinguere la comunicazione secondo due paradigmi:
+Una parte fondamentale all'interno dei sistemi Smart Parking riguarda la propagazione dei dati tra i diversi utenti. Innanzitutto è bene distinguere la comunicazione secondo due paradigmi:
 \begin{itemize}
-\item \textit{centralizzata} : classica struttura Client-Server, dove una struttura centralizzata raccoglie tutti i dati derivanti da diverse fonti della Smart City e fornisce i risultati ai diversi client.
-\item \textit{distribuita} : ogni dispositivo comunica con altri dispositivi cercando di propagare efficacemente l'informazione. L'assenza di una struttura centralizzata porta ogni nodo ad avere risultati 
+\item \textit{centralizzata}: classica struttura Client-Server, dove una struttura centralizzata raccoglie tutti i dati derivanti da diverse fonti della Smart City e fornisce i risultati ai diversi client.
+\item \textit{distribuita}: ogni dispositivo comunica con altri dispositivi cercando di propagare efficacemente l'informazione. L'assenza di una struttura centralizzata porta ogni nodo ad avere risultati 
 parziali nel tempo, di conseguenza è necessario pensare ad efficaci metodi di propagazione in modo che tutti gli utenti restino allineati sulle informazioni prodotte dalla città.
 \end{itemize}
-Il secondo paradigma è quello che verrà utilizzato in questo lavoro di tesi, dove gli attori della rete saranno solamente dispositivi end-point. 
+Il secondo paradigma è quello che verrà utilizzato nel progetto di tesi, dove gli attori della rete saranno solamente dispositivi end-point. 
 Risparmiando l'utilizzo di agenti centralizzati, si evitano importanti costi di installazione e gestione.
 Il tema dello Smart Parking porta a considerare la Smart City come una rete veicolare distribuita ed in queste condizioni è normale pensare ad una comunicazione \textit{V2V} (Vehicle-To-Vehicle).
 Il \textit{V2V} riguarda comunicazioni tra veicoli in movimento portanto alla creazione di reti spontanee, denominate \textit{VANETs} (Vehicular Ad-Hoc Networks).
-Questi tipi di sistemi sono stati realizzati per propagare informazioni in maniera totalmente distribuita tra i vecoli, segnalando eventuali pericoli, incidenti, percorsi trafficati.
-Ad oggi questo tipo di comunicazione non è disponibile per molte delle auto in commercio, trattandosi comunque di progetti costosi ed altamente innovativi.
-Un altro modo di propagazione distribuita può avvenire invece tramite l'utilizzo di Smartphone, utilizzando il paradigma \textit{D2D} (Device-To-Device).
+La comunicazione veicolare è stata pensata per propagare informazioni in maniera totalmente distribuita tra i vecoli, segnalando eventuali pericoli, incidenti, percorsi trafficati.
+Le connessioni Vehicle-To-Vehicle richiedono componenti hardware e software che la maggior parte delle automobili in commercio non possiedono ancora.
+Un altro modo di propagazione distribuita può avvenire invece tramite l'utilizzo di Smartphone, utilizzando il paradigma \textit{D2D} (Device-To-Device)[13].
 Il \textit{D2D} permette comunicazioni wireless tra device che sono nelle vicinanze. Questo approccio è quello che viene preso in considerazione nel lavoro di tesi, sfruttando i dispositivi utente per la 
 propagazione di informazioni, relativa alla situazione parcheggi, all'interno della Smart City.
 \part{Progettazione ed Implementazione}
-\chapter{Progettazione}                %crea il capitolo
+\chapter{Progettazione}
 Il seguente capitolo ha lo scopo di illustrare in dettaglio il goal del progetto, le problematiche che vi stanno dietro e la fase di progettazione su cui è stato necessario soffermarsi, per la successiva realizzazione ed implementazione.
 La mission, descrivendola in pochi concetti, è sostanzialmente quella di determinare quando un utente parcheggia o rilascia uno slot e disseminare queste informazioni in maniera totalmente distribuita, senza alcun appoggio di una struttura centralizzata.
 Questo concetto diventa innovativo dal momento in cui non si passa dalla rete cellulare o da qualche gateway verso Internet per la comunicazione tra dispositivi, 
@@ -320,8 +330,8 @@ Per evitare che questo succeda, viene controllata la dimensione del database loc
 Inoltre i peer possono effettuare sincronizzazioni soltanto dopo una certa threshold, espressa in secondi.
 Questi concetti sono stati parametrizzati in fase di implementazione, quindi possono essere giustamente calibrati in base all'ambiente in cui si intende utilizzare l'app.
 
-\section{Architettura generale}               %crea la sezione
-L'architettura generale, analizzandola da un punto di vista esterno, prevede come unici attori i device utenti. Questi muovendosi all'interno dell'ambiente città restano in attesa di possibili sincronizzazioni.
+\section{Ruoli dei dispositivi}               %crea la sezione
+Il sistema progettato prevede come unici attori i device utenti. Questi muovendosi all'interno dell'ambiente città restano in attesa di possibili sincronizzazioni.
 Ogni dispositivo, che presenta il servizio di comunicazione e sincronizzazione attivo, può interpretare fondamentalmente due ruoli:
 \begin{itemize}
  \item \textbf{ROLE ACCESS POINT}:
@@ -332,12 +342,12 @@ Ogni dispositivo, che presenta il servizio di comunicazione e sincronizzazione a
  \\Se un device si accorge della presenza di un Hotspot nelle vicinanze, grazie al beacon sopracitato, può tentare di connettersi come client all'Access Point. Qualora riesca ad agganciarsi in modo stabile 
  verranno avviati i canali di comunicazione, su cui effettuare una sincronizzazione tra i due device.
 \end{itemize}
-A questo punto la topologia della rete generale può essere vista come hub di hub, ovvero tante piccole star, dove grazie al movimento inerziale dei device si riuscirà ad ottenere una propagazione dell'informazione, 
+A questo punto la topologia della rete generale può essere vista come hub di hub, ovvero tante piccole star, dove grazie al continuo movimento dei device si riuscirà ad ottenere una propagazione dell'informazione, 
 interconnettendo appunto diverse star tra di loro, ad istanti di tempo differenti.
 \begin{figure}[!h]
 \centering
 \includegraphics[scale=0.6]{img/arch_general.png}
-\caption[Rappresentazione dell'Architettura generale]{Rappresentazione dell'Architettura generale e della divisione in celle di una porzione di Bologna}
+\caption[Rappresentazione dei ruoli utente in una porzione di Bologna]{Rappresentazione dei diversi ruoli e della divisione in celle di una porzione di Bologna}
 \end{figure}
 \\Come si può comprendere dalla figura 2.1, i device muovendosi continuamente all'interno dello scenario (identificato in questo caso con la griglia città), formeranno continuamente nuove star, con attori sempre diversi.
 Questo fattore è determinante per il processo di propagazione delle informazioni, in quanto dati presenti in una star, verranno sincronizzati, in istanti successivi, con star diverse.
@@ -393,18 +403,18 @@ query di filtraggio, creazione, modifica, cancellazione.
 \\Entrando più in dettaglio nella composizione delle tabelle e degli attributi salvati, si mostra di seguito uno schema riassuntivo di ciò che viene messo a database:
 \\\\ Tabella \textbf{\textit{park\_events}}:
 \begin{itemize}
-\item \underline{\textit{cell\_id}} : identificativo univoco della cella che la identifica all'interno della grid city. Informazione di tipo geografica.
-\item \underline{\textit{event}} : evento che può essere limitatamente PARKED o RELEASED. Indica se l'entry fa riferimento ad una sosta o alla liberazione di un parcheggio.
-\item \underline{\textit{timestamp}} : datetime che indica il momento in cui è stato performato l'evento in questione.
-\item \underline{\textit{mac}} : identificativo univoco del device che ha performato l'evento di parcheggio o rilascio.
+\item \underline{\textit{cell\_id}}: identificativo univoco della cella che la identifica all'interno della grid city. Informazione di tipo geografica.
+\item \underline{\textit{event}}: evento che può essere limitatamente PARKED o RELEASED. Indica se l'entry fa riferimento ad una sosta o alla liberazione di un parcheggio.
+\item \underline{\textit{timestamp}}: datetime che indica il momento in cui è stato performato l'evento in questione.
+\item \underline{\textit{mac}}: identificativo univoco del device che ha performato l'evento di parcheggio o rilascio.
 \end{itemize}
 La PRIMARY KEY è composta da \underline{\textit{\textless timestamp, mac\textgreater}}. L'idea che vi sta dietro è quella che un utente può performare, in un dato istante, al più un unico 
 evento di rilascio o parcheggio.
 \\\\ Tabella \textbf{\textit{synchronizations}}:
 \begin{itemize}
-\item \underline{\textit{timestamp}} : datetime in cui è avvenuta la sincronizzazione.
-\item \underline{\textit{mac}} : id univoco dell'altro device con cui è stata possibile la sincronizzazione.
-\item \underline{\textit{ap\_role}} : booleano che indica se ero Access Point o meno al momento della sincronizzazione.
+\item \underline{\textit{timestamp}}: datetime in cui è avvenuta la sincronizzazione.
+\item \underline{\textit{mac}}: id univoco dell'altro device con cui è stata possibile la sincronizzazione.
+\item \underline{\textit{ap\_role}}: booleano che indica se ero Access Point o meno al momento della sincronizzazione.
 \end{itemize}
 
 Questa tabella oltre a fini statistici,  è importante perché permette di evitare che due device si sincronizzino in continuazione.
@@ -436,50 +446,59 @@ Questo è stato fatto per evitare situazioni di stallo e cercare di ripartire da 
 Supponendo che la sincronizzazione sia andata a buon fine, si passa allo stato STATE\_SYNCED\_CONNECTED, il quale significa che la sincronizzazione è terminata ma si è ancora agganciati all'Hotspot del server.
 A questo punto, gli attori coinvolti, potrebbero allontanarsi a tal punto da rompere il legame creato e quindi il servizio ripartirebbe dallo stato iniziale di START.
 Altrimenti, se gli utenti restano nelle vicinanze l'uno dell'altro in modo tale da mantenere attiva la connessione, si dà l'opportunità al client (dopo una certa threshold) di richiedere nuovamente una sincronizzazione.
-
-\section{Probabilità di occupazione di una cella}                 %crea la sezione
+\section{Probabilità di occupazione di una cella}
 Questa parte si preoccupa, man mano che le informazioni giungono nel database locale, di calcolare le probabilità di trovare parcheggio nelle celle della città.
 Si ricorda che il dato che si fornisce all'utente è una probabilità e non un valore certo, così da dare indicazioni agli utenti, sulle zone, che statisticamente saranno meno congestionate.
 Un'altra precisazione riguarda  il fatto che più utenti utilizzeranno l'applicazione, come supporto al parcheggio, e più dati verranno disseminati tra i device, aumentando progressivamente l'affidabilità 
 delle probabilità fornite agli utenti.
-Supponendo che il numero di slot totali in una generica cella i, identificato con la sigla N\ped{i}\ap{t}, sia noto a priori, lo si può interpretare anche come la somma tra numero di slot liberi, N\ped{i}\ap{f}, e 
-numero di slot occupati N\ped{i}\ap{o}.
+Supponendo che il numero di slot totali in una generica cella i, identificato con la sigla $N\ped{i}\ap{t}$, sia noto a priori, lo si può interpretare anche come la somma tra numero di slot liberi, $N\ped{i}\ap{f}$, e 
+numero di slot occupati $N\ped{i}\ap{o}$.
 Questi ultimi due, possono essere ricavati a partire dagli eventi di parcheggio e rilascio, i quali sono presenti nel database locale citato in precedenza.
-\\In particolare, il numero dei parcheggi occupati N\ped{i}\ap{o} può essere ricavato dalla differenza tra il numero di eventi parcheggio E\ped{i}\ap{p} ed il numero di eventi rilascio E\ped{i}\ap{r}.
-
+\\In particolare, il numero dei parcheggi occupati $N\ped{i}\ap{o}$ può essere ricavato dalla differenza tra il numero di eventi parcheggio $E\ped{i}\ap{p}$ ed il numero di eventi rilascio $E\ped{i}\ap{r}$.
 $$N\ped{i}\ap{o} = E\ped{i}\ap{p} - E\ped{i}\ap{r} $$
 \\A questo punto, conoscendo già il numero totale degli slot, è facile calcolare il tasso di occupazione di una determinata cella:
 $$p\ped{i}\ap{o} = \df{N\ped{i}\ap{o}}{N\ped{i}\ap{t}}$$
 \\Infine calcoliamo la probabilità di trovare parcheggio, servendosi del tasso di occupazione appena calcolato:
 $$p\ped{i}\ap{f} = 1 - p\ped{i}\ap{o}$$
-Quest'ultima sarà l'informazione, messa in percentuale, a cui l'utente avrà accesso una volta aperta l'applicazione. Verrà visualizzata la mappa della città suddivisa in griglia ed ogni quadrante sarà colorato in base alla 
+La probabilità $p\ped{i}\ap{f}$, messa in percentuale, sarà l'informazione a cui l'utente avrà accesso una volta aperta l'applicazione. Verrà visualizzata la mappa della città suddivisa in griglia ed ogni quadrante sarà colorato in base alla 
 probabilità di trovare parcheggio.
 \\Nella sezione screenshot, figura 3.2, è possibile vedere quanto descritto.
-
 
 \clearpage{\pagestyle{empty}\cleardoublepage}
 \chapter{Implementazione}
 Come ribadito nel Cap. 2 l'obiettivo del progetto è quello di disseminare informazioni di Smart Parking in modalità Device-to-Device, senza l'ausilio di alcuna infrastruttura centralizzata. 
 In base alle informazioni ricevute, si riuscirà dunque a fare assunzioni sulle quantità di parcheggi disponibile in determinate zone della città.
 \\L'implementazione riguarda la realizzazione del processo di spreading nel Sistema Operativo Android, con l'ausilio della tecnologia \textit{WiFi Direct}.
-Quest'ultima, presente a partire dalle librerie API 14 e device con Android 4.0 o superiori, permette la comunicazione one-to-one tra dispositivi utente.
+La tecnologia, presente a partire dalle librerie API 14 e device con Android 4.0 o superiori, permette la comunicazione one-to-one tra dispositivi utente.
 \\Il capitolo seguente mostra i passi necessari alla realizzazione, dettagliando i componenti software realizzati partendo dalla base di progettazione, illustrata in sezione 2.4.
 \section{Componente di disseminazione}
 Il paragrafo illustra tutti gli attori principali che compongono il servizio di disseminazione delle informazioni. Ogni sottoparagrafo spiega le funzionalità
 del componente e l'interazione con gli altri. Questa è la parte che, in fase di implementazione, ha richiesto maggior sforzo ed essendo il cuore del progetto, verrà maggiormente descritta, addentrandosi anche
 nell'analisi del codice sorgente.
 \subsection{Strategia di connessione tramite WiFi Direct}
-La tecnologia \textit{WiFi Direct} rende possibile la creazione di cosiddetti \textit{P2P Groups}, i quali possono essere comparati ad infrastrutture WiFi. 
+Il \textit{WiFi Direct} è una nuova tecnologia definita dalla \textit{WiFi Alliance} che permette comunicazioni wireless Device-To-Device[30]. La tecnologia si basa sullo standard 802.11, ereditandone
+caratteristiche e sviluppi degli ultimi anni. L'architettura classica WiFi prevede una netta distinzione tra l'Access Point e i client, mentre il \textit{WiFi Direct} introduce una certa dinamicità in questo senso.
+Ogni device che supporta la tecnologia può fungere sia da Access Point che da semplice client.
+I cosiddetti \textit{P2P Group} possono essere comparati ad infrastrutture WiFi e vengono creati al termine di una fase di \textit{Group Owner (GO) negotiation}, dove viene stabilito il ruolo (Access Point o client) 
+per ogni device coinvolto. 
 Il device che detiene le funzionalità di Access Point viene definito \textit{P2P Group Owner}, il quale può comunque mantenere attive connessioni cellulari (come ad esempio il 4G).
-Per realizzare lo scopo del progetto il \textit{WiFi Direct} non è stato utilizzato in maniera tradizionale, bensì in modalità legacy.
+I client vengono identificati all'interno del gruppo tramite un IP, assegnato dal \textit{DHCP} del dispositivo Access Point.
+La creazione del gruppo può avvenire in 3 modalità distinte:
+\begin{itemize}
+ \item \textit{standard}: dopo una fase di discovery, i dispositivi iniziano la fase di \textit{GO negotiation} per definire i ruoli all'interno del gruppo. Una volta definito l'Access Point, il \textit{DHCP} identifica 
+                          i client tramite l'assegnazione degli indirizzi IP.
+ \item \textit{autonoma}: un dispositivo si autoelegge spontaneamente a \textit{P2P Group Owner} ed inizia a notificare la propria presenza tramite beacon.
+ \item \textit{persistente}: durante la creazione del gruppo vi è la possibilità di tener traccia delle credenziali e dei ruoli. Questo dovrebbe favorire il processo di ricreazione del gruppo.
+\end{itemize}
+Per realizzare lo scopo del progetto, la tecnologia \textit{WiFi Direct} non è stata utilizzata in maniera tradizionale, bensì in modalità legacy.
 \\Questo perchè, almeno nel primo incontro tra due device, la nascita della connessione necessità dell'interazione utente (come mostrato in figura 3.1).
 \\Il nostro processo di comunicazione peer-to-peer non prevede però alcuna interazione dell'utente, in quanto i dispositivi devono scoprirsi e comunicare in maniera del tutto autonoma e trasparente.
-\\Utilizzando la modalità legacy, un dispositivo crea un \textit{P2P Group} fungendo da Access Point, mentre gli altri lo percepiscono e si connettono ad esso come un normale Hotspot 802.11.
+\\Utilizzando la modalità legacy, un dispositivo crea in modalità autonoma un \textit{P2P Group} fungendo da Access Point, mentre gli altri lo percepiscono e si connettono ad esso come un normale Hotspot 802.11.
 Questo dà la possibilità di connettere più client per Access Point, formando logicamente le topologie a stella, citate in sezione 2.3.
 \begin{figure}[!h]
 \centering
 \includegraphics[scale=0.5]{img/popup.png}
-\caption{Interazione utente per il consenso alla connessione}
+\caption{Interazione utente per il consenso alla connessione WiFi Direct}
 \end{figure}
 \subsection{Il servizio background}
 Dato che il processo di comunicazione tra peer deve avvenire in maniera completamente trasparente all'utente, è stato necessario implementare un servizio che svolgesse 
@@ -487,13 +506,13 @@ il meccanismo di invio e ricezione dati, anche nel caso in cui l'applicazione ve
 Un \textit{Service} è un componente Andorid, sprovvisto di interfaccia grafica, che si preoccupa di compiere procedure in background.
 Questo componente è stato denominato \textit{NetworkAutoService}, ed estende appunto la classe \textit{Service} di Android. I metodi che gestiscono il servizio sono:
 \begin{itemize}
- \item \textit{onCreate} : crea il servizio e lo notifica all'utente.
- \item \textit{onStartCommand} : metodo che inizia l'esecuzione vera e propria del servizio di disseminazione, in background. Qui, sostanzialmente, espone in beaconing la 
+ \item \textit{onCreate}: crea il servizio e lo notifica all'utente.
+ \item \textit{onStartCommand}: metodo che inizia l'esecuzione vera e propria del servizio di disseminazione, in background. Qui, sostanzialmente, espone in beaconing la 
   possibilità di fungere da Access Point e si mette alla ricerca di preesistenti Hotspot nei paraggi. Queste funzionalità verranno descritte meglio in sezione 3.1.5 e 3.1.6.
   Si ricorda che l'attivazione del servizio è sancita dall'utente tramite la pressione di un pulstante da interfaccia grafica, come mostrano gli screenshot in figura 3.3.
- \item \textit{onDestroy} : Metodo che ferma il servizio e libera le strutture dati necessarie al processo di networking. L'utente richiama implicitamente questo metodo alla pressione del bottone stop del servizio, 
+ \item \textit{onDestroy}: Metodo che ferma il servizio e libera le strutture dati necessarie al processo di networking. L'utente richiama implicitamente questo metodo alla pressione del bottone stop del servizio, 
  come mostrano gli screenshot in figura 3.3.
- \item \textit{startCheckNetworkTimer} : metodo privato che inizializza un oggetto \textit{Timer} e lo schedula ogni 3s. Questi 3s possono essere interpretati logicamente come un time slot. 
+ \item \textit{startCheckNetworkTimer}: metodo privato che inizializza un oggetto \textit{Timer} e lo schedula ogni 3s. I 3s possono essere interpretati logicamente come un time slot. 
  L'azione schedulata, prevede l'invio di un \textit{Intent}, in modo tale che il \textit{BroadcastReceiver} (definito nella sezione 3.1.8) lo possa catturare e controllare lo stato della Network State Machine (definita in sezione 2.4.2).
 \end{itemize}
 \subsection{Il NetworkController}
@@ -508,9 +527,9 @@ Inoltre registra in una variabile lo stato corrente della Network Machine State,
 Infine, espone metodi per la registrazione e rilascio del \textit{BroadcastReceiver}.
 Di seguito vengono elencate i metodi principali che la classe espone:
 \begin{itemize}
-\item \textit{startNetworkAccessPoint} / \textit{stopNetworkAccessPoint} : metodi che decretano l'inizio, o la fine, del device come Access Point.
-\item \textit{startNetworkConnection} / \textit{stopNetworkConnection} : metodi che cercano di connettersi, o scollegarsi, da un Hotspot.
-\item \textit{startNetworkBeaconPeerSearcher} / \textit{stopNetworkBeaconPeerSearcher} : metodi che sanciscono l'inizio, o la fine, della ricerca di beacon nelle vicinanze.
+\item \textit{startNetworkAccessPoint} / \textit{stopNetworkAccessPoint}: metodi che decretano l'inizio, o la fine, del device come Access Point.
+\item \textit{startNetworkConnection} / \textit{stopNetworkConnection}: metodi che cercano di connettersi, o scollegarsi, da un Hotspot.
+\item \textit{startNetworkBeaconPeerSearcher} / \textit{stopNetworkBeaconPeerSearcher}: metodi che sanciscono l'inizio, o la fine, della ricerca di beacon nelle vicinanze.
 \end{itemize}
 \subsection{Connessione ad un Access Point}
 La classe \textit{NetworkConnection} detiene la procedura necessaria per connettersi in maniera automatica ad un Access Point (presente nella lista ricavata dallo scan delle reti circostanti).
@@ -556,7 +575,7 @@ Tramite il metodo \textit{discoverPeers} è possibile mettersi alla ricerca di ev
 Per catturare le notifiche relative alla presenza di un device è stato necessario implementare un custom \textit{PeerListListener}, il quale grazie al metodo \textit{onPeersAvailable}
 restituisce la lista dei peer presenti nei paraggi.
 \subsubsection{Beacon di servizio}
-Sempre nell'ambito peer-to-peer, la tecnologia Android, permette di pubblicizzare un servizio ad altri device prima di un'effettiva connessione tra i dispositivi.
+Sempre nell'ambito peer-to-peer, la tecnologia Android, permette di pubblicizzare un servizio ad altri device prima di un'effettiva connessione tra i dispositivi[30].
 La documentazione per developer di Android[21] specifica che questo meccanismo è stato fatto per individuare peer con determinati servizi.
 I Bonjour service vengono creati grazie alla classe \textit{WifiP2pDnsSdServiceInfo}. 
 Questa funzionalità è stata fondamentale per la realizzazione del progetto, in quanto permette di fare assunzioni prima di effettuare tentativi di connessione tra peer.
@@ -741,15 +760,15 @@ private class SocketServerThread extends Thread {
 \end{lstlisting}  
 \endgroup
 \subsection{L'ascoltatore BroadcastReceiverManagement}
-Un componente fondamentale, a livello implementativo, è senza dubbio il \textit{BroadcastReceiverManagement}. Questo estende la classe Android \textit{BroacastReceiver} ed è in grado di 
+Un componente fondamentale, a livello implementativo, è senza dubbio il \textit{BroadcastReceiverManagement}. Estendendo la classe Android \textit{BroacastReceiver} si è in grado di 
 ricevere avvisi sia dall'app stessa, che da componenti esterni di sistema.
 Per avvisi si intendono \textit{Intent}, i quali vengono catturati dal metodo \textit{onReceive} della classe.
-Questi oggetti possono tranquillamente lavorare in background e ricevere aggiornamenti anche se l'applicazione è chiusa.
+I \textit{BroacastReceiver} possono tranquillamente lavorare in background e ricevere aggiornamenti anche se l'applicazione è chiusa.
 Qui vengono prese tutte le decisioni riguardanti il networking, in base ai segnali ricevuti automaticamente in input.
 La classe può essere interpretata anche come un decisore, che in base al succedersi di determinati eventi, compie precise azioni.
 Di seguito vengono illustrati i comportamenti fondamentali, in base a determinati Intent in input. Le istruzioni condizionali citate sono tutte all'interno del metodo \textit{onReceive}.
 \begin{itemize}
-\item \textbf{Tentativi di connessione :}
+\item \textbf{Tentativi di connessione:}
 \\All'arrivo di un custom Intent INTENT\_D2D\_AP\_FOUND, il sistema capisce che è stato scoperto un Access Point attivo nelle vicinanze e cerca di connettersi ad esso, 
 utilizzando la passphrase ricavata dal beacon di Bonjour.
 \begingroup
@@ -774,7 +793,7 @@ if(action.equals(INTENT_D2D_AP_FOUND)) {
 \end{lstlisting}  
 \endgroup
 
-\item \textbf{Gestione dello stato di connessione :}
+\item \textbf{Gestione dello stato di connessione:}
 \\L'Intent \textit{WifiManager.NETWORK\_STATE\_CHANGED\_ACTION} decreta un cambiamento di stato della connessione WiFi del device. Se è avvenuta una 
 disconnessione il device torna disponibile ad interpretare il ruolo di Access Point, mentre se è decretata la connessione ad un Hotspot inizierà il procedimento di sincronizzazione, lato client.
 \begingroup
@@ -792,7 +811,7 @@ if(action.equals(WifiManager.NETWORK_STATE_CHANGED_ACTION)) {
 \end{lstlisting}  
 \endgroup
 
-\item \textbf{Sincronizzazioni successive :}
+\item \textbf{Sincronizzazioni successive:}
 \\Come ribadito in fase di progettazione, se un client mantiene la propria connessione attiva con l'Access Point per un certo periodo 
 ha la possibilità di effettuare un successivo scambio dati, dopo una certa threshold.
 Il componente quindi controlla periodicamente lo stato della Network State Machine e se il device continua a trovarsi nello stato STATE\_SYNCED\_CONNECTED anche dopo la soglia stabilita, può effettuare 
@@ -864,10 +883,10 @@ architettura le informazioni presenti nel database \textit{SQLite}. Quando si de
 il quale fornirà la risposta. 
 Oltre a fungere da interfaccia verso il database, implementa anche altri metodi utili:
 \begin{itemize}
-\item \textit{isMyServiceRunning(Class\textless ?\textgreater class, Context ctx)} : metodo che controlla se un determinato servizio background è attivo.
-\item \textit{mergeEntries(ArrayList\textless ParkEvent\textgreater pe)} : metodo che unisce le nuove entries in input con quelle preesistenti nella memoria locale.
-\item \textit{getMacAddr()} : metodo che ritorna l'indirizzo MAC del device.
-\item \textit{isPossibleSync()} : metodo che sancisce se è possibile effettuare una sincronizzazione. I client, prima di effettuare una sincronizzazione con l'Access Point, controllano che sia passata
+\item \textit{isMyServiceRunning(Class\textless ?\textgreater class, Context ctx)}: metodo che controlla se un determinato servizio background è attivo.
+\item \textit{mergeEntries(ArrayList\textless ParkEvent\textgreater pe)}: metodo che unisce le nuove entries in input con quelle preesistenti nella memoria locale.
+\item \textit{getMacAddr()}: metodo che ritorna l'indirizzo MAC del device.
+\item \textit{isPossibleSync()}: metodo che sancisce se è possibile effettuare una sincronizzazione. I client, prima di effettuare una sincronizzazione con l'Access Point, controllano che sia passata
                                   una certa threshold dall'ultimo scambio dati.
 \begingroup
 \fontsize{9pt}{8pt}
@@ -898,15 +917,15 @@ La \textit{MainActivity} utilizza un \textit{FragmentPagerAdapter} per catturare
 Ogni schermata viene gestita da un'estensione della classe \textit{Fragment}, fornendo all'utente una determinata interfaccia grafica in base ai file \textit{xml} di layout che vengono settati nel metodo \textit{onCreateView}.
 L'applicazione è composta da 5 schermate:
 \begin{itemize}
-\item \textit{MapFragment} : schermata che mostra la città divisa in celle, colorate in base alla probabilità di occupazione. La pressione di una cella fornisce un \textit{Toast} indicante la probabilità in numero. La figura 3.2 
+\item \textit{MapFragment}: schermata che mostra la città divisa in celle, colorate in base alla probabilità di occupazione. La pressione di una cella fornisce un \textit{Toast} indicante la probabilità in numero. La figura 3.2 
                               mostra lo screenshot della schermata.
-\item \textit{DisseminationFragment} : schermata in cui si può attivare/disattivare il servizio di disseminazione tramite \textit{WiFi Direct}. Inoltre si forniscono all'utente informazioni sullo 
+\item \textit{DisseminationFragment}: schermata in cui si può attivare/disattivare il servizio di disseminazione tramite \textit{WiFi Direct}. Inoltre si forniscono all'utente informazioni sullo 
                               stato in cui si trova. Le figure 3.3 e 3.4 mostrano lo screenshot della schermata.
-\item \textit{RecognitionFragment} : schermata in cui si può attivare/disattivare le fasi di training e recognition della mobilità. Se la fase di recognition è attiva viene mostrata la predizione corrente. 
+\item \textit{RecognitionFragment}: schermata in cui si può attivare/disattivare le fasi di training e recognition della mobilità. Se la fase di recognition è attiva viene mostrata la predizione corrente. 
                               La figura 3.5 mostra lo screenshot della schermata.
-\item \textit{SyncListFragment} : schermata in cui viene mostrato all'utente la lista delle ultime sincronizzazione. È possibile filtrare per tempo e ruolo (se il device fungeva da Access Point o no al momento della sincronizzazione).
+\item \textit{SyncListFragment}: schermata in cui viene mostrato all'utente la lista delle ultime sincronizzazione. È possibile filtrare per tempo e ruolo (se il device fungeva da Access Point o no al momento della sincronizzazione).
                               La figura 3.6 mostra lo screenshot della schermata.
-\item \textit{ParkEventListFragment} : schermata in cui viene mostrato all'utente la lista degli ultimi eventi di parcheggio. È possibile filtrare per cella e tipo (parcheggio o rilascio).
+\item \textit{ParkEventListFragment}: schermata in cui viene mostrato all'utente la lista degli ultimi eventi di parcheggio. È possibile filtrare per cella e tipo (parcheggio o rilascio).
                               La figura 3.6 mostra lo screenshot della schermata.
 \end{itemize}
 \newpage
@@ -951,13 +970,13 @@ Di seguito sono mostrati gli screenshot dell'applicazione \textit{D2DSmartParkin
 \clearpage{\pagestyle{empty}\cleardoublepage}
 \part{Valutazione}
 \chapter{Valutazione}
-Quest'ultima fase riguarda la valutazione del processo di disseminazione delle informazioni, grazie alla quale riusciamo a studiare come le informazioni si propagano all'interno del mondo che si va a considerare.
-\\È importante comprendere che non si andrà a valutare la precisione delle probabilità di parcheggi liberi, bensì si andrà a verificare come gli utenti restano allineati sulle informazioni prodotte e propagate dagli agenti dello scenario.
+L'ultima fase riguarda la valutazione del processo di disseminazione delle informazioni, grazie alla quale riusciamo a studiare come le informazioni si propagano all'interno del mondo che si va a considerare.
+\\È importante comprendere che non si andrà a valutare la precisione delle probabilità di parcheggi liberi, bensì si andrà a verificare la convergenza sulla conoscenza dello scenario.
 Infatti è fondamentale che l'utente riesca a sincronizzarsi efficacemente con gli altri attori circostanti, in maniera tale da restare aggiornato, durante il movimento, sulla cella corrente e su quelle adiacenti.
 \section{Strumenti}
 Ovviamente non è possibile testare lo spreading delle informazioni in un ambiente reale, di conseguenza ci si affida ad un simulatore ad eventi discreti.
 In ambito accademico lo strumento più efficace ed utilizzato per fare simulazione è senza dubbio OMNeT++.
-Questo prodotto, disponibile in open source dal 2003, viene utilizzato in fase di progettazione, ricerca, testing e analisi di protocolli di rete, architetture software e hardware.
+Il software, disponibile in open source dal 2003, viene utilizzato in fase di progettazione, ricerca, testing e analisi di protocolli di rete, architetture software e hardware.
 L'ambiente di sviluppo è un surrogato di Eclipse ed il linguaggio principale è il C++.
 \\La logica del simulatore si basa sul concetto fondamentale di Modulo, i quali possono essere aggregati e customizzati a seconda delle proprie esigenze.
 In particolare, per la valutazione del progetto e dell'architettura pensata è stato necessario sviluppare un componente SmartParking che riproponesse la logica pensata in fase di progettazione ed 
@@ -984,24 +1003,25 @@ Comprendendo le strutture universitarie e la stazione dei treni, si tratta di un
 \end{figure}
 \\La struttura implementata permette di parametrizzare determinate metriche in fase di configurazione, le quali vengono citate in elenco:
 \begin{itemize}
-\item \underline{\textit{range}} : quando i due dispositivi risiedono l'uno nel range trasmissivo dell'altro la comunicazione avrà esito positivo. Misura espressa in metri.
-\item \underline{\textit{min\_latency}} : latenza minima che un utente aspetta per effettuare una sincronizzazione. Misura espressa in secondi.
-\item \underline{\textit{max\_latency}} : latenza massima che un utente può verificare prima che avvenga una sincronizzazione o un fallimento. Misura espressa in secondi.
-\item \underline{\textit{sensor\_accuracy}} : accuratezza dei device Android nel performare l'evento di activity recognition rilascio o parcheggio. Misura espressa in probabilità da 0 a 1, compresi.
-\item \underline{\textit{synchronization\_time}} : tempo minimo per cui un utente deve aspettare prima di poter ri-sincronizzarsi. Misura espressa in secondi.
-\item \underline{\textit{cell\_size}} : lunghezza del lato di una cella, espresso in metri.
+\item \underline{\textit{range}}: quando i due dispositivi risiedono l'uno nel range trasmissivo dell'altro la comunicazione avrà esito positivo. Misura espressa in metri.
+\item \underline{\textit{min\_latency}}: latenza minima che un utente aspetta per effettuare una sincronizzazione. Misura espressa in secondi.
+\item \underline{\textit{max\_latency}}: latenza massima che un utente può verificare prima che avvenga una sincronizzazione o un fallimento. Misura espressa in secondi.
+\item \underline{\textit{sensor\_accuracy}}: accuratezza dei device Android nel performare l'evento di activity recognition rilascio o parcheggio. Misura espressa in probabilità da 0 a 1, compresi.
+\item \underline{\textit{synchronization\_time}}: tempo minimo per cui un utente deve aspettare prima di poter ri-sincronizzarsi. Misura espressa in secondi.
+\item \underline{\textit{cell\_size}}: lunghezza del lato di una cella, espresso in metri.
 \end{itemize}
 La logica progettata per la simulazione è una versione semplificata di quella implementata nell'applicazione Android ma rappresenta comunque fedelmente il modello, in modo che i risultati 
 ottenuti possano essere ritenuti affidabili.
 I dispositivi si possono sincronizzare continuamente nel tempo ma, per problemi di overhead già citati, tra due scambi di dati deve passare una certa threshold, rappresentata nel modello dal parametro 
 \textit{synchronization\_time}.
 \\I parametri di \textit{min\_latency} e \textit{max\_latency} rappresentano il tempo che gli \\Access Point e i client ci mettono per identificare il loro ruolo, scoprire peer, rilevare beacon e connettersi ad un \textit{WiFiDirect Group}.
-\section{Obiettivi di simulazione}
-In fase di simulazione, si vuole dimostrare che il movimento inerziale degli utenti e la strategia di disseminazione locale, permettono di restare sincronizzati sugli eventi che effettivamente accadono.
+\section{Metriche di prestazione}
+In fase di simulazione, si vuole dimostrare che il movimento degli utenti e la strategia di disseminazione locale, permettono di restare sincronizzati sugli eventi che effettivamente accadono.
 In particolare si cercherà di analizzare l'accuratezza dei dati presenti nei database locali ai device utente, rispetto a ciò che è accaduto realmente.
-\\Per definire meglio il concetto dell'accuratezza, si prenda di riferimento una cella \textit{i} dove, nel lasso di tempo \textit{t}, sono stati performati 100 eventi parcheggio o rilascio.
-A questo punto, in un determinato istante \textit{t\ped{i}}, se il device ha nella propria conoscenza locale 10 eventi dei 100 totali, avrà un'accuratezza del 10\%, se ne ha 50 avrà accuratezza del 50\% e così 
+\\Per definire meglio il concetto dell'accuratezza, si prenda di riferimento una cella \textit{i} dove, nel lasso di tempo \textit{t}, sono stati performati 100 eventi parcheggio o rilascio \textit{E\ped{i}\ap{tot}}.
+A questo punto, all'istante \textit{t+1}, se il device ha nella propria conoscenza locale 10 eventi \textit{E\ped{i}\ap{loc}} dei 100 totali, avrà un'accuratezza del 10\%, se ne ha 50 avrà accuratezza del 50\% e così 
 fino al limite superiore del 100\%, il quale può essere raggiunto solo da una struttura di tipo centralizzata.
+$$accuracy\ped{i}\ap{t+1} = \df{E\ped{i}\ap{loc}}{E\ped{i}\ap{tot}} * 100 $$
 L'accuratezza, appena descritta, verrà calcolata e registrata nel corso del tempo per comprendere il relativo andamento, col trascorrere dei secondi.
 Inoltre verrà stabilita l'accuratezza in relazione alla distanza, per capire il grado di allineamento non solo sulle celle strettamente adiacenti, ma anche su quelle progressivamente più lontane.
 Infine verrà presa in considerazione l'accuratezza media dopo 1800 secondi in base al numero di veicoli presenti nella porzione di Bologna considerata.
@@ -1011,7 +1031,7 @@ Si vogliono comparare le metriche sopradescritte, simulando l'architettura con l
 Il tempo per ogni run di simulazione è stato settato a 1800 simsec (mezzora simulata) e per ogni tecnologia si considera lo scenario target con 3000 veicoli.
 Il numero di veicoli fa riferimento a rilevamenti reali della porzione di Bologna considerata, in orari centrali della giornata. Per ottenere una stima dell'accuratezza media
 in base al numero di veicoli è stato necessario effettuare simulazioni riducendo le autovetture anche a 1500 e 500.
-L'accuratezza dei sensori è stata settata per tutte le simulazioni a 90\%. Questo deriva dello studio in [2], dove viene stimata l'accuratezza del componente di activity recognition presente nell'architettura.
+L'accuratezza dei sensori è stata settata per tutte le simulazioni a 90\%. La scelta deriva dallo studio in [2], dove viene stimata l'accuratezza del componente di activity recognition presente nell'architettura.
 \\Per ottenere un'analisi statistica che abbia un senso, si effettuano 10 run indipendenti per ogni tecnologia e numero di veicoli, per un totale di 90 run indipendenti.
 I risultati saranno frutto delle medie dei vari run con la stessa configurazione.
 \begin{table}[h]                        %ambiente tabella
@@ -1040,10 +1060,11 @@ Il range di comunicazione tra veicoli, in condizioni ottimali di propagazione, p
 I parametri di \textit{min\_latency} e \textit{max\_latency} sono azzerati in quanto la logica descritta in fase di progettazione ed implementata sull'app Android, su questi sistemi, non ha senso di esistere.
 I canali di comunicazione V2V non necessitano di un meccanismo di esposizione dell'Hotspot e connessione a questo da parte dei client.
 \subsubsection{WiFi Direct}
-Questa configurazione rispecchia l'architettura progettata ed implementata sull'applicazione Android. 
+La seguente configurazione rispecchia l'architettura progettata ed implementata sull'applicazione Android. 
 La documentazione ufficiale dello standard \textit{WiFi Direct} dice che il range di comunicazione potrebbe raggiungere
 i 200m[20]. In realtà 100m sembra un'assunzione più realistica per garantire la maggior parte delle connessioni.
-La latenza di apertura dei canali di comunicazione viene settata dai 2 ai 10 secondi.
+La latenza di apertura dei canali di comunicazione viene settata dai 2 (\textit{min\_latency}) ai 10 secondi (\textit{max\_latency}). Si specifica che i parametri di \textit{min\_latency} e \textit{max\_latency}
+modellano la fase di discovery e connessione all'Access Point, come già accennato in sezione 4.2.
 \subsubsection{Bluetooth}
 La terza tecnologia che si vuole considerare è il \textit{Bluetooth}, il quale ha un range di comunicazione sui 20m ed una latenza di connessione che va dai 5 ai 15 secondi.
 Quest'ultimi parametri possono essere visti come un approccio ottimistico, in quanto il protocollo Bluetooth può impiegare più tempo per scoprire peer nelle vicinanze.
@@ -1058,14 +1079,16 @@ rispetto al numero di eventi totali che sono stati compiuti in quel quadrante.
 \end{figure}
 L'andamento delle curve nel grafico 4.2 mostra come la tecnologia \textit{V2V}, dopo una prima fase di apprendimento di circa 400 simsec, riesca a mantenere un livello di accuratezza sull'80-85\%, raggiungendo il 90\% dopo la mezzora di simulazione.
 Si ricorda che i 3000 veicoli non vengono creati tutti nell'istante 0, ma ciascuno viene inserito nello scenario in un istante che va da 0 a 1800 simsec.
-Questo determina che nella fase iniziale, detta anche transiente, il numero di veicoli sia basso e per questo l'informazione non riesce a raggiungere i nodi già presenti nella città.
+Nella fase iniziale, detta anche transiente, il numero di veicoli è basso e per questo l'informazione non riesce a raggiungere i nodi già presenti nella città.
 Man mano che altri veicoli vengono inseriti, l'accuratezza sale grazie all'aumentare delle sincronizzazioni possibili, rendendo il processo di spreading più efficace.
 La tecnologia \textit{WiFi Direct} cresce meno rapidamente del \textit{V2V} a causa del minor range di comunicazione e della latenza di connessione. Si ottiene comunque un buon livello di accuratezza 
-già dopo 20 minuti, mantenendosi sul 70-75\% e raggiungendo anche l'80\% a fine simulazione.
+già dopo 20 minuti, mantenendosi sul 75\% e raggiungendo anche l'80\% a fine simulazione.
 La tencologia \textit{Bluetooth} non riesce a raggiungere livelli di accuratezza soddisfacenti. La latenza di connessione e soprattutto il basso range di comunicazione incidono negativamente sulla disseminazione.
+Inoltre, come si può notare dall'andamento delle curve, l'indice di accuratezza non è ancora completamente stazionario dopo i 1800 simsec di simulazione. Il livello di accuratezza continua leggermente a salire negli ultimi 
+istanti. Non si esclude che si potrebbero ottenere risultati sempre migliori, con il trascorrere del tempo.
 \subsubsection{L'accuratezza dello scenario generale}
 Il secondo grafico (figura 4.3) misura l'accuratezza delle informazioni rispetto a tutta la città e non solo rispetto alla cella corrente in cui si trova il veicolo.
-L'andamento delle curve nel grafico 4.3 può essere comparabile con quello nel grafico 4.2 con un abbassamento generale dell'accuratezza di circa un 10\%.
+L'andamento delle curve nel grafico 4.3 può essere comparabile con quello nel grafico 4.2 con un abbassamento generale dell'accuratezza di circa 5-10\%.
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.5]{img/graphics/global_accuracy.png}
@@ -1075,13 +1098,14 @@ Col il passare dei secondi e con l'inserimento di nuovi veicoli, la tecnologia \
 nonostante il range di comunicazione sia ridotto rispetto ad una tecnologia \textit{V2V}.
 \subsubsection{L'accuratezza in base alla distanza}
 Il grafico in figura 4.4 mostra l'accuratezza delle informazioni in base alla distanza. Ricordando che i device si sincronizzano sulle informazioni della cella corrente e su quelle strettamente adiacenti, è normale pensare
-che l'accuratezza decresca con la distanza. L'ipotesi viene dimostrata dall'andamento delle curve nel grafico 4.4, dove per ogni tecnologia l'accuratezza migliore la si ottiene per la cella corrente e per quelle 
-presenti nel raggio di 250-500m.
+che l'accuratezza decresca con la distanza. 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.5]{img/graphics/distance.png}
 \caption{Grafico dell'accuratezza media in base alla distanza - 3000 veicoli}
 \end{figure}
+L'ipotesi viene dimostrata dall'andamento delle curve nel grafico 4.4, dove per ogni tecnologia l'accuratezza migliore la si ottiene per la cella corrente e per quelle 
+presenti nel raggio di 250-500m.
 \subsubsection{L'accuratezza in base al numero di veicoli}
 Il grafico in figura 4.5 mostra l'accuratezza media dopo 1800 simsec, per  ogni tecnologia, in scenari con 3000, 1500 e 500 veicoli.
 Come citato in sezione 1.2, il tasso di partecipazione in sistemi Crowdsensing è un fattore determinante per un efficace processo di spreading dell'informazione.
@@ -1089,34 +1113,13 @@ La tecnologia \textit{V2V} riesce a mantenere livelli di accuratezza soddisfacen
 garantire nella creazione di \textit{VANETs}.
 L'accuratezza della tecnologia \textit{WiFi Direct}, invece, decresce notevolmente con la diminuzione dei veicoli nella porzione di città considerata.
 Si passa da 70-72\% con 3000 veicoli, a 35\% con 1500 veicoli fino ad un 5\% con 500 veicoli.
-Questo determina che il sistema tramite l'applicazione Android può funzionare in modo soddisfacente se il numero di utenti rimane elevato.
+La decrescità notevole dell'accuratezza, denota che il sistema tramite l'applicazione Android può funzionare in modo soddisfacente se il numero di utenti rimane elevato.
 La tecnologia \textit{Bluetooth} non può essere considerata efficace in alcuna situazione.
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.5]{img/graphics/n_car.png}
 \caption{Grafico dell'accuratezza media in base al numero di veicoli}
 \end{figure}
-\subsubsection{Falsi Positivi e Falsi Negativi}
-La tabella 4.2 mostra un' analisi sull'accuratezza dei sensori Andorid. Si ricorda che viene settata la precisione dei sensori a 90\%[2].
-\begin{table}[h]                        %ambiente tabella
-                                        %(serve per avere la legenda)
-\begin{center}                          %centra nella pagina la tabella
-\begin{tabular}{ |p{2cm}||p{3cm}||p{4cm}||p{4cm}|  }
- \hline
- \textbf{vehicles}&\textbf{events avg}&\textbf{false positive avg}&\textbf{false negative avg}\\
- \hline
- 3000&3695&361&369\\
- 1500&1713&163&170\\
- 500&514&49&48\\
- \hline
-\end{tabular}
-\caption{Risultati di Falsi Positivi e Falsi Negativi}\label{tab:uno}
-\end{center}
-\end{table}
-L'analisi riguarda il calcolo dei falsi positivi e dei falsi negativi in proporzione al numero di eventi prodotti nei 1800 simsec, nella porzione di Bologna considerata. 
-Per falso positivo si intende l'errore di activity recognition per cui si rileva un evento di parcheggio quando questo, in verità, non è stato compiuto.
-Il falso negativo invece non rileva un evento parcheggio realmente accaduto.
-I risultati ci mostrano come circa un 10\% dell'informazione, che circola all'interno della Smart City, sia realtiva a falsi positivi.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
 \clearpage{\pagestyle{empty}\cleardoublepage}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%per fare le conclusioni
@@ -1129,23 +1132,30 @@ CONCLUSIONI}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%aggiunge la voce Conclusioni
                                         %   nell'indice
 \addcontentsline{toc}{chapter}{Conclusioni}
-Questa tesi descrive un sistema di Smart Parking, cercando di favorire l'attività di parcheggio dell'utente. Il sistema fornisce una mappa della città suddivisa in quadranti e per ognuno di questi viene
+La tesi descrive un sistema di Smart Parking, cercando di favorire l'attività di parcheggio dell'utente. Il sistema fornisce una mappa della città suddivisa in quadranti e per ognuno di questi viene
 indicata la probabilità di trovare parcheggio. L'utente, durante la fase di parcheggio, può individuare le zone che forniscono un'alta probabilità di trovare uno slot libero.
-Questo favorisce l'utente stesso, ma aiuta anche a smaltire la congestione del traffico nella metropoli.
+L'applicazione favorisce l'utente stesso, ma aiuta anche a smaltire la congestione del traffico nella metropoli.
 Tramite un componente di activity recognition (basato su sensori) ogni Smartphone riesce a determinare quando l'utente parcheggia o rilascia la propria autovettura.
-Il sistema si basa sul concetto di Crowdsensing, dove ogni individuo condivide i propri eventi di parcheggio e rilascio con la comunità. In base a queste informazioni è possibile dare
+Il sistema si basa sul concetto di Crowdsensing, dove ogni individuo condivide i propri eventi di parcheggio e rilascio con la comunità. In base alle informazioni condivise è possibile dare
 una stima delle zone più dense di parcheggi liberi della città. La propagazione delle informazioni non si basa su una struttura centralizzata, ma l'approccio è completamente distribuito tra i dispositivi utente.
-I più comuni Smartphone in commercio danno la possibilità di comunicare tra loro secondo il paradigma \textit{D2D} (Device-To-Device).
-Il meccanismo di disseminazione che è stato implementato in questo lavoro è stato reso totalmente automatico e trasparente all'utente. Una volta attivato permette di restare aggiornati sulla situazione parcheggi, 
+Gli Smartphone Android, a partire dalla versione 4.0, danno la possibilità di comunicare tra loro secondo il paradigma Device-To-Device (\textit{D2D}). Il \textit{WiFi Direct} è la tecnologia che permette lo spreading 
+dell'informazione tra peer. Basandosi sullo standard 802.11, dà la possibilità di creare vere e proprie infrastrutture WiFi utilizzando soltanto i dispositivi mobile.
+Il meccanismo di disseminazione che è stato implementato nell'applicazione è stato reso totalmente automatico e trasparente all'utente. Una volta attivato permette di restare aggiornati sulla situazione parcheggi, 
 sincronizzando spontanemante i propri dati con gli altri utenti nelle vicinanze.
 I risultati ottenuti in fase di valutazione, mostrano come l'efficacia del processo di spreading cresca all'aumentare del tasso di partecipazione. Più utenti utilizzano l'applicazione, condividendo le proprie informazioni,
-più resteranno aggiornati sulla situazione parcheggi in città. Con una buona partecipazione si possono ottenere risultati di poco inferiori a tecnologie molto più costose ed articolate (come ad esempio sistemi \textit{V2V}).
-Questo meccanismo di disseminazione locale, oltre al problema del parcheggio, può essere facilmente adottato in altri ambiti (come ad esempio il marketing di prossimità).
+più resteranno aggiornati sulla situazione parcheggi in città. Con una buona partecipazione si possono ottenere risultati di poco inferiori a tecnologie molto più costose ed articolate (come ad esempio sistemi Vehicle-To-Vehicle).
+Il meccanismo di disseminazione locale, oltre al problema del parcheggio, può essere facilmente adottato in altri ambiti (come ad esempio il marketing di prossimità).
 In conclusione, è possibile pensare all'utilizzo del sistema in una città metropolitana in cui numerosi utenti contribuiscono al bene comune, sfruttando i servizi dell'applicazione.
-Possibili sviluppi futuri potrebbero riguardare: un metodo per garantire l'esclusione di parcheggi privati (l'applicazione si basa su parcheggi on-street pubblici); un meccanismo di 
-risparmio energetico e ponderare le attività di disseminazione in base allo stato della batteria; ottimizzare lo scambio dati inviando solo le entry necessarie evitando numerosi controlli; 
-individuare automaticamente la cella con maggior quantità di slot liberi, in base alla destinazione dell'utente.
-
+\\Possibili sviluppi futuri potrebbero riguardare: 
+\begin{itemize}
+\item un metodo per garantire l'esclusione di parcheggi privati (l'applicazione si basa su parcheggi on-street pubblici);
+\item un meccanismo di risparmio energetico e ponderare le attività di disseminazione in base allo stato della batteria;
+\item ottimizzare lo scambio dati inviando solo le entry necessarie, evitando così numerosi controlli;
+\item individuare automaticamente la cella con maggior quantità di slot liberi, in base alla destinazione dell'utente;
+\item dare priorità alle sincronizzazioni con device sempre diversi per aumentare lo spreding dell'informazione;
+\item introdurre un semplice sistema centralizzato che fornisca all'utente le probabilità di parcheggio nel caso in cui le connessioni \textit{WiFi Direct} non risultino efficienti;
+\item migliorare la grafica dell'applicazione in modo tale da renderla più appetibile sul mercato.
+\end{itemize}
 \begin{thebibliography}{90}             %crea l'ambiente bibliografia
 \rhead[\fancyplain{}{\bfseries \leftmark}]{\fancyplain{}{\bfseries
 \thepage}}
@@ -1183,7 +1193,11 @@ individuare automaticamente la cella con maggior quantità di slot liberi, in bas
 \bibitem{K27} Documentazione di Veins, http://veins.car2x.org/.
 \bibitem{K28} Vaishali D. Khairnar, Ketan Kotecha, ''Performance of Vehicle-to-Vehicle Communication using IEEE 802.11p in Vehicular Ad-hoc Network Environment``, IEEE, 2013.
 \bibitem{K29} Luca Bedogni, Marco Gramaglia, Andrea Vesco, Marco Fiore, Jér\^{o}me Härri, Francesco Ferrero, ''The Bologna Ringway dataset: improving road network conversion in SUMO and validating urban mobility via navigation services``, IEEE, 2015.
+\bibitem{K30} Daniel Camps-Mur, Andres Garcia-Saavedra, Pablo Serrano, ''Device-to-device communications with Wi-Fi Direct: overview and experimentation``, IEEE, 2013.
+\bibitem{K31} G. Revathi, V.R.Sarma Dhulipala, ''Smart Parking Systems and Sensors: A Survey``, IEEE, 2012.
+\bibitem{K32} Felipe Domingos da Cunha, Azzedine Boukerche, Leandro Villas, Aline Carneiro Viana, Antonio A. F. Loureiro, ''Data Communication in VANETs: A Survey, Challenges and Applications``, INRIA, 2014.
 \end{thebibliography}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
+\clearpage{\pagestyle{empty}\cleardoublepage}
 \clearpage{\pagestyle{empty}\cleardoublepage}
 \end{document}
