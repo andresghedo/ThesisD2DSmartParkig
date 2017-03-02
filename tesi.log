@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.7.12)  2 MAR 2017 13:23
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.7.12)  2 MAR 2017 14:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -653,7 +653,7 @@ Overfull \hbox (22.54443pt too wide) in paragraph at lines 1006--1007
  []
 
 [50] [51 <./img/sumo-bolo.png>] [52]
-Overfull \hbox (2.92284pt too wide) in paragraph at lines 1054--1054
+Overfull \hbox (2.92284pt too wide) in paragraph at lines 1053--1053
 []\OT1/cmr/bx/n/12 synchronization[]time(s)| 
  []
 
@@ -665,7 +665,7 @@ File: img/graphics/local_accuracy.png Graphic file (type png)
 
 <use img/graphics/local_accuracy.png>
 Package pdftex.def Info: img/graphics/local_accuracy.png used on input line 108
-2.
+1.
 (pdftex.def)             Requested size: 252.94437pt x 155.58087pt.
  [55 <./img/graphics/local_accuracy.png>]
 <img/graphics/global_accuracy.png, id=247, 505.89pt x 312.16624pt>
@@ -673,7 +673,7 @@ File: img/graphics/global_accuracy.png Graphic file (type png)
 
 <use img/graphics/global_accuracy.png>
 Package pdftex.def Info: img/graphics/global_accuracy.png used on input line 10
-99.
+98.
 (pdftex.def)             Requested size: 252.94437pt x 156.08273pt.
 
 
@@ -683,14 +683,18 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 File: img/graphics/distance.png Graphic file (type png)
 
 <use img/graphics/distance.png>
-Package pdftex.def Info: img/graphics/distance.png used on input line 1109.
-(pdftex.def)             Requested size: 252.44249pt x 157.08649pt.
- [56] [57 <./img/graphics/global_accuracy.png> <./img/graphics/distance.png>]
+Package pdftex.def Info: img/graphics/distance.png used on input line 1108.
+(pdftex.def)             Requested size: 277.68828pt x 172.79608pt.
+
+Underfull \vbox (badness 3826) has occurred while \output is active []
+
+ [56]
+[57 <./img/graphics/global_accuracy.png> <./img/graphics/distance.png>]
 <img/graphics/n_car.png, id=257, 505.89pt x 312.16624pt>
 File: img/graphics/n_car.png Graphic file (type png)
 
 <use img/graphics/n_car.png>
-Package pdftex.def Info: img/graphics/n_car.png used on input line 1125.
+Package pdftex.def Info: img/graphics/n_car.png used on input line 1124.
 (pdftex.def)             Requested size: 252.94437pt x 156.08273pt.
  [58 <./img/graphics/n_car.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -701,7 +705,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 ]
 [60]
-Underfull \hbox (badness 1087) in paragraph at lines 1176--1177
+Underfull \hbox (badness 1087) in paragraph at lines 1175--1176
 []\OT1/cmr/m/n/12 Elena Po-ly-car-pou, Lam-bros Lam-bri-nos, Ef-ty-chios Pro-to
 -pa-pa-da-kis,
  []
@@ -709,25 +713,25 @@ Underfull \hbox (badness 1087) in paragraph at lines 1176--1177
 [61
 
 ] [62]
-Overfull \hbox (32.1734pt too wide) in paragraph at lines 1192--1193
+Overfull \hbox (32.1734pt too wide) in paragraph at lines 1191--1192
 []\OT1/cmr/m/n/12 Documentazione uf-fi-cia-le An-droid, https://developer.andro
 id.com/index.html. 
  []
 
 
-Overfull \hbox (64.93835pt too wide) in paragraph at lines 1194--1195
+Overfull \hbox (64.93835pt too wide) in paragraph at lines 1193--1194
 []\OT1/cmr/m/n/12 Documentazione An-droid sul D2D, https://developer.android.co
 m/training/connect-
  []
 
 
-Underfull \hbox (badness 2158) in paragraph at lines 1196--1197
+Underfull \hbox (badness 2158) in paragraph at lines 1195--1196
 []\OT1/cmr/m/n/12 Progetto for-ni-to da Goo-gle su Wi-Fi Di-rect e Bo-n-jour be
 a-con,
  []
 
 
-Underfull \hbox (badness 1163) in paragraph at lines 1199--1200
+Underfull \hbox (badness 1163) in paragraph at lines 1198--1199
 \OT1/cmr/m/n/12 Vehicle Com-mu-ni-ca-tion using IEEE 802.11p in Ve-hi-cu-lar Ad
 -hoc
  []
@@ -749,7 +753,7 @@ sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on tesi.pdf (76 pages, 5176733 bytes).
+Output written on tesi.pdf (76 pages, 5176213 bytes).
 PDF statistics:
  311 PDF objects out of 1000 (max. 8388607)
  195 compressed objects within 2 object streams
