@@ -221,7 +221,7 @@ Ogni utente condivide i propri dati sapendo di contribuire al risultato generale
 Le applicazioni Crowdsensing rappresentano una possibilità di migliorare la quotidianità dell'individuo.
 \section{Smart City}
 La \textit{IEEE} definisce la Smart City come ambiente sostenibile in grado di ridurre i consumi e fornire una qualità di vita migliore ai cittadini[18].
-Il mondo tecnologico, i governi e la società dovrebbero favorire in maniera positiva il processo di urbanizzazione, riuscendo a proporre le seguenti caratteristiche nella città intelligente:
+Il mondo tecnologico, i governi e la società dovrebbero incidere in maniera positiva nel processo di urbanizzazione, riuscendo a proporre le seguenti caratteristiche nella città intelligente:
 \begin{itemize}
 \item smart mobility
 \item smart economy
@@ -236,14 +236,13 @@ In [19], si definisce l'Internet delle Cose come \textit{``l'interconnessione in
 \\Ogni dispositivo potrà aumentare il proprio livello di intelligenza grazie all'interconnessione ed alle informazioni derivanti da altri device.
 \\Il progetto di tesi può essere visto come un primo passo verso il tema dello Smart City, dove numerosi dispositivi vengono coinvolti per migliorare un aspetto quotidiano dei cittadini.
 \section{Smart Parking}
-Il problema del parcheggio può essere visto come una grossa sfida all'interno delle Città intelligenti, definite nella sezione 1.3.
+Il problema del parcheggio può essere visto come una grossa sfida all'interno delle città intelligenti, definite nella sezione 1.3.
 Con il termine Smart Parking si intendono tutte quelle soluzioni che potrebbero favorire l'utente nell'attività di parcheggio.
 Secondo recenti studi, la maggior parte della congestione veicolare nelle grandi città è causata dai parcheggi.
 Gli utenti passano molto tempo nel cercare uno slot libero, soprattutto se si considerano parcheggi su strada (on-street parking).
 \\Le conseguenze negative di tutto ciò si possono riassumere in:
 \begin{itemize}
-\item perdita di tempo
-\item perdita di denaro
+\item perdita di tempo e denaro
 \item inquinamento ambientale
 \item peggioramento della qualità di vita
 \end{itemize}
@@ -261,10 +260,10 @@ Lo stato dell'arte presenta numerosi lavori sul tema dello Smart Parking, propon
 \\I sistemi di Smart Parking possono essere suddivisi in 3 macrocategorie:
 \begin{itemize}
 \item \textit{Sistemi basati su reti di sensori}:
-\\I progetti mostrati in [5][10][11][14][15] si affidano a reti \textit{WSN} (Wireless Sensor Network), dove ogni sensore viene posizionato in prossimità del parcheggio (come mostrato in figura 1.2) ed instrada le proprie 
+\\I progetti mostrati in [5][10][11][14][15] si affidano a Wireless Sensor Network (WSN), dove ogni sensore viene posizionato in prossimità del parcheggio (come mostrato in figura 1.2) ed instrada le proprie 
 informazioni verso una struttura centralizzata. L'efficienza di questi sistemi è molto alta, ma il costo per l'installazione e la manutenzione (come riportato anche nell'introduzione) sono un limite per la loro diffusione.
 \item \textit{Sistemi basati su computer vision}:
-\\Come citato in [16] molti sistemi si basano su tecniche di \textit{VIP} (Video Image Processing) per dedurre l'occupazione o meno dei parcheggi. 
+\\Come citato in [16] molti sistemi si basano su tecniche di Video Image Processing (VIP) per dedurre l'occupazione o meno dei parcheggi. 
 I risultati vengono ottenuti processando le immagini (ricavate da telecamere) con algoritmi basati sull'Intelligenza Artificiale. Anche per questi sistemi il costo dell'infrastruttura può essere notevole.
 \item \textit{Sistemi di Crowdsensing e Crowdsourcing}:
 \\Questi sistemi permettono di ottenere risultati soddisfacenti partendo dal contributo degli utenti stessi.
@@ -273,24 +272,24 @@ più dense di parcheggi on-street.
 I progetti in [2][7][8][9] forniscono all'utente, tramite l'ausilio di mappe, indicazioni riguardo la situazione parcheggi nelle vicinanze. 
 Gli utenti che compiono un'attività di parcheggio, condividono i propri dati (ottenuti tramite sensori dello Smartphone o altro) con la comunità, evitando congestione del traffico stradale.
 Questi lavori possono essere correlati all'attività di tesi presentata in questo documento, dove si cercherà di fornire agli utenti preziose informazioni sui parcheggi vicini, 
-senza l'aiuto di architetture \textit{WSN} ed agenti centralizzati.
+senza l'aiuto di architetture centralizzate o WSN.
 \end{itemize}
 \subsection{Propagazione dell'informazione}
 Una parte fondamentale all'interno dei sistemi Smart Parking riguarda la propagazione dei dati tra i diversi utenti. Innanzitutto è bene distinguere la comunicazione secondo due paradigmi:
 \begin{itemize}
-\item \textit{centralizzata}: classica struttura Client-Server, dove una struttura centralizzata raccoglie tutti i dati derivanti da diverse fonti della Smart City e fornisce i risultati ai diversi client.
+\item \textit{centralizzata}: classica struttura Client-Server, dove una struttura centralizzata raccoglie tutti i dati derivanti da diverse fonti della Smart City e fornisce i risultati ai client.
 \item \textit{distribuita}: ogni dispositivo comunica con altri dispositivi cercando di propagare efficacemente l'informazione. L'assenza di una struttura centralizzata porta ogni nodo ad avere risultati 
-parziali nel tempo, di conseguenza è necessario pensare ad efficaci metodi di propagazione in modo che tutti gli utenti restino allineati sulle informazioni prodotte dalla città.
+parziali nel tempo. È necessario un meccanismo di propagazione efficiente perchè i device restino correttamente aggiornati.
 \end{itemize}
 Il secondo paradigma è quello che verrà utilizzato nel progetto di tesi, dove gli attori della rete saranno solamente dispositivi end-point. 
 Risparmiando l'utilizzo di agenti centralizzati, si evitano importanti costi di installazione e gestione.
-Per propagare informazioni in maniera distribuita all'interno della città si considerano due tecnologie come il Vehicle-To-Vehicle ed il Device-To-Device.
+Per propagare informazioni in maniera distribuita all'interno della città si considerano due tecnologie come il Vehicle-To-Vehicle[31] ed il Device-To-Device[32][13].
 \subsubsection{Sistemi Vehicle-To-Vehicle}
-Il tema dello Smart Parking porta a considerare la Smart City come una rete veicolare distribuita ed in queste condizioni è normale pensare ad una comunicazione \textit{V2V} (Vehicle-To-Vehicle).
-Il \textit{V2V} riguarda comunicazioni tra veicoli in movimento portanto alla creazione di reti spontanee, denominate \textit{VANETs} (Vehicular Ad-Hoc Networks).
-Una \textit{VANET} è un particolare caso di \textit{MANET} (Mobile Ad-Hoc Network). La topologia della rete è altamente dinamica in quanto i veicoli possono muoversi a velocità considerevoli ed in senso opposto, di 
+Il tema dello Smart Parking porta a considerare la Smart City come una rete veicolare distribuita ed in queste condizioni è normale pensare ad una comunicazione Vehicle-To-Vehicle (V2V).
+Il V2V riguarda comunicazioni tra veicoli in movimento portanto alla creazione di reti spontanee, denominate Vehicular Ad-Hoc Networks (VANETs)[31].
+Una VANET è un caso particolare di Mobile Ad-Hoc Network (MANET). La topologia della rete è altamente dinamica in quanto i veicoli possono muoversi a velocità considerevoli ed in senso opposto, di 
 conseguenza la comunicazione deve avvenire in pochi istanti. Le disconnessioni possono essere frequenti, considerando che i veicoli possono allontanarsi velocemente l'uno dall'altro proprio durante uno scambio dati.
-Il mondo del \textit{V2V} prevede 3 categorie principali di comunicazione:
+Il mondo del V2V prevede 3 categorie principali di comunicazione:
 \begin{itemize}
 \item \textit{Vehicle-to-Vehicle (V2V)}: prevede la sola comunicazione tra veicoli.
 \item \textit{Vehicle-to-Infrastructure (V2I)}: prevede la comunicazione tra veicoli ed infrastrutture stradali.
@@ -301,51 +300,49 @@ La comunicazione veicolare apre le porte a numerosi campi di applicazione. La si
 Le case automobilistiche stanno iniziando a predisporre le auto con sensori e sistemi di navigazione. Il prossimo step sarà integrare la comunicazione V2V, in quanto la maggior parte delle automobili 
 in commercio non sono ancora idonee in questo senso.
 \subsubsection{Sistemi Device-To-Device}
-Un altro modo di propagazione distribuita può avvenire invece tramite Smartphone, utilizzando il paradigma \textit{D2D} (Device-To-Device)[32][13].
-Il \textit{D2D} permette comunicazioni wireless tra device che sono nelle vicinanze. L'approccio non prevede alcuna infrastrutture per lo scambio dati al di fuori dei dispositivi mobili (come ad esempio Smartphone e Tablet).
+Un altro modo di propagazione distribuita può avvenire invece tramite Smartphone, utilizzando il paradigma Device-To-Device (D2D)[32][13].
+Il D2D permette comunicazioni wireless tra device che sono nelle vicinanze. L'approccio non prevede alcuna infrastrutture per lo scambio dati al di fuori dei dispositivi mobili (come ad esempio Smartphone e Tablet).
 Il D2D è l'approccio preso in considerazione nel lavoro di tesi, sfruttando i dispositivi utente per la propagazione di informazioni, relativa alla situazione parcheggi, all'interno della Smart City.
 \part{Progettazione ed Implementazione}
 \chapter{Progettazione}
-Il seguente capitolo ha lo scopo di illustrare in dettaglio il goal del progetto, le problematiche che vi stanno dietro e la fase di progettazione su cui è stato necessario soffermarsi, per la successiva realizzazione ed implementazione.
+Il seguente capitolo ha lo scopo di illustrare in dettaglio il goal del progetto, le problematiche che vi stanno dietro e la fase di progettazione su cui è stato necessario soffermarsi, per la successiva fase di implementazione.
 La mission, descrivendola in pochi concetti, è sostanzialmente quella di determinare quando un utente parcheggia o rilascia uno slot e disseminare queste informazioni in maniera totalmente distribuita, senza alcun appoggio di una struttura centralizzata.
 Questo concetto diventa innovativo dal momento in cui non si passa dalla rete cellulare o da qualche gateway verso Internet per la comunicazione tra dispositivi, 
 ma la comunicazione avverrà esclusivamente Device-To-Device, utilizzando tecnologie presenti nei più comuni device in commercio.
-Quello che si vuole fornire all'utente sono delle probabilità di trovare parcheggio in una determinata zona della città, piuttosto che in altre.
+Quello che si vuole fornire all'utente sono le probabilità di trovare parcheggio nelle diverse zona della città.
 Dettagli tecnologici ed implementativi saranno comunque discussi nel prossimo capitolo.
 Di seguito verranno illustrate le principali strutture che compongono il sistema, descrivendone funzionalità, utilità ed integrazione con le restanti componenti.
-\section{Scopo e problematiche}                 %crea la sezione
+\section{Scopo e problematiche}
 Come già accennato lo scopo principale è quello di propagare informazioni, tra dispositivi mobili, in maniera completamente distribuita, senza l'appoggio di agenti centralizzati.
-Il device utente, tramite la componente di Activity Recognition presente nel software, rileva un evento di parcheggio (o rilascio) e ne tiene traccia, salvandolo in memoria locale.
+Il device utente, tramite la componente di activity recognition presente nel software, rileva un evento di parcheggio (o rilascio) e ne tiene traccia, salvandolo in memoria locale.
 Le informazioni sopradescritte saranno l'oggetto della comunicazione tra i device che potranno fare assunzioni su eventuali zone dense di parcheggi liberi.
 Più gli utenti restano allineati e sincronizzati su questi dati, più restano aggiornati e consapevoli della situazione parcheggi nei dintorni.
 Per scelta progettuale, la città viene divisa in celle (identificate con id univoci), permettendo così alla logica di disseminare informazioni relative alla cella in questione e a quelle adiacenti.
 Un altro aspetto non meno importante di quelli già illustrati, è il fatto che il servizio deve funzionare in modo continuativo nel tempo e soprattutto in maniera totalmente autonoma.
 Questo significa che l'utente, senza nessuna interazione con il device (per esempio mantenendolo in tasca), sincronizza comunque i propri dati con quelli di utenti circostanti.
 La funzionalità appena descritta, per renderla robusta, ha richiesto una fase implementativa consistente, la quale verrà illustrata tecnicamente nel Cap.3.
-\section{Scenario generale}                 %crea la sezione
-Lo scenario che si va a considerare per l'utilizzo di un'applicazione di questo genere è una città metropolitana.
-Questa può essere diversamente interpretata e suddivisa logicamente in una griglia composta da celle (quadranti), dove ognuna di queste viene identificata univocamente da una coppia di coordinate X e Y.
-Queste coordinate sono considerate come indici matriciali che individuano una cella all'interno della matrice griglia della città. 
-Si presuppone che il numero di parcheggi disponibili in una data cella sia un dato noto a priori, il quale comprende tutti gli slot disponibili nelle strade che sono raggruppate all'interno del 
-quadrante considerato.
-Si ricorda che si fa riferimento a parcheggi pubblici su strada e non a strutture private o a circuito chiuso.
-\\Il device dell'utente, tramite l'implementazione presente nell'app, performando un evento di parcheggio o rilascio, riesce a recuperare la cella in cui risiede logicamente e registrerà nel proprio database locale 
-che l'evento si è verificato in quello specifico quadrante.
-Le assunzioni sulla probabile quantità, in percentuale, di parcheggi liberi vengono calcolate sulla granularità della cella.
-\\In fase di progettazione, si è giunti alla conclusione che non è sufficiente scambiarsi il numero di parcheggi liberi/occupati derivanti da dati statistici, 
+\section{Scenario generale}
+Lo scenario che si va a considerare per l'utilizzo dell'applicazione è una città metropolitana.
+La città viene interpretata e suddivisa logicamente in una griglia composta da celle (quadranti), dove ognuna di queste viene identificata univocamente da una coppia di coordinate.
+Le coordinate possono essere considerate come indici matriciali che individuano una cella all'interno della matrice griglia della città. 
+Si presuppone che il numero di parcheggi disponibili in una data cella sia noto a priori. Si considerano tutti gli slot disponibili nelle strade che sono raggruppate all'interno del 
+quadrante considerato. Si ricorda che si fa riferimento a parcheggi pubblici su strada e non a strutture private o a circuito chiuso.
+L'applicazione, riconoscendo un evento di parcheggio o rilascio, identifica la cella in base alla posizione corrente e registra il dato nella propria memoria locale.
+Le assunzioni sulla probabile quantità di parcheggi liberi vengono calcolate sulla granularità della cella.
+In fase di progettazione, si è giunti alla conclusione che non è sufficiente scambiarsi il numero di parcheggi liberi/occupati derivanti da dati statistici, 
 in quanto ogni utente potrebbe avere una parziale, ma diversa, visione dello scenario.
 Da ciò deriva la necessità di sincronizzarsi su tutti gli eventi che sono successi recentemente in una determinata zona (cella) e quelle adiacenti.
-Quando due peer cercheranno di sincronizzarsi verranno scambiate le informazioni relative alla cella corrente e quelle adiacenti.
+Quando due peer cercheranno di sincronizzarsi, verranno scambiate le informazioni relative alla cella corrente e quelle adiacenti.
 In questo modo, si cerca di fornire all'utente, previsioni più precise sulle celle che sono nei pressi della posizione corrente del device.
-Questo evita overhead nella comunicazione e sincronizzazione di entries che non sono utili all'utente.
+Questo evita overhead nella comunicazione e sincronizzazione di entry che non sono utili all'utente.
 Rimanendo nel discorso di overhead, è normale pensare che questo modello possa ``esplodere``, in quanto la mole di dati potrebbe diventare enorme con il passare del tempo.
-Per evitare che questo succeda, viene controllata la dimensione del database locale, ed eventualmente eliminate le entries meno aggiornate.
+Per evitare che questo succeda, viene controllata la dimensione del database locale, ed eventualmente eliminate le entry meno aggiornate.
 Inoltre i peer possono effettuare sincronizzazioni soltanto dopo una certa threshold, espressa in secondi.
-Questi concetti sono stati parametrizzati in fase di implementazione, quindi possono essere giustamente calibrati in base all'ambiente in cui si intende utilizzare l'app.
+Questi concetti sono stati parametrizzati in fase di implementazione, quindi possono essere giustamente settati in base all'ambiente in cui si intende utilizzare l'app.
 
 \section{Ruoli dei dispositivi}               %crea la sezione
 Il sistema progettato prevede come unici attori i device utenti. Questi muovendosi all'interno dell'ambiente città restano in attesa di possibili sincronizzazioni.
-Ogni dispositivo, che presenta il servizio di comunicazione e sincronizzazione attivo, può interpretare fondamentalmente due ruoli:
+Ogni dispositivo, che presenta il servizio di comunicazione e sincronizzazione attivo, può interpretare esclusivamente due ruoli:
 \begin{itemize}
  \item \textbf{ROLE ACCESS POINT}:
  \\Il device funge da Access Point, offrendo la possibilità a device presenti in prossimità di agganciarsi all'Hotspot esposto. Una volta che un client si connette stabilmente ad esso avrà  l'opportunità di aprire 
@@ -353,20 +350,19 @@ Ogni dispositivo, che presenta il servizio di comunicazione e sincronizzazione a
  Inoltre l'Access Point notifica la propria presenza e informazioni utili attraverso la propagazione di un beacon.
  \item \textbf{ROLE CLIENT}:
  \\Se un device si accorge della presenza di un Hotspot nelle vicinanze, grazie al beacon sopracitato, può tentare di connettersi come client all'Access Point. Qualora riesca ad agganciarsi in modo stabile 
- verranno avviati i canali di comunicazione, su cui effettuare una sincronizzazione tra i due device.
+ verranno aperti i canali di comunicazione, su cui effettuare una sincronizzazione tra i due device.
 \end{itemize}
-A questo punto la topologia della rete generale può essere vista come hub di hub, ovvero tante piccole star, dove grazie al continuo movimento dei device si riuscirà ad ottenere una propagazione dell'informazione, 
-interconnettendo appunto diverse star tra di loro, ad istanti di tempo differenti.
 \begin{figure}[!h]
 \centering
 \includegraphics[scale=0.6]{img/arch_general.png}
 \caption[Rappresentazione dei ruoli utente in una porzione di Bologna]{Rappresentazione dei diversi ruoli e della divisione in celle di una porzione di Bologna}
 \end{figure}
-\\Come si può comprendere dalla figura 2.1, i device muovendosi continuamente all'interno dello scenario (identificato in questo caso con la griglia città), formeranno continuamente nuove star, con attori sempre diversi.
+A questo punto la topologia della rete generale può essere vista come hub di hub, ovvero tante piccole star, dove grazie al continuo movimento dei device si riuscirà ad ottenere una propagazione dell'informazione, 
+interconnettendo appunto diverse star tra di loro, ad istanti di tempo differenti.
+Come si può comprendere dalla figura 2.1, i device muovendosi continuamente all'interno dello scenario (identificato in questo caso con la griglia città), formeranno continuamente nuove star, con attori sempre diversi.
 Questo fattore è determinante per il processo di propagazione delle informazioni, in quanto dati presenti in una star, verranno sincronizzati, in istanti successivi, con star diverse.
 L'analisi dello spreading delle informazioni, la sua efficacia ed accuratezza sono illustrate nel Cap.4, nel quale si cerca di capire se questo meccanismo è attuabile nella realtà.
-
-\section{Architettura software}               %crea la sezione
+\section{Architettura software}
 Prima della fase di implementazione, è stato necessaria una fase di progettazione dell'architettura software. L'applicazione, per essere efficace nel meccanismo di 
 spreading, necessita di numerosi componenti e soprattutto dell'interazione tra essi.
 Nella figura 2.2 sono stati messi i componenti principali che concettualmente compongono l'architettura e come questi collaborano.
@@ -378,7 +374,7 @@ Di seguito vengono spiegati i compiti che ogni struttura deve compiere per la co
 \end{figure}
 \begin{itemize}
 \item \textbf{Componente di Activity Recognition:}
-\\Il componente di activity recognition si preoccupa di rilevare gli eventi di parcheggio e rilascio, che un determinato utente compie, col trascorrere del tempo. Questo è possibile tramite l'utilizzo dei sensori, 
+\\Il componente di activity recognition si preoccupa di rilevare gli eventi di parcheggio e rilascio. Questo è possibile tramite l'utilizzo dei sensori, 
 i quali campionano periodicamente lo stato di accelerometro e giroscopio, mappandoli tramite un algoritmo decisionale in un'attività ben definita.
 Questo processo, in realtà, si compone di due fase come training e recognition.
 La prima è necessaria alla seconda e riguarda il campionamento dei dati sensore in una attività definita dall'utente di CAR o NO\_CAR. La seconda, invece, grazie ai campioni rilevati nella prima riuscirà a 
@@ -394,48 +390,45 @@ Le informazioni che vengono memorizzate sono illustrate più precisamente nella s
 \item \textbf{Componente Controller:}
 \\Il Controller si preoccupa di scrivere, aggiornare e dare accesso alle informazioni presenti nel database locale. Inoltre, è stato pensato come semplice meccanismo di Object-Relational Mapping (ORM), 
 per integrare al meglio le logiche ad oggetti con i dati presenti nel DBMS. 
-\\Sostanzialmente, può essere interpretato come un oggetto Controller, del pattern MVC (Model-View-Controller), gestendo ed implementando le classi del Modello.
+\\Sostanzialmente, può essere interpretato come un oggetto Controller, del pattern Model-View-Controller (MVC), gestendo le classi del Modello.
 \item \textbf{Componente Frontend:}
-\\Il frontend sono sostanzialmente le views che verranno mostrate all'utente, sul proprio device Android. Si è optato per un frontend semplice, per rendere utilizzabile l'app a qualsiasi tipo di utente, 
+\\Il frontend è composto dalle view che verranno mostrate sul device Android dell'utente. Si è optato per un frontend semplice, per rendere utilizzabile l'app a qualsiasi tipo di utente, 
 pur fornendo ad esso tutte le informazioni necessarie sullo stato dei parcheggi nelle vicinanze.
-Nella sezione Screenshot è possibile prendere visione del layout grafico pensato per l'applicazione.
+Nella sezione 3.4 è possibile prendere visione del layout grafico pensato per l'applicazione.
 \item \textbf{ Componente Dissemination Service:}
 \\Il componente di disseminazione delle informazioni è il cuore del progetto e l'elemento più articolato all'interno dell'architettura.
-Questo è composto da diversi sottocomponenti, la maggior parte dei quali verranno illustrati con precisione nel capitolo di implementazione.
-Il disseminatore è un servizio che gira in background e la logica è scandita da una FSM (Finite State Machine), dove in base allo stato in cui si trova verranno compiute azioni, piuttosto che altre.
-Quando viene rilevata una nuova connessione ad un peer, il componente si preoccupa anche di gestire il corretto funzionamento della comunicazione, 
-gestendo i canali di input e output verso gli altri device, nel range di comunicazione.
+Questo è composto da diversi sottocomponenti, la maggior parte dei quali verranno illustrati con precisione nel Cap.3.
+Il disseminatore è un servizio che gira in background e la logica è scandita da una Finite State Machine (FSM), dove in base allo stato in cui si trova verranno compiute azioni, piuttosto che altre.
+Quando viene rilevata una nuova connessione ad un peer, il componente si preoccupa anche di gestire il corretto svolgimento della sincronizzazione.
 \end{itemize}
-\subsection{Organizzazione dell'informazione}                 %crea la sezione
+\subsection{Organizzazione dell'informazione}
 L'organizzazione dei city data è ovviamente una fase determinante del progetto.
 Si è optato per la realizzazione di un database di tipo relazionale, composto principalmente da due tabelle, indipendenti l'una dall'altra.
 \\La prima tabella, denominata, \textit{park\_events} colleziona tutti gli eventi che gli utente compiono o ricevono in seguito a sincronizzazioni con altri utenti.
 \\La seconda tabella \textit{synchronizations} colleziona invece tutte le sincronizzazioni che hanno coinvolto il device in questione.
-\\Come verrà illustrato nel Cap.4 relativo all'implementazione, gli strumenti utilizzati si baseranno completamente sullo standard SQL, i quali permetteranno una semplice gestione di 
+\\Come verrà illustrato nel Cap.3 relativo all'implementazione, gli strumenti utilizzati si baseranno completamente sullo standard \textit{SQL}, i quali permetteranno una semplice gestione di 
 query di filtraggio, creazione, modifica, cancellazione.
 \\Entrando più in dettaglio nella composizione delle tabelle e degli attributi salvati, si mostra di seguito uno schema riassuntivo di ciò che viene messo a database:
-\\\\ Tabella \textbf{\textit{park\_events}}:
+\\\\ Tabella \textit{park\_events}:
 \begin{itemize}
-\item \underline{\textit{cell\_id}}: identificativo univoco della cella che la identifica all'interno della grid city. Informazione di tipo geografica.
-\item \underline{\textit{event}}: evento che può essere limitatamente PARKED o RELEASED. Indica se l'entry fa riferimento ad una sosta o alla liberazione di un parcheggio.
-\item \underline{\textit{timestamp}}: datetime che indica il momento in cui è stato performato l'evento in questione.
-\item \underline{\textit{mac}}: identificativo univoco del device che ha performato l'evento di parcheggio o rilascio.
+\item \textit{cell\_id}: identificativo univoco della cella che la identifica all'interno della grid city. Informazione di tipo geografica.
+\item \textit{event}: evento che può essere limitatamente PARKED o RELEASED. Indica se l'entry fa riferimento ad una sosta o alla liberazione di un parcheggio.
+\item \textit{timestamp}: datetime che indica il momento in cui è stato performato l'evento in questione.
+\item \textit{mac}: identificativo univoco del device che ha performato l'evento di parcheggio o rilascio.
 \end{itemize}
 La PRIMARY KEY è composta da \underline{\textit{\textless timestamp, mac\textgreater}}. L'idea che vi sta dietro è quella che un utente può performare, in un dato istante, al più un unico 
 evento di rilascio o parcheggio.
-\\\\ Tabella \textbf{\textit{synchronizations}}:
+\\\\ Tabella \textit{synchronizations}:
 \begin{itemize}
-\item \underline{\textit{timestamp}}: datetime in cui è avvenuta la sincronizzazione.
-\item \underline{\textit{mac}}: id univoco dell'altro device con cui è stata possibile la sincronizzazione.
-\item \underline{\textit{ap\_role}}: booleano che indica se ero Access Point o meno al momento della sincronizzazione.
+\item \textit{timestamp}: datetime in cui è avvenuta la sincronizzazione.
+\item \textit{mac}: id univoco dell'altro device con cui è stata possibile la sincronizzazione.
+\item \textit{ap\_role}: booleano che indica se ero Access Point o meno al momento della sincronizzazione.
 \end{itemize}
-
 Questa tabella oltre a fini statistici,  è importante perché permette di evitare che due device si sincronizzino in continuazione.
 Grazie all'attributo timestamp, si riesce a risalire all'ultima sincronizzazione che ha coinvolto il device e di conseguenza, è possibile settare una time threshold, sotto la quale 
 non è possibile iniziare una nuova sincronizzazione.
 Le logiche implementate a backend non permettono lo scambio di dati in istanti troppo vicini tra loro.
 Questo meccanismo può esser visto come un minimo di salvaguardia da cicli continui o sovrapposizione di sincronizzazioni.
-
 \subsection{Network State Machine}                 %crea la sezione
 Come già accennato nell'architettura software, il processo di disseminazione delle informazioni è scandito da una macchina a stati finiti.
 Si è deciso di approfondire questo componente per far comprendere meglio come vengono gestite le sincronizzazioni tra i device utente coinvolti.
@@ -460,16 +453,16 @@ Supponendo che la sincronizzazione sia andata a buon fine, si passa allo stato S
 A questo punto, gli attori coinvolti, potrebbero allontanarsi a tal punto da rompere il legame creato e quindi il servizio ripartirebbe dallo stato iniziale di START.
 Altrimenti, se gli utenti restano nelle vicinanze l'uno dell'altro in modo tale da mantenere attiva la connessione, si dà l'opportunità al client (dopo una certa threshold) di richiedere nuovamente una sincronizzazione.
 \section{Probabilità di occupazione di una cella}
-Questa parte si preoccupa, man mano che le informazioni giungono nel database locale, di calcolare le probabilità di trovare parcheggio nelle celle della città.
+Man mano che le informazioni giungono nel database locale, si calcolano le probabilità di trovare parcheggio nelle celle della città.
 Si ricorda che il dato che si fornisce all'utente è una probabilità e non un valore certo, così da dare indicazioni agli utenti, sulle zone, che statisticamente saranno meno congestionate.
 Un'altra precisazione riguarda  il fatto che più utenti utilizzeranno l'applicazione, come supporto al parcheggio, e più dati verranno disseminati tra i device, aumentando progressivamente l'affidabilità 
 delle probabilità fornite agli utenti.
-Supponendo che il numero di slot totali in una generica cella i, identificato con la sigla $N\ped{i}\ap{t}$, sia noto a priori, lo si può interpretare anche come la somma tra numero di slot liberi, $N\ped{i}\ap{f}$, e 
-numero di slot occupati $N\ped{i}\ap{o}$.
-Questi ultimi due, possono essere ricavati a partire dagli eventi di parcheggio e rilascio, i quali sono presenti nel database locale citato in precedenza.
-\\In particolare, il numero dei parcheggi occupati $N\ped{i}\ap{o}$ può essere ricavato dalla differenza tra il numero di eventi parcheggio $E\ped{i}\ap{p}$ ed il numero di eventi rilascio $E\ped{i}\ap{r}$.
+Il numero di slot totali in una generica cella \textit{i} ($N\ped{i}\ap{t}$), noto a priori, lo si può interpretare anche come la somma tra numero di slot liberi ($N\ped{i}\ap{f}$) e 
+numero di slot occupati ($N\ped{i}\ap{o}$).
+Il numero di slot occupati $N\ped{i}\ap{o}$ può essere ricavato dagli eventi di parcheggio e rilascio presenti in memoria locale.
+\\In particolare, il numero dei parcheggi occupati $N\ped{i}\ap{o}$ è dato dalla differenza tra il numero di eventi parcheggio $E\ped{i}\ap{p}$ ed il numero di eventi rilascio $E\ped{i}\ap{r}$.
 $$N\ped{i}\ap{o} = E\ped{i}\ap{p} - E\ped{i}\ap{r} $$
-\\A questo punto, conoscendo già il numero totale degli slot, è facile calcolare il tasso di occupazione di una determinata cella:
+\\A questo punto, conoscendo già il numero totale degli slot, è facile calcolare il tasso di occupazione della cella \textit{i}:
 $$p\ped{i}\ap{o} = \df{N\ped{i}\ap{o}}{N\ped{i}\ap{t}}$$
 \\Infine calcoliamo la probabilità di trovare parcheggio, servendosi del tasso di occupazione appena calcolato:
 $$p\ped{i}\ap{f} = 1 - p\ped{i}\ap{o}$$
@@ -706,7 +699,7 @@ con il metodo \textit{accept()}.
 I client invece, quando notificati dal \textit{BroadcastReceiver} dell'avvenuta connessione all'Hotspot, creano un oggetto \textit{Socket} con IP e porta idonea.
 Ora che il canale di comunicazione bidirezionale è stato messo in piedi, l'Access Point invierà il proprio\textit{ ArrayList} nell'\textit{ObjectOutputStream}, grazie al metodo \textit{writeObject}. 
 Il client coinvolto, vedendosi arrivare le informazioni nel canale \textit{ObjectInputStream}, le memorizza in una variabile ed invia le proprie, ripetendo il procedimento sopradescritto a parti inverse.
-Una volta chiuso il canale, viene fatto il merge delle entries ricevute con quelle già presenti in memoria.
+Una volta chiuso il canale, viene fatto il merge delle entry ricevute con quelle già presenti in memoria.
 Si precisa che tutti i meccanismi descritti vengono gestiti tramite \textit{Thread}, in modo tale che il processo di sincronizzazione non risulti bloccante.
 Le classi \textit{Client} e \textit{Server} sono corpose dal punto di vista del codice, di conseguenza si illustra il codice dei passi salienti.
 \begingroup
@@ -897,7 +890,7 @@ il quale fornirà la risposta.
 Oltre a fungere da interfaccia verso il database, implementa anche altri metodi utili:
 \begin{itemize}
 \item \textit{isMyServiceRunning(Class\textless ?\textgreater class, Context ctx)}: metodo che controlla se un determinato servizio background è attivo.
-\item \textit{mergeEntries(ArrayList\textless ParkEvent\textgreater pe)}: metodo che unisce le nuove entries in input con quelle preesistenti nella memoria locale.
+\item \textit{mergeEntries(ArrayList\textless ParkEvent\textgreater pe)}: metodo che unisce le nuove entry in input con quelle preesistenti nella memoria locale.
 \item \textit{getMacAddr()}: metodo che ritorna l'indirizzo MAC del device.
 \item \textit{isPossibleSync()}: metodo che sancisce se è possibile effettuare una sincronizzazione. I client, prima di effettuare una sincronizzazione con l'Access Point, controllano che sia passata
                                   una certa threshold dall'ultimo scambio dati.
@@ -1031,8 +1024,8 @@ I dispositivi si possono sincronizzare continuamente nel tempo ma, per problemi 
 \section{Metriche di prestazione}
 In fase di simulazione, si vuole dimostrare che il movimento degli utenti e la strategia di disseminazione locale, permettono di restare sincronizzati sugli eventi che effettivamente accadono.
 In particolare si cercherà di analizzare l'accuratezza dei dati presenti nei database locali ai device utente, rispetto a ciò che è accaduto realmente.
-\\Per definire meglio il concetto dell'accuratezza, si prenda di riferimento una cella \textit{i} dove, nel lasso di tempo \textit{t}, sono stati performati 100 eventi parcheggio o rilascio \textit{E\ped{i}\ap{tot}}.
-A questo punto, all'istante \textit{t+1}, se il device ha nella propria conoscenza locale 10 eventi \textit{E\ped{i}\ap{loc}} dei 100 totali, avrà un'accuratezza del 10\%, se ne ha 50 avrà accuratezza del 50\% e così 
+\\Per definire meglio il concetto dell'accuratezza, si prenda di riferimento una cella \textit{i} dove, nel lasso di tempo \textit{t}, sono stati performati 100 eventi parcheggio o rilascio $\textit{E\ped{i}\ap{tot}}$.
+A questo punto, all'istante \textit{t+1}, se il device ha nella propria conoscenza locale 10 eventi $\textit{E\ped{i}\ap{loc}}$ dei 100 totali, avrà un'accuratezza del 10\%, se ne ha 50 avrà accuratezza del 50\% e così 
 fino al limite superiore del 100\%, il quale può essere raggiunto solo da una struttura di tipo centralizzata.
 $$accuracy\ped{i}\ap{t+1} = \df{E\ped{i}\ap{loc}}{E\ped{i}\ap{tot}} * 100 $$
 L'accuratezza, appena descritta, verrà calcolata e registrata nel corso del tempo per comprendere il relativo andamento, col trascorrere dei secondi.
