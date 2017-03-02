@@ -29,11 +29,11 @@
 \contentsline {subsubsection}{Scoperta di peer}{30}
 \contentsline {subsubsection}{Beacon di servizio}{30}
 \contentsline {subsubsection}{Logiche di scoperta}{31}
-\contentsline {subsection}{\numberline {3.1.6}Funzionalit\`a Access Point-like}{33}
+\contentsline {subsection}{\numberline {3.1.6}Funzionalit\`a Access Point-like}{32}
 \contentsline {subsection}{\numberline {3.1.7}Canali di comunicazione}{34}
-\contentsline {subsection}{\numberline {3.1.8}L'ascoltatore BroadcastReceiverManagement}{36}
+\contentsline {subsection}{\numberline {3.1.8}L'ascoltatore BroadcastReceiverManagement}{35}
 \contentsline {section}{\numberline {3.2}Gestione dell'informazione}{37}
-\contentsline {subsection}{\numberline {3.2.1}Il Modello}{38}
+\contentsline {subsection}{\numberline {3.2.1}Il Modello}{37}
 \contentsline {subsection}{\numberline {3.2.2}Il database SQLite}{38}
 \contentsline {subsection}{\numberline {3.2.3}Il Controller}{39}
 \contentsline {subsection}{\numberline {3.2.4}L'informazione utente}{40}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.7.12)  2 MAR 2017 14:03
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.7.12)  2 MAR 2017 15:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -497,47 +497,39 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [22 <./img/nsm.png>] [23] [24]
 Capitolo 3.
-
-Underfull \vbox (badness 2293) has occurred while \output is active []
-
- [25
+[25
 
 
 
-]
-<img/popup.png, id=134, 314.17375pt x 160.6pt>
+] <img/popup.png, id=134, 314.17375pt x 160.6pt>
 File: img/popup.png Graphic file (type png)
  <use img/popup.png>
-Package pdftex.def Info: img/popup.png used on input line 505.
+Package pdftex.def Info: img/popup.png used on input line 504.
 (pdftex.def)             Requested size: 157.08649pt x 80.29979pt.
- [26]
-[27 <./img/popup.png>] [28]
-Overfull \hbox (14.56096pt too wide) in paragraph at lines 537--538
+
+[26] [27 <./img/popup.png>] [28]
+Overfull \hbox (14.56096pt too wide) in paragraph at lines 536--537
 []\OT1/cmr/m/it/12 startNetworkBeaconPeerSearcher \OT1/cmr/m/n/12 / \OT1/cmr/m/
 it/12 sto-pNet-wor-k-Bea-con-Peer-Sear-cher\OT1/cmr/m/n/12 : me-
  []
 
-[29] [30] [31]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+[29] [30] [31] [32]
+Underfull \vbox (badness 1769) has occurred while \output is active []
 
- [32]
-[33] [34]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [35]
-[36] [37] [38] [39] [40] [41]
+ [33]
+[34] [35] [36] [37] [38] [39] [40] [41]
 <img/screenshot/map1.jpg, id=187, 1084.05pt x 1927.2pt>
 File: img/screenshot/map1.jpg Graphic file (type jpg)
 
 <use img/screenshot/map1.jpg>
-Package pdftex.def Info: img/screenshot/map1.jpg used on input line 941.
+Package pdftex.def Info: img/screenshot/map1.jpg used on input line 936.
 (pdftex.def)             Requested size: 162.60048pt x 289.06754pt.
 
 <img/screenshot/map2.jpg, id=188, 1084.05pt x 1927.2pt>
 File: img/screenshot/map2.jpg Graphic file (type jpg)
 
 <use img/screenshot/map2.jpg>
-Package pdftex.def Info: img/screenshot/map2.jpg used on input line 943.
+Package pdftex.def Info: img/screenshot/map2.jpg used on input line 938.
 (pdftex.def)             Requested size: 162.60048pt x 289.06754pt.
 
 <img/screenshot/state_ap_no_peers.jpg, id=189, 1084.05pt x 1927.2pt>
@@ -545,7 +537,7 @@ File: img/screenshot/state_ap_no_peers.jpg Graphic file (type jpg)
 
 <use img/screenshot/state_ap_no_peers.jpg>
 Package pdftex.def Info: img/screenshot/state_ap_no_peers.jpg used on input lin
-e 949.
+e 944.
 (pdftex.def)             Requested size: 162.60048pt x 289.06754pt.
 
 <img/screenshot/state_ap_peers.jpg, id=190, 1084.05pt x 1927.2pt>
@@ -553,10 +545,10 @@ File: img/screenshot/state_ap_peers.jpg Graphic file (type jpg)
 
 <use img/screenshot/state_ap_peers.jpg>
 Package pdftex.def Info: img/screenshot/state_ap_peers.jpg used on input line 9
-51.
+46.
 (pdftex.def)             Requested size: 162.60048pt x 289.06754pt.
 
-Underfull \hbox (badness 4699) in paragraph at lines 952--952
+Underfull \hbox (badness 4699) in paragraph at lines 947--947
 []\OT1/cmr/bx/n/12 Figura 3.3: |\OT1/cmr/m/n/12 Ser-vi-zio di dis-se-mi-na-zio-
 ne at-ti-vo ne-gli sta-ti STA-
  []
@@ -565,7 +557,7 @@ ne at-ti-vo ne-gli sta-ti STA-
 File: img/screenshot/state_conn.jpg Graphic file (type jpg)
 
 <use img/screenshot/state_conn.jpg>
-Package pdftex.def Info: img/screenshot/state_conn.jpg used on input line 956.
+Package pdftex.def Info: img/screenshot/state_conn.jpg used on input line 951.
 (pdftex.def)             Requested size: 162.60048pt x 289.06754pt.
 
 <img/screenshot/state_in_sync.jpg, id=192, 1084.05pt x 1927.2pt>
@@ -573,10 +565,10 @@ File: img/screenshot/state_in_sync.jpg Graphic file (type jpg)
 
 <use img/screenshot/state_in_sync.jpg>
 Package pdftex.def Info: img/screenshot/state_in_sync.jpg used on input line 95
-8.
+3.
 (pdftex.def)             Requested size: 162.60048pt x 289.06754pt.
 
-Underfull \hbox (badness 4699) in paragraph at lines 959--959
+Underfull \hbox (badness 4699) in paragraph at lines 954--954
 []\OT1/cmr/bx/n/12 Figura 3.4: |\OT1/cmr/m/n/12 Ser-vi-zio di dis-se-mi-na-zio-
 ne at-ti-vo ne-gli sta-ti STA-
  []
@@ -586,7 +578,7 @@ File: img/screenshot/state_synced_connected.jpg Graphic file (type jpg)
 
 <use img/screenshot/state_synced_connected.jpg>
 Package pdftex.def Info: img/screenshot/state_synced_connected.jpg used on inpu
-t line 963.
+t line 958.
 (pdftex.def)             Requested size: 162.60048pt x 289.06754pt.
 
 <img/screenshot/activity_recogn.jpg, id=194, 1084.05pt x 1927.2pt>
@@ -594,16 +586,16 @@ File: img/screenshot/activity_recogn.jpg Graphic file (type jpg)
 
 <use img/screenshot/activity_recogn.jpg>
 Package pdftex.def Info: img/screenshot/activity_recogn.jpg used on input line 
-965.
+960.
 (pdftex.def)             Requested size: 162.60048pt x 289.06754pt.
 
-Underfull \hbox (badness 4699) in paragraph at lines 966--966
+Underfull \hbox (badness 3128) in paragraph at lines 961--961
 []\OT1/cmr/bx/n/12 Figura 3.5: |\OT1/cmr/m/n/12 Ser-vi-zio di dis-se-mi-na-zio-
-ne at-ti-vo ne-gli sta-ti STA-
+ne at-ti-vo ne-gl-lo sta-to STA-
  []
 
 
-Underfull \hbox (badness 1603) in paragraph at lines 966--966
+Underfull \hbox (badness 1603) in paragraph at lines 961--961
 \OT1/cmr/m/n/12 TE[]SYNCED[]CONNECTED e scher-ma-ta del com-po-nen-te di Ac-ti-
 vi-ty
  []
@@ -612,7 +604,7 @@ vi-ty
 File: img/screenshot/last_sync.jpg Graphic file (type jpg)
 
 <use img/screenshot/last_sync.jpg>
-Package pdftex.def Info: img/screenshot/last_sync.jpg used on input line 970.
+Package pdftex.def Info: img/screenshot/last_sync.jpg used on input line 965.
 (pdftex.def)             Requested size: 162.60048pt x 289.06754pt.
 
 <img/screenshot/park_event_list.jpg, id=196, 1084.05pt x 1927.2pt>
@@ -620,10 +612,10 @@ File: img/screenshot/park_event_list.jpg Graphic file (type jpg)
 
 <use img/screenshot/park_event_list.jpg>
 Package pdftex.def Info: img/screenshot/park_event_list.jpg used on input line 
-972.
+967.
 (pdftex.def)             Requested size: 162.60048pt x 289.06754pt.
 
-Overfull \hbox (8.78389pt too wide) in paragraph at lines 938--975
+Overfull \hbox (8.78389pt too wide) in paragraph at lines 933--970
 []\OT1/cmr/m/n/12 Di se-gui-to so-no mo-stra-ti gli screen-shot del-l'ap-pli-ca
 -zio-ne \OT1/cmr/m/it/12 D2DSmartParking\OT1/cmr/m/n/12 :
  []
@@ -645,15 +637,15 @@ Capitolo 4.
 File: img/sumo-bolo.png Graphic file (type png)
 
 <use img/sumo-bolo.png>
-Package pdftex.def Info: img/sumo-bolo.png used on input line 1006.
+Package pdftex.def Info: img/sumo-bolo.png used on input line 1001.
 (pdftex.def)             Requested size: 412.54443pt x 243.31087pt.
 
-Overfull \hbox (22.54443pt too wide) in paragraph at lines 1006--1007
+Overfull \hbox (22.54443pt too wide) in paragraph at lines 1001--1002
  [][] 
  []
 
 [50] [51 <./img/sumo-bolo.png>] [52]
-Overfull \hbox (2.92284pt too wide) in paragraph at lines 1053--1053
+Overfull \hbox (2.92284pt too wide) in paragraph at lines 1048--1048
 []\OT1/cmr/bx/n/12 synchronization[]time(s)| 
  []
 
@@ -664,8 +656,8 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 File: img/graphics/local_accuracy.png Graphic file (type png)
 
 <use img/graphics/local_accuracy.png>
-Package pdftex.def Info: img/graphics/local_accuracy.png used on input line 108
-1.
+Package pdftex.def Info: img/graphics/local_accuracy.png used on input line 107
+6.
 (pdftex.def)             Requested size: 252.94437pt x 155.58087pt.
  [55 <./img/graphics/local_accuracy.png>]
 <img/graphics/global_accuracy.png, id=247, 505.89pt x 312.16624pt>
@@ -673,7 +665,7 @@ File: img/graphics/global_accuracy.png Graphic file (type png)
 
 <use img/graphics/global_accuracy.png>
 Package pdftex.def Info: img/graphics/global_accuracy.png used on input line 10
-98.
+93.
 (pdftex.def)             Requested size: 252.94437pt x 156.08273pt.
 
 
@@ -683,7 +675,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 File: img/graphics/distance.png Graphic file (type png)
 
 <use img/graphics/distance.png>
-Package pdftex.def Info: img/graphics/distance.png used on input line 1108.
+Package pdftex.def Info: img/graphics/distance.png used on input line 1103.
 (pdftex.def)             Requested size: 277.68828pt x 172.79608pt.
 
 Underfull \vbox (badness 3826) has occurred while \output is active []
@@ -694,7 +686,7 @@ Underfull \vbox (badness 3826) has occurred while \output is active []
 File: img/graphics/n_car.png Graphic file (type png)
 
 <use img/graphics/n_car.png>
-Package pdftex.def Info: img/graphics/n_car.png used on input line 1124.
+Package pdftex.def Info: img/graphics/n_car.png used on input line 1119.
 (pdftex.def)             Requested size: 252.94437pt x 156.08273pt.
  [58 <./img/graphics/n_car.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -705,7 +697,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 ]
 [60]
-Underfull \hbox (badness 1087) in paragraph at lines 1175--1176
+Underfull \hbox (badness 1087) in paragraph at lines 1170--1171
 []\OT1/cmr/m/n/12 Elena Po-ly-car-pou, Lam-bros Lam-bri-nos, Ef-ty-chios Pro-to
 -pa-pa-da-kis,
  []
@@ -713,38 +705,38 @@ Underfull \hbox (badness 1087) in paragraph at lines 1175--1176
 [61
 
 ] [62]
-Overfull \hbox (32.1734pt too wide) in paragraph at lines 1191--1192
+Overfull \hbox (32.1734pt too wide) in paragraph at lines 1186--1187
 []\OT1/cmr/m/n/12 Documentazione uf-fi-cia-le An-droid, https://developer.andro
 id.com/index.html. 
  []
 
 
-Overfull \hbox (64.93835pt too wide) in paragraph at lines 1193--1194
+Overfull \hbox (64.93835pt too wide) in paragraph at lines 1188--1189
 []\OT1/cmr/m/n/12 Documentazione An-droid sul D2D, https://developer.android.co
 m/training/connect-
  []
 
 
-Underfull \hbox (badness 2158) in paragraph at lines 1195--1196
+Underfull \hbox (badness 2158) in paragraph at lines 1190--1191
 []\OT1/cmr/m/n/12 Progetto for-ni-to da Goo-gle su Wi-Fi Di-rect e Bo-n-jour be
 a-con,
  []
 
 
-Underfull \hbox (badness 1163) in paragraph at lines 1198--1199
+Underfull \hbox (badness 1163) in paragraph at lines 1193--1194
 \OT1/cmr/m/n/12 Vehicle Com-mu-ni-ca-tion using IEEE 802.11p in Ve-hi-cu-lar Ad
 -hoc
  []
 
 [63] [64] (./tesi.aux) ) 
 Here is how much of TeX's memory you used:
- 6656 strings out of 493304
- 93151 string characters out of 6139871
- 226833 words of memory out of 5000000
- 9964 multiletter control sequences out of 15000+600000
+ 6651 strings out of 493304
+ 93092 string characters out of 6139871
+ 213833 words of memory out of 5000000
+ 9959 multiletter control sequences out of 15000+600000
  13688 words of font info for 53 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,13n,43p,803b,1844s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,13n,43p,803b,1860s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12
@@ -753,7 +745,7 @@ sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on tesi.pdf (76 pages, 5176213 bytes).
+Output written on tesi.pdf (76 pages, 5175876 bytes).
 PDF statistics:
  311 PDF objects out of 1000 (max. 8388607)
  195 compressed objects within 2 object streams

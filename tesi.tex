@@ -478,14 +478,13 @@ La tecnologia, presente a partire dalle librerie API 14 e device con Android 4.0
 \\Il capitolo seguente mostra i passi necessari alla realizzazione, dettagliando i componenti software realizzati partendo dalla base di progettazione, illustrata in sezione 2.4.
 \section{Componente di disseminazione}
 Il paragrafo illustra tutti gli attori principali che compongono il servizio di disseminazione delle informazioni. Ogni sottoparagrafo spiega le funzionalità
-del componente e l'interazione con gli altri. Questa è la parte che, in fase di implementazione, ha richiesto maggior sforzo ed essendo il cuore del progetto, verrà maggiormente descritta, addentrandosi anche
-nell'analisi del codice sorgente.
+del componente e l'interazione con gli altri. Questa è la parte che, in fase di implementazione, ha richiesto maggior sforzo ed essendo il cuore del progetto, verrà maggiormente descritta.
 \subsection{Strategia di connessione tramite WiFi Direct}
 Il \textit{WiFi Direct} è una nuova tecnologia definita dalla \textit{WiFi Alliance} che permette comunicazioni wireless Device-To-Device[30]. La tecnologia si basa sullo standard 802.11, ereditandone
 caratteristiche e sviluppi degli ultimi anni. L'architettura classica WiFi prevede una netta distinzione tra l'Access Point e i client, mentre il \textit{WiFi Direct} introduce una certa dinamicità in questo senso.
 Ogni device che supporta la tecnologia può fungere sia da Access Point che da semplice client.
-I cosiddetti \textit{P2P Group} possono essere comparati ad infrastrutture WiFi e vengono creati al termine di una fase di \textit{Group Owner (GO) negotiation}, dove viene stabilito il ruolo (Access Point o client) 
-per ogni device coinvolto. 
+I cosiddetti \textit{P2P Group} possono essere comparati ad infrastrutture WiFi e sono creati al termine di una fase di \textit{Group Owner (GO) negotiation}, dove viene stabilito il ruolo (Access Point o client) 
+per ogni device coinvolto[23]. 
 Il device che detiene le funzionalità di Access Point viene definito \textit{P2P Group Owner}, il quale può comunque mantenere attive connessioni cellulari (come ad esempio il 4G).
 I client vengono identificati all'interno del gruppo tramite un IP, assegnato dal \textit{DHCP} del dispositivo Access Point.
 La creazione del gruppo può avvenire in 3 modalità distinte:
@@ -540,12 +539,12 @@ Di seguito vengono elencate i metodi principali che la classe espone:
 La classe \textit{NetworkConnection} detiene la procedura necessaria per connettersi in maniera automatica ad un Access Point (presente nella lista ricavata dallo scan delle reti circostanti).
 Questa classe viene utilizzata quando un device, tramite l'arrivo di un beacon, capisce che vi è un Access Point attivo e disponibile a soddisfare richieste di sincronizzazione.
 Assumendo il ruolo di client si cercherà di agganciarsi all'Hotspot individuato.
-\\È necessario ricordare che, per effettuare queste procedure in maniera completamente automatica e trasparente all'utente, vi è la necessità di conoscere la passphrase per connettersi. 
-Questa come vedremo in sezione 3.1.8, sarà ricavata dai beacon di servizio.
-\\Di seguito viene mostrato il codice discusso:
+\\È necessario ricordare che, per effettuare queste procedure in maniera completamente automatica, vi è la necessità di conoscere la passphrase per connettersi. 
+Questa come vedremo in sezione 3.1.8, sarà ricavata dai beacon di servizio. Di seguito viene mostrato il codice discusso:
 \begingroup
 \fontsize{9pt}{8pt}
-\begin{lstlisting}[language=Java]  
+\begin{lstlisting}[language=Java]
+/* connection to Access Point */
 public class NetworkConnection {
   ...
   public NetworkConnection(context, ssid, passphrase) {
@@ -562,11 +561,7 @@ public class NetworkConnection {
     this.wifiManager.enableNetwork(id, false);
     this.wifiManager.reconnect();
   }
-
-  /* stop connection with Access Point */
-  public void Stop(){
-    wifiManager.disconnect();
-  }
+  ...
 }
 \end{lstlisting}  
 \endgroup
@@ -601,7 +596,7 @@ Ora si cercherà di spiegare la logica che è stato necessario implementare e come
 Quando un device scopre la presenza di almeno un peer attorno a lui, si mette immediatamente all'ascolto di eventuali servizi esposti da altri utenti.
 Nel momento in cui si scoprisse un servizio idoneo (indicante la presenza di un Access Point) viene mandato 
 un broadcast \textit{Intent} tale da notificare al \textit{BroadcastReceiver} di iniziare il processo di connessione all'Hotspot trovato.
-La classe che implementa tutte queste funzionalità è abbastanza ampia, per questo si mostra il solo codice relativo ai listener citati nel paragrafo.
+La classe che implementa tutte queste funzionalità è molto ampia, per questo si mostra il solo codice relativo ai listener citati.
 \begingroup
 \fontsize{9pt}{8pt}
 \begin{lstlisting}[language=Java]
@@ -778,7 +773,8 @@ Di seguito vengono illustrati i comportamenti fondamentali, in base a determinat
 utilizzando la passphrase ricavata dal beacon di Bonjour.
 \begingroup
 \fontsize{9pt}{8pt}
-\begin{lstlisting}[language=Java]  
+\begin{lstlisting}[language=Java]
+
 if(action.equals(INTENT_D2D_AP_FOUND)) {
   /* get beacon data */
   String beacon = intent.getStringExtra(INTENT_D2D_AP_ACCESSDATA);
@@ -787,10 +783,10 @@ if(action.equals(INTENT_D2D_AP_FOUND)) {
     /* stop my Access Point functionalities */
     NetworkController.getInstance().stopAccessPoint();
     /* Now I'm a simple Client */
-    ssis = payload[1];
+    ssid = payload[1];
     passphrase = payload[2];  /* passprhase from beacon */
     /* start connection mechanism */
-    networkConnection = new NetworkConnection(ctx, ssis,passphrase);
+    networkConnection = new NetworkConnection(ctx,ssid,passphrase);
     /* change state of NSM */
     networkStateMachine = STATE_CONNECTION;
   }
@@ -804,6 +800,7 @@ disconnessione il device torna disponibile ad interpretare il ruolo di Access Po
 \begingroup
 \fontsize{9pt}{8pt}
 \begin{lstlisting}[language=Java]  
+
 if(action.equals(WifiManager.NETWORK_STATE_CHANGED_ACTION)) {
   ... check connection state ...
   /* looking for connection @ Access point */
@@ -824,6 +821,7 @@ un'ulteriore comunicazione con l'HotSport server.
 \begingroup
 \fontsize{9pt}{8pt}
 \begin{lstlisting}[language=Java]  
+
 if(action.equals(INTENT_D2D_CHECK_MACHINE_STATE)) {
   ...
   /* check for threshold */
@@ -847,12 +845,12 @@ sono i tradizionali getter e setter, i quali permettono di leggere informazioni 
 All'interno dell'architettura, queste istanze, vengono gestite e rese accessibili dal \textit{Controller} tramite degli \textit{ArrayList\textless *\textgreater}.
 \subsection{Il database SQLite}
 Salvare le informazioni dei parcheggi in maniera strutturata è sembrato la soluzione migliore fin dalla progettazione. Nei sistemi mobili Android è possibile lavorare con basi di dati 
-tramite l'utilizzo di \textit{SQLite}. Si tratta di una serie di API, presenti nel package \textit{android.database.sqlite}, che permettono di gestire un file come un database transazionale a tutti gli effetti.
+tramite l'utilizzo di \textit{SQLite}[24]. Si tratta di una serie di API, presenti nel package \textit{android.database.sqlite}, che permettono di gestire un file come un database transazionale a tutti gli effetti.
 All'avvio dell'applicazione viene istanziato un oggetto \textit{CustomSQLiteHelper} (estensione della classe \textit{SQLiteOpenHelper}) che controlla se esiste un database SQLite e ne apre la connessione.
 Se è la prima volta che l'utente avvia l'applicazione, dopo l'installazione, viene automaticamente creato il database con le tabelle \textit{synchronizations} e \textit{park\_events}.
 La classe che effettua le query sql e che viene contatta dal \textit{Controller}, per recuperare informazione dal database, è \textit{SQLiteDBManager}.
 I metodi che fornisce questa classe sono i necessari per operazioni CRUD (Create Read Update Delete) su una base di dati. La chiamata \textit{rawQuery} dell'oggetto \textit{SQLiteDatabase} permette di 
-effettuare del codice SQL puro, in modo da facilitare le query più particolari. Di seguito viene mostrato il codice di alcune funzionalità.
+effettuare del codice sql puro, in modo da facilitare le query più particolari. Di seguito viene mostrato il codice di alcune funzionalità.
 \begingroup
 \fontsize{9pt}{8pt}
 \begin{lstlisting}[language=Java]
@@ -886,7 +884,7 @@ public ArrayList<Synchronization> getSync(apRole, timeLimit) {
 L'oggetto \textit{Controller} si avvicina concettualmente al \textit{NetworkController}, illustrato in 3.1.3. Implementato anch'esso con il pattern Singleton, ha l'obiettivo di fornire agli altri componenti dell'
 architettura le informazioni presenti nel database \textit{SQLite}. Quando si deve effettuare una query sulla base di dati, non si crea un oggetto \textit{SQLiteDBManager} ma si contatta direttamente il \textit{Controller}, 
 il quale fornirà la risposta. 
-Oltre a fungere da interfaccia verso il database, implementa anche altri metodi utili:
+Oltre a fungere da interfaccia verso il database, implementa altri metodi utili:
 \begin{itemize}
 \item \textit{isMyServiceRunning(Class\textless ?\textgreater class, Context ctx)}: metodo che controlla se un determinato servizio background è attivo.
 \item \textit{mergeEntries(ArrayList\textless ParkEvent\textgreater pe)}: metodo che unisce le nuove entry in input con quelle preesistenti nella memoria locale.
@@ -898,15 +896,12 @@ Oltre a fungere da interfaccia verso il database, implementa anche altri metodi 
 \begin{lstlisting}[language=Java]    
 /* Return if is possible a synchronization */
 public boolean isPossibleSync() {
-  /* get last sync time */
-  String lastSyncStr = dbManager.selectLastSyncTimestamp();
-  ...
-  date = format.parse(lastSyncStr);
-  ...
+  /* get last sync datetime */
+  date = dbManager.selectLastSyncTimestamp();
   /* get difference from now and last sync in seconds */
   long diff = (now.getTime() - date.getTime())/1000;
   /* check threshold in seconds */
-  if(diff < TIME_FOR_NEXT_SYNC)
+  if(diff < TIME_FOR_NEXT_SYNC)  
     return false;
   return true;
 }
@@ -963,7 +958,7 @@ Di seguito sono mostrati gli screenshot dell'applicazione \textit{D2DSmartParkin
 \includegraphics[scale=0.15]{img/screenshot/state_synced_connected.jpg}%   "%" necessario
 \qquad\qquad
 \includegraphics[scale=0.15]{img/screenshot/activity_recogn.jpg}
-\caption[Screenshot della schermata di Activity Recognition]{Servizio di disseminazione attivo negli stati STATE\_SYNCED\_CONNECTED e schermata del componente di Activity Recognition}
+\caption[Screenshot della schermata di Activity Recognition]{Servizio di disseminazione attivo negllo stato STATE\_SYNCED\_CONNECTED e schermata del componente di Activity Recognition}
 \end{figure}
 \begin{figure}[htbp]
 \centering
@@ -980,14 +975,14 @@ L'ultima fase riguarda la valutazione del processo di disseminazione delle infor
 Infatti è fondamentale che l'utente riesca a sincronizzarsi efficacemente con gli altri attori circostanti, in maniera tale da restare aggiornato, durante il movimento, sulla cella corrente e su quelle adiacenti.
 \section{Strumenti}
 Ovviamente non è pensabile testare lo spreading delle informazioni in un ambiente reale, di conseguenza ci si affida ad un simulatore ad eventi discreti.
-In ambito accademico lo strumento più efficace ed utilizzato per fare simulazione è senza dubbio OMNeT++.
+In ambito accademico lo strumento più efficace ed utilizzato per fare simulazione è senza dubbio OMNeT++[26].
 Il software, disponibile in open source dal 2003, viene utilizzato in fase di progettazione, ricerca, testing e analisi di protocolli di rete, architetture software e hardware.
 L'ambiente di sviluppo è un surrogato di Eclipse ed il linguaggio principale è il C++.
 \\La logica del simulatore si basa sul concetto fondamentale di Modulo, i quali possono essere aggregati e customizzati a seconda delle proprie esigenze.
 In particolare, per la valutazione del progetto e dell'architettura pensata è stato necessario sviluppare un componente \textit{SmartParking} che riproponesse la logica pensata in fase di progettazione ed 
 implementata conseguentemente.
 Come verrà illustrato in sezione 4.2, sono stati parametrizzati gli aspetti che influenzano maggiormente lo spreading dell'informazione, in modo tale da comprendere le differenze al variare delle condizioni.
-\\L'utilizzo di OMNeT viene integrato dall'apporto di SUMO e di Veins.
+\\L'utilizzo di OMNeT viene integrato dall'apporto di SUMO e di Veins[27].
 Il primo è un simulatore di mobilità urbana, anch'esso ottenibile in open source, che si preoccupa di emulare reti stradali, anche di grandi dimensioni.
 Tutte le configurazioni necessarie per il corretto funzionamento di questo, definite in file xml, riguardano la definizione delle strade, delle costruzioni presenti nell'ambiente e delle macchine (di cui, 
 per ognuna, viene specificato il tempo di partenza ed il percorso da effettuare).
