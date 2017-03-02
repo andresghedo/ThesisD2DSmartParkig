@@ -221,7 +221,7 @@ Ogni utente condivide i propri dati sapendo di contribuire al risultato generale
 Le applicazioni Crowdsensing rappresentano una possibilità di migliorare la quotidianità dell'individuo.
 \section{Smart City}
 La \textit{IEEE} definisce la Smart City come ambiente sostenibile in grado di ridurre i consumi e fornire una qualità di vita migliore ai cittadini[18].
-Il mondo tecnologico, i governi e la società dovrebbero favorire in maniera positiva il processo di urbanizzazione, riuscendo a proporre le seguenti caratteristiche nella città intelligente:
+Il mondo tecnologico, i governi e la società dovrebbero incidere in maniera positiva nel processo di urbanizzazione, riuscendo a proporre le seguenti caratteristiche nella città intelligente:
 \begin{itemize}
 \item smart mobility
 \item smart economy
@@ -236,14 +236,13 @@ In [19], si definisce l'Internet delle Cose come \textit{``l'interconnessione in
 \\Ogni dispositivo potrà aumentare il proprio livello di intelligenza grazie all'interconnessione ed alle informazioni derivanti da altri device.
 \\Il progetto di tesi può essere visto come un primo passo verso il tema dello Smart City, dove numerosi dispositivi vengono coinvolti per migliorare un aspetto quotidiano dei cittadini.
 \section{Smart Parking}
-Il problema del parcheggio può essere visto come una grossa sfida all'interno delle Città intelligenti, definite nella sezione 1.3.
+Il problema del parcheggio può essere visto come una grossa sfida all'interno delle città intelligenti, definite nella sezione 1.3.
 Con il termine Smart Parking si intendono tutte quelle soluzioni che potrebbero favorire l'utente nell'attività di parcheggio.
 Secondo recenti studi, la maggior parte della congestione veicolare nelle grandi città è causata dai parcheggi.
 Gli utenti passano molto tempo nel cercare uno slot libero, soprattutto se si considerano parcheggi su strada (on-street parking).
 \\Le conseguenze negative di tutto ciò si possono riassumere in:
 \begin{itemize}
-\item perdita di tempo
-\item perdita di denaro
+\item perdita di tempo e denaro
 \item inquinamento ambientale
 \item peggioramento della qualità di vita
 \end{itemize}
@@ -261,10 +260,10 @@ Lo stato dell'arte presenta numerosi lavori sul tema dello Smart Parking, propon
 \\I sistemi di Smart Parking possono essere suddivisi in 3 macrocategorie:
 \begin{itemize}
 \item \textit{Sistemi basati su reti di sensori}:
-\\I progetti mostrati in [5][10][11][14][15] si affidano a reti \textit{WSN} (Wireless Sensor Network), dove ogni sensore viene posizionato in prossimità del parcheggio (come mostrato in figura 1.2) ed instrada le proprie 
+\\I progetti mostrati in [5][10][11][14][15] si affidano a Wireless Sensor Network (WSN), dove ogni sensore viene posizionato in prossimità del parcheggio (come mostrato in figura 1.2) ed instrada le proprie 
 informazioni verso una struttura centralizzata. L'efficienza di questi sistemi è molto alta, ma il costo per l'installazione e la manutenzione (come riportato anche nell'introduzione) sono un limite per la loro diffusione.
 \item \textit{Sistemi basati su computer vision}:
-\\Come citato in [16] molti sistemi si basano su tecniche di \textit{VIP} (Video Image Processing) per dedurre l'occupazione o meno dei parcheggi. 
+\\Come citato in [16] molti sistemi si basano su tecniche di Video Image Processing (VIP) per dedurre l'occupazione o meno dei parcheggi. 
 I risultati vengono ottenuti processando le immagini (ricavate da telecamere) con algoritmi basati sull'Intelligenza Artificiale. Anche per questi sistemi il costo dell'infrastruttura può essere notevole.
 \item \textit{Sistemi di Crowdsensing e Crowdsourcing}:
 \\Questi sistemi permettono di ottenere risultati soddisfacenti partendo dal contributo degli utenti stessi.
@@ -273,24 +272,37 @@ più dense di parcheggi on-street.
 I progetti in [2][7][8][9] forniscono all'utente, tramite l'ausilio di mappe, indicazioni riguardo la situazione parcheggi nelle vicinanze. 
 Gli utenti che compiono un'attività di parcheggio, condividono i propri dati (ottenuti tramite sensori dello Smartphone o altro) con la comunità, evitando congestione del traffico stradale.
 Questi lavori possono essere correlati all'attività di tesi presentata in questo documento, dove si cercherà di fornire agli utenti preziose informazioni sui parcheggi vicini, 
-senza l'aiuto di architetture \textit{WSN} ed agenti centralizzati.
+senza l'aiuto di architetture centralizzate o WSN.
 \end{itemize}
 \subsection{Propagazione dell'informazione}
 Una parte fondamentale all'interno dei sistemi Smart Parking riguarda la propagazione dei dati tra i diversi utenti. Innanzitutto è bene distinguere la comunicazione secondo due paradigmi:
 \begin{itemize}
-\item \textit{centralizzata}: classica struttura Client-Server, dove una struttura centralizzata raccoglie tutti i dati derivanti da diverse fonti della Smart City e fornisce i risultati ai diversi client.
+\item \textit{centralizzata}: classica struttura Client-Server, dove una struttura centralizzata raccoglie tutti i dati derivanti da diverse fonti della Smart City e fornisce i risultati ai client.
 \item \textit{distribuita}: ogni dispositivo comunica con altri dispositivi cercando di propagare efficacemente l'informazione. L'assenza di una struttura centralizzata porta ogni nodo ad avere risultati 
-parziali nel tempo, di conseguenza è necessario pensare ad efficaci metodi di propagazione in modo che tutti gli utenti restino allineati sulle informazioni prodotte dalla città.
+parziali nel tempo. È necessario un meccanismo di propagazione efficiente perchè i device restino correttamente aggiornati.
 \end{itemize}
 Il secondo paradigma è quello che verrà utilizzato nel progetto di tesi, dove gli attori della rete saranno solamente dispositivi end-point. 
 Risparmiando l'utilizzo di agenti centralizzati, si evitano importanti costi di installazione e gestione.
-Il tema dello Smart Parking porta a considerare la Smart City come una rete veicolare distribuita ed in queste condizioni è normale pensare ad una comunicazione \textit{V2V} (Vehicle-To-Vehicle).
-Il \textit{V2V} riguarda comunicazioni tra veicoli in movimento portanto alla creazione di reti spontanee, denominate \textit{VANETs} (Vehicular Ad-Hoc Networks).
-La comunicazione veicolare è stata pensata per propagare informazioni in maniera totalmente distribuita tra i vecoli, segnalando eventuali pericoli, incidenti, percorsi trafficati.
-Le connessioni Vehicle-To-Vehicle richiedono componenti hardware e software che la maggior parte delle automobili in commercio non possiedono ancora.
-Un altro modo di propagazione distribuita può avvenire invece tramite l'utilizzo di Smartphone, utilizzando il paradigma \textit{D2D} (Device-To-Device)[32][13].
-Il \textit{D2D} permette comunicazioni wireless tra device che sono nelle vicinanze. L'approccio non prevede alcuna infrastrutture per lo scambio dati al di fuori dei dispositivi mobili (come ad esempio Smartphone e Tablet).
-Questo approccio è quello che viene preso in considerazione nel lavoro di tesi, sfruttando i dispositivi utente per la propagazione di informazioni, relativa alla situazione parcheggi, all'interno della Smart City.
+Per propagare informazioni in maniera distribuita all'interno della città si considerano due tecnologie come il Vehicle-To-Vehicle[31] ed il Device-To-Device[32][13].
+\subsubsection{Sistemi Vehicle-To-Vehicle}
+Il tema dello Smart Parking porta a considerare la Smart City come una rete veicolare distribuita ed in queste condizioni è normale pensare ad una comunicazione Vehicle-To-Vehicle (V2V).
+Il V2V riguarda comunicazioni tra veicoli in movimento portanto alla creazione di reti spontanee, denominate Vehicular Ad-Hoc Networks (VANETs)[31].
+Una VANET è un caso particolare di Mobile Ad-Hoc Network (MANET). La topologia della rete è altamente dinamica in quanto i veicoli possono muoversi a velocità considerevoli ed in senso opposto, di 
+conseguenza la comunicazione deve avvenire in pochi istanti. Le disconnessioni possono essere frequenti, considerando che i veicoli possono allontanarsi velocemente l'uno dall'altro proprio durante uno scambio dati.
+Il mondo del V2V prevede 3 categorie principali di comunicazione:
+\begin{itemize}
+\item \textit{Vehicle-to-Vehicle (V2V)}: prevede la sola comunicazione tra veicoli.
+\item \textit{Vehicle-to-Infrastructure (V2I)}: prevede la comunicazione tra veicoli ed infrastrutture stradali.
+\item \textit{Hybrid (V2X)}: prevede comunicazioni sia V2V che V2I.
+\end{itemize}
+La comunicazione veicolare apre le porte a numerosi campi di applicazione. La sicurezza è sicuramente l'obiettivo principale, segnalando all'utente eventuali incidenti o situazioni di pericolo. Inoltre l'efficienza 
+(ad esempio evitare percorsi congestionati), il comfort, l'intrattenimento (ad esempio condivisione di musica e file) e l'urban sensing (ad esempio monitoraggio smog) sono tutti possibili traguardi per il V2V.
+Le case automobilistiche stanno iniziando a predisporre le auto con sensori e sistemi di navigazione. Il prossimo step sarà integrare la comunicazione V2V, in quanto la maggior parte delle automobili 
+in commercio non sono ancora idonee in questo senso.
+\subsubsection{Sistemi Device-To-Device}
+Un altro modo di propagazione distribuita può avvenire invece tramite Smartphone, utilizzando il paradigma Device-To-Device (D2D)[32][13].
+Il D2D permette comunicazioni wireless tra device che sono nelle vicinanze. L'approccio non prevede alcuna infrastrutture per lo scambio dati al di fuori dei dispositivi mobili (come ad esempio Smartphone e Tablet).
+Il D2D è l'approccio preso in considerazione nel lavoro di tesi, sfruttando i dispositivi utente per la propagazione di informazioni, relativa alla situazione parcheggi, all'interno della Smart City.
 \part{Progettazione ed Implementazione}
 \chapter{Progettazione}
 Il seguente capitolo ha lo scopo di illustrare in dettaglio il goal del progetto, le problematiche che vi stanno dietro e la fase di progettazione su cui è stato necessario soffermarsi, per la successiva realizzazione ed implementazione.
@@ -1018,8 +1030,8 @@ I dispositivi si possono sincronizzare continuamente nel tempo ma, per problemi 
 \section{Metriche di prestazione}
 In fase di simulazione, si vuole dimostrare che il movimento degli utenti e la strategia di disseminazione locale, permettono di restare sincronizzati sugli eventi che effettivamente accadono.
 In particolare si cercherà di analizzare l'accuratezza dei dati presenti nei database locali ai device utente, rispetto a ciò che è accaduto realmente.
-\\Per definire meglio il concetto dell'accuratezza, si prenda di riferimento una cella \textit{i} dove, nel lasso di tempo \textit{t}, sono stati performati 100 eventi parcheggio o rilascio \textit{E\ped{i}\ap{tot}}.
-A questo punto, all'istante \textit{t+1}, se il device ha nella propria conoscenza locale 10 eventi \textit{E\ped{i}\ap{loc}} dei 100 totali, avrà un'accuratezza del 10\%, se ne ha 50 avrà accuratezza del 50\% e così 
+\\Per definire meglio il concetto dell'accuratezza, si prenda di riferimento una cella \textit{i} dove, nel lasso di tempo \textit{t}, sono stati performati 100 eventi parcheggio o rilascio $\textit{E\ped{i}\ap{tot}}$.
+A questo punto, all'istante \textit{t+1}, se il device ha nella propria conoscenza locale 10 eventi $\textit{E\ped{i}\ap{loc}}$ dei 100 totali, avrà un'accuratezza del 10\%, se ne ha 50 avrà accuratezza del 50\% e così 
 fino al limite superiore del 100\%, il quale può essere raggiunto solo da una struttura di tipo centralizzata.
 $$accuracy\ped{i}\ap{t+1} = \df{E\ped{i}\ap{loc}}{E\ped{i}\ap{tot}} * 100 $$
 L'accuratezza, appena descritta, verrà calcolata e registrata nel corso del tempo per comprendere il relativo andamento, col trascorrere dei secondi.

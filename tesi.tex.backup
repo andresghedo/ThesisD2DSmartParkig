@@ -264,7 +264,7 @@ Lo stato dell'arte presenta numerosi lavori sul tema dello Smart Parking, propon
 \\I progetti mostrati in [5][10][11][14][15] si affidano a reti \textit{WSN} (Wireless Sensor Network), dove ogni sensore viene posizionato in prossimità del parcheggio (come mostrato in figura 1.2) ed instrada le proprie 
 informazioni verso una struttura centralizzata. L'efficienza di questi sistemi è molto alta, ma il costo per l'installazione e la manutenzione (come riportato anche nell'introduzione) sono un limite per la loro diffusione.
 \item \textit{Sistemi basati su computer vision}:
-\\Come citato in [31] molti sistemi si basano su tecniche di \textit{VIP} (Video Image Processing) per dedurre l'occupazione o meno dei parcheggi. 
+\\Come citato in [16] molti sistemi si basano su tecniche di \textit{VIP} (Video Image Processing) per dedurre l'occupazione o meno dei parcheggi. 
 I risultati vengono ottenuti processando le immagini (ricavate da telecamere) con algoritmi basati sull'Intelligenza Artificiale. Anche per questi sistemi il costo dell'infrastruttura può essere notevole.
 \item \textit{Sistemi di Crowdsensing e Crowdsourcing}:
 \\Questi sistemi permettono di ottenere risultati soddisfacenti partendo dal contributo degli utenti stessi.
@@ -284,13 +284,26 @@ parziali nel tempo, di conseguenza è necessario pensare ad efficaci metodi di pr
 \end{itemize}
 Il secondo paradigma è quello che verrà utilizzato nel progetto di tesi, dove gli attori della rete saranno solamente dispositivi end-point. 
 Risparmiando l'utilizzo di agenti centralizzati, si evitano importanti costi di installazione e gestione.
+Per propagare informazioni in maniera distribuita all'interno della città si considerano due tecnologie come il Vehicle-To-Vehicle ed il Device-To-Device.
+\subsubsection{Sistemi Vehicle-To-Vehicle}
 Il tema dello Smart Parking porta a considerare la Smart City come una rete veicolare distribuita ed in queste condizioni è normale pensare ad una comunicazione \textit{V2V} (Vehicle-To-Vehicle).
 Il \textit{V2V} riguarda comunicazioni tra veicoli in movimento portanto alla creazione di reti spontanee, denominate \textit{VANETs} (Vehicular Ad-Hoc Networks).
-La comunicazione veicolare è stata pensata per propagare informazioni in maniera totalmente distribuita tra i vecoli, segnalando eventuali pericoli, incidenti, percorsi trafficati.
-Le connessioni Vehicle-To-Vehicle richiedono componenti hardware e software che la maggior parte delle automobili in commercio non possiedono ancora.
-Un altro modo di propagazione distribuita può avvenire invece tramite l'utilizzo di Smartphone, utilizzando il paradigma \textit{D2D} (Device-To-Device)[13].
-Il \textit{D2D} permette comunicazioni wireless tra device che sono nelle vicinanze. Questo approccio è quello che viene preso in considerazione nel lavoro di tesi, sfruttando i dispositivi utente per la 
-propagazione di informazioni, relativa alla situazione parcheggi, all'interno della Smart City.
+Una \textit{VANET} è un particolare caso di \textit{MANET} (Mobile Ad-Hoc Network). La topologia della rete è altamente dinamica in quanto i veicoli possono muoversi a velocità considerevoli ed in senso opposto, di 
+conseguenza la comunicazione deve avvenire in pochi istanti. Le disconnessioni possono essere frequenti, considerando che i veicoli possono allontanarsi velocemente l'uno dall'altro proprio durante uno scambio dati.
+Il mondo del \textit{V2V} prevede 3 categorie principali di comunicazione:
+\begin{itemize}
+\item \textit{Vehicle-to-Vehicle (V2V)}: prevede la sola comunicazione tra veicoli.
+\item \textit{Vehicle-to-Infrastructure (V2I)}: prevede la comunicazione tra veicoli ed infrastrutture stradali.
+\item \textit{Hybrid (V2X)}: prevede comunicazioni sia V2V che V2I.
+\end{itemize}
+La comunicazione veicolare apre le porte a numerosi campi di applicazione. La sicurezza è sicuramente l'obiettivo principale, segnalando all'utente eventuali incidenti o situazioni di pericolo. Inoltre l'efficienza 
+(ad esempio evitare percorsi congestionati), il comfort, l'intrattenimento (ad esempio condivisione di musica e file) e l'urban sensing (ad esempio monitoraggio smog) sono tutti possibili traguardi per il V2V.
+Le case automobilistiche stanno iniziando a predisporre le auto con sensori e sistemi di navigazione. Il prossimo step sarà integrare la comunicazione V2V, in quanto la maggior parte delle automobili 
+in commercio non sono ancora idonee in questo senso.
+\subsubsection{Sistemi Device-To-Device}
+Un altro modo di propagazione distribuita può avvenire invece tramite Smartphone, utilizzando il paradigma \textit{D2D} (Device-To-Device)[32][13].
+Il \textit{D2D} permette comunicazioni wireless tra device che sono nelle vicinanze. L'approccio non prevede alcuna infrastrutture per lo scambio dati al di fuori dei dispositivi mobili (come ad esempio Smartphone e Tablet).
+Il D2D è l'approccio preso in considerazione nel lavoro di tesi, sfruttando i dispositivi utente per la propagazione di informazioni, relativa alla situazione parcheggi, all'interno della Smart City.
 \part{Progettazione ed Implementazione}
 \chapter{Progettazione}
 Il seguente capitolo ha lo scopo di illustrare in dettaglio il goal del progetto, le problematiche che vi stanno dietro e la fase di progettazione su cui è stato necessario soffermarsi, per la successiva realizzazione ed implementazione.
@@ -1179,7 +1192,7 @@ In conclusione, è possibile pensare all'utilizzo del sistema in una città metrop
 \bibitem{K13} Emad Abd-Elrahman, Adel Mounir Said, Thouraya Toukabri, Hossam Afifi, Michel Marot, ''A Hybrid Model to Extend Vehicular Intercommunication V2V through D2D Architecture``, IEEE, 2015.
 \bibitem{K14} Jihoon Yang, Jorge Portilla and Teresa Riesgo, ''Smart Parking Service based on Wireless Sensor Networks``, IEEE, 2012.
 \bibitem{K15} Muhammad Alam, Bruno Fernandes, João Almeida, Joaquim Ferreira, José Fonseca, ''Integration of Smart Parking in Distributed ITS Architecture``, IEEE, 2016.
-\bibitem{K16} George Dimitrakopoulos, Panagiotis Demestichas , ''Systems Based on Cognitive Networking Principles and Management Functionality``, IEEE, 2010.
+\bibitem{K16} G. Revathi, V.R.Sarma Dhulipala, ''Smart Parking Systems and Sensors: A Survey``, IEEE, 2012.
 \bibitem{K17} Rongxing Lu, Xiaodong Lin, Haojin Zhu, Xuemin Shen, ''SPARK: A New VANET-based Smart Parking Scheme for Large Parking Lots``, IEEE, 2009.
 \bibitem{K18} IEEE Smart Cities, http://smartcities.ieee.org/about.html.
 \bibitem{K19} Feng Xia, LaurenceT.Yang, LizheWang, Alexey Vinel, ''Internet of Things``, IEEE, 2012.
@@ -1194,10 +1207,9 @@ In conclusione, è possibile pensare all'utilizzo del sistema in una città metrop
 \bibitem{K28} Vaishali D. Khairnar, Ketan Kotecha, ''Performance of Vehicle-to-Vehicle Communication using IEEE 802.11p in Vehicular Ad-hoc Network Environment``, IEEE, 2013.
 \bibitem{K29} Luca Bedogni, Marco Gramaglia, Andrea Vesco, Marco Fiore, Jér\^{o}me Härri, Francesco Ferrero, ''The Bologna Ringway dataset: improving road network conversion in SUMO and validating urban mobility via navigation services``, IEEE, 2015.
 \bibitem{K30} Daniel Camps-Mur, Andres Garcia-Saavedra, Pablo Serrano, ''Device-to-device communications with Wi-Fi Direct: overview and experimentation``, IEEE, 2013.
-\bibitem{K31} G. Revathi, V.R.Sarma Dhulipala, ''Smart Parking Systems and Sensors: A Survey``, IEEE, 2012.
-\bibitem{K32} Felipe Domingos da Cunha, Azzedine Boukerche, Leandro Villas, Aline Carneiro Viana, Antonio A. F. Loureiro, ''Data Communication in VANETs: A Survey, Challenges and Applications``, INRIA, 2014.
+\bibitem{K31} Felipe Domingos da Cunha, Azzedine Boukerche, Leandro Villas, Aline Carneiro Viana, Antonio A. F. Loureiro, ''Data Communication in VANETs: A Survey, Challenges and Applications[Research Report] RR-849``, INRIA, 2014.
+\bibitem{K32} Gábor Fodor, Erik Dahlman, Gunnar Mildh, Stefan Parkvall, Norbert Reider, György Miklós, Zoltán Turányi, ''Design aspects of network assisted device-to-device communications``, IEEE, 2012.
 \end{thebibliography}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
-\clearpage{\pagestyle{empty}\cleardoublepage}
 \clearpage{\pagestyle{empty}\cleardoublepage}
 \end{document}
